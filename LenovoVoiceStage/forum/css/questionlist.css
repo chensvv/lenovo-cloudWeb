@@ -1,0 +1,149 @@
+#eui-main-body{
+	margin: 0 auto;
+	margin-top: 100px;
+	width: 80%;
+}
+.list-titile{
+    padding-top: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    height: 110px;
+}
+
+.list-titile .list-head-left{
+    width: 50%;
+    float: left;
+}
+
+.list-titile .list-head-left .list-head-num{
+    padding-top: 20px;
+}
+
+.list-titile .list-head-right{
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+
+.list-titile .list-head-right .list-head-search{
+    width: 26%;
+    height: 33px;
+    border:  1px solid #e5e5e5;
+    margin-left: 69%;
+}
+
+.list-titile .list-head-right .list-head-search input{
+    border: none;
+    outline: none;
+    height: 31px;
+    width: 105px;
+}
+
+.list-titile .list-head-right .list-head-search img{
+    height: 28px;
+    /*border:  1px solid #e5e5e5;*/
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.list-titile .list-head-right .list-head-new{
+    margin-top: 10px;
+    width: 138px;
+    padding-top: 5px;
+    font-size: 15px;
+    float: right;
+    /*border:  1px solid #e5e5e5;*/
+    height: 33px;
+    text-align: center;
+    /*background-image: url("../images/newbtn.png");*/
+   background: #1189f3;
+}
+
+.list-titile .list-head-right .list-head-new a{
+    color: white;
+    text-decoration: none;
+}
+.list-titile .list-head-name{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.list-content{
+    padding-top: 10px;
+    height: 45%;
+    margin-bottom: 60px;
+}
+.list-content table{
+    width: 100%;
+    margin: 20px auto;
+}
+.list-content table thead{
+    background: #f2f2f2;
+    text-align: center;
+}
+.list-content table thead th{
+    text-align: center;
+    height: 40px;
+}
+.list-content table thead .rightline{
+    border-right: 1px solid #8e8585;
+}
+.list-content table .list-cell{
+	/*border-bottom: 1px solid #ccc;*/
+}
+.list-content table .list-cell td{
+	padding: 6px 10px;
+}
+
+
+.content-title .rightline{
+	border-right: 1px solid #8e8585;
+}
+
+tbody tr .mg{
+	text-align: center;
+}
+table thead th{
+	font-size: 16px;
+	font-weight: 800;
+}
+
+
+table tbody .list-cell td a:visited{
+	color: #7ca9d8;
+}
+ table tbody .list-cell td a{
+	color: #337ab7;
+	font-size: 16px;
+}
+#page{
+	width: 100%;
+	text-align: right;
+	margin-bottom: 150px;
+}
+table thead .lg1{
+	width: 50%;
+}
+table thead .lg2{
+	width: 15%;
+}
+table thead .lg3{
+	width: 15%;
+}
+table thead .lg4{
+	width: 15%;
+}
+table tbody tr:nth-child(even){
+	background: #F4F7F9;
+}
+table tbody tr:nth-child(odd){
+	background: #FFFFFF;
+}
+table tbody tr:hover{
+	background: #f0f0f0;
+}
+
+
+
+
+

@@ -1,0 +1,73 @@
+#eui-main-body{
+    height: 810px;
+    width: 1080px;
+    margin: auto;
+    background-image: url("../images/app-add.jpg");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+#eui-main-body .add-title{
+    font-size: 27px;
+    font-weight: bolder;
+    padding-top: 200px;
+    padding-left: 43%;
+}
+
+#eui-main-body .add-title{
+    font-size: 27px;
+    font-weight: bolder;
+    padding-top: 200px;
+    padding-left: 40%;
+}
+
+#eui-main-body .add-content{
+    padding-left: 30%;
+}
+
+#eui-main-body .add-content .common{
+    padding-top: 35px;
+    font-weight: bolder;
+}
+
+#eui-main-body .add-content input,select{
+    width: 250px;
+    height: 30px;
+}
+
+#eui-main-body .add-content textarea{
+    width: 250px;
+    height: 50px;
+}
+
+#eui-main-body .add-content #voice_rec{
+    width: 20px;
+    height: 20px;
+}
+
+#eui-main-body .add-content #voice_sis{
+    width: 20px;
+    height: 20px;
+}
+
+.add-button{
+    padding-left: 30%;
+    padding-top: 15px;
+    padding-right: 20%;
+}
+
+.add-button .button-submit{
+    width: 10%;
+    height: 50px;
+    float: left;
+}
+
+.add-button .button-back{
+    width: 50%;
+    height: 50px;
+    float: right;
+}
+
+.footer{
+    text-align: center;
+}

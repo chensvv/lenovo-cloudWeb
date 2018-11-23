@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>联想语音开放平台</title>
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../framework/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="css/applist.css" rel="stylesheet"/>
+    <link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../common/js/pagetop.js"></script>
+    <script type="text/javascript" src="js/appcommon.js"></script>
+    <!--<script type="text/javascript" src="js/synthesis.js"></script>-->
+</head>
+<body>
+<div id="eui-main-header">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="navbar-icon">
+                <img src="../common/images/icon.png" alt="">
+            </div>
+            <div class="navbar-nav">
+                <ul class="nav">
+                    <li>
+                        <a href="#" onclick="menu_first_page()" target="_self" >首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" target="_self"  data-toggle="dropdown" >产品与服务<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="menu_voice_recognise()">语音识别</a></li>
+                            <li><a href="#" onclick="menu_voice_synthesis()">语音合成</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#" onclick="menu_sdk_download()" target="_self" >SDK下载</a>
+                    </li>
+                    <li class="">
+                        <a href="#" onclick="menu_product_document()" target="_self" >产品使用文档</a>
+                    </li>
+                    <li class="">
+                        <a href="#" onclick="menu_developer_question()" target="_self" >开发者论坛</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-right ">
+                    <li><a  href="#" onclick="menu_application_manager()" data-app-management="true" >应用管理</a></li>
+                    <li><a href="#">|</a></li>
+                    <li class="dropdown">
+                        <a href="#" target="_self"  data-toggle="dropdown">清澈淡水<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="menu_user_register()">开发者信息</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="mail"></a>
+                        <span class="rbg">1</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="eui-main-body">
+    <div class="app-manager">
+        <div class="manager-title">应用管理</div>
+        <div class="manager-operation">
+            <a href="#" onclick="app_menu_to_deleted()" target="_self">应用回收站</a>
+            <img src="images/app-creatbtn.jpg" onclick="app_menu_to_new()"   />
+        </div>
+    </div>
+    <div class="app-list">
+        <div class="app-cell">
+            <div class="cell-icon"></div>
+            <div class="cell-name">
+                <div class="name-appname">天王盖地虎</div>
+                <div class="name-apptype">学习办公</div>
+            </div>
+            <div class="cell-attribute">
+                <div class="attr-stage">平台:&nbsp;&nbsp;android</div>
+                <div class="attr-appid">APP_ID:&nbsp;&nbsp;1033675</div>
+                <div class="attr-createtime">创建时间:&nbsp;&nbsp;2017-03-08</div>
+            </div>
+            <div class="cell-operate">
+                <div class="operate-view"><a href="#" onclick="app_menu_to_detail()" target="_self">详细信息</a></div>
+                <div class="operate-update"><a href="#" onclick="app_menu_to_update()" target="_self">更新应用</a></div>
+                <div class="operate-delete"><a href="#" onclick="">删除应用</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="eui-main-footer">
+    <div class="container">
+        <div class="footer">
+            <div class="list icon">
+                <div class="title">联想语音</div>
+                <div class="con">©&nbsp;版权所有&nbsp;2016&nbsp;Lenovo&nbsp;<br />京ICP证032887号</div>
+            </div>
+            <div class="list">
+                <div class="title">联系我们</div>
+                <div class="con">QQ：①138889888 ②13666666<br/>TEL：110119120</div>
+            </div>
+            <div class="list last">
+                <div class="title">关于我们</div>
+                <div class="con"><div class="weibo"><a href="http://weibo.com/3966544483" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新浪微博</a></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

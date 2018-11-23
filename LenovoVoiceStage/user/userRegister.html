@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>联想语音开放平台</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../framework/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="css/userRegister.css" rel="stylesheet"/>
+    <link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />
+    <!-- -->
+
+    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../common/js/pagetop.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+    <!--<script type="text/javascript" src="js/synthesis.js"></script>-->
+
+</head>
+<body>
+
+<div id="eui-main-header">
+</div>
+
+<div id="eui-main-body">
+    <div class="user-title">用户注册</div>
+    <div class="user-content">
+        <div class="content-name">
+            <div class="user-name text-reader">用户姓名</div>
+            <div class="user-nickname text-reader">用户昵称</div>
+            <div class="user-email text-reader">E-mail</div>
+            <div class="user-pwd text-reader">密码</div>
+            <div class="user-telephone text-reader">联系方式</div>
+            <div class="user-idcard text-reader">身份证号</div>
+            <div class="user-description text-reader">自我简介</div>
+        </div>
+        <div class="content-value">
+            <div class="user-name"><input type="text" name="username" /></div>
+            <div class="user-nickname"><input type="text" name="usernickname" /></div>
+            <div class="user-email"><input type="text" name="usermail" /></div>
+            <div class="user-pwd"><input type="password" name="userpwd" /></div>
+            <div class="user-telephone"><input type="text" name="usertel" /></div>
+            <div class="user-idcard"><input type="text" name="useridcard" /></div>
+            <div class="user-description"><textarea name="userdesc"></textarea></div>
+        </div>
+    </div>
+    <div class="register-button">
+        <div class="button-submit">
+            <img src="images/submit.png"  onclick="menu_first_page()" />
+        </div>
+        <div class="button-back">
+            <img src="images/back.png" onclick="menu_first_page()" />
+        </div>
+    </div>
+</div>
+
+<div id="eui-main-footer">
+</div>
+<script>
+    loadTop("user");
+
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = "name=hello" + ";expires=" + exp.toGMTString();
+
+    var arr=document.cookie;
+    alert(arr);
+
+    //alert(document.getElementById("lenovo-user-name").innerHTML);
+</script>
+
+<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+<!-- -->
+<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+
+</body>
+</html>

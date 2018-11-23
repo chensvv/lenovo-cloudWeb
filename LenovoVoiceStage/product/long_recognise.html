@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
+    <title>联想语音</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/recognise2.css?version=1.2" rel="stylesheet"/>
+    <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
+
+    <script type="text/javascript" src="../common/js/avatar.js"></script>
+    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/recognise.js?version=1.2"></script>
+	<script src="js/audiodisplay.js?version=1.2"></script>
+	<script src="js/recorder.js?version=1.2"></script>
+	<script src="js/audiomainlong.js?version=1.3"></script>	
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+	
+</head>
+<style>
+	#timetext{
+		border: none;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		color: #5a5e60;
+	}
+
+	#status2 span{
+		font-size: 18px;
+	}
+	.prompt{
+		font-size: 24px;
+		color: #97aab0;
+		text-align: center;
+		position: relative;
+		top: 35%;
+	}
+</style>
+<body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+</nav>
+
+<div id="eui-main-body">
+
+    <div class="body-content product-experience">
+        <div class="content-title product-title">产品体验</div>
+        <div class="product-content">
+
+            <div class="product-picture" id="banner">
+                <div id="viz">
+                    <canvas id="analyser" width="2000" style="display:none;" ></canvas>
+                    <canvas id="wavedisplay"></canvas>
+                </div>
+                <div class="voice_button">
+	                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />
+                        <div class="pulse"></div>
+						<div class="pulse1"></div>
+	                </div>
+	                <input type="text" id="timetext" value="00时00分00秒" readonly><br>  
+	                <div id="status" class="result-content">
+	                                    点击麦克风，开始长语音识别<br/>再次点击麦克风，关闭语音识别<br/>
+	                </div>
+	            </div>
+	            <div class="voice_content" id="status2">
+	            	<p class="prompt">此区域显示识别结果 !</p>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="eui-main-footer" class="footer-bgcolor"></div>   
+
+</body>
+</html>
+<script>
+	function myBrowser(){
+		var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+		var isOpera = userAgent.indexOf("Opera") > -1;
+		if (isOpera) {
+			return "Opera"
+			}; //判断是否Opera浏览器
+			if (userAgent.indexOf("Firefox") > -1) {
+			return "FF";
+			} //判断是否Firefox浏览器
+			if (userAgent.indexOf("Chrome") > -1){
+			return "Chrome";
+			}
+			if (userAgent.indexOf("Safari") > -1) {
+			return "Safari";
+			} //判断是否Safari浏览器
+			if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+			return "IE";
+		}; //判断是否IE浏览器
+	}
+	//以下是调用上面的函数
+	var mb = myBrowser();	
+	if ("Chrome" == mb || "FF" == mb) {
+	}else{
+		alert("您的浏览器暂不支持录音,请使用火狐或谷歌浏览器!");
+	}
+	
+	function browserRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            alert("因手机端权限问题,语音识别不佳，请尽量使用电脑测试!")
+        } else {
+        }
+    }
+
+    browserRedirect();
+</script>
+

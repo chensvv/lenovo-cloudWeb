@@ -1,0 +1,148 @@
+
+html {font-size: 62.5%;} 
+#eui-main-header{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 999;
+	background: #FFFFFF;
+	opacity: 0.9;
+}
+
+#eui-main-body{
+	margin-top: 70px;
+	width: 100%;
+}
+.top-banner {
+	position: relative;
+    width: 100%;
+    /*max-height: 800px;*/
+    height: 562px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+@media screen and (min-width:900px) and (max-width:1300px){
+	.top-banner{
+        height: 500px;
+    }
+}
+@media screen and (min-width:730px) and (max-width:899px){
+	.top-banner{
+        height: 400px;
+    }
+}
+@media screen and (min-width:375px) and (max-width:729px){
+	.top-banner{
+        height: 300px;
+    }
+}
+@media screen and (min-width:320px) and (max-width:374px){
+	.top-banner{
+        height: 200px;
+    }
+}
+@media screen and (max-width:320px){
+	.top-banner{
+        height: 200px;
+    }
+}
+@media screen and (min-width:1920px){
+    .top-banner{
+        width: 100%;
+        height: 800px;
+    }
+}
+.top-banner .pic li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+.top-banner .pic li img {
+	width: 100%;
+	height: 100%;
+}
+
+.top-banner #position {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	/*margin: 0;*/
+	width: 60px;
+	text-align: center;
+}
+
+#position li {
+	width: 10px;
+	height: 10px;
+	margin: 0 2px;
+	display: inline-block;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #F0F8FF;
+}
+
+#position .active {
+	background-color: #3399ff;
+}
+
+
+
+#eui-main-header {
+    margin: 0;
+    border: none;
+    height: 60px;
+    /*background: url(../images/nav-bg.png) repeat-x;*/
+   /*background-color: #3C3C3C;*/
+    width: 100%;
+    border-radius: 0;
+    /*padding-left: calc(100vw - 100%);*/
+}
+#eui-main-header{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 999;
+	background: #FFFFFF;
+	opacity: 0.9;
+}
+
+
+
+/*#eui-main-footer .footer .icon .title {*/
+    /*background: url(/images/welcome/speechicon.png) no-repeat;*/
+/*}*/
+
+/*#eui-main-footer .footer .list .con {
+    margin-top: 10px;
+    color: #b1b1b1;
+    font-size: 12px;
+}
+.footer-bgcolor{
+	background: #2f363e;
+    color: #a9acb0;
+    margin-top: 30px;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

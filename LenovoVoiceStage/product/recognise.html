@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
+    <title>联想语音</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/recognise.css?version=1.2" rel="stylesheet"/>
+    <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
+    
+    <script type="text/javascript" src="../common/js/avatar.js"></script>
+    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/recognise.js?version=1.2"></script>
+	<script src="js/audiodisplay.js?version=1.2"></script>
+	<script src="js/recorder.js?version=1.2"></script>
+	<script src="js/audiomain.js?version=1.2"></script>	
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+	
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+</nav>
+
+<div id="eui-main-body">
+
+    <div class="body-content product-experience">
+        <div class="content-title product-title">产品体验</div>
+        <div class="product-content">
+
+            <div class="product-picture">
+                <div id="viz">
+                    <canvas id="analyser" width="2000" style="display:none;" ></canvas>
+                    <canvas id="wavedisplay"></canvas>
+                </div>
+                
+                <div class="marvel-device nexus5">
+
+					<div class="top-bar">
+						<div class="motoimg"><img src="images/mo1.gif"/></div>
+						<div class="top-call"></div>
+					</div>
+					<div class="sleep"></div>
+					<div class="volume"></div>
+					<div class="camera"></div>
+					<div class="screen">
+		                <div class="prompt" style="">
+		                	<span id="status" class="stat">点击麦克风，开始说话.再次点击麦克风，显示识别结果</span>
+		                    <span class="arrow" style=""></span>
+		                </div>
+		                <pre style="display: none;"><code id="json"></code></pre>
+		                <div class="upd">
+		                	<input type="text" name="" id="" value="" class="update"/>
+		                    <input type="button" name="" id="" value="修改" class="subdate"/>
+		                </div>
+		                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />
+		                        <div class="pulse"></div>
+								<div class="pulse1"></div>
+		                </div>
+					</div>
+				</div>
+     
+ 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="eui-main-footer" class="footer-bgcolor">
+</div>   
+<script type="text/javascript">
+
+  $(function(){     
+  	    var Username = window.localStorage.getItem('Username');
+		var accountid = window.localStorage.getItem('accountid');
+		var lenkey=null;
+		var secrkey=null;
+		$.ajax({
+			type:"POST",
+			url:"/lasf/userinfo",
+			headers: {  
+				"channel" : "cloudasr"
+            },
+            data:{"username":Username,"lenovoid":accountid},
+			success:function(data){
+				lenkey=data.lenovokey;
+				secrkey=data.secretkey;		
+				var aa=window.localStorage.setItem('lenkey',lenkey);
+				var bb=window.localStorage.setItem('secrkey',secrkey);
+			}
+			
+		});
+	})
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+
+#eui-main-body{
+    margin:0 auto;
+    margin-top: 100px;
+    width: 80%;
+    height: 375px;
+}
+
+.content-head{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.content-head .content-head-header{
+    font-weight: bolder;
+    font-size: 20px;
+    padding-top: 10px;
+    float: left;
+}
+
+.content-body{
+	margin: 0 auto;
+	width: 80%;
+    padding-top: 20px;
+}
+
+.content-body .content-body-title{
+   overflow: hidden;
+   width: 100%;
+}
+
+.content-body .content-body-text{
+	overflow: hidden;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.content-body .content-body-button{
+    margin-left: 71%;
+    text-align: center;
+    margin-top: 40px;
+    display: block;
+
+}
+
+.content-body .body-context{
+    /*width: 90%;*/
+    float: left;
+    display: block;
+}
+
+.content-body .content-body-button a{
+	width: 100%;
+	display: block;
+    line-height: 37px;
+    font-size: 16px;
+    color: white;
+}
+
+.content-body .content-body-button .button-body{
+    height: 39px;
+    width: 96px;
+    /*background-image: url("../images/commit.png");*/
+    background: #1189f3;
+}
+
+.content-body .body-label{
+    width: 10%;
+    margin-left: 20%;
+    text-align: center;
+    font-size: 16px;
+    float: left;
+}
+
+
+
+.content-body input{
+    width: 600px;
+    height: 30px;
+    font-size: 16px;
+}
+
+textarea{
+    width: 600px;
+    height: 300px;
+    font-size: 16px;
+}
+
+
+
+
+.mylist{
+    margin-top: 10px;
+    width: 138px;
+    padding-top: 5px;
+    font-size: 15px;
+    float: right;
+    /*border:  1px solid #e5e5e5;*/
+    height: 33px;
+    text-align: center;
+    /*background-image: url("../images/newbtn.png");*/
+    background: #1189f3;
+}
+.mylist a{
+	color: white;
+    text-decoration: none;
+}
+
