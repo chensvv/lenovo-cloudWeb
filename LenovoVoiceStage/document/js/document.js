@@ -1,8 +1,31 @@
-/***************************************************************************/
-/*                                                                         */
-/*  This obfuscated code was created by Javascript Obfuscator Free Version.*/
-/*  Javascript Obfuscator Free Version can be downloaded here              */
-/*  http://javascriptobfuscator.com                                        */
-/*                                                                         */
-/***************************************************************************/
-var _$_90d5=["get","/lasf/logininfo","cloudasr","securekey=","json","undefined","error","status","success","innerHTML","lenovo-user-name","getElementById","Username","<span class=\"caret\"></span>","secretkey","setItem","localStorage","accountid","AccountID","lenovoname","name","failed","location","https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html","ajax"];function LenovoIdSyncLoginState(_0x1EB13){_club_login_status= true;take_st_login= true;$[_$_90d5[24]]({type:_$_90d5[0],url:_$_90d5[1],headers:{"channel":_$_90d5[2]},data:_$_90d5[3]+ _0x1EB13,dataType:_$_90d5[4],success:function(_0x1EB1D){if( typeof (_0x1EB1D)== _$_90d5[5]){var _0x1EB1D={"status":_$_90d5[6]}};if(_0x1EB1D[_$_90d5[7]]== _$_90d5[8]){document[_$_90d5[11]](_$_90d5[10])[_$_90d5[9]]= _0x1EB1D[_$_90d5[12]]+ _$_90d5[13];window[_$_90d5[16]][_$_90d5[15]](_$_90d5[14],_0x1EB1D[_$_90d5[14]]);window[_$_90d5[16]][_$_90d5[15]](_$_90d5[17],_0x1EB1D[_$_90d5[18]]);window[_$_90d5[16]][_$_90d5[15]](_$_90d5[19],_0x1EB1D[_$_90d5[20]]);window[_$_90d5[16]][_$_90d5[15]](_$_90d5[12],_0x1EB1D[_$_90d5[12]])}else {if(_0x1EB1D[_$_90d5[7]]== _$_90d5[21]){window[_$_90d5[22]]= _$_90d5[23]}else {if(_0x1EB1D[_$_90d5[7]]== _$_90d5[6]){}}}}})}
+function LenovoIdSyncLoginState(lenovoid_wust) {
+        _club_login_status = true;
+        take_st_login = true;
+        $.ajax({
+	   	 	type:"get",
+	   	 	url:"https://voice.lenovomm.com/lasf/logininfo",
+	   	 	headers:{
+	   	 		'channel':'cloudasr'
+	   	 	},
+	   	 	data:"securekey="+lenovoid_wust,
+	   	 	dataType:'json',
+	   	 	success:function(data){
+	   	 		if (typeof(data) == 'undefined')
+                var data = {
+                    'status': 'error'
+                };
+	            if (data.status == 'success') {
+	                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
+	                window.localStorage.setItem('secretkey',data.secretkey);
+	                window.localStorage.setItem('accountid',data.AccountID);
+	                window.localStorage.setItem('lenovoname',data.name);
+	                window.localStorage.setItem('Username',data.Username);
+	                //window.location.reload();
+	            } else if (data.status == 'failed') {
+	                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
+	            } else if (data.status == 'error') {
+	
+	            }
+	   	 	}
+	   	});
+    }

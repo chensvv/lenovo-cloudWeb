@@ -1,8 +1,71 @@
-/***************************************************************************/
-/*                                                                         */
-/*  This obfuscated code was created by Javascript Obfuscator Free Version.*/
-/*  Javascript Obfuscator Free Version can be downloaded here              */
-/*  http://javascriptobfuscator.com                                        */
-/*                                                                         */
-/***************************************************************************/
-var _$_bdca=["show","eq",".pic li","active","removeClass","siblings","addClass","index","fadeOut","fadeIn","click","#position li","stop","hover","#container","/lasf/logininfo","undefined","error","status","success","innerHTML","lenovo-user-name","getElementById","Username","<span class=\"caret\"></span>","secretkey","setItem","localStorage","accountid","AccountID","lenovoname","name","failed","json","get"];$(function(){var _0x5BD2=0;var _0x5C3C;_0x5C3C= setInterval(_0x5C07,4000);$(_$_bdca[2])[_$_bdca[1]](0)[_$_bdca[0]]();$(_$_bdca[11])[_$_bdca[10]](function(){$(this)[_$_bdca[6]](_$_bdca[3])[_$_bdca[5]]()[_$_bdca[4]](_$_bdca[3]);var _0x5C71=$(this)[_$_bdca[7]]();_0x5BD2= _0x5C71;$(_$_bdca[2])[_$_bdca[1]](_0x5C71)[_$_bdca[9]](800)[_$_bdca[5]]()[_$_bdca[8]](800)});function _0x5C07(){_0x5BD2++;_0x5BD2= _0x5BD2> 1?0:_0x5BD2;$(_$_bdca[11])[_$_bdca[1]](_0x5BD2)[_$_bdca[6]](_$_bdca[3])[_$_bdca[5]]()[_$_bdca[4]](_$_bdca[3]);$(_$_bdca[2])[_$_bdca[1]](_0x5BD2)[_$_bdca[12]](true,true)[_$_bdca[9]](800)[_$_bdca[5]]()[_$_bdca[12]](true,true)[_$_bdca[8]](800)}$(_$_bdca[14])[_$_bdca[13]](function(){clearInterval(_0x5C3C)},function(){_0x5C3C= setInterval(_0x5C07,4000)})});function LenovoIdSyncLoginState(_0x5CA6){_club_login_status= true;take_st_login= true;jQuery[_$_bdca[34]](_$_bdca[15],{"securekey":_0x5CA6},function(_0x5CDB){if( typeof (_0x5CDB)== _$_bdca[16]){var _0x5CDB={"status":_$_bdca[17]}};if(_0x5CDB[_$_bdca[18]]== _$_bdca[19]){document[_$_bdca[22]](_$_bdca[21])[_$_bdca[20]]= _0x5CDB[_$_bdca[23]]+ _$_bdca[24];window[_$_bdca[27]][_$_bdca[26]](_$_bdca[25],_0x5CDB[_$_bdca[25]]);window[_$_bdca[27]][_$_bdca[26]](_$_bdca[28],_0x5CDB[_$_bdca[29]]);window[_$_bdca[27]][_$_bdca[26]](_$_bdca[30],_0x5CDB[_$_bdca[31]]);window[_$_bdca[27]][_$_bdca[26]](_$_bdca[23],_0x5CDB[_$_bdca[23]])}else {if(_0x5CDB[_$_bdca[18]]== _$_bdca[32]){}else {if(_0x5CDB[_$_bdca[18]]== _$_bdca[17]){}}}},_$_bdca[33])}
+$(function() {
+
+	var i = 0;
+	var timer;
+	timer = setInterval(play, 4000);
+
+	//第一张显示
+	$(".pic li").eq(0).show();
+	$("#position li").click(function() {
+		$(this).addClass('active').siblings().removeClass("active");
+		var index = $(this).index();
+		i = index;
+		// $(".pic li").eq(index).show().siblings().hide();
+		$(".pic li").eq(index).fadeIn(800).siblings().fadeOut(800);
+	});
+	//自动轮播
+
+	function play() {
+		i++;
+		i = i > 1 ? 0 : i;
+		$("#position li").eq(i).addClass('active').siblings().removeClass("active");
+//		$(".pic li").eq(i).fadeIn(800).siblings().fadeOut(800);
+		$(".pic li").eq(i).stop(true,true).fadeIn(800).siblings().stop(true,true).fadeOut(800);
+	}
+	//鼠标移入移出效果
+	$("#container").hover(function() {
+		clearInterval(timer);
+	}, function() {
+		timer = setInterval(play, 4000);
+	});
+
+})
+
+function LenovoIdSyncLoginState(lenovoid_wust) {
+        _club_login_status = true;
+        take_st_login = true;
+        $.ajax({
+	   	 	type:"get",
+	   	 	url:"https://voice.lenovomm.com/lasf/logininfo",
+	   	 	headers:{
+	   	 		'channel':'cloudasr'
+	   	 	},
+	   	 	data:"securekey="+lenovoid_wust,
+	   	 	dataType:'json',
+	   	 	success:function(data){
+	   	 		if (typeof(data) == 'undefined')
+                var data = {
+                    'status': 'error'
+                };
+	            if (data.status == 'success') {
+	                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
+	                window.localStorage.setItem('secretkey',data.secretkey);
+	                window.localStorage.setItem('accountid',data.AccountID);
+	                window.localStorage.setItem('lenovoname',data.name);
+	                window.localStorage.setItem('Username',data.Username);
+	                //window.location.reload();
+	            } else if (data.status == 'failed') {
+	                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
+	            } else if (data.status == 'error') {
+	
+	            }
+	   	 	}
+	   	});
+    }
+
+
+
+
+
+
+		
