@@ -7,17 +7,34 @@
     <title>联想语音</title>
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/recognise.css?version=1.2" rel="stylesheet"/>
+    <link href="" id="css" rel="stylesheet"/>
     <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
-    
+    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script>   
+    $(function(){
+            var winWide = window.screen.width;
+            var wideScreen = false;
+            if (winWide <= 414) {//1024及以下分辨率
+                $("#css").attr("href", "css/phone.css");
+            } else {
+                $("#css").attr("href", "css/recognise.css");
+                wideScreen = true; //是宽屏
+            }
+    })
+     
+    </script>
+    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
     <script type="text/javascript" src="../common/js/avatar.js"></script>
     <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
-	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/recognise.js?version=1.2"></script>
 	<script src="js/audiodisplay.js?version=1.2"></script>
 	<script src="js/recorder.js?version=1.2"></script>
+	<script src="../common/js/commurl.js"></script>	
 	<script src="js/audiomain.js?version=1.2"></script>	
+	
+	<script src="js/commaudio.js"></script>	
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 	
@@ -32,7 +49,12 @@
     <div class="body-content product-experience">
         <div class="content-title product-title">产品体验</div>
         <div class="product-content">
-
+ <!--
+            <div class="product-condition">
+                <div class="condition-cn"></div>
+                <div class="condition-en"></div>
+            </div>
+ -->
             <div class="product-picture">
                 <div id="viz">
                     <canvas id="analyser" width="2000" style="display:none;" ></canvas>
@@ -59,13 +81,16 @@
 		                    <input type="button" name="" id="" value="修改" class="subdate"/>
 		                </div>
 		                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />
-		                        <div class="pulse"></div>
+		                        <!--<div class="pulse" style="display: block;"></div>
+								<div class="pulse1" style="display: block;"></div>-->
+								
+								<div class="pulse"></div>
 								<div class="pulse1"></div>
 		                </div>
 					</div>
 				</div>
-     
- 
+             
+                
             </div>
         </div>
     </div>
@@ -73,31 +98,7 @@
 
 <div id="eui-main-footer" class="footer-bgcolor">
 </div>   
-<script type="text/javascript">
 
-  $(function(){     
-  	    var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey=null;
-		var secrkey=null;
-		$.ajax({
-			type:"POST",
-			url:"/lasf/userinfo",
-			headers: {  
-				"channel" : "cloudasr"
-            },
-            data:{"username":Username,"lenovoid":accountid},
-			success:function(data){
-				lenkey=data.lenovokey;
-				secrkey=data.secretkey;		
-				var aa=window.localStorage.setItem('lenkey',lenkey);
-				var bb=window.localStorage.setItem('secrkey',secrkey);
-			}
-			
-		});
-	})
-
-</script>
 
 </body>
 </html>

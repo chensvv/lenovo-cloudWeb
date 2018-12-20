@@ -43,9 +43,14 @@ $(function(){
 	    
         $.ajax({
 		  type:"POST",
-		  url:"/lasf/forum/list",
+		  url:urlhead+"/lasf/forum/list",
 		  dataType:"json",
      	  data:{"pagecount":2000},
+     	  headers: {
+				"channel" : "cloudasr",
+				"lenovokey" : lenkey,
+				"secretkey" : secrkey
+            },
 		  success:function(res){
 		  	
 		  	var num=res.datalist;
@@ -79,9 +84,10 @@ $(function(){
 					if(confirm("确认删除吗?")){
 						$.ajax({
 							type:"POST",
-							url:"/lasf/forum/delete",
+							url:urlhead+"/lasf/forum/delete",
 							data:{"dataid":hid,"accountname":Username},
 							headers: {
+								"channel" : "cloudasr",
 								"lenovokey" : lenkey,
 								"secretkey" : secrkey
 				            },

@@ -1,5 +1,4 @@
 function drawBuffer( width, height, context, data ) {
-	//alert(data.length);
     var step = Math.ceil( data.length / width);
     var amp = (height);
     context.clearRect(0,0,width,height);

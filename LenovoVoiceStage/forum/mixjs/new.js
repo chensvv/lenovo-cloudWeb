@@ -1,6 +1,5 @@
 	$(function(){
 		loadTop("information");
-		
 		$("#send").click(function(){
 			if($(".title").val()==""||$(".text").val()==""){
 				alert("标题或内容不能为空");
@@ -23,12 +22,13 @@
 			var text=$(".text").val();
 			$.ajax({
 			  type:"POST",
-			  url:"/lasf/forum/add?"+"datatype="+0,
+			  url:urlhead+"/lasf/forum/add?"+"datatype="+0,
 			  dataType:"json",
 			  data:{"title":title,"content":text,"accountname":Username},
 			  headers: {
-						"lenovokey" : lenkey,
-						"secretkey" : secrkey
+			  	    "channel" : "cloudasr",
+					"lenovokey" : lenkey,
+					"secretkey" : secrkey
 		       },
 			  success:function(res){
 			  	$(".title").val("");

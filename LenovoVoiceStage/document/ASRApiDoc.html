@@ -13,7 +13,7 @@
 	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	    <script type="text/javascript" src="../common/js/avatar.js"></script>
-	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
+	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>
 	    <script type="text/javascript" src="../common/js/aos.js?version=1.1"></script>
 	    <script type="text/javascript" src="js/document.js?version=1.1"></script>
 	    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
@@ -38,10 +38,13 @@
 		            <div class="urleft contentleft">格式：</div>
 		            <div class="urlcontent contentright">multipart/form-data</div>
 		        </div>
+
 		    </div>
 		    
 		    <div class="content1" aos="fade-left" aos-once="true">
 		        <div class="headinfo contentleft">头信息：</div>
+		        
+		        
 		        <div class="contentright">
 		              <p class="header-content">User-Agent的值是JSON字符串.格式:<strong>User-Agent:{platform=[android 4.2.x], name=[com.test.test], version=[1.0.1.130101_xxx]}</strong></p>
 	                  <h4 class="header-param-title  title"><b>参数说明:</b></h4>
@@ -71,9 +74,29 @@
 	                  			<td>1.0.1.130101_xxx</td>
 	                  			<td>发起请求的应用程序的版本</td>                  			
 	                  		</tr>
+	                  		
+	                  		<tr>
+	                  			<td>accessKey</td>
+	                  			<td>String</td>
+	                  			<td>LENOVO-VOICE-aaabbbccc</td>
+	                  			<td>账户公钥(右上角开发者信息中获取)</td>
+	                  		</tr>
+	                  		<tr>
+	                  			<td>secretKey</td>
+	                  			<td>String</td>
+	                  			<td>kasdjkfsldjsldfjkdkkkde</td>
+	                  			<td>账户私钥(右上角开发者信息中获取)</td>	
+	                  		</tr>
+	                  		<tr>
+	                  			<td>channel</td>
+	                  			<td>String</td>
+	                  			<td>LENOVO-AI-VOICE</td>
+	                  			<td>来源渠道</td>                  			
+	                  		</tr>
 	                  	</table>
 	                  </div>
 		        </div>
+		        		        
 		    </div>
 		    
 		    <div class="content2" aos="fade-right" aos-once="true">
@@ -160,12 +183,6 @@
 	                  			<td>数字</td>
 	                  			<td>1356663021692</td>
 	                  			<td>开始时间</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>key</td>
-	                  			<td>字符串</td>
-	                  			<td>AuENpLV5JiK5zTMirmS8ZG7hDaS1eSYi</td>
-	                  			<td>安全密钥</td>
 	                  		</tr>
 	                  		<tr>
 	                  			<td>ssm</td>

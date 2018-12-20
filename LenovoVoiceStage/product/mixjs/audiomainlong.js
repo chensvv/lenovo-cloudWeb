@@ -1,6 +1,11 @@
+  var u = navigator.userAgent;
+  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  if(isiOS==true){
+  	alert("苹果手机暂不支持该功能。")
+  }
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
-var URL = "/lasf/asr";
-// var URL = "http://10.100.216.59:8080/lasf/asr";
 var audioContext = new AudioContext();
 var audioInput = null,
     realAudioInput = null,
@@ -14,19 +19,18 @@ var over = 0;
 
 var liid = 0;
 var firstup = true;
-$(function () {
-    loadTop("product");
-});
+
 
 
 var worker = null;
-
+var urlheader = urlhead+"/lasf/asr";
 var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
 function sendBlob(blob) {
     worker.postMessage(
         {
+        	urlheader:urlheader,
             buffer: blob,
             over: over,
             lenkey: lenkey,
@@ -48,7 +52,6 @@ function updateStatus(status) {
         } else {
 
             data2 = s.rawText;
-//          console.info("liid:" + liid);
             if (firstup) {
                 $("#status2").append("<span id='liid_" + liid + "'>" + data2 + "</span>");
                  
@@ -65,7 +68,6 @@ function updateStatus(status) {
                     $("#status2").append("<span id='liid_" + liid + "'></span>");
                 }
             }
-
  
 			if(Math.abs(statusP2.scrollHeight-statusP2.scrollTop-statusP2.clientHeight)<23){
 				statusP2.scrollTop = statusP2.scrollHeight;
@@ -95,7 +97,6 @@ function gotBuffers(buffers) {
     $(window).resize(function () {
         canvas.width = viz.offsetWidth;
         drawBuffer(canvas.width, canvas.height, canvas.getContext('2d'), buffers[0]);
-        audioRecorder.exportMonoWAV(sendBlob);
     });
     for(var i=0;i<buffers[0].length;i++){
     	var buf=buff.push(buffers[0][i]);
@@ -114,6 +115,7 @@ var millisecond=0;//毫秒
 var int;
 function toggleRecording(e) {
     var accountid = window.localStorage.getItem('accountid');
+//  var URL = urlhead;
     if (accountid == "" || accountid == null || accountid.length == 0) {
         var statusP = document.getElementById("status");
         statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
@@ -133,7 +135,6 @@ function toggleRecording(e) {
         img_btn.src = 'images/voice_btn_1.png';
         $('.product-picture .pulse1').css("display", "none");
         $('.product-picture .pulse').css("display", "none");
-//      console.info("stop over:" + over);
     } else {
     	buff.length = 0;
     	window.clearInterval(int);
@@ -167,11 +168,12 @@ function toggleRecording(e) {
         over = 0;
         worker = new Worker("js/audioSend.js");
         worker.onmessage = function (e) {
-//          console.info("worker.onmessage" + e.data);
             updateStatus(e.data);
             if (over == 1 && worker) {
                 worker.terminate();
             }
+            
+            
         };
         function record() {
             if (!audioRecorder) {
@@ -187,8 +189,7 @@ function toggleRecording(e) {
             }
         }
 
-        record();
-        time1 = setInterval(record, 500);
+        time1 = setInterval(record, 470);   
         $(".prompt").css("display","none");
         $('.product-picture .pulse').css("display", "block");
         $('.product-picture .pulse1').css("display", "block");
@@ -202,197 +203,8 @@ function toggleRecording(e) {
 }
 
 
-function convertToMono(input) {
-    var splitter = audioContext.createChannelSplitter(2);
-    var merger = audioContext.createChannelMerger(2);
-    input.connect(splitter);
-    splitter.connect(merger, 0, 0);
-    splitter.connect(merger, 0, 1);
-    return merger;
-}
-
-
-function updateAnalysers(time) {
-    if (!analyserContext) {
-        var canvas = document.getElementById("analyser");
-        canvasWidth = canvas.width;
-        canvasHeight = canvas.height;
-        analyserContext = canvas.getContext('2d');
-        analyserContext.translate(0.5, canvasHeight / 2 + 0.5);
-    }
-
-    // 分析器在这里绘制代码
-    {
-        var SPACING = 1;
-        var BAR_WIDTH = 1;
-        var numBars = Math.round(canvasWidth / SPACING);
-        var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
-        var capHeight = 20;
-        var capStyle = '#FFFFFF',
-            gradient = analyserContext.createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(1, '#3399ff');
-        gradient.addColorStop(0.5, '#3399ff');
-        gradient.addColorStop(0, '#f00');
-        var cwidth = canvasWidth;
-        var cheight = canvasHeight - 2;
-        var capYPositionArray = [];
-        analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
-        analyserContext.fillStyle = '#FFFFFF';
-        //      analyserContext.lineCap = 'round';
-        var multiplier = analyserNode.frequencyBinCount / numBars;
-
-        function draw() {
-            analyserNode.getByteFrequencyData(freqByteData);
-            analyserContext.fillRect(0, -100, canvasWidth, canvasHeight);
-
-            analyserContext.lineWidth = 1;
-
-            analyserContext.strokeStyle = '#3399ff';
-
-            analyserContext.beginPath();
-
-            analyserContext.moveTo(0, 0);
-            analyserContext.lineTo(2000, 0);
-            analyserContext.stroke();
-            analyserContext.moveTo(0, 0);
-            var sliceWidth = canvasWidth * 10 / analyserNode.frequencyBinCount / 4;
-            var x = 0;
-            for (var i = 0; i < analyserNode.fftSize; i++) {
-                var v = freqByteData[i] / 70;
-                var y = v * canvasHeight / 4;
-                var aa = Math.floor(x);
-                if (aa % 2 == 0) {
-
-                    analyserContext.lineTo(aa, -y)
-                } else {
-                    analyserContext.lineTo(aa, y);
-                }
-                x += sliceWidth;
-            }
-            analyserContext.stroke();
-        };
-
-        draw();
-
-    }
-
-    rafID = window.requestAnimationFrame(updateAnalysers);
-}
-
-
-function toggleMono() {
-    if (audioInput != realAudioInput) {
-        audioInput.disconnect();
-        realAudioInput.disconnect();
-        audioInput = realAudioInput;
-    } else {
-        realAudioInput.disconnect();
-        audioInput = convertToMono(realAudioInput);
-    }
-
-    audioInput.connect(inputPoint);
-}
-
-function gotStream(stream) {
-    inputPoint = audioContext.createGain();
-
-    // Create an AudioNode from the stream.
-    realAudioInput = audioContext.createMediaStreamSource(stream);
-    audioInput = realAudioInput;
-    audioInput.connect(inputPoint);
-
-    analyserNode = audioContext.createAnalyser();
-    analyserNode.fftSize = 2048;
-    inputPoint.connect(analyserNode);
-
-    audioRecorder = new Recorder(inputPoint);
-
-    zeroGain = audioContext.createGain();
-    zeroGain.gain.value = 0.0;
-    inputPoint.connect(zeroGain);
-    zeroGain.connect(audioContext.destination);
-    updateAnalysers();
-}
-
-function initAudio() {
-    if (!navigator.getUserMedia)
-        navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    if (!navigator.cancelAnimationFrame)
-        navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-    if (!navigator.requestAnimationFrame)
-        navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
-
-    navigator.getUserMedia(
-        {
-            "audio": {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
-            }
-        }, gotStream, function (e) {
-            alert('未检测到声音');
-//          console.log(e);
-        });
-}
-
-window.addEventListener('load', initAudio);
-
-
-function LenovoIdSyncLoginState(lenovoid_wust) {
-    _club_login_status = true;
-    take_st_login = true;
-    jQuery.get('/lasf/logininfo', {
-        'securekey': lenovoid_wust
-    }, function (data) {
-        if (typeof(data) == 'undefined')
-            var data = {
-                'status': 'error'
-            };
-        if (data.status == 'success') {
-            document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
-            window.localStorage.setItem('secretkey', data.secretkey);
-            window.localStorage.setItem('accountid', data.AccountID);
-            window.localStorage.setItem('lenovoname', data.name);
-            window.localStorage.setItem('Username', data.Username);
-            //window.location.reload();
-        } else if (data.status == 'failed') {
-            window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
-        } else if (data.status == 'error') {
-
-        }
-    }, 'json');
-}
-
-
-
-
-
 $(function(){
     	window.clearInterval(int);
 	    millisecond=hour=minute=second=0;
 	    document.getElementById('timetext').value='00:00:00';
-    	var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey=null;
-		var secrkey=null;
-		$.ajax({
-			type:"POST",
-			url:"/lasf/userinfo",
-			headers: {  
-				"channel" : "cloudasr"
-            }, 
-			data:{"username":Username,"lenovoid":accountid},
-			async : false,
-			success:function(data){
-				 lenkey=data.lenovokey;
-				 secrkey=data.secretkey;	
-				 
-				 var aa=window.localStorage.setItem('lenkey',lenkey);
-				 var bb=window.localStorage.setItem('secrkey',secrkey);
-			}			
-		});
 })

@@ -114,7 +114,7 @@
 			var scriptTag = document.createElement('script');
 			scriptTag.type = 'text/javascript';
 			scriptTag.async = true;
-			scriptTag.src = 'avatar.js';
+			scriptTag.src = '../common/js/avatar.js';
 			var head= document.getElementsByTagName('head')[0] || document.documentElement;
 			head.insertBefore(scriptTag, head.firstChild);
 			
@@ -131,22 +131,19 @@
 			});
 			
 		
-		function clickvoi(evt, target){
-			return ['Clickpage2', 'voice', '语音页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-		}
-		Avatar.push(['register', document.getElementById('second'), clickvoi]);
+			function clickvoi(evt, target){
+				return ['Clickpage2', 'voice', '语音页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+			}
+			Avatar.push(['register', document.getElementById('second'), clickvoi]);
+			
+			function clickfile(evt, target){
+				return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+			}
+			Avatar.push(['register', document.getElementById('third'), clickfile]);		
+			 window.onload=function(){
+			 	 Avatar.push(['track', ['Username/Lenovoid', Username+"/"+accountid, '用户名/用户id', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0]]);
+			 }
 		
-		function clickfile(evt, target){
-			return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-		}
-		Avatar.push(['register', document.getElementById('third'), clickfile]);
-		
-
- window.onload=function(){
- 	 Avatar.push(['track', ['Username/Lenovoid', Username+"/"+accountid, '用户名/用户id', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0]]);
- }
-		
-
 		</script>
 
 	</body>
