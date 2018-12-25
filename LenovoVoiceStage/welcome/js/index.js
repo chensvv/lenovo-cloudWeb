@@ -36,7 +36,7 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
         take_st_login = true;
         $.ajax({
 	   	 	type:"get",
-	   	 	url:"https://voice.lenovomm.com/lasf/logininfo",
+	   	 	url:urlhead+"/lasf/logininfo",
 	   	 	headers:{
 	   	 		'channel':'cloudasr'
 	   	 	},
