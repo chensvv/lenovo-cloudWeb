@@ -1,0 +1,240 @@
+/**index.wxss**/
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+/* pages/pk/pk.wxss */
+
+.pk_body {
+  width: 100%;
+  height: 604px;
+  padding: 0rpx 60rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.kou {
+  width: 100%;
+  text-align: center;
+  color: #2fe1cc;
+  font-size: 120rpx;
+}
+
+.body-container {
+  margin: 0 auto;
+}
+
+.text_eng {
+  width: 84%;
+  margin: 0 auto;
+  height: 200rpx;
+  text-align: center;
+  font-size: 38rpx;
+}
+
+.text_eng .eng_chl {
+  margin-top: 90rpx;
+  display: inline-block;
+}
+
+.text_cha {
+  width: 84%;
+  margin: 0 auto;
+  height: 140rpx;
+  border-top: 1px solid #898989;
+  text-align: center;
+  color: #898989;
+  padding-top: 20rpx;
+  font-size: 28rpx;
+}
+
+.vo_img {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+
+.btn_voice {
+  width: 100%;
+  height: 200rpx;
+  position: fixed;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  bottom: 10rpx;
+  left: 10rpx;
+  box-sizing: border-box;
+}
+
+.btn_voice .btn_img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.btn_read {
+  width: 300rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: inline-block;
+  color: #fff;
+  background: linear-gradient(to right, #44ea8f, #a6f152);
+}
+
+.text_inde {
+  height: 80rpx;
+  border-bottom: 2px solid #a0efe7;
+  padding-left: 30rpx;
+  padding-top: 10rpx;
+}
+
+.text_inde .ind1 {
+  color: #a0efe7;
+  font-size: 48rpx;
+}
+
+.text_inde .ind2 {
+  color: #c9c9c9;
+  font-size: 30rpx;
+}
+
+.body-main-box {
+  position: relative;
+  /* overflow: hidden; */
+  height: 500rpx;
+}
+
+.body-swiper {
+  width: 680rpx;
+  height: 500rpx;
+  left: 50%;
+  position: absolute;
+  margin-left: -340rpx;
+  z-index: 3;
+  box-sizing: border-box;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.62), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.body-swiper2 {
+  width: 640rpx;
+  height: 500rpx;
+  left: 50%;
+  position: absolute;
+  margin-left: -320rpx;
+  z-index: 2;
+  box-sizing: border-box;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.62), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.body-swiper3 {
+  width: 605rpx;
+  height: 500rpx;
+  left: 50%;
+  position: absolute;
+  margin-left: -302.5rpx;
+  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.62), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.body-container {
+  width: 100%;
+  height: 900rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.avatar {
+  width: 100%;
+  height: 820rpx;
+}
+
+.avatar2 {
+  width: 100%;
+  height: 820rpx;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+.sound-style1 {
+  position: absolute;
+  width: 74rpx;
+  height: 100rpx;
+  margin-top: 30rpx;
+  margin-left: -36rpx;
+}
+
+.voice_btn {
+  width: 150rpx;
+  height: 150rpx;
+  background: #26a5ff;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/* 录音 */
+
+.speak-style {
+  position: relative;
+  height: 240rpx;
+  width: 240rpx;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  background: rgb(96, 98, 100);
+  top: 60rpx;
+}
+
+.record-style {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 120rpx;
+  width: 100%;
+}
+
+.btn-style {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.sound-style {
+  position: absolute;
+  width: 74rpx;
+  height: 150rpx;
+  margin-top: 45rpx;
+  margin-left: 83rpx;
+}

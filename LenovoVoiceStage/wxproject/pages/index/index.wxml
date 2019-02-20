@@ -1,0 +1,90 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view> -->
+<view class='pk_body' style="background-image: url('../images/bg.png'); background-size:100% 100%">
+  <view class='kou'>PK</view>
+
+  <view class="body-main-box">
+    <!-- 第一张 -->
+    <view class="body-swiper" style="z-index:{{index1}};top:{{ballTop1}}rpx;  margin-left:{{ballLeft1}}rpx;width:{{ballWidth1}}rpx;" animation="{{animationData1}}">
+      <view class="body-container">
+        <view class='text_inde'>
+          <text class='ind1'>1</text>
+          <text class='ind2'>/3</text>
+        </view>
+        <view class='text_eng'>
+          <text class='eng_chl'>We get to decide what our story is</text>
+        </view>
+        <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
+        <image class='vo_img' src='../images/voice2.png'></image>
+      </view>
+    </view>
+    <!-- 第二张 -->
+    <view class="body-swiper2" bindtouchstart="touchstart2" bindtouchend="touchend2" style="z-index:{{index2}};top:{{ballTop2}}rpx;margin-left:{{ballLeft2}}rpx;width:{{ballWidth2}}rpx;" animation="{{animationData2}}">
+      <view class="body-container">
+        <view class='text_inde'>
+          <text class='ind1'>2</text>
+          <text class='ind2'>/3</text>
+        </view>
+        <view class='text_eng'>
+          <text class='eng_chl'>We get to decide what our story is</text>
+        </view>
+        <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
+        <image class='vo_img' src='../images/voice2.png'></image>
+      </view>
+
+    </view>
+    <!-- 第三张 -->
+    <view class="body-swiper3" bindtouchstart="touchstart3" bindtouchend="touchend3" style="z-index:{{index3}};top:{{ballTop3}}rpx;  margin-left:{{ballLeft3}}rpx;width:{{ballWidth3}}rpx;" animation="{{animationData3}}">
+      <view class="body-container">
+        <view class='text_inde'>
+          <text class='ind1'>3</text>
+          <text class='ind2'>/3</text>
+        </view>
+        <view class='text_eng'>
+          <text class='eng_chl'>We get to decide what our story is</text>
+        </view>
+        <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
+        <image class='vo_img' src='../images/voice2.png'></image>
+      </view>
+
+    </view>
+  </view>
+
+
+
+  <view  wx:if="{{isSpeaking}}"  class="speak-style" >
+  <image class="sound-style" src="../../pics/voice_icon_speech_sound_1.png" ></image>
+  <image wx:if="{{j==2}}" class="sound-style" src="../../pics/voice_icon_speech_sound_2.png" ></image>
+  <image wx:if="{{j==3}}" class="sound-style" src="../../pics/voice_icon_speech_sound_3.png" ></image>
+  <image wx:if="{{j==4}}" class="sound-style" src="../../pics/voice_icon_speech_sound_4.png" ></image>
+  <image wx:if="{{j==5}}"class="sound-style" src="../../pics/voice_icon_speech_sound_5.png" ></image>
+</view>
+
+  <view class='btn_voice'>
+    <view class="{{showView?'show':'hide'}}">
+    
+      <button class='btn_read' bindtap='showButton'>Ready go</button>
+    </view>
+
+    <view class="{{showView?'hide':'show'}} voice_btn" bindtouchstart="touchdown" bindtouchend="touchup">
+       <image class="sound-style1" src="../../pics/voice_icon_speech_sound_1.png" ></image>
+
+      <!-- <view wx:if="{{isSpeaking}}" class="speak-style">
+        <image class="sound-style" src="../../pics/voice_icon_speech_sound_1.png"></image>
+        <image wx:if="{{j==2}}" class="sound-style" src="../../pics/voice_icon_speech_sound_2.png"></image>
+        <image wx:if="{{j==3}}" class="sound-style" src="../../pics/voice_icon_speech_sound_3.png"></image>
+        <image wx:if="{{j==4}}" class="sound-style" src="../../pics/voice_icon_speech_sound_4.png"></image>
+        <image wx:if="{{j==5}}" class="sound-style" src="../../pics/voice_icon_speech_sound_5.png"></image>
+      </view> -->
+    </view>
+
+  </view>
+</view>
