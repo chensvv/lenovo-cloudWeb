@@ -66,6 +66,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  pkrank: function(){
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
   initDoomm: function() {
     doommList.push(new Doomm());
     doommList.push(new Doomm());
@@ -182,11 +187,11 @@ Page({
     this.animation = animation;
 
     if (translateXX > 0) {
-      // this.animation.translateY(50).rotate(0).translateY(translateXX).opacity(0).step();
-      this.animation.translateY(translateXX).scale(0.3).opacity(0).step().scale(1);
+      // this.animation.translateY(5000).rotate(0).translateY(translateXX).opacity(0).step();
+      this.animation.translateY(translateXX).scale(0).opacity(0).step();
     }
 
-    // this.animation.translateY(0).translateX(0).opacity(1).rotate(0).step({
+    // this.animation.translateY(0).translateX(0).opacity(0).rotate(0).step({
     //   duration: 10
     // });
 
@@ -227,7 +232,7 @@ Page({
     this.animation = animation;
 
     if (translateXX > 0) {
-      this.animation.translateY(translateXX).scale(0.3).opacity(0).step().scale(1);
+      this.animation.translateY(translateXX).scale(0).opacity(0).step().scale(1);
     }
 
     this.setData({
@@ -265,7 +270,7 @@ Page({
 
     this.animation = animation;
     if (translateXX > 0) {
-      this.animation.translateY(translateXX).scale(0.3).opacity(0).step().scale(1);
+      this.animation.translateY(translateXX).scale(0).opacity(0).step().scale(1);
     }
 
     this.setData({

@@ -1,16 +1,8 @@
-<!--index.wxml-->
-<!-- <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-</view> -->
-<view class='pk_body' style="background-image: url('../images/bg.png'); background-size:100% 100%">
-  <view class='kou'>PK</view>
 
+<view class='pk_body' style="background-image: url('http://i1.bvimg.com/677739/00f84b04b55ba451.png'); background-size:100% 100%">
+<view class="scard">生成卡片</view>
+  <view class='kou'>PK</view>
+  
   <view class="body-main-box">
     <!-- 第一张 -->
     <view class="body-swiper" style="z-index:{{index1}};top:{{ballTop1}}rpx;  margin-left:{{ballLeft1}}rpx;width:{{ballWidth1}}rpx;" animation="{{animationData1}}">
@@ -69,9 +61,9 @@
 </view>
 
   <view class='btn_voice'>
-    <view class="{{showView?'show':'hide'}}">
-    
+    <view class="{{showView?'show':'hide'}}"> 
       <button class='btn_read' bindtap='showButton'>Ready go</button>
+      <view class='seepk' bindtap='pkrank'>查看PK榜 ></view>
     </view>
 
     <view class="{{showView?'hide':'show'}} voice_btn" bindtouchstart="touchdown" bindtouchend="touchup">
