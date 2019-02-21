@@ -49,16 +49,9 @@
 		    second = second < 10 ? ('0' + second) : second;     
 		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;      
 		};  
-		function unhtml(str) {
-	        return str ? str.replace(/[<">']/g, (a) => {
-	              return {
-	                  '<': '&lt;',
-	                  '"': '&quot;',
-	                 '>': '&gt;',
-	                 "'": '&#39;'
-	             }[a]
-	         }) : '';
-	     }
+		function unhtml(sHtml) {
+		 return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+		}
 		var total="";
         $.ajax({
 		  type:"POST",

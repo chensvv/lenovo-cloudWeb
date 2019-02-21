@@ -108,22 +108,31 @@ body{
 	 width: 160px;
     height: 160px;
     margin: 0 auto;
-    /*position: relative;*/
-    position: fixed;
+    position: absolute;
     text-align: center;
     line-height: 160px;
-    /*border: 1px solid red;*/
 }
-
+#eui-main-body .product-experience .product-content .product-picture .realtime-btn1 {
+	 width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    line-height: 160px;
+}
 
 #eui-main-body .product-experience .product-content .product-picture .realtime-btn img {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
 	z-index: 10;
-	/*box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.12);*/
 }
-
+#eui-main-body .product-experience .product-content .product-picture .realtime-btn1 img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	z-index: 10;
+}
 #viz {
 	display: none;
 	overflow: hidden;
@@ -257,7 +266,14 @@ body{
 ::-webkit-scrollbar {display:none;}
 
 .realtime-btn{
-	/*z-index: 100;*/
+	z-index: 100;
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.realtime-btn1{
+	z-index: 100;
 	position: absolute;
 	bottom: -30px;
 	left: 50%;

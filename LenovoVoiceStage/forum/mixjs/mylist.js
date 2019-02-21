@@ -30,16 +30,9 @@ $(function(){
 		var Username = window.localStorage.getItem('Username');
 		var lenkey = window.localStorage.getItem('lenkey');
 		var secrkey = window.localStorage.getItem('secrkey');
-		function unhtml(str) {
-          return str ? str.replace(/[<">']/g, (a) => {
-              return {
-                  '<': '&lt;',
-                  '"': '&quot;',
-                 '>': '&gt;',
-                 "'": '&#39;'
-             }[a]
-         }) : '';
-     }
+		function unhtml(sHtml) {
+		  return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+		}
 	    
         $.ajax({
 		  type:"POST",

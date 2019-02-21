@@ -1,12 +1,5 @@
-  var u = navigator.userAgent;
-  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-  if(isiOS==true){
-  	alert("苹果手机暂不支持该功能。")
-  }
-
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
-var audioContext = new AudioContext();
+//var audioContext = new AudioContext();
 var audioInput = null,
     realAudioInput = null,
     inputPoint = null,
@@ -101,7 +94,7 @@ function gotBuffers(buffers) {
     for(var i=0;i<buffers[0].length;i++){
     	var buf=buff.push(buffers[0][i]);
     }  
-	buff=buff.slice(-100000);
+	  buff=buff.slice(-100000);
 
     drawBuffer(canvas.width, canvas.height, canvas.getContext('2d'), buff);
     audioRecorder.exportMonoWAV(sendBlob);
@@ -115,29 +108,31 @@ var millisecond=0;//毫秒
 var int;
 function toggleRecording(e) {
     var accountid = window.localStorage.getItem('accountid');
-//  var URL = urlhead;
     if (accountid == "" || accountid == null || accountid.length == 0) {
         var statusP = document.getElementById("status");
         statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
     var img_btn = document.getElementById('record');
-
     if (e.classList.contains("recording")) {
+    	audioRecorder.stop();
+    	e.classList.remove("recording");
         clearInterval(time1);
         window.clearInterval(int);
-        window.clearInterval(timers);
-        // stop recording
-        audioRecorder.stop();
-        e.classList.remove("recording");
+        window.clearInterval(timers);       
+        $('.product-picture .pulse1').css("display", "none");
+        $('.product-picture .pulse').css("display", "none");    
         over++;
         audioRecorder.getBuffers(gotBuffers);
         img_btn.src = 'images/voice_btn_1.png';
-        $('.product-picture .pulse1').css("display", "none");
-        $('.product-picture .pulse').css("display", "none");
+        
     } else {
+    	if (!audioRecorder)
+            return;
+        e.classList.add("recording");
     	buff.length = 0;
     	window.clearInterval(int);
+    	
 	    millisecond=hour=minute=second=0;
 	    document.getElementById('timetext').value='00:00:00';	
 	    int=setInterval(timer,1000);	 
@@ -160,10 +155,8 @@ function toggleRecording(e) {
 	      }	      
 	      document.getElementById('timetext').value=zero(hour)+':'+zero(minute)+':'+zero(second);
 	  
-	    }
-    	
-       window.clearInterval(timers);	
-        e.classList.add("recording");
+	    }   	
+       window.clearInterval(timers);	       
 //      $("#status2").empty();
         over = 0;
         worker = new Worker("js/audioSend.js");
@@ -171,9 +164,7 @@ function toggleRecording(e) {
             updateStatus(e.data);
             if (over == 1 && worker) {
                 worker.terminate();
-            }
-            
-            
+            }           
         };
         function record() {
             if (!audioRecorder) {
@@ -198,8 +189,6 @@ function toggleRecording(e) {
 
         document.getElementById("wavedisplay").style.display = "block";
     }
-
-
 }
 
 

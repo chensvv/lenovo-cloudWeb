@@ -37,7 +37,11 @@
 	<script src="js/commaudio.js"></script>	
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
-	
+	<style>
+		.realtime-btn1{
+			display: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -72,7 +76,7 @@
 					<div class="camera"></div>
 					<div class="screen">
 		                <div class="prompt" style="">
-		                	<span id="status" class="stat">点击麦克风，开始说话.再次点击麦克风，显示识别结果</span>
+		                	<span id="status" class="stat">点击麦克风,开始说话;再次点击,显示识别结果;</span>
 		                    <span class="arrow" style=""></span>
 		                </div>
 		                <pre style="display: none;"><code id="json"></code></pre>
@@ -80,17 +84,15 @@
 		                	<input type="text" name="" id="" value="" class="update"/>
 		                    <input type="button" name="" id="" value="修改" class="subdate"/>
 		                </div>
-		                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />
-		                        <!--<div class="pulse" style="display: block;"></div>
-								<div class="pulse1" style="display: block;"></div>-->
-								
-								<div class="pulse"></div>
-								<div class="pulse1"></div>
+		                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />								
+							<div class="pulse"></div>
+							<div class="pulse1"></div>
 		                </div>
+		                <div class="realtime-btn1">
+		                	<img id="record2" src="images/voice_btn1.png"/>
+		                </div>	
 					</div>
-				</div>
-             
-                
+				</div>              
             </div>
         </div>
     </div>
@@ -99,7 +101,8 @@
 <div id="eui-main-footer" class="footer-bgcolor">
 </div>   
 
-
 </body>
 </html>
-
+<script src="js/judbrowser.js"></script>
+<script>
+</script>

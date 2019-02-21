@@ -47,6 +47,14 @@
 		position: relative;
 		top: 35%;
 	}
+	#record2{
+		width: 114px;
+		height: 114px;
+	}
+	.realtime-btn1{
+		display: none;
+		margin-top: 165px;
+	}
 </style>
 <body>
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -68,9 +76,12 @@
                         <div class="pulse"></div>
 						<div class="pulse1"></div>
 	                </div>
+	                <div class="realtime-btn1">
+	                	<img id="record2" src="images/voice_btn1.png"/>
+	                </div>
 	                <input type="text" id="timetext" value="00时00分00秒" readonly><br>  
 	                <div id="status" class="result-content">
-	                                    点击麦克风，开始长语音识别<br/>再次点击麦克风，关闭语音识别<br/>
+	                                    点击图标,开始识别<br/>再次点击,关闭识别<br/>
 	                </div>
 	            </div>
 	            <div class="voice_content" id="status2">
@@ -87,6 +98,4 @@
 
 </body>
 </html>
-<script>
-
-</script>
+<script src="js/judbrowser.js"></script>

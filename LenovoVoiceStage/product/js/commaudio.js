@@ -135,7 +135,7 @@ function initAudio() {
                 "optional": []
             }
         }, gotStream, function(e) {
-            alert('未检测到声音');
+            alert('此浏览器不能获得麦克风的权限!');
         });
 }
 
@@ -145,34 +145,30 @@ window.addEventListener('load', initAudio );
 function LenovoIdSyncLoginState(lenovoid_wust) {
         _club_login_status = true;
         take_st_login = true;
-        $.ajax({
-	   	 	type:"get",
-	   	 	url:urlhead+"/lasf/logininfo",
-	   	 	headers:{
-	   	 		'channel':'cloudasr'
-	   	 	},
-	   	 	data:"securekey="+lenovoid_wust,
-	   	 	dataType:'json',
-	   	 	success:function(data){
-	   	 		if (typeof(data) == 'undefined')
+        jQuery.get('/lasf/logininfo', {
+            'securekey': lenovoid_wust
+        }, function(data) {
+            if (typeof(data) == 'undefined')
                 var data = {
                     'status': 'error'
                 };
-	            if (data.status == 'success') {
-	                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
-	                window.localStorage.setItem('secretkey',data.secretkey);
-	                window.localStorage.setItem('accountid',data.AccountID);
-	                window.localStorage.setItem('lenovoname',data.name);
-	                window.localStorage.setItem('Username',data.Username);
-	                //window.location.reload();
-	            } else if (data.status == 'failed') {
-	                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
-	            } else if (data.status == 'error') {
-	
-	            }
-	   	 	}
-	   	});
+            if (data.status == 'success') {
+                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
+                window.localStorage.setItem('secretkey',data.secretkey);
+                window.localStorage.setItem('accountid',data.AccountID);
+                window.localStorage.setItem('lenovoname',data.name);
+                window.localStorage.setItem('Username',data.Username);
+                //window.location.reload();
+            } else if (data.status == 'failed') {
+                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
+            } else if (data.status == 'error') {
+
+            }
+        }, 'json');
     }
+
+
+
 
 
 //Avatar数据统计
@@ -210,27 +206,26 @@ function avatarnum(){
 }
 
 
+
 $(function(){
-	    var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey=null;
-		var secrkey=null;
-		$.ajax({
-			type:"POST",
-			url:urlhead+"/lasf/userinfo",
-			headers: {  
-				"channel" : "cloudasr"
-            },
-            data:{"username":Username,"lenovoid":accountid},
-			success:function(data){
-				lenkey=data.lenovokey;
-				secrkey=data.secretkey;		
-				var aa=window.localStorage.setItem('lenkey',lenkey);
-				var bb=window.localStorage.setItem('secrkey',secrkey);
-			}
-			
-		});
+    var Username = window.localStorage.getItem('Username');
+	var accountid = window.localStorage.getItem('accountid');
+	var lenkey=null;
+	var secrkey=null;
+	$.ajax({
+		type:"POST",
+		url:urlhead+"/lasf/userinfo",
+		headers: {  
+			"channel" : "cloudasr"
+        },
+        data:{"username":Username,"lenovoid":accountid},
+		success:function(data){
+			lenkey=data.lenovokey;
+			secrkey=data.secretkey;		
+			var aa=window.localStorage.setItem('lenkey',lenkey);
+			var bb=window.localStorage.setItem('secrkey',secrkey);
+		}
 		
-
-
-	})
+	});
+	
+})

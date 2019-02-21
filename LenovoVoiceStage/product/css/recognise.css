@@ -150,6 +150,14 @@
     position: absolute;
     text-align: center;
 }
+#eui-main-body .product-experience .product-content .product-picture .realtime-btn1 {
+	 width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    /*position: relative;*/
+    position: absolute;
+    text-align: center;
+}
 @media screen and (max-width:414px){
 	#eui-main-body .product-experience .product-content .product-picture .realtime-btn {
 		 width: 200px;
@@ -161,18 +169,32 @@
 	}
 
 }
+@media screen and (max-width:414px){
+	#eui-main-body .product-experience .product-content .product-picture .realtime-btn1 {
+		 width: 200px;
+	    height: 200px;
+	    line-height: 200px;
+	    margin: 10px auto;
+	    top: 375px;
+        left: 40px;
+	}
+
+}
 
 #eui-main-body .product-experience .product-content .product-picture .realtime-btn img {
-	/*width: 114px;
-	height: 114px;*/
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
 	z-index: 10;
 	margin-top: 20px;
-	/*box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.12);*/
 }
-
+#eui-main-body .product-experience .product-content .product-picture .realtime-btn1 img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	z-index: 10;
+	margin-top: 20px;
+}
 #viz {
 	/*display: none;*/
 	/*border: 1px solid #2aabd2;*/
@@ -448,6 +470,12 @@
 	    position: relative;
 	}
 	.realtime-btn{
+		z-index: 100;
+		position: absolute;
+		top: 495px;
+		left: 80px;
+	}
+	.realtime-btn1{
 		z-index: 100;
 		position: absolute;
 		top: 495px;

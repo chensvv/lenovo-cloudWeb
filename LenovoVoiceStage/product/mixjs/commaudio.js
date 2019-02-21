@@ -135,7 +135,7 @@ function initAudio() {
                 "optional": []
             }
         }, gotStream, function(e) {
-            alert('未检测到声音');
+            alert('此浏览器不能获得麦克风的权限!');
         });
 }
 
@@ -208,26 +208,24 @@ function avatarnum(){
 
 
 $(function(){
-	    var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey=null;
-		var secrkey=null;
-		$.ajax({
-			type:"POST",
-			url:urlhead+"/lasf/userinfo",
-			headers: {  
-				"channel" : "cloudasr"
-            },
-            data:{"username":Username,"lenovoid":accountid},
-			success:function(data){
-				lenkey=data.lenovokey;
-				secrkey=data.secretkey;		
-				var aa=window.localStorage.setItem('lenkey',lenkey);
-				var bb=window.localStorage.setItem('secrkey',secrkey);
-			}
-			
-		});
+    var Username = window.localStorage.getItem('Username');
+	var accountid = window.localStorage.getItem('accountid');
+	var lenkey=null;
+	var secrkey=null;
+	$.ajax({
+		type:"POST",
+		url:urlhead+"/lasf/userinfo",
+		headers: {  
+			"channel" : "cloudasr"
+        },
+        data:{"username":Username,"lenovoid":accountid},
+		success:function(data){
+			lenkey=data.lenovokey;
+			secrkey=data.secretkey;		
+			var aa=window.localStorage.setItem('lenkey',lenkey);
+			var bb=window.localStorage.setItem('secrkey',secrkey);
+		}
 		
-
-
-	})
+	});
+	
+})

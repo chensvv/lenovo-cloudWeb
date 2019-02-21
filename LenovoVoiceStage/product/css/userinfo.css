@@ -38,6 +38,15 @@
 	margin-top: 20px;
 	margin-left: 10px;
 }
+
+@media screen and (max-width:375px){
+	.main .userinfo h2{
+		font-size: 20px;
+
+	}
+}
+
+
 .main .userinfo .user_name{
 	float: right;
 	margin-top: 25px;
@@ -47,6 +56,14 @@
 	font-size: 18px;
 	color: #7d7a7a;				
 }
+
+@media screen and (max-width:320px){
+	.main .userinfo .uright{	
+		font-size: 14px;
+		color: #7d7a7a;				
+	}
+}
+
 .user_con{
 	width: 100%;
 	margin-top: 20px;
@@ -85,7 +102,7 @@
 		font-size: 16px;
 	}
 	.user_con .val_width{
-		/*width: 55%;*/
+		width: 55%;
 		display: inline-block;
 		font-size: 14px;
 	}

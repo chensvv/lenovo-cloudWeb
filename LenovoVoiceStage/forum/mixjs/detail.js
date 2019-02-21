@@ -183,16 +183,9 @@
 		};    
 		
 		//过滤特殊字符
-		function unhtml(str) {
-	        return str ? str.replace(/[<">']/g, (a) => {
-	              return {
-	                  '<': '&lt;',
-	                  '"': '&quot;',
-	                 '>': '&gt;',
-	                 "'": '&#39;'
-	             }[a]
-	         }) : '';
-	     }
+		function unhtml(sHtml) {
+		 return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+		}
 		function getUrlParam(name) {
 		   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 		   var r = window.location.search.substr(1).match(reg); //匹配目标参数
