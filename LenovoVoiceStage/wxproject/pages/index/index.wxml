@@ -26,6 +26,22 @@
           <text class='ind2'>/3</text>
         </view>
         <view class='text_eng'>
+          <!-- <text class='eng_chl text_red'>We</text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_green'>get </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_black'>to </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_black'>decide </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_black'>what </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_red'>our </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_black'>story </text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+          <text class='eng_chl text_green'>is</text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;</text> -->
           <text class='eng_chl'>We get to decide what our story is</text>
         </view>
         <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>

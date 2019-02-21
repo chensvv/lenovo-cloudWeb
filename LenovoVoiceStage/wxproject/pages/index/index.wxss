@@ -62,8 +62,19 @@ page{height:100%}
 }
 
 .text_eng .eng_chl {
-  margin-top: 90rpx;
   display: inline-block;
+}
+
+.text_red{
+  color: red;
+}
+
+.text_green{
+  color: green;
+}
+
+.text_black{
+  color: black;
 }
 
 .text_cha {
@@ -115,6 +126,7 @@ page{height:100%}
   border-bottom: 2px solid #a0efe7;
   padding-left: 30rpx;
   padding-top: 10rpx;
+  margin-bottom: 90rpx;
 }
 
 .text_inde .ind1 {

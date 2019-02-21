@@ -13,8 +13,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.1",
-	"appid": "wxc78b606b0af85d36",
-	"projectname": "demo1",
+	"appid": "wx8c1684d7e00bd3cb",
+	"projectname": "wxdemo",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
