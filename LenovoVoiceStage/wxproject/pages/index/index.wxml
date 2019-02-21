@@ -1,6 +1,20 @@
 
+<!-- 画布大小按需定制 这里我按照背景图的尺寸定的  -->
+<canvas canvas-id="shareImg" style="width:545px;height:771px"></canvas>
+  
+<!-- 预览区域  -->
+<view hidden='{{hidden}}' class='preview'>
+  <view class='cha' bindtap='imgclose'>×</view>
+  <image src='{{prurl}}' mode='widthFix'></image>
+  <button type='primary' size='mini' bindtap='save'>保存分享图</button>
+  
+ 
+</view>
+
+
 <view class='pk_body' style="background-image: url('http://i1.bvimg.com/677739/00f84b04b55ba451.png'); background-size:100% 100%">
-<view class="scard">生成卡片</view>
+
+<view class="scard" bindtap='share'>生成卡片</view>
   <view class='kou'>PK</view>
   
   <view class="body-main-box">
