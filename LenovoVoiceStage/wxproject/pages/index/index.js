@@ -13,7 +13,7 @@ const mp3Recorder = wx.getRecorderManager()
 const mp3RecoderOptions = {
   duration: 60000,
   sampleRate: 16000,
-  numberOfChannels: 1,
+  numberOfChannels: 2,
   encodeBitRate: 48000,
   format: 'mp3',
   //frameSize: 50
@@ -164,7 +164,7 @@ Page({
       const {
         tempFilePath
       } = res
-      var urls = "https://voice.lenovomm.com/lasf/asr";
+      var urls = "https://voice.lenovomm.com/lasf/evaluate";
       UTIL.log('mp3Recorder.onStop() tempFilePath:' + tempFilePath)
       processFileUploadForAsr(urls, tempFilePath, this);
     })
@@ -483,10 +483,16 @@ function processFileUploadForAsr(urls, filePath, _this) {
   wx.uploadFile({
     url: urls,
     filePath: filePath,
-    name: 'file',
+    name: 'voicedata',
     formData: {
-      "param-data": params,
-      "voice-data": filePath
+      "ixid": ixid,
+      "uid":526,
+      "data":"We get to decide what our story is",
+      "datatype":1,
+      "pidx":1,
+      "over":1,
+      "token": "1111111111",
+      "source":1
     },
     header: {
       'content-type': 'multipart/form-data',
@@ -498,7 +504,7 @@ function processFileUploadForAsr(urls, filePath, _this) {
       UTIL.log('res.data:' + res.data);
     },
     fail: function(res) {
-
+      UTIL.log('error  res.data:' + res);
     }
   });
 }
