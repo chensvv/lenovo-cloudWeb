@@ -11,40 +11,40 @@
       <view class='main'>
         <view class='img_box'>
           <view class='rank_img'>
-            <image src="../images/head.png"></image>
+            <image src="https://voice.lenovomm.com/wx/images/head.png"></image>
           </view>
           <view class='tname'>张三</view>
         </view>
         <view class='pming'>NO.1</view>
         <view class='imgmain'>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf2.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf2.png"></image>
         </view>
         <view class='voimg'>
-          <image class='voicon' src="../images/voice3.png"></image>
+          <image class='voicon' src="https://voice.lenovomm.com/wx/images/voice3.png"></image>
         </view>
       </view>
 
       <view class='main'>
         <view class='img_box'>
           <view class='rank_img'>
-            <image src="../images/head.png"></image>
+            <image src="https://voice.lenovomm.com/wx/images/head.png"></image>
           </view>
-          <view class='tname'>张三</view>
+          <view class='tname'>张四</view>
         </view>
-        <view class='pming'>NO.1</view>
+        <view class='pming'>NO.2</view>
         <view class='imgmain'>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf1.png"></image>
-          <image class='ximg' src="../images/pf2.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf1.png"></image>
+          <image class='ximg' src="https://voice.lenovomm.com/wx/images/pf2.png"></image>
         </view>
         <view class='voimg'>
-          <image class='voicon' src="../images/voice3.png"></image>
+          <image class='voicon' src="https://voice.lenovomm.com/wx/images/voice3.png"></image>
         </view>
       </view>
 
@@ -56,7 +56,7 @@
         <view class='first'>
           <view class='fir_box'>
             <view class='fir_img'>
-              <image src="../images/head.png"></image>
+              <image src="https://voice.lenovomm.com/wx/images/head.png"></image>
             </view>
           </view>
 
@@ -65,35 +65,35 @@
           <view class='fir_frac'>NO.1</view>
           <view class='fir_hear'>
             <text class='fir_text'>100人听过</text>
-            <image class='fir_hrar' src='../images/voice3.png'></image>
+            <image class='fir_hrar' src='https://voice.lenovomm.com/wx/images/voice3.png'></image>
           </view>
         </view>
 
         <view class='rank_main'>
           <view class='img_box'>
             <view class='rank_img'>
-              <image src="../images/head.png"></image>
+              <image src="https://voice.lenovomm.com/wx/images/head.png"></image>
             </view>
           </view>
-          <text class='rank_name'>张三</text>
+          <text class='rank_name'>王七</text>
           <text class='rank_frac'>NO.2</text>
           <view class='rank_hear'>
             <text class='hear_text'>100人听过</text>
-            <image class='hrar_img' src='../images/voice3.png'></image>
+            <image class='hrar_img' src='https://voice.lenovomm.com/wx/images/voice3.png'></image>
           </view>
         </view>
 
         <view class='rank_main'>
           <view class='img_box'>
             <view class='rank_img'>
-              <image src="../images/head.png"></image>
+              <image src="https://voice.lenovomm.com/wx/images/head.png"></image>
             </view>
           </view>
           <text class='rank_name'>李四</text>
           <text class='rank_frac'>NO.3</text>
           <view class='rank_hear'>
             <text class='hear_text'>100人听过</text>
-            <image class='hrar_img' src='../images/voice3.png'></image>
+            <image class='hrar_img' src='https://voice.lenovomm.com/wx/images/voice3.png'></image>
           </view>
         </view>
 

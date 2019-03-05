@@ -80,7 +80,7 @@ page{height:100%}
 .text_cha {
   width: 84%;
   margin: 0 auto;
-  height: 140rpx;
+  height: 60rpx;
   border-top: 1px solid #898989;
   text-align: center;
   color: #898989;
@@ -93,6 +93,14 @@ page{height:100%}
   height: 60rpx;
   position: absolute;
   right: 30rpx;
+  bottom: 30rpx;
+}
+
+.vo_star{
+  width: 360rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 120rpx;
   bottom: 30rpx;
 }
 
@@ -148,7 +156,7 @@ page{height:100%}
 
 .body-swiper {
   width: 680rpx;
-  height: 500rpx;
+  height: 600rpx;
   left: 50%;
   position: absolute;
   margin-left: -340rpx;
@@ -161,7 +169,7 @@ page{height:100%}
 
 .body-swiper2 {
   width: 640rpx;
-  height: 500rpx;
+  height: 600rpx;
   left: 50%;
   position: absolute;
   margin-left: -320rpx;
@@ -174,7 +182,7 @@ page{height:100%}
 
 .body-swiper3 {
   width: 605rpx;
-  height: 500rpx;
+  height: 600rpx;
   left: 50%;
   position: absolute;
   margin-left: -302.5rpx;

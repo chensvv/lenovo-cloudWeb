@@ -7,17 +7,29 @@ var UTIL = require('../../utils/util.js');
 var GUID = require('../../utils/GUID.js');
 var NLI = require('../../utils/NLI.js');
 var promise = require('../../utils/promise.util.js');
-var i = 1;
+
+
+var cardIndex = 1;
+
+//左右滑动
+var touchDot = 0;//触摸时的原点
+var time = 0;// 时间记录，用于滑动时且时间小于1s则执行左右滑动
+var interval = "";// 记录/清理 时间记录
+var tmpFlag = true;// 判断左右华东超出菜单最大值时不再执行滑动事件
+
+
+
+
 //微信小程序新录音接口，录出来的是aac或者mp3，这里要录成mp3
 const mp3Recorder = wx.getRecorderManager()
 const mp3RecoderOptions = {
   duration: 60000,
   sampleRate: 16000,
-  numberOfChannels: 2,
+  numberOfChannels: 1,
   encodeBitRate: 48000,
-  format: 'mp3',
-  //frameSize: 50
+  format: 'mp3'
 }
+
 var pageSelf = undefined;
 var doommList = [];
 class Doomm {
@@ -55,7 +67,11 @@ Page({
     showView: true,
     isSpeaking: false, //是否正在说话
     show: false,
-    hidden: true
+    hidden: true,
+
+    cardContent: ['We get to decide what our story is', 'I told them I was not feeling well', 'I will always keep my words'],
+    sumstar:"https://voice.lenovomm.com/wx/images/zerostar.png",
+    cardOneArray:[]
   },
   showButton: function() {
     var that = this;
@@ -111,28 +127,30 @@ Page({
       })
     }
 // 生成卡片
+/*
     let promise1 = new Promise(function (resolve, reject) {
       wx.getImageInfo({
-        src: '../images/ma.jpg',
+        src: 'https://voice.lenovomm.com/wx/images/ma.jpg',
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           resolve(res);
         }
       })
     });
     let promise2 = new Promise(function (resolve, reject) {
       wx.getImageInfo({
-        src: '../images/ban.png',
+        src: 'https://voice.lenovomm.com/wx/images/ban.png',
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           resolve(res);
         }
       })
     });
+    
     Promise.all([
       promise1, promise2
     ]).then(res => {
-      console.log(res)
+      // console.log(res)
       const ctx = wx.createCanvasContext('shareImg')
       ctx.setFontSize(22)
       ctx.setFillStyle('#333333');
@@ -152,6 +170,7 @@ Page({
       ctx.stroke()
       ctx.draw()
     })
+   */ 
     // end
     pageSelf = this;
     this.initDoomm();
@@ -167,6 +186,20 @@ Page({
       var urls = "https://voice.lenovomm.com/lasf/evaluate";
       UTIL.log('mp3Recorder.onStop() tempFilePath:' + tempFilePath)
       processFileUploadForAsr(urls, tempFilePath, this);
+    })
+
+    var array = []
+    var conArray = this.data.cardContent[cardIndex - 1].split(" ");
+    for (var i = 0; i < conArray.length; i++) {
+      var obj = {
+        color: 'text_black',
+        value: conArray[i]
+      }
+      array.push(obj);
+    }
+    // console.log(array)
+    this.setData({
+      cardOneArray:array
     })
   },
   // 卡片中文字换行
@@ -207,7 +240,7 @@ Page({
       destHeight: 800,
       canvasId: 'shareImg',
       success: function (res) {
-        console.log(res.tempFilePath);
+        // console.log(res.tempFilePath);
         that.setData({
           prurl: res.tempFilePath,
           hidden: false
@@ -215,7 +248,7 @@ Page({
         wx.hideLoading()
       },
       fail: function (res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },
@@ -242,7 +275,7 @@ Page({
           confirmColor: '#72B9C3',
           success: function (res) {
             if (res.confirm) {
-              console.log('用户点击确定');
+              // console.log('用户点击确定');
               that.setData({
                 hidden: true
               })
@@ -255,10 +288,9 @@ Page({
   },
   onShow: function() {
     this.Animationcon(500);
-
   },
   getUserInfo: function(e) {
-    console.log(e)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -266,9 +298,10 @@ Page({
     })
   },
   Animationcon: function(translateXX) {
+
     this.animation.translateY(0).translateX(0).opacity(1).rotate(0).step({
       duration: 10
-    });;
+    });
     this.setData({
       animationData1: this.animation.export(),
     });
@@ -284,6 +317,7 @@ Page({
     this.setData({
       animationData3: this.animation.export(),
     });
+
     setTimeout(() => {
       this.setData({
         ballTop1: 20,
@@ -308,6 +342,7 @@ Page({
    * 上滑动下滑动动画
    */
   Animation1: function(translateXX) {
+
     let animation = wx.createAnimation({
       duration: 1000,
       timingFunction: "ease",
@@ -315,19 +350,28 @@ Page({
     this.animation = animation;
 
     if (translateXX > 0) {
-      // this.animation.translateY(5000).rotate(0).translateY(translateXX).opacity(0).step();
-      this.animation.translateY(translateXX).scale(0).opacity(0).step();
+      // this.animation.translateY(translateXX).scale(0).opacity(0).step();
+      this.animation.translateY(translateXX).scale(0.2).step();
     }
 
-    // this.animation.translateY(0).translateX(0).opacity(0).rotate(0).step({
-    //   duration: 10
-    // });
+
+    var array = []
+    var conArray = this.data.cardContent[cardIndex - 1].split(" ");
+    for (var i = 0; i < conArray.length; i++) {
+      var obj = {
+        color: 'text_black',
+        value: conArray[i]
+      }
+      array.push(obj);
+    }
 
     this.setData({
       animationData1: this.animation.export(),
+      cardOneArray: array,
+      sumstar: "https://voice.lenovomm.com/wx/images/zerostar.png"
     });
 
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setData({
         ballTop1: 0,
         ballLeft1: -302.5,
@@ -344,7 +388,7 @@ Page({
         ballWidth3: 640,
         index3: 2,
       })
-    }, 500);
+    // }, 500);
   },
 
   /**
@@ -360,14 +404,29 @@ Page({
     this.animation = animation;
 
     if (translateXX > 0) {
-      this.animation.translateY(translateXX).scale(0).opacity(0).step().scale(1);
+      // this.animation.translateY(translateXX).scale(0).opacity(0).step().scale(1);
+      this.animation.translateY(translateXX).scale(0.2).opacity(0).step();
+    }
+
+
+    var array = []
+    // console.log(cardIndex);
+    var conArray = this.data.cardContent[cardIndex - 1].split(" ");
+    for (var i = 0; i < conArray.length; i++) {
+      var obj = {
+        color: 'text_black',
+        value: conArray[i]
+      }
+      array.push(obj);
     }
 
     this.setData({
       animationData2: this.animation.export(),
+      cardOneArray: array,
+      sumstar: "https://voice.lenovomm.com/wx/images/zerostar.png"
     });
 
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setData({
         ballTop1: 10,
         ballLeft1: -320,
@@ -384,7 +443,7 @@ Page({
         ballWidth3: 680,
         index3: 3,
       })
-    }, 500)
+    // }, 500)
   },
   /**
    * 卡片3:
@@ -401,11 +460,24 @@ Page({
       this.animation.translateY(translateXX).scale(0).opacity(0).step().scale(1);
     }
 
+    var array = []
+    // console.log(cardIndex);
+    var conArray = this.data.cardContent[0].split(" ");
+    for (var i = 0; i < conArray.length; i++) {
+      var obj = {
+        color: 'text_black',
+        value: conArray[i]
+      }
+      array.push(obj);
+    }
+
     this.setData({
       animationData3: this.animation.export(),
+      cardOneArray: array,
+      sumstar: "https://voice.lenovomm.com/wx/images/zerostar.png"
     });
 
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setData({
         ballTop1: 20,
         ballLeft1: -340,
@@ -422,7 +494,7 @@ Page({
         ballWidth3: 605,
         index3: 1,
       })
-    }, 500);
+    // }, 500);
   },
   touchdown: function() {
     //touchdown_mp3: function () {
@@ -441,23 +513,42 @@ Page({
       isSpeaking: false,
     })
 
-    if (i == 1) {
-      this.Animation1(500);
-    } else if (i == 2) {
-      this.Animation2(500);
-    } else if (i == 3) {
-      this.Animation3(500);
-      wx.navigateTo({
-        url: '../logs/logs',
-      })
-    }
-    i++;
-    if (i > 3) {
-      i = 1;
-    }
-    console.log(i);
+    // console.log(cardIndex);
     mp3Recorder.stop();
+    
+  },
+
+  touchstart: function(e){
+    touchDot = e.touches[0].pageX; 
+  },
+
+  touchmove: function(e){
+    var touchMove = e.touches[0].pageX;
+
+    if (touchMove - touchDot >= 40 && tmpFlag && !this.data.showView) {
+        tmpFlag = false;
+      if (cardIndex == 1) {
+        cardIndex = 2;
+        this.Animation1(500)
+      } else if (cardIndex == 2) {
+        cardIndex = 3;
+        this.Animation2(500)
+      } else if (cardIndex == 3) {
+        cardIndex = 4;
+        this.Animation3(500)
+      }
+    }
+
+  },
+
+  touchend: function(){
+    tmpFlag = true;
+    if(cardIndex == 4){
+      cardIndex = 1;
+      this.Animationcon(500)
+    }
   }
+   
 })
 //麦克风帧动画 
 function speaking() {
@@ -474,25 +565,29 @@ function speaking() {
 }
 
 //上传录音文件到 api.happycxz.com 接口，处理语音识别和语义，结果输出到界面
+
+
+
+
 function processFileUploadForAsr(urls, filePath, _this) {
   var ixid = new Date().getTime();
-  var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.0.0&did=83102d26aaca24ba&uid=30323575" +
-    "&stm=0&key=a&ssm=true&vdm=music&rvr=&sce=cmd&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
-    "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=1&over=1&rsts=0" +
-    "&spts=0&fpts=0&cpts=0&lrts=0";
+  var uid = Math.random();
+  uid = Math.floor(uid*100000) 
+  // console.log("uid="+uid)
+  // console.log(_this.data.cardContent[cardIndex - 1])   
   wx.uploadFile({
     url: urls,
     filePath: filePath,
     name: 'voicedata',
     formData: {
       "ixid": ixid,
-      "uid":526,
-      "data":"We get to decide what our story is",
-      "datatype":1,
-      "pidx":1,
-      "over":1,
+      "uid": uid,
+      "data": _this.data.cardContent[cardIndex - 1],
+      "datatype": 1,
+      "pidx": 1,
+      "over": 1,
       "token": "1111111111",
-      "source":1
+      "source": 1
     },
     header: {
       'content-type': 'multipart/form-data',
@@ -500,11 +595,60 @@ function processFileUploadForAsr(urls, filePath, _this) {
       'lenovokey': 'LENOVO-VOICE-25ab92455t7d44eect68e04',
       'secretkey': '8667D0D0A150AC448525B137C237A10B'
     },
-    success: function(res) {
-      UTIL.log('res.data:' + res.data);
+    success: function (res) {
+
+      // UTIL.log('res.data:' + res.data);
+      var json = JSON.parse(res.data); 
+      var sucArray = []
+      var sum = 0;
+      var color_data = 'text_black';
+      if (json.hasOwnProperty("details")) {
+        var jsonArr = json.details.words;
+        for(var data in jsonArr){
+
+          if (jsonArr[data].score < 60) {
+            color_data = 'text_red'
+          } else if (jsonArr[data].score < 85) {
+            color_data = 'text_black'
+          } else {
+            color_data = 'text_green'
+          }
+
+          var obj = {
+            value: jsonArr[data].word,
+            color: color_data
+          }
+
+          sucArray.push(obj)
+        }
+
+        if (json.details.sumScore < 50) {
+          color_data = "https://voice.lenovomm.com/wx/images/onestar.png"
+        } else if (json.details.sumScore < 60) {
+          color_data = "https://voice.lenovomm.com/wx/images/twostar.png"
+        } else if (json.details.sumScore < 70) {
+          color_data = "https://voice.lenovomm.com/wx/images/threestar.png"
+        } else if (json.details.sumScore < 85) {
+          color_data = "https://voice.lenovomm.com/wx/images/fourstar.png"
+        } else {
+          color_data = "https://voice.lenovomm.com/wx/images/fivestar.png"
+        }
+      }
+
+      // console.log(sucArray);
+      _this.setData({
+        cardOneArray: sucArray,
+        sumstar:color_data
+      })
+
     },
-    fail: function(res) {
+    fail: function (res) {
       UTIL.log('error  res.data:' + res);
     }
   });
 }
+
+
+
+
+

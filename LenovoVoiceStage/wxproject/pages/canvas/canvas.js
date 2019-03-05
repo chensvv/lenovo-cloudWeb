@@ -15,7 +15,7 @@ Page({
 
     let promise1 = new Promise(function(resolve, reject) {
       wx.getImageInfo({
-        src: '../images/ma.jpg',
+        src: 'https://voice.lenovomm.com/wx/images/ma.jpg',
         success: function(res) {
           console.log(res)
           resolve(res);
@@ -24,7 +24,7 @@ Page({
     });
     let promise2 = new Promise(function(resolve, reject) {
       wx.getImageInfo({
-        src: '../images/ban.png',
+        src: 'https://voice.lenovomm.com/wx/images/ban.png',
         success: function(res) {
           console.log(res)
           resolve(res);

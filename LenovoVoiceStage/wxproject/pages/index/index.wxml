@@ -12,10 +12,10 @@
 </view>
 
 
-<view class='pk_body' style="background-image: url('http://i1.bvimg.com/677739/00f84b04b55ba451.png'); background-size:100% 100%">
+<view class='pk_body' style="background-image: url('http://i1.bvimg.com/677739/00f84b04b55ba451.png'); background-size:100% 100%" bindtouchstart='touchstart' bindtouchmove='touchmove' bindtouchend='touchend'>
 
-<view class="scard" bindtap='share'>生成卡片</view>
-  <view class='kou'>PK</view>
+<!-- <view class="scard" bindtap='share'>生成卡片</view> -->
+  <view class='kou'> <text decode="{{true}}" space="{{true}}">&nbsp;</text></view>
   
   <view class="body-main-box">
     <!-- 第一张 -->
@@ -26,26 +26,14 @@
           <text class='ind2'>/3</text>
         </view>
         <view class='text_eng'>
-          <!-- <text class='eng_chl text_red'>We</text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_green'>get </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_black'>to </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_black'>decide </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_black'>what </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_red'>our </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_black'>story </text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text>
-          <text class='eng_chl text_green'>is</text>
-          <text decode="{{true}}" space="{{true}}">&nbsp;</text> -->
-          <text class='eng_chl'>We get to decide what our story is</text>
+            <block  wx:for='{{cardOneArray}}' wx:key='' wx:for-item='one'>
+              <text class='eng_chl {{one.color}}' >{{one.value}}</text>
+              <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+            </block>  
         </view>
         <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
-        <image class='vo_img' src='../images/voice2.png'></image>
+        <image class='vo_img' src='https://voice.lenovomm.com/wx/images/voice2.png'></image>
+        <image class='vo_star' src='{{sumstar}}'></image>
       </view>
     </view>
     <!-- 第二张 -->
@@ -56,10 +44,15 @@
           <text class='ind2'>/3</text>
         </view>
         <view class='text_eng'>
-          <text class='eng_chl'>We get to decide what our story is</text>
+            <block  wx:for='{{cardOneArray}}' wx:key='' wx:for-item='one'>
+              <text class='eng_chl {{one.color}}' >{{one.value}}</text>
+              <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+            </block>  
+          <!-- <text class='eng_chl'>We get to decide what our story is</text> -->
         </view>
         <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
-        <image class='vo_img' src='../images/voice2.png'></image>
+        <image class='vo_img' src='https://voice.lenovomm.com/wx/images/voice2.png'></image>
+        <image class='vo_star' src='{{sumstar}}'></image>
       </view>
 
     </view>
@@ -71,10 +64,15 @@
           <text class='ind2'>/3</text>
         </view>
         <view class='text_eng'>
-          <text class='eng_chl'>We get to decide what our story is</text>
+          <block  wx:for='{{cardOneArray}}' wx:key='' wx:for-item='one'>
+              <text class='eng_chl {{one.color}}' >{{one.value}}</text>
+              <text decode="{{true}}" space="{{true}}">&nbsp;</text>
+            </block>  
+          <!-- <text class='eng_chl'>We get to decide what our story is</text> -->
         </view>
         <view class='text_cha'>生活就像冰淇淋，在融化之前好好享用</view>
-        <image class='vo_img' src='../images/voice2.png'></image>
+        <image class='vo_img' src='https://voice.lenovomm.com/wx/images/voice2.png'></image>
+        <image class='vo_star' src='{{sumstar}}'></image>
       </view>
 
     </view>
@@ -92,8 +90,8 @@
 
   <view class='btn_voice'>
     <view class="{{showView?'show':'hide'}}"> 
-      <button class='btn_read' bindtap='showButton'>Ready go</button>
-      <view class='seepk' bindtap='pkrank'>查看PK榜 ></view>
+      <button class='btn_read' bindtap='showButton'>开 始</button>
+      <!-- <view class='seepk' bindtap='pkrank'>查看PK榜 ></view> -->
     </view>
 
     <view class="{{showView?'hide':'show'}} voice_btn" bindtouchstart="touchdown" bindtouchend="touchup">
