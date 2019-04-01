@@ -114,29 +114,51 @@ function gotStream(stream) {
     zeroGain.connect( audioContext.destination );
     updateAnalysers();
 }
-
+function getUserMedia(constrains,success,error){
+    if(navigator.mediaDevices.getUserMedia){
+        //最新标准API
+        navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error);
+    } else if (navigator.webkitGetUserMedia){
+        //webkit内核浏览器
+        navigator.webkitGetUserMedia(constrains).then(success).catch(error);
+    } else if (navigator.mozGetUserMedia){
+        //Firefox浏览器
+        navagator.mozGetUserMedia(constrains).then(success).catch(error);
+    } else if (navigator.getUserMedia){
+        //旧版API
+        navigator.getUserMedia(constrains).then(success).catch(error);
+	}
+}
 function initAudio() {
-        if (!navigator.getUserMedia)
-            navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia  || navigator.msGetUserMedia;
-        if (!navigator.cancelAnimationFrame)
-            navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-        if (!navigator.requestAnimationFrame)
-            navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+	if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia){
+        //调用用户媒体设备，访问摄像头
+            getUserMedia({
+                audio:true
+            },gotStream,error);
+        } else {
+            alert("你的浏览器不支持访问用户媒体设备");
+        }
+    //     if (!navigator.getUserMedia)
+    //         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia  || navigator.msGetUserMedia;
+    //     if (!navigator.cancelAnimationFrame)
+    //         navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
+    //     if (!navigator.requestAnimationFrame)
+    //         navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
 
-    navigator.getUserMedia(
-        {
-            "audio": {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
-            }
-        }, gotStream, function(e) {
-            alert('此浏览器不能获得麦克风的权限!');
-        });
+    // navigator.getUserMedia(
+    //     {
+    //         "audio": {
+    //             "mandatory": {
+    //                 "googEchoCancellation": "false",
+    //                 "googAutoGainControl": "false",
+    //                 "googNoiseSuppression": "false",
+    //                 "googHighpassFilter": "false"
+    //             },
+    //             "optional": []
+    //         }
+    //     }, gotStream, function(e) {
+    //         alert('此浏览器不能获得麦克风的权限!');
+    //     });
 }
 
 window.addEventListener('load', initAudio );
