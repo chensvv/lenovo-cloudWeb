@@ -161,6 +161,9 @@ function initAudio() {
     //     });
 }
 
+function error(error){
+	console.log('访问媒体设备失败：',error.name,error.message)
+}
 window.addEventListener('load', initAudio );
 
 

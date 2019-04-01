@@ -161,6 +161,9 @@ function initAudio() {
             alert("你的浏览器不支持访问用户媒体设备");
         }
 }
+function error(error){
+	console.log('访问媒体设备失败：',error.name,error.message)
+}
 
 window.addEventListener('load', initAudio );
 
