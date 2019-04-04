@@ -42,6 +42,7 @@
 		    }
 		    
 		}
+		
 		var mb = myBrowser();
     if (bIsIpad || bIsIphoneOs||bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {	        	        
 		 if("FF" == mb){
