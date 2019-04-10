@@ -163,15 +163,24 @@
 @media screen and (max-width:414px){
 	#eui-main-body .product-experience .product-content .product-picture .realtime-btn {
 		 width: 110px;
-	    height: 200px;
-	    line-height: 200px;
-	    margin: 10px auto;
+		 height: auto;
+		 line-height: unset;
+		 margin: 10px auto;
 	    position: relative;
 	}
 	#eui-main-body .product-experience .product-content .product-picture {
-		height: 700px;
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
 	}
+	#eui-main-body .product-experience .product-content .product-picture .result-content{
+		padding-top: 0;
+		font-size: 16px;
+	}
+	
 }
 
 
@@ -336,7 +345,22 @@
 	top: 52px;
 
  }
-
+ #timetext{
+	 margin-bottom: 10px !important;
+ }
+ .voice_button{
+	width: auto ;
+	height: auto ;
+}
+.voice_content{
+	width: auto;
+	height: auto;
+	padding: 20px;
+}
+.prompt{
+	font-size: 16px !important;
+	text-align: left !important;
+}
 .pulse1 {
 	width: 150px;
 	height: 150px;
