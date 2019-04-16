@@ -166,7 +166,8 @@
 		 height: auto;
 		 line-height: unset;
 		 margin: 10px auto;
-	    position: relative;
+		position: relative;
+		padding-top: 60px;
 	}
 	#eui-main-body .product-experience .product-content .product-picture {
 		height: auto;
@@ -345,8 +346,13 @@
 	top: 52px;
 
  }
+#eui-main-footer{
+	display: none;
+}
  #timetext{
 	 margin-bottom: 10px !important;
+	 background: transparent;
+	 margin-top: 20px;
  }
  .voice_button{
 	width: auto ;
@@ -369,9 +375,9 @@
 
  }
  
- #timetext{
+ /* #timetext{
      width: 95px;
-	}
+	} */
 }
 
 #eui-main-footer{
