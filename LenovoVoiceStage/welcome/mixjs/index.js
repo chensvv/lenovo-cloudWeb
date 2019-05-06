@@ -39,9 +39,9 @@ $(function () {
 		if (scrollTop >= 100) {
 			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
 		}
-		// $("#position li").eq(i).addClass('active').siblings().removeClass("active");
+		$("#position li").eq(i).addClass('active').siblings().removeClass("active");
 		// $(".pic li").eq(i).show().siblings().hide();
-		// $(".pic li").eq(i).stop(true, true).fadeIn(800).siblings().stop(true, true).fadeOut(0);
+		$(".pic li").eq(i).stop(true, true).fadeIn(800).siblings().stop(true, true).fadeOut(0);
 	}
 	//鼠标移入移出效果
 	// $("#container").hover(function() {
