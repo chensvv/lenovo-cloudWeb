@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-    <title>联想语音</title>
+    <meta charset="UTF-8">  
+	<title>联想语音</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="expires"content="0" />
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="applicable-device" content="pc,mobile" />
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/recognise2.css?version=1.3" rel="stylesheet"/>
     <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
-
-    <script type="text/javascript" src="../common/js/avatar.js"></script>
-    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
+	<link rel="stylesheet" href="../welcome/css/all.css">
+    <script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/recognise.js?version=1.2"></script>
-	<script src="js/audiodisplay.js?version=1.2"></script>
-	<script src="js/recorder.js?version=1.2"></script>
-	<script src="../common/js/commurl.js"></script>
-	<script src="js/audiomainlong.js?version=1.4"></script>	
-	<script src="js/commaudio.js"></script>	
+	<script type="text/javascript" src="mixjs/recognise.js?version=1.2"></script>
+	<script src="mixjs/audiodisplay.js?version=1.2"></script>
+	<script src="mixjs/recorder.js?version=1.2"></script>
+	<script src="../common/mixjs/commurl.js"></script>
+	<script src="mixjs/audiomainlong.js?version=1.4"></script>	
+	<script src="mixjs/commaudio.js"></script>	
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
@@ -30,21 +35,14 @@
 	#timetext{
 		border: none;
 		text-align: center;
-		font-size: 20px;
-		font-weight: bold;
-		margin-bottom: 20px;
-		color: #5a5e60;
+		font-size: 14px;
+		color: #434343;
+		margin-top: 15px;
+		letter-spacing: 2px;
 	}
 
 	#status2 span{
 		font-size: 18px;
-	}
-	.prompt{
-		font-size: 24px;
-		color: #97aab0;
-		text-align: center;
-		position: relative;
-		top: 35%;
 	}
 	#record2{
 		width: 114px;
@@ -54,47 +52,72 @@
 		display: none;
 		margin-top: 165px;
 	}
+	#eui-main-footer{
+			position: fixed;
+			bottom: 0;
+		}
 </style>
 <body>
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-</nav>
+	<div class="dis_flex">
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">长语音识别</p>
+			<div class="bg_div"></div>
+		</div>
+		<div class="eui-main-body">
+				<div class="body-content product-experience">
+					<div class="content-title product-title">产品体验</div>
+					<!-- <div class="product-content"> -->
+						<div class="product-picture" id="banner">
+							<div id="viz">
+								<canvas id="analyser" width="2000" style="display:none;" ></canvas>
+								<canvas id="wavedisplay"></canvas>
+							</div>
+							<div class="voice_button">
+								<div class="realtime-btn"><img id="record" src="images/Mic-nor.png"  onclick="toggleRecording(this);" />
+								</div>
+								<div class="realtime-btn1">
+									<img id="record2" src="images/Mic-nor.png"/>
+								</div>
+								<input type="text" id="timetext" value="00时00分00秒" readonly><br>  
+								
+							</div>
+							<div class="dis_box">
+								<div class="voice_content">
+									<div class="content_box">
+										<div class="left_content" id="dis_none">
+												<span class="arrow_font" id="status">点击话筒开始识别，再次点击识别结束。</span>
+												<span class="arrow_left"></span>
+										</div>
+										<div class="content_font">
+											<p class="prompt">识别结果：</p>
+											<div class="result_box" id="status2">
+												<span class="arrow_right"></span>
+											</div>
+											
+										</div>
+											
+									</div>
+								</div>
+							</div>
+						</div>
+					<!-- </div> -->
+				</div>
+			</div>
+			
+			<div id="eui-main-footer" class="footer-bgcolor">
+			</div> 
+	</div>
 
-<div id="eui-main-body">
 
-    <div class="body-content product-experience">
-        <div class="content-title product-title">产品体验</div>
-        <div class="product-content">
-
-            <div class="product-picture" id="banner">
-                <div id="viz">
-                    <canvas id="analyser" width="2000" style="display:none;" ></canvas>
-                    <canvas id="wavedisplay"></canvas>
-                </div>
-                <div class="voice_button">
-	                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />
-                        <div class="pulse"></div>
-						<div class="pulse1"></div>
-	                </div>
-	                <div class="realtime-btn1">
-	                	<img id="record2" src="images/voice_btn1.png"/>
-	                </div>
-	                <input type="text" id="timetext" value="00时00分00秒" readonly><br>  
-	                <div id="status" class="result-content">
-	                                    点击图标,开始识别<br/>再次点击,关闭识别<br/>
-	                </div>
-	            </div>
-	            <div class="voice_content" id="status2">
-	            	<p class="prompt">此区域显示识别结果 !</p>
-	     
-	            </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="eui-main-footer" class="footer-bgcolor">
-</div>   
+  
 
 </body>
 </html>
-<!-- <script src="js/judbrowser.js"></script> -->
+<script>
+
+	if(navigator.userAgent.indexOf("MSIE")>0){
+		$('.voice_button').css({"padding-top":"130px"})
+	}
+</script>

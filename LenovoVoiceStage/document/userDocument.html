@@ -1,116 +1,144 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
+
 <head>
-    <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>联想语音</title>
-    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/userDocument.css?version=1.1" rel="stylesheet"/>
-    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
-    <link href="../common/css/aos.css" rel="stylesheet" type="text/css" />
-    <link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />  
-    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../common/js/avatar.js"></script>
-    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>   
-    <script type="text/javascript" src="../common/js/aos.js?version=1.1"></script>
-    <script src="../common/js/commurl.js"></script>
-    <script type="text/javascript" src="js/document.js?version=1.1"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>联想语音</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/userDocument.css?version=1.1" rel="stylesheet" />
+	<link href="../welcome/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
+	<script src="../common/mixjs/commurl.js"></script>
+	<script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> 
-    
+	<script type="text/javascript"
+		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
+
 <body>
-<!--<div id="eui-main-header">
-</div>-->
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">开发资源</p>
+			<div class="bg_div"></div>
+		</div>
+		<div class="eui-main-body">
+			<div class="recognise-module">
+				<div class="module-title">语音识别</div>
 
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-</nav>
-<div id="eui-main-body" data-aos="animation_name">
-	<div class="eui-banner" aos="zoom-out" aos-once="true">
-		<img src="images/ban3.jpg"/>
-	</div>
-    <div class="recognise-module">
-        <div class="module-title">语音识别</div>
-        <!--<div class="module-content">
-	        <div class="module-chinese-article">
-	            <ul>
-	                <li>客户端接入指南</li>
-	                <li><a href="ASRApiDoc.html" >API接入指南</a></li>
-	                <li><a href="TTSApiDoc.html" >语音合成接口V1</a></li>
-	                <li>语音识别协议</li>
-	                <li>语音识别常见问题</li>
-	                <li>语音识别常用参数</li>
-	            </ul>
-	        </div>
-	        <div class="module-english-article">
-	            <ul>
-	                <li>Client access guide</li>
-	                <li>API access guide</li>
-	                <li>Speech synthesis interface V1</li>
-	                <li>Speech recognition protocol</li>
-	                <li>Common problems in speech recognition</li>
-	                <li>Common parameters of speech recognition</li>
-	            </ul>
-	        </div>
-	       </div>-->
-	       
-	               <div class="module-content">
-			           <p><span class="sp1"><i>1.</i>&nbsp;客户端接入指南</span><span class="sp2">Client access guide</span></p>
-			           <p><span class="sp1"><i>2.&nbsp;</i><a href="ASRApiDoc.html" id="detail" >API接入指南</a></span><span class="sp2">API access guide</span></p>
-			           <p><span class="sp1"><i>3.&nbsp;</i>语音合成接口V1</span><span class="sp2">Speech synthesis interface V1</span></p>
-			           <p><span class="sp1"><i>4.&nbsp;</i>语音识别协议</span><span class="sp2">Speech recognition protocol</span></p>
-			           <p><span class="sp1"><i>5.&nbsp;</i>语音识别常见问题</span><span class="sp2">Common problems in speech recognition</span></p>
-			           <p><span class="sp1"><i>6.&nbsp;</i>语音识别常用参数</span><span class="sp2">Common parameters of speech recognition</span></p>
-			           
-			       </div>
-    </div>
+				<div class="module-content">
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box">
+								<div class="info_title">客户端接入指南</div>
+								<div class="info_con"><a href="client.html">Client access guide</a></div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_title">API接入指南</div>
+								<div class="info_con"><a href="#">API access guide</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box">
+								<div class="info_title">语音合成接口v1</div>
+								<div class="info_con"><a href="#">Speech synthesis interface v1</a></div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_title">语音识别协议</div>
+								<div class="info_con"><a href="#">Speech recognition protocol</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box">
+								<div class="info_title">语音识别常见问题</div>
+								<div class="info_con"><a href="#">Common problems in speech recognition</a></div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_title">语音识别常用参数</div>
+								<div class="info_con"><a href="#">Common parameters of speech recognition</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-</div>
+		</div>
 
-<div id="eui-main-footer" class="footer-bgcolor">
-</div>
+		<div id="eui-main-footer" class="footer-bgcolor">
+
+
+
 </body>
+
 </html>
 
-<script>				
-    AOS.init({
-				offset: 200,
-				duration: 600,
-				easing: 'ease-in-sine',
-				delay: 100,
-	});
+<script>
+	// AOS.init({
+	// 	offset: 200,
+	// 	duration: 600,
+	// 	easing: 'ease-in-sine',
+	// 	delay: 100,
+	// });
 	$(function () {
-	    loadTop("document");
-	    var scriptTag = document.createElement('script');
+		loadTop("document");
+		if(navigator.userAgent.indexOf("MSIE")>0){
+			$('.info_box').css({"margin":"0 auto 25px auto"})
+			$('.nav-left li').css({"padding-left":"100px"})
+		}
+		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
 		scriptTag.async = true;
 		scriptTag.src = 'avatar.js';
-		var head= document.getElementsByTagName('head')[0] || document.documentElement;
-		head.insertBefore(scriptTag, head.firstChild);			
+		var head = document.getElementsByTagName('head')[0] || document.documentElement;
+		head.insertBefore(scriptTag, head.firstChild);
 		var avatar = window.Avatar = window.Avatar || [];
 		avatar.push({
-			    appKey: '5C9E6O46H2ZJ', // appkey
-			    pageId: 'three',		// 页面标识
-			    channel: 'webvoice3',		// 设置渠道
-			    versionName: '1.2', // 设置版本
-                versionCode: '01',	// 设置版本号
-			    init: function(){
-				}
+			appKey: '5C9E6O46H2ZJ', // appkey
+			pageId: 'three', // 页面标识
+			channel: 'webvoice3', // 设置渠道
+			versionName: '1.2', // 设置版本
+			versionCode: '01', // 设置版本号
+			init: function () {}
 		});
-		function clickvoi(evt, target){
-				return ['Clickpage2', 'voice', '语音页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+
+		function clickvoi(evt, target) {
+			return ['Clickpage2', 'voice', '语音页面点击', {
+				arg1: 0,
+				arg2: 0,
+				arg3: 0,
+				arg4: 0,
+				arg5: 0
+			}, 0];
 		}
 		Avatar.push(['register', document.getElementById('second'), clickvoi]);
-		
-		function clickdetail(evt, target){
-				return ['Clickpage4', 'details', '文档详情1', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+
+		function clickdetail(evt, target) {
+			return ['Clickpage4', 'details', '文档详情1', {
+				arg1: 0,
+				arg2: 0,
+				arg3: 0,
+				arg4: 0,
+				arg5: 0
+			}, 0];
 		}
 		Avatar.push(['register', document.getElementById('detail'), clickdetail]);
-	   
+
 	});
-	
-					
 </script>

@@ -78,11 +78,11 @@ function loadTop(data) {
 	params +="							    <span class=\'icon-bar\'></span>";
 	params +="							</button>";
 	params +="					<div class=\'navbar-icon\'>";
-	params +="						<img src=\'../common/images/icon.png\' alt=\'\'>";
+	params +="						<img src=\'../common/images/logo.png\' alt=\'\'>";
 	params +="					</div>";
 	params +="				</div>";
 	params +="				<div id=\'navbar\' class=\'collapse navbar-collapse\'>";
-	params +="					<ul class=\'nav navbar-nav\'>";
+	params +="					<ul class=\'nav navbar-nav nav-left\'>";
     if(data == "index"){
         params += "                    <li class=\'active\'>";
     }else{
@@ -95,7 +95,7 @@ function loadTop(data) {
     }else{
         params += "                    <li>";
     }
-    params +="							<a href=\'#\' target=\'_self\' data-toggle=\'dropdown\'>产品与服务<span class=\'caret\'></span></a>";
+    params +="							<a href=\'#\' target=\'_self\' data-toggle=\'dropdown\'>产品服务<span class=\'caret\'></span></a>";
 	params +="							<ul class=\'dropdown-menu\'>";
 	params +="								<li><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\'>短语音识别</a></li>";
 	params +="								<li><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>长语音识别 <span style=\'color:red\'>(Beta)</span></a></li>";
@@ -107,7 +107,7 @@ function loadTop(data) {
     }else{
         params += "                    <li class=\'\'>";
     }
-    params += "                        <a href=\'#\' onclick=\'menu_product_document()\' id=\'third\' target=\'_self\' >使用文档</a>";
+    params += "                        <a href=\'#\' onclick=\'menu_product_document()\' id=\'third\' target=\'_self\' >开发资源</a>";
     params += "                    </li>";
     if(data == "newdata"){
         params += "                    <li class=\'active\'>";
@@ -121,7 +121,7 @@ function loadTop(data) {
     }else{
         params += "                    <li class=\'\'>";
     }
-    params += "                        <a href=\'#\' onclick=\'menu_forum_list()\' id=\'\' target=\'_self\' >留言板</a>";
+    params += "                        <a href=\'#\' onclick=\'menu_forum_list()\' id=\'\' target=\'_self\' >给我留言</a>";
     params += "                    </li>";
     params += "                </ul>";
     params += "                <ul class=\'nav navbar-nav navbar-right\'>";
@@ -134,7 +134,9 @@ function loadTop(data) {
     var Username = window.localStorage.getItem('Username');
 
     if (Username=="" || Username==null||Username.length == 0) {
-        params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name'>请使用联想账号登录</a>";
+        params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name'>登录</a>";
+        params += "                        <span class=\'shu\'>|</span>";
+        params += "                        <a href=\'https://passport.lenovo.com/wauthen2/wauth/jsp/register.jsp?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vb=null&lenovoid.display=null&lenovoid.idp=null&lenovoid.source=voice.lenovomm.com&oldState=null?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vp=null&lenovoid.display=null&lenovoid_idp=null&lenovoid.source=voice.lenovomm.com&lenovoid.thirdname=null&lenovoid.qrstate=null&lenovoid.idreinfo=null&lenovoid.hidewechat=1&lenovoid.hideqrlogin=1&lenovoid.hideautologin=1&lenovoid.hidelanguage=1&lenovoid.realmImg=null&lenovoid.loginTxt=null&lenovoid.mainColor=null&lenovoid.hideqq=1&lenovoid.hideloginreg=1&lenovoid.hidesina=1&lenovoid.hideregmobile=1&lenovoid.hideregemail=1&lenovoid.hidesmslogin=1&lenovoid.webstate=0&lenovoid.userType=null&lenovoid.uAgreementTxt=null&lenovoid.uAgreementUrl=null&lenovoid.sdk=null&lenovoid.sn=null' target=\'_self\' id='lenovo-user-register'>注册</a>";
     } else {
         params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' id='lenovo-user-name'>"+ Username +"<span class=\'caret\'></span></a>";
         params += "                        <ul class=\'dropdown-menu\'>";
@@ -152,9 +154,7 @@ function loadTop(data) {
 
   $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462");
 
-  var hei = $(window).height();
-  if(hei<900){
-      hei = 900;
-  }
-$('#eui-main-body').css({"min-height":(hei-150)+"px"});
+  if(navigator.userAgent.indexOf("MSIE")>0){
+    $('.nav-left li').css({"padding-left":"100px"})
+}
 }

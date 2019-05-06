@@ -46,7 +46,7 @@ function updateStatus(status) {
 
             data2 = s.rawText;
             if (firstup) {
-                $("#status2").append("<span id='liid_" + liid + "'>" + data2 + "</span>");
+                $("#status2").append("<span class='li_id' id='liid_" + liid + "'>" + data2 + "</span>");
                  
                 firstup = false;
             }
@@ -58,7 +58,7 @@ function updateStatus(status) {
                 if (s.rawType == 'final') {
                 	$("#liid_" + liid).css("color","#000000");
                     liid++;
-                    $("#status2").append("<span id='liid_" + liid + "'></span>");
+                    $("#status2").append("<span class='li_id' id='liid_" + liid + "'></span>");
                 }
             }
  
@@ -107,6 +107,9 @@ var hour,minute,second;//时 分 秒
 var millisecond=0;//毫秒
 var int;
 function toggleRecording(e) {
+    $('#record').attr('src','./images/Mic-act.png')
+    var con = document.getElementsByClassName('content_box')[0]
+    
     var accountid = window.localStorage.getItem('accountid');
     if (accountid == "" || accountid == null || accountid.length == 0) {
         var statusP = document.getElementById("status");
@@ -124,7 +127,7 @@ function toggleRecording(e) {
         $('.product-picture .pulse').css("display", "none");    
         over++;
         audioRecorder.getBuffers(gotBuffers);
-        img_btn.src = 'images/voice_btn_1.png';
+        img_btn.src = 'images/Mic-nor.png';
         
     } else {
     	if (!audioRecorder)
@@ -157,7 +160,7 @@ function toggleRecording(e) {
 	  
 	    }   	
        window.clearInterval(timers);	       
-//      $("#status2").empty();
+     $(".content_font").css("display","block");
         over = 0;
         worker = new Worker("js/audioSend.js");
         worker.onmessage = function (e) {
@@ -181,13 +184,19 @@ function toggleRecording(e) {
         }
 
         time1 = setInterval(record, 470);   
-        $(".prompt").css("display","none");
+        // $(".prompt").css("display","none");
         $('.product-picture .pulse').css("display", "block");
         $('.product-picture .pulse1').css("display", "block");
         var statusP = document.getElementById("status");
         statusP.innerHTML = '请说话';
-
-        document.getElementById("wavedisplay").style.display = "block";
+        if(statusP.innerHTML = '请说话'){
+            document.getElementById("dis_none").style.display = 'none';
+            con.classList.add('con_box')
+            $('.content_box').css({"padding":"50px 130px"})
+            $('.arrow_right').css("display","none")
+        }
+        
+        // document.getElementById("wavedisplay").style.display = "block";
     }
 }
 

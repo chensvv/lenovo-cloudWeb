@@ -1,6 +1,5 @@
 	$(function(){
 		loadTop("information");
-		
 		var Username = window.localStorage.getItem('Username');
 		var accountid = window.localStorage.getItem('accountid');
 		var lenkey = window.localStorage.getItem('lenkey');
@@ -32,7 +31,6 @@
 			}
 
 	    }
- 
 		function formatDateTime(timeStamp) {   
 		    var date = new Date();  
 		    date.setTime(timeStamp * 1000);  
@@ -47,7 +45,7 @@
 		    var second = date.getSeconds();    
 		    minute = minute < 10 ? ('0' + minute) : minute;      
 		    second = second < 10 ? ('0' + second) : second;     
-		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;      
+		    return y + '-' + m + '-' + d;      
 		};  
 		function unhtml(sHtml) {
 		 return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
@@ -65,7 +63,8 @@
 		    },
 		  async: false,
 		  success:function(res){
-		  	var num=res.datalist;
+				var num=res.datalist;
+				console.log(num)
 			var sortime=num.sort(function (a, b) { return new Date(b.createTime).getTime() - new Date(a.createTime).getTime() });
 		  	total=res.total;
 		   var str = "";
@@ -76,15 +75,20 @@
 		        replytime="- -";
 		    }else{
 		        replytime=replytime;
-		    }
-		    str +="<tr class=\"list-cell\">"
-		           +"<td><a href='questiondetail.html?article="+val.articleId+"' target='_blank' class='lp_li_a'>"+unhtml(val.title)+"</a></td>"
-		           +"<td class='mg vague'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</td>"		            
-		           +"<td class='mg'>"+nowtime+"</td>"
-		           +"<td class='mg'>"+replytime+"</td>"
-		           +"</tr>";
-		   });
-		   $("tbody").append(str);
+				}
+		    str +="<div class=\"list-cell\">"
+								 +"<img class='info_img' src='../forum/images/head.png'/>"
+								 +"<div class='info_right'>"
+								 +"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+								 +"<div class='in_p'>"
+			           +"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+			           +"<span class='mg'>"+'发布于'+nowtime+"</span>"
+								 +"<span class='mg'>"+'最后回复于'+replytime+"</span>"
+								 +"</div>"
+								 +"</div>"
+			           +"</div>";
+			   });
+		   $(".list-content").append(str);
 		  }
 		});
 		
@@ -115,7 +119,7 @@
 					"secretkey" : secrkey
 			    },
 			  success:function(res){
-			  	$("tbody").html("");
+			  	$(".list-content").html("");
 			   var str = "";
 			   $.each(res.datalist, function(idx,val) {
 			   	var nowtime = formatDateTime(val.createTime);
@@ -125,14 +129,17 @@
 			    }else{
 			        replytime=replytime;
 			    }
-			    str +="<tr class=\"list-cell\">"
-			           +"<td><a href='questiondetail.html?article="+val.articleId+"' target='_blank' class='lp_li_a'>"+unhtml(val.title)+"</a></td>"
-			           +"<td class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</td>"
-			           +"<td class='mg'>"+nowtime+"</td>"
-			           +"<td class='mg'>"+replytime+"</td>"
-			           +"</tr>";
+					str +="<div class=\"list-cell\">"
+								 +"<img class='info_img' src='../images/001.jpg'/>"
+								 +"<div class='info_right'>"
+			           +"<p><a href='questiondetail.html?article="+val.articleId+"' target='_blank' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+			           +"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+			           +"<span class='mg'>"+nowtime+"</span>"
+								 +"<span class='mg'>"+replytime+"</span>"
+								 +"</div>"
+			           +"</div>";
 			   });
-			   $("tbody").append(str);
+			   $(".list-content").append(str);
 			  }
 			});
 		

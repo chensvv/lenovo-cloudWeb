@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
 	var i = 0;
 	var timer;
@@ -6,30 +6,60 @@ $(function() {
 
 	//第一张显示
 	$(".pic li").eq(0).show();
-	$("#position li").click(function() {
+	$("#position li").click(function () {
 		$(this).addClass('active').siblings().removeClass("active");
 		var index = $(this).index();
 		i = index;
+		if (i == 1) {
+			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+			$(".navbar").addClass('flex_css')
+		} else {
+			$(".navbar").removeClass('flex_css')
+			$(".navbar").css({"background": "transparent"});
+		}
+		if ($(window).scrollTop() >= 100) {
+			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+		}
 		// $(".pic li").eq(index).show().siblings().hide();
-		$(".pic li").eq(index).fadeIn(800).siblings().fadeOut(800);
+		$(".pic li").eq(index).fadeIn(800).siblings().fadeOut(0);
 	});
 	//自动轮播
 
 	function play() {
 		i++;
-		i = i > 1 ? 0 : i;
-		$("#position li").eq(i).addClass('active').siblings().removeClass("active");
-//		$(".pic li").eq(i).fadeIn(800).siblings().fadeOut(800);
-		$(".pic li").eq(i).stop(true,true).fadeIn(800).siblings().stop(true,true).fadeOut(800);
+		i = i > 3 ? 0 : i;
+		var scrollTop = $(window).scrollTop()
+		if (i == 1) {
+			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+			$(".navbar").addClass('flex_css')
+		} else {
+			$(".navbar").removeClass('flex_css')
+			$(".navbar").css({"background": "transparent"});
+		}
+		if (scrollTop >= 100) {
+			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+		}
+		// $("#position li").eq(i).addClass('active').siblings().removeClass("active");
+		// $(".pic li").eq(i).show().siblings().hide();
+		// $(".pic li").eq(i).stop(true, true).fadeIn(800).siblings().stop(true, true).fadeOut(0);
 	}
 	//鼠标移入移出效果
-	$("#container").hover(function() {
-		clearInterval(timer);
-	}, function() {
-		timer = setInterval(play, 4000);
+	// $("#container").hover(function() {
+	// 	clearInterval(timer);
+	// }, function() {
+	// 	timer = setInterval(play, 4000);
+	// });
+	$(window).scroll(function () {
+		// 滚动条距离顶部的距离 大于 100px时
+		if ($(window).scrollTop() >= 100) {
+			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+		} else {
+			$(".navbar").css({"background": "transparent"});
+		}
 	});
 
 })
+
 
 function LenovoIdSyncLoginState(lenovoid_wust) {
 	_club_login_status = true;

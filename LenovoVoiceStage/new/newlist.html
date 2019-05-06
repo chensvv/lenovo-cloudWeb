@@ -1,111 +1,116 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 			
-		<title></title>
-		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />		
-		<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />
-		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>	
-		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
-	</head>
-	<style>
-		.morenew{
-      		width: 84%;
-      		margin: 100px auto 159px auto;
-      		/*border: 1px solid red;*/
-      	}
-      	.morenew h2{
-      		color: #1786d4;
-      		font-size: 20px;
-      	}
-      	.morenew hr{
-      		margin-top: 10px;
-      		border-top: 1px solid #1786d4;
-      	}
-      	.mainnew{
-      		margin-left: 20px;
-      		overflow: auto;
-      	}
-      	.mainnew li{
-      		width: 100%;
-      		height: 28px;
-      		text-decoration: none;
-      		list-style: none;
 
-      	}
-      	.mainnew li a{
-      		color: #716d6d;
-      		text-decoration: none;
-      		float: left;
-      		font-size: 16px;
-      	}
-      	.mainnew li a:hover{
-      		color: #0a8dbf;
-      	}
-      	.morenew ul li .tim{
-      		float: right;
-      		margin-right: 20px;
-      		color: #716d6d;
-      	}
-      	.mainnew li:before {
-			content: "\02022";
-			float: left;
-			margin-right: 10px;
-			color: #1786d4;			    		    
-		}
-		.rows{
-			margin-bottom: 180px;
-		}
-		a{
-			color: #CCCCCC;
-		}
-		a:link { 
-		color:red; 
-		text-decoration:none; 
-		}
-	</style>
-	<body>
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
-		<div class="morenew">
-            	<h2><i>新闻资讯</i></h2><hr />
-            	<ul class="mainnew" id="demoContent">
-            		<li><a href="new5.html" target="_blank">AI乐语音，一句话全搞定！</a><sapn class="tim">2018-11-05</sapn></li>
-            		<li><a href="new4.html" target="_blank">良心优品，新国民旗舰联想Z5首发1299元起！</a><sapn class="tim">2018-06-06</sapn></li>
-                    <li><a href="new0.html" target="_blank">千元玩转人脸解锁 入手Lenovo S5</a><sapn class="tim">2018-04-18</sapn></li>
-                    <li><a href="new1.html" target="_blank">清明节买个联想S5自驾游：用语音控制手机更安全</a><sapn class="tim">2018-04-07</sapn></li>
-                    <li><a href="new2.html" target="_blank">联想手机S5乐语音体验6过Siri，用了就再也回不去了</a><sapn class="tim">2018-03-29</sapn></li>
-            	</ul>
-            	<!--<div id="pages"></div>-->
-            	<hr />
-        </div>
-        
-        <div id="eui-main-footer" class="footer-bgcolor">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />
+	<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.1"></script>
+	<script src="../common/mixjs/scroll.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript"
+		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+</head>
+<style>
+	/* #eui-main-footer {
+		position: fixed;
+		bottom: 0;
+	} */
+</style>
+
+<body>
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">新闻资讯</p>
+			<div class="bg_div"></div>
 		</div>
-	</body>
+		<div class="eui-main-body">
+			<div class="recognise-module">
+
+				<div class="module-content">
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew0(this)">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="eui-main-footer" class="footer-bgcolor"></div>
+
+
+</body>
+
 </html>
 <script>
 $(function(){
-	loadTop("newdata");
-
-//	var datas=[
-//		    {"did":1,"name":"千元玩转人脸解锁 入手Lenovo S5","time":"2018-04-18"},
-//		    {"did":2,"name":"清明节买个联想S5自驾游：用语音控制手机更安全","time":"2018-04-07"},
-//		    {"did":3,"name":"联想手机S5乐语音体验6过Siri，用了就再也回不去了","time":"2018-03-29"},
-//		    {"did":4,"name":"行动起来，誓死打赢联想荣誉保卫战！","time":"2018-05-16"},		    	
-//		];
-//	
-//	var cHtml="";
-//  for(var i=0;i<datas.length;i++){   	
-//      cHtml+="<li><a href='new"+i+".html'  target='_blank'>"+ datas[i].name+"</a><sapn class='tim'>"+datas[i].time+"</span></li>";//处理数据
-//  }
-//  $("#demoContent").html(cHtml);//将数据增加到页面中
-    
+	loadTop('newdata')
 })
+function goNew0(e){
+		console.log(e)
+		window.location.href='new0.html'
+	}
 </script>

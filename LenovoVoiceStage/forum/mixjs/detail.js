@@ -14,15 +14,18 @@
 				  data:{"articleid":id},
 				  success:function(res){
 	                $.each(res.datalist, function(idx,val) {
+						var reply_length = res.datalist.length-1
+						$('.reply_length').text(reply_length)
 					var nowtime = formatDateTime(val.createTime);
-	                     var el="";
-	                    if(val.commentLevel == 1){	
-	
+						 var el="";
+						var arr = document.getElementsByClassName('comment-info').length+1;
+	                    if(val.commentLevel == 1){
+							// var arr = idx;
+							// console.log(arr)
 	                            var nowtime = formatDateTime(val.createTime);
-	                          
-	                            el += "<div class='comment-info'><div class='comment-content-header'>作者：<span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span><span><i class='glyphicon glyphicon-time'></i>"+nowtime+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
-			                    el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-md-10'>";			
-			                    el +=  "</div><div class='col-md-2'>"
+	                            el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>最后由"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span><span>回复于"+nowtime+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
+			                    el += "<p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-del'>";			
+			                    el +=  "</div><div class='col-update'>"
 			                    if(Username == val.accountName){
 			                    	el += "<span class='del'>删除</span>"
 			                    }else{
@@ -31,8 +34,8 @@
 			                    
 			                    el += "<span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
 						     
-	                    }else  if(val.commentLevel == 2){                  	                   		
-								 el += "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
+	                    }else  if(val.commentLevel == 2){             	                   		
+								 el += "<div class='reply'><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
 								 if(Username == val.accountName){
 			                    	el += "<span class='delchild'>删除</span>"
 			                     }else{
@@ -132,7 +135,7 @@
 					return;
 				}
 		    }
-		el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='mytextarea' ></textarea><span class='send'>发送</span></div>")
+		el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='comment_textarea' ></textarea><span class='send'>发送</span></div>")
 		.find(".send").click(function(){
 			var content = $(this).prev().val();
 			if(content != ""){
@@ -179,7 +182,7 @@
 		    var second = date.getSeconds();    
 		    minute = minute < 10 ? ('0' + minute) : minute;      
 		    second = second < 10 ? ('0' + second) : second;     
-		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;      
+		    return y + '-' + m + '-' + d +' '+ h+':'+minute;      
 		};    
 		
 		//过滤特殊字符
@@ -193,6 +196,14 @@
 		}
 		  //接收URL中的参数articleId
 		var id = getUrlParam('article');
+		var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+		if(user){
+			$('.mobile_btn').click(function(){
+				window.location.href="./reply.html?article="+id;
+			})
+		}
+		
+		// console.log(id)
 		//文章展示
 		$.ajax({
 			type:'POST',
@@ -211,7 +222,10 @@
 			//根据id获取详情数据				    
                     if(val.commentLevel == 0){
 //                    var str = "<div>"+val.content+"</div>";
-				      $(".htitle").text(val.title);
+					  $(".htitle").text(val.title);
+					  $(".posi_title").text(val.title);
+					  $(".title_arrows").text(val.title);
+					  $('.reply_arrows').text(val.title)
 				      $(".newauthor").text(val.accountName.replace(/(\w{3})\w{4}/, '$1****'));
 				      $(".newtime").text(nowtime);
 				      $('.cont').text(val.content);
@@ -243,18 +257,20 @@
 		    }
 		    
 			var tit=$(".htitle").text();
+			var tit2 = $('.reply_arrows').text()
 			var $content = $("#content").val();
 			$.ajax({
 				type:'POST',
 				url:urlhead+"/lasf/forum/add?"+"datatype="+1,
 				dataType:'json',
-				data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":0},
+				data:{"title":tit || tit2,"content":$content,"accountname":Username,"articleid":id,"parentid":0},
 				headers: {
 					"channel" : "cloudasr",
 					"lenovokey" : lenkey,
 					"secretkey" : secrkey
 	            },
 				success:function(res,status){
+					console.log(res)
 				   $(".mytextarea").val("");
 				   $(".comment-list").html(" ");
 				   //一级评论展示

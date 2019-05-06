@@ -1,20 +1,76 @@
+html,body{
+    width:100%;
+    height: 100%;
+}
+p{
+	margin: 0;
+}
+.posi_top {
+	background: linear-gradient(to right, #bbe260, #d9d34d);
+	height: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 60px;
+	padding-left: 20px;
+}
+.posi_title{
+	color: #fff;
+	font-size: 20px;
+}
 .newcontent{
-	margin-top: 100px;
-	width: 74%;
-    margin: 120px auto 30px auto;
+	width: 50%;
+    margin: 90px auto 30px auto;
+}
+.qu_div{
+	text-align: right;
+}
+.qu_btn{
+	width: 140px;
+    height: 35px;
+    background: linear-gradient(to right, #bbe260, #d9d34d);
+    border: none;
+	color: #fff;
+	outline: none;
+}
+.top_btn{
+	width: 140px;
+    height: 35px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-size: 20px;
+    margin: 0 50px 0 auto;
+}
+.qu_sub_btn{
+	width: 150px;
+    height: 40px;
+    background: linear-gradient(to right, #bbe260, #d9d34d);
+    border: none;
+	color: #fff;
+	outline: none;
+	cursor: pointer;
+	line-height: 40px;
+	text-align: center;
+	margin: 20px auto;
+	font-size: 16px;
+	border-radius: 3px;
+}
+.floor{
+	padding-right: 10px;
+	color: #78d758;
 }
 .newcontent h2{
-	text-align: center;
 	font-size: 26px;
 	color: #4b4a4a;
 }
 .autime{
-	text-align: center;
-	 border-bottom: 1px dashed #c6c6c6;
+	 margin-bottom: 30px;
 }
 .autime span{
 	color: #a6a6a6;
-	text-align: center;
     
     display: inline-block;
     line-height: 23px;
@@ -22,47 +78,51 @@
 }
 
 .cont{
-	margin: 0 50px;
-	/*margin-top: 30px;*/
 	font-size: 16px;
-    line-height: 24px;
+    line-height: 30px;
     color: #3c3a3a;
-    padding: 0 20px;
-    margin-bottom: 150px;
+    border-bottom: 1px solid #009944;
+    padding-bottom: 40px;
 }
 .cont img{
 	text-align: center;	
 	margin: 20px 20%;
 }
-
-
+.col-update{
+	text-align: right;
+}
+.reply_content{
+	width: 100%;
+}
 /*评论*/
-	.container{
-		/*width: 1000px;*/
-		margin-bottom: 150px;
-	}
 	.commentbox{
-		width: 70%;
-		margin: 20px auto;
+		margin: 20px auto 100px;
 	}
 	.mytextarea {
 	    width: 100%;
 	    overflow: auto;
 	    word-break: break-all;
+	    height: 300px;
+	    color: #000;
+	    font-size: 1em;
+		resize: none;
+		border: 2px solid #009944;
+		outline: none;
+	}
+	.comment_textarea{
+		width: 100%;
+	    overflow: auto;
+	    word-break: break-all;
 	    height: 100px;
 	    color: #000;
 	    font-size: 1em;
-	    resize: none;
-	}
-	.comment-list{
-		width: 65%;
-		margin: 20px auto;
-		clear: both;
-		padding-top: 20px;
+		resize: none;
+		border: 2px solid #009944;
+		outline: none;
 	}
 	.comment-list .comment-info{
-		position: relative;
-		border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid #009944;
+		padding: 25px 10px;
 	}
 	.comment-list .comment-info header{
 		width: 10%;
@@ -73,23 +133,11 @@
 		border-radius: 50%;
 		padding: 5px;
 	}
-	.comment-list .comment-info .comment-right{
-		padding:15px 20px 23px 20px; 
-		background: #eee;
-	}
 	.comment-list .comment-info .comment-right h3{
 		margin: 5px 0px;
 	}
 	.comment-list .comment-info .comment-right .comment-content-header{
-		text-align: center;
 		height: 25px;
-	}
-	.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span{
-		padding-right: 1em;
-		color: #aaa;
-	}
-	.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span.reply-btn,.send,.reply-list-btn{
-		cursor: pointer;
 	}
 	.comment-list .comment-info .comment-right .reply-list {
 		border-left: 3px solid #ccc;
@@ -111,24 +159,18 @@
 
 
 .comment-content-header{
-	text-align: center;
 	margin-bottom: 5px;
+	color: #898989;
+	font-size: 12px;
 }
-.comment-content-header span{
-	margin-right: 20px;
-}
-
 .comment-content-footer .rowtext .hui{
 	float: right;
 }
-.comment-content-footer .rowtext .col-md-2 .reply-btn:hover{
-	color: #337ab7;
+.reply-btn:hover{
+	cursor: pointer;
 }
-.comment-content-footer .rowtext .col-md-2 .del:hover{
-	color: #337ab7;
-}
-.rowtext  .col-md-2{
-	text-align: right;
+.del:hover{
+	cursor: pointer;
 }
 .rowtext .replybox{
 	margin-bottom: 20px;
@@ -149,7 +191,6 @@
 	display: inline-block;
 }
 .comment-list .reply{
-	background: #eee;
 	padding: 5px 60px;
 }
 .comment-list .reply .delchild{
@@ -161,7 +202,7 @@
 .comment-list .reply p{
 	margin: 0;
 	color: #636a6b;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #009944;
 }
 .comment-list .reply p .delchild{
 	color: #aaa;
@@ -172,14 +213,67 @@
 	cursor: pointer;
 }
 .comment-content-footer .rowtext .replybox .send{
-	color: #aaa;
+	margin: 0 0 0 auto;
+    width: 60px;
+    height: 25px;
+    background: linear-gradient(to right, #bbe260, #d9d34d);
+    text-align: center;
+    display: block;
+    line-height: 25px;
+    color: #fff;
+    border-radius: 2px;
 }
 .comment-content-footer .rowtext .replybox .send:hover{
-	color: #337ab7;
-}
-.comment-info{
-	margin-top: 15px;
+	cursor: pointer;
 }
 .comment-content-header i{
 	margin-right: 5px;
+}
+@media screen and (max-width:414px){
+	.posi_top{
+		height: 40px;
+		line-height: 40px;
+		padding-left: 0;
+	}
+	.newcontent{
+		width: 90%;
+	}
+	.top_btn{
+		margin: 0 0 0 auto;
+	}
+	.posi_title{
+		max-width: 50%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.mobile_div{
+		text-align: center;
+		height: 40px;
+	}
+	.back_arrows{
+		position: absolute;
+		left: 20px;
+		top: 50%;
+		transform: translate(0,-50%);
+		background: url(../../common/images/back.png) no-repeat;
+		background-size: 100%;
+		height: 20px;
+		width: 20px;
+
+	}
+	.title_arrows{
+		color: #fff;
+		font-size: 18px;
+		padding-left: 50px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: block;
+		width: 70%;
+	}
+	.mobile_logo{
+		width: 40px;
+		height: 40px;
+	}
 }

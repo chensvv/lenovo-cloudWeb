@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>联想开放平台</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/reply.css">
+   
+    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.1"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript"
+		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+    <script src="../common/mixjs/commurl.js"></script>
+    <script src="mixjs/detail.js"></script>
+</head>
+<body>
+        <div class="posi_top">
+            <div class="mobile_div">
+                <span class="back_arrows"></span>
+                <span class="title_arrows"></span>
+            </div>
+        </div>
+        <div class="commentbox">
+            <div class="reply_arrows"></div>
+            <textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+            <div class="qu_sub_btn" id="comment">提交回复</div>
+        </div>
+        
+</body>
+</html>
+<script>
+
+$('.back_arrows').click(function(){
+    history.back(-1);
+})
+</script>

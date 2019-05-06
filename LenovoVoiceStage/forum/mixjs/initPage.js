@@ -158,7 +158,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		page.style.fontSize='14px';
 		page.style.color='#333';
 		page.style.display='inline-block';
-//		page.style.margin='0 auto';
+		page.style.textAlign='center';
 		//removeChildNodes(page);
 		var totalCount = parseInt(option.totalCount) >=0 ?
 			parseInt(option.totalCount) : 0;//总记录条数
@@ -232,7 +232,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			input.style.width='37px';
 			input.style.textAlign='center';
 			input.style.marginRight='5px';
-			input.style.outlineColor='#388E3C';
+			input.style.outlineColor='#eefcd0';
 			input.style.verticalAlign='middle';
 			input.setAttribute('type','text');
 			input.setAttribute('value',curPage);
@@ -253,7 +253,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			button.id = 'jump';
 			button.innerHTML = '跳转';
 			label.style.marginRight='15px';	
-			label.style.verticalAlign='middle';
+			// label.style.verticalAlign='middle';
 			label.id = 'show_label';
 			label.innerHTML = '共 '+totalPage+' 页';
 			jumpDiv.appendChild(label);
@@ -271,7 +271,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			});
 			hover(page);
 			button.onmouseover=function(){
-				button.style.color='#388E3C';	
+				button.style.color='#eefcd0';	
 			};
 			button.onmouseout=function(){
 				button.style.color='#333';	
@@ -315,8 +315,8 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		page.onmouseover=function(e){
 			if(e.target.nodeName.toLocaleLowerCase()=='a'
 				&&!hasClass(e.target.parentNode,'active')&&!hasClass(e.target.parentNode,'no-active')){
-				e.target.style.color='#388e3c';
-				e.target.style.backgroundColor='#eee';
+				e.target.style.color='#eefcd0';
+				e.target.style.backgroundColor='#333';
 			}
 		};
 		//cm add
@@ -375,7 +375,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		return false;
 	}
 	function changeColor(node){
-		node.style.backgroundColor='#388E3C';
+		node.style.backgroundColor='#eefcd0';
 	}
 	
 	function createPageList(curPage,totalPage,showCount){
@@ -448,8 +448,8 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			tempLi.childNodes[0].style.backgroundColor='#fafafa';
 			tempLi.firstElementChild.style.color = '#333';
 			if(tempLi.className == 'active'){
-				tempLi.childNodes[0].style.backgroundColor = '#388E3C';
-				tempLi.childNodes[0].style.color='#fff';
+				tempLi.childNodes[0].style.backgroundColor = '#eefcd0';
+				tempLi.childNodes[0].style.color='#333';
 			}
 			tempLi.childNodes[0].style.border = '1px solid #ddd';
 			tempLi.childNodes[0].style.marginLeft = '-1px';

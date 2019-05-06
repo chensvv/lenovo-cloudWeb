@@ -13,6 +13,9 @@ function forum_menum_to_list(){
 function forum_menum_to_detail(){
     window.location.href = "../forum/questiondetail.html";
 }
+function forum_to_homepage(){
+    window.location.href = "../forum/homepage.html"
+}
 
 
 

@@ -2,107 +2,106 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-    <title>联想语音</title>
+	<title>联想语音</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="expires"content="0" />
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="applicable-device" content="pc,mobile" />
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="" id="css" rel="stylesheet"/>
-    <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
-    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-    <script>   
-    $(function(){
-			var winWide = window.screen.width;
-            var wideScreen = false;
-            if (winWide <= 414) {//1024及以下分辨率
-                $("#css").attr("href", "css/phone.css");
-            } else {
-                $("#css").attr("href", "css/recognise.css");
-                wideScreen = true; //是宽屏
-            }
-    })
-     
-    </script>
-    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
-    <script type="text/javascript" src="../common/js/avatar.js"></script>
-    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
+	<link href="../common/css/head.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../welcome/css/all.css">
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../common/mixjs/scroll.js"></script>
+    <link href="css/recognise.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js"></script>
 	
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/recognise.js?version=1.2"></script>
-	<script src="js/audiodisplay.js?version=1.2"></script>
-	<script src="js/recorder.js?version=1.2"></script>
-	<script src="../common/js/commurl.js"></script>	
-	<script src="js/audiomain.js?version=1.2"></script>	
+	<script type="text/javascript" src="mixjs/recognise.js"></script>
+	<script src="mixjs/audiodisplay.js"></script>
+	<script src="mixjs/recorder.js"></script>
+	<script src="../common/mixjs/commurl.js"></script>	
+	<script src="mixjs/audiomain.js"></script>	
 	
-	<script src="js/commaudio.js"></script>	
+	<script src="mixjs/commaudio.js"></script>	
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 	<style>
-		.realtime-btn1{
-			display: none;
+		#eui-main-footer{
+			position: fixed;
+			bottom: 0;
 		}
 	</style>
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-</nav>
-
-<div id="eui-main-body">
-
-    <div class="body-content product-experience">
-        <div class="content-title product-title">产品体验</div>
-        <div class="product-content">
- <!--
-            <div class="product-condition">
-                <div class="condition-cn"></div>
-                <div class="condition-en"></div>
-            </div>
- -->
-            <div class="product-picture">
-                <div id="viz">
-                    <canvas id="analyser" width="2000" style="display:none;" ></canvas>
-                    <canvas id="wavedisplay"></canvas>
-                </div>
-                
-                <div class="marvel-device nexus5">
-
-					<div class="top-bar">
-						<div class="motoimg"><img src="images/mo1.gif"/></div>
-						<div class="top-call"></div>
+	<div class="dis_flex">
+			<div class="nav-title">
+					<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+					</nav>
+					<p class="recognise_title">短语音识别</p>
+					<div class="bg_div"></div>
+			</div>
+		<div class="eui-main-body">
+			<div class="body-content product-experience">
+				<div class="content-title product-title">开始体验</div>
+				<!-- <div class="product-content"> -->
+					<div class="product-picture">
+						<div id="viz">
+							<canvas id="analyser" width="2000" style="display:none;" ></canvas>
+							<canvas id="wavedisplay"></canvas>
+						</div>
+						
+						<div class="marvel-device nexus5">
+								
+							<div class="top-bar">
+								<!-- <div class="motoimg"><img src="images/mo1.gif"/></div> -->
+								<!-- <div class="top-call"></div> -->
+							</div>
+							<!-- <div class="sleep"></div> -->
+							<!-- <div class="volume"></div> -->
+							<!-- <div class="camera"></div> -->
+							<div class="screen">
+								<div class="prompt" style="">
+									<div class="left_div_box">
+											<span class="stat_left">点击Mic开始对话，再次点击结束录音</span>
+											<span class="arrow_left" style=""></span>
+									</div>
+									<div class="right_div_box">
+											<span id="status" class="stat_right">
+											</span>
+											<span class="arrow_right" style=""></span>
+									</div>
+								</div>
+								<div class="upd">
+										<input type="text" name="" id="" value="" class="update"/>
+										<!-- <input type="button" name="" id="" value="修改" class="subdate"/> -->
+								</div>
+								<p id="stutsP"></p>
+								<pre style="display: none;"><code id="json"></code></pre>
+								<div class="realtime-btn">
+										<img id="record" src="images/Mic-nor.png" style="cursor: pointer;"  onclick="toggleRecording(this);" />
+								</div>
+								
+							</div>
+						</div>              
 					</div>
-					<div class="sleep"></div>
-					<div class="volume"></div>
-					<div class="camera"></div>
-					<div class="screen">
-		                <div class="prompt" style="">
-		                	<span id="status" class="stat">点击麦克风,开始说话;再次点击,显示识别结果;</span>
-		                    <span class="arrow" style=""></span>
-		                </div>
-		                <pre style="display: none;"><code id="json"></code></pre>
-		                <div class="upd">
-		                	<input type="text" name="" id="" value="" class="update"/>
-		                    <input type="button" name="" id="" value="修改" class="subdate"/>
-		                </div>
-		                <div class="realtime-btn"><img id="record" src="images/voice_btn_1.png"  onclick="toggleRecording(this);" />								
-							<div class="pulse"></div>
-							<div class="pulse1"></div>
-		                </div>
-		                <div class="realtime-btn1">
-		                	<img id="record2" src="images/voice_btn1.png"/>
-		                </div>	
-					</div>
-				</div>              
-            </div>
-        </div>
-    </div>
-</div>
+				<!-- </div> -->
+			</div>
+		</div>
+		<div id="eui-main-footer" class="footer-bgcolor"></div>   
+	</div>
+	
 
-<div id="eui-main-footer" class="footer-bgcolor">
-</div>   
+
 
 </body>
 </html>
 <!-- <script src="js/judbrowser.js"></script> -->
 <script>
+	
 </script>

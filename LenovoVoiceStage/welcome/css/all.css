@@ -66,7 +66,7 @@ td, th {
 }
 
 html {
-	font-size: 100%;
+	/* font-size: 100%; */
 	box-sizing: border-box
 }
 
@@ -124,7 +124,7 @@ textarea {
 
 
 .row {
-	width: 85%; 
+	width: 70%; 
 	margin:0 auto;/*  80rem */
 	overflow: hidden;
 	/*margin-left: auto;*/
@@ -232,7 +232,7 @@ element.style {
 
 
 .medium-6 {
-	width: 48%;
+	width: 50%;
 	/*border: 1px solid #e5e5e5;*/
 }
 }
@@ -270,7 +270,8 @@ p {
 	font-size: inherit;
 	line-height: 1.6;
 	margin-bottom: 1rem;
-	text-rendering: optimizeLegibility
+	text-rendering: optimizeLegibility;
+	user-select: none;
 }
 
 small {
