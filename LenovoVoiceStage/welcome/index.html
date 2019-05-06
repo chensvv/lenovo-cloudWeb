@@ -185,14 +185,6 @@
 		var Username = window.localStorage.getItem('Username');
 		var scrollTop = $(window).scrollTop()
 		var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-		if(navigator.userAgent.indexOf("MSIE")>0){
-			$('.box_anim2 .p_p1').css({"padding-top":"25px"})
-			$('.box_anim2 .p_p2').css({"padding-top":"25px"})
-			$('.box_anim2 .p_p3').css({"padding-top":"25px"})
-		}
-		if(navigator.userAgent.indexOf("MSIE")>0 || user) {
-			$('.pic li').css("top","-20px")
-		}
 		if(!user) {
 			$('body').css({"min-width":"1200px"})
 		}
@@ -201,12 +193,6 @@
 		}else{
 			$(".navbar").css({"background": "transparent"});
 		}
-		// AOS.init({
-		// 	offset: 200,
-		// 	duration: 600,
-		// 	easing: 'ease-in-sine',
-		// 	delay: 100,
-		// });
 		loadTop("index");
 		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
