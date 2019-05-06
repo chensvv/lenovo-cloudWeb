@@ -162,7 +162,7 @@ function toggleRecording(e) {
        window.clearInterval(timers);	       
      $(".content_font").css("display","block");
         over = 0;
-        worker = new Worker("js/audioSend.js");
+        worker = new Worker("mixjs/audioSend.js");
         worker.onmessage = function (e) {
             updateStatus(e.data);
             if (over == 1 && worker) {
