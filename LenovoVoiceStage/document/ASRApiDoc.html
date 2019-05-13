@@ -4,46 +4,54 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>联想语音</title>
-	    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-	    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	    <link href="css/ttsapidoc.css?version=1.1" rel="stylesheet" type="text/css"/>
-	    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=1.1"/>	    
-	    <link href="../common/css/aos.css" rel="stylesheet" type="text/css" />
-	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="../common/js/avatar.js"></script>
-	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>
-	    <script type="text/javascript" src="../common/js/aos.js?version=1.1"></script>
-	    <script src="../common/js/commurl.js"></script>
-	    <script type="text/javascript" src="js/document.js?version=1.1"></script>
-	    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> 
+		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="css/client.css" rel="stylesheet" />
+		<link href="../welcome/css/all.css" rel="stylesheet" type="text/css" />
+		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/ttsapidoc.css">
+		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
+		<script src="../common/mixjs/commurl.js"></script>
+		<script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
+		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+		<script type="text/javascript"
+			src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 	</head>
 	<body>
-		<!--<div id="eui-main-header"></div>-->
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-		</nav>
-		 <div class="content-title" aos="fade-down">语音识别接口参数说明</div>
-		<div id="eui-main-body" data-aos="animation_name">
-		    <div class="conent-header" aos="fade-right" aos-once="true">
+		
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">API接入指南</p>
+			<div class="bg_div"></div>
+			<div class="mobile_div">
+				<span class="back_arrows"></span>
+				<span class="client_title">API接入指南</span>
+			</div>
+		</div>
+		 <div class="content-title">语音识别接口参数说明</div>
+		<div id="eui-main-body">
+		    <div class="conent-header">
 		        <div class="urlheader">
-		            <div class="urleft contentleft">URL：</div>
+		            <div class="urleft contentleft">URL</div>
 		            <div class="urlcontent contentright">https://voice.lenovomm.com/lasf/asr</div>
 		        </div>
 		        <div class="pathheader">
-		            <div class="urleft contentleft">方法：</div>
+		            <div class="urleft contentleft">方法</div>
 		            <div class="urlcontent contentright">POST</div>
 		        </div>
 		        <div class="formatheader">
-		            <div class="urleft contentleft">格式：</div>
+		            <div class="urleft contentleft">格式</div>
 		            <div class="urlcontent contentright">multipart/form-data</div>
 		        </div>
 
 		    </div>
 		    
-		    <div class="content1" aos="fade-left" aos-once="true">
-		        <div class="headinfo contentleft">头信息：</div>
+		    <div class="content1">
+		        <div class="headinfo contentleft">头信息</div>
 		        
 		        
 		        <div class="contentright">
@@ -77,7 +85,7 @@
 	                  		</tr>
 	                  		
 	                  		<tr>
-	                  			<td>accessKey</td>
+	                  			<td>lenovoKey</td>
 	                  			<td>String</td>
 	                  			<td>LENOVO-VOICE-aaabbbccc</td>
 	                  			<td>账户公钥(右上角开发者信息中获取)</td>
@@ -91,7 +99,7 @@
 	                  		<tr>
 	                  			<td>channel</td>
 	                  			<td>String</td>
-	                  			<td>LENOVO-AI-VOICE</td>
+	                  			<td>cloudasr</td>
 	                  			<td>来源渠道</td>                  			
 	                  		</tr>
 	                  	</table>
@@ -100,8 +108,8 @@
 		        		        
 		    </div>
 		    
-		    <div class="content2" aos="fade-right" aos-once="true">
-		        <div class="headinfo contentleft">内容信息：</div>
+		    <div class="content2">
+		        <div class="headinfo contentleft">内容信息</div>
 		        <div class="contentright">
 	                  <h4 class="header-param-title"><b>参数说明:</b></h4>
 	                  <div class="content-table">
@@ -255,41 +263,63 @@
 		        </div>
 		    </div>
 		    
-		    <div class="content3" aos="fade-left" aos-once="true">
-		    	<div class="headinfo contentleft result">返回格式：</div>
+		    <div class="content3">
+		    	<div class="headinfo contentleft result">返回格式</div>
 		        <!--<div class="contentright">Byte方式的语音文件</div>-->
 		        <div class="contentright">
 		            <div class="result-content">
-		                <div>{</div>
-		                <div class="result-padding">&quot;allDur&quot;:4314,</div>
-		                <div class="result-padding">&quot;asrDur&quot;:4254,</div>
-		                <div class="result-padding">&quot;asrVersion&quot;:&quot;1.0.13.8.20&quot;,</div>
-		                <div class="result-padding">&quot;confidence&quot;:100,</div>
-		                <div class="result-padding">&quot;desc&quot;:&quot;&quot;,</div>
-		                <div class="result-padding">&quot;nConf&quot;:[100],</div>
-		                <div class="result-padding">&quot;nText&quot;:[&quot;Motor-Tober player&quot;],</div>
-		                <div class="result-padding">&quot;nlpVersion&quot;:&quot;1.1.6.2146&quot;,</div>
-		                <div class="result-padding">&quot;rawText&quot;:&quot;Motor-Tober player&quot;,</div>
-		                <div class="result-padding">&quot;result&quot;:null,</div>
-		                <div class="result-padding">&quot;status&quot;:&quot;success&quot;,</div>
-		                <div class="result-padding">&quot;time&quot;:1503994221761</div>
+						<div>{</div>
+							<div class="result_box">
+								<div class="result-padding">"allDur":4314,</div>
+								<div class="result_right">总耗费时间(ms)</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"asrDur":4254,</div>
+								<div class="result_right">语音识别引擎耗费时间(ms)</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"asrVersion":"1.0.13.8.20",</div>
+								<div class="result_right">语音识别引擎版本</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"confidence":100,</div>
+								<div class="result_right">语音识别置信度</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"desc":"",</div>
+								<div class="result_right">结果描述</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"nConf":[100],</div>
+								<div class="result_right">多备选置信度，按顺序依次对应</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"nText":["Motor-Tober player"],</div>
+								<div class="result_right">最终解析结果</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"nlpVersion":"1.1.6.2146",</div>
+								<div class="result_right">语义引擎版本</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"rawText":"Motor-Tober player",</div>
+								<div class="result_right">语音识别引擎解析结果</div>
+							</div>
+
+							<div class="result_box">
+								<div class="result-padding">"result":null,</div>
+								<div class="result_right">语音处理结果</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"status":"success",</div>
+								<div class="result_right">结果状态，success:成功，failed:失败</div>
+							</div>
+							<div class="result_box">
+								<div class="result-padding">"time":1503994221761</div>
+								<div class="result_right">服务器时间</div>
+							</div>
+		                
 		                <div>}</div>
-		            </div>
-		            <div class="result-comment">
-		                <div>&nbsp;</div>
-		                <div>总耗费时间(ms)</div>
-		                <div>语音识别引擎耗费时间(ms)</div>
-		                <div>语音识别引擎版本</div>
-		                <div>语音识别置信度</div>
-		                <div>结果描述</div>
-		                <div>多备选置信度，按顺序依次对应</div>
-		                <div>最终解析结果</div>
-		                <div>语义引擎版本</div>
-		                <div>语音识别引擎解析结果</div>
-		                <div>语音处理结果</div>
-		                <div>结果状态，success:成功，failed:失败</div>
-		                <div>服务器时间</div>
-		                <div>&nbsp;</div>
 		            </div>
 		        </div>
 		    </div>
@@ -300,12 +330,26 @@
 </html>
 
 <script>
-    AOS.init({
-		offset: 100,
-		duration: 600,
-		easing: 'ease-in-sine',
-		delay: 0,
-   });
+var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+			$('.navbar').css({"display":"block"})
+			$('.mobile_div').css({"display":"none"})
+			$('.recognise_title').css({"display":"block"})
+			$('.bg_div').css({"display":"block"})
+		}else{
+			$('.navbar').css({"display":"none"})
+			$('.mobile_div').css({"display":"block"})
+			$('.recognise_title').css({"display":"none"})
+			$('.bg_div').css({"display":"none"})
+		}
+	$(function () {
+		loadTop("client");
+		$('.back_arrows').click(function(){
+			history.back(-1)
+		})
+		
+
+	});
     $(function () {
 	    loadTop("document");
 	    var scriptTag = document.createElement('script');
