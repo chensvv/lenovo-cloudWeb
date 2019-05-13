@@ -487,6 +487,9 @@ input {
 	.body-content{
 		height: 100%;
 	}
+	.recognise_title{
+		font-size: 25px;
+	}
 	.product-picture{
 		height: 90%;
 	}
@@ -506,6 +509,7 @@ input {
 	}
 	.nexus5 .screen{
 		height: inherit;
+		padding: 0;
 	}
 	.realtime-btn {
 		position: absolute;

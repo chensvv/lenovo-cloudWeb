@@ -103,6 +103,13 @@ p{
 
 }
 @media screen and (max-width:414px){
+    .recognise_title {
+        color: #fff;
+        font-size: 25px;
+        letter-spacing: 10px;
+        line-height: 150px;
+        margin-bottom: 0;
+    }
     .row{
         width: 100%;
 

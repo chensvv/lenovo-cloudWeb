@@ -236,7 +236,7 @@ p{
 		padding-left: 0;
 	}
 	.newcontent{
-		width: 90%;
+		width: 85%;
 	}
 	.top_btn{
 		margin: 0 0 0 auto;
@@ -250,6 +250,14 @@ p{
 	.mobile_div{
 		text-align: center;
 		height: 40px;
+	}
+	.mytextarea{
+		height: 100px;
+	}
+	.qu_btn{
+		width: 100px;
+		height: 26px;
+		font-size: 13px;
 	}
 	.back_arrows{
 		position: absolute;

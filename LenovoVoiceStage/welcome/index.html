@@ -25,14 +25,18 @@
 	<link href="css/all.css" rel="stylesheet" />
 	<link href="../common/css/head.css" rel="stylesheet" type="text/css" />
 	<link href="css/index.css" rel="stylesheet" />
-	<link rel="stylesheet" href="css/animation.css">
+	<link rel="stylesheet" href="../common/css/animate.min.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+	
+	<script src="./mixjs/swiper.animate.min.js"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../common/mixjs/commurl.js"></script>
-	<script type="text/javascript" src="mixjs/index.js"></script>
+	<!-- <script type="text/javascript" src="mixjs/index.js"></script> -->
 	<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
 	<script type="text/javascript" src="../common/mixjs/pagetop.js"></script>
-
+	
+	<script src="./mixjs/swiper.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript"
 		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
@@ -52,12 +56,29 @@
 		height: 100%;
 		background: linear-gradient(to right, #36a5ca, #51dcd7);
 		text-align: center;
-		min-height: 690px;
 	}
 
 	#navbar {
 		width: 100%;
 	}
+	html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
 
 <body>
@@ -67,90 +88,103 @@
 		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 
 		</nav>
-		<div class="top-banner" id="container">
-			<ul class="pic">
-				<li class="ie_li mobile_li">
-					<div class="sile slide0 box_anim0"
-						style="background:linear-gradient(-90deg,rgba(139,240,208,1) 0%,rgba(45,186,203,1) 100%); ">
-						<div class="anim0_center">
-							<div class="center_div">
-									<p class="le_title">乐语音</p>
-									<div class="le_in">
-										<span class="span_left">告别指尖束缚</span>
-										<span class="span_right">轻松保持联系</span>
-									</div>
-									<p class="le_callORnote"><span class="le_call">电话</span><span class="le_shu"></span> <span
-											class="le_note">短信</span></p>
-									<p class="le_info">无论你是在开车途中，还是在拥挤的地铁，我们可以给你打电话和发短信，同时语音接听来电和播报短信内容，让你毫不费力的保持联系</p>
+		<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+							<div class="sile slide0 box_anim0"
+							style="background:linear-gradient(-90deg,rgba(139,240,208,1) 0%,rgba(45,186,203,1) 100%); ">
+							<div class="anim0_center">
+								<div class="center_div">
+										<p class="le_title">乐语音</p>
+										<div class="le_in">
+											<span class="span_left">告别指尖束缚</span>
+											<span class="span_right">轻松保持联系</span>
+										</div>
+										<p class="le_callORnote"><span class="le_call">电话</span><span class="le_shu"></span> <span
+												class="le_note">短信</span></p>
+										<p class="le_info">无论你是在开车途中，还是在拥挤的地铁，我们可以给你打电话和发短信，同时语音接听来电和播报短信内容，让你毫不费力的保持联系</p>
+								</div>
 							</div>
-						</div>
-						<div class="left_img_div"><img src="images/Callmum.png"
-								class="anim0_posi_left animated fadeInLeft"></div>
-						<div class="right_img_div"><img src="images/video.png"
-								class="anim0_posi_right animated fadeInRight"></div>
-					</div>
-				</li>
-				<li class="ie_li">
-					<div class="sile slide1 box_anim1"
-						style="background: linear-gradient(to right, #65d8dd, #c9f095); ">
-						<div class="anim1_center">
-							<div class="center_div">
-									<p class="le_title">智能家居</p>
-									<div class="le_in">
-										<span class="span_top">无需动手就可管理</span>
-										<span class="span_bottom">你的智能家居设备</span>
-									</div>
-							</div>
-						</div>
-						<div class="left_img_div"><span class="left_img_title animated fadeInLeft">“调大空气净化器风速”</span>
-							<img src="images/smarthome-air.png" class="animated fadeInUp"></div>
-						<div class="right_img_div"> <img src="images/smarthome-light.png"
-								class="animated fadeInDown"><span
-								class="right_img_title animated fadeInRight">“打开餐厅的灯”</span></div>
-					</div>
-				</li>
-				<li class="ie_li">
-					<div class="sile slide2 box_anim2"
-						style="background: linear-gradient(to right, #8bbf50, #ced03e); ">
-						<div class="anim2_center">
-							<div class="center_div">
-									<p class="le_title">日常事务</p>
-									<p class="p_p1">“今天有什么安排”</p>
-									<p class="p_p2">“搜索附近的咖啡厅”</p>
-									<p class="p_p3">“定一个早上8点的闹钟”</p>
-							</div>
-							<div class="bottom_img_div">
-								<img src="images/tasks.png" class="animated fadeInUp">
-							</div>
+							<div class="left_img_div"><img src="images/Callmum.png"
+									class="anim0_posi_left ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.3s"></div>
+							<div class="right_img_div"><img src="images/video.png"
+									class="anim0_posi_right ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0.3s"></div>
 						</div>
 					</div>
-				</li>
-				<li class="ie_li">
-					<div class="sile slide3 box_anim3"
-						style="background: linear-gradient(to right, #dcd268, #d59eb0); ">
-						<div class="anim3_center">
-							<p class="anim3_p1">无论你在旅途路上还是在散步途中,尽管开口对我说，我会找到你要听的歌曲，只管享受这段路途就好。</p>
-							<p class="anim3_p2">“播放张杰的少年中国说”</p>
-							<p class="anim3_p3">“播放本周热歌榜”</p>
-							<p class="anim3_p4">“来首音乐吧”</p>
-							<div class="center_img_div">
-									<p class="le_title">音乐</p>
-									<img src="images/music.png" alt="">
-								<div class="left_img_div"><img src="images/earphone-left.png" alt=""></div>
-								<div class="right_img_div"><img src="images/earphone-right.png" alt=""></div>
+					<!-- <div class="swiper-slide mobile_silde">
+							<div class="sile"
+							style="background:linear-gradient(-90deg,rgba(139,240,208,1) 0%,rgba(45,186,203,1) 100%); ">
+							<div class="anim0_center mobile_anim0_center">
+								<div class="center_div">
+										<p class="le_title">乐语音</p>
+										<div class="le_in">
+											<span class="span_left">告别指尖束缚</span>
+											<span class="span_right">轻松保持联系</span>
+										</div>
+										<p class="le_callORnote"><span class="le_call">电话</span><span class="le_shu"></span> <span
+												class="le_note">短信</span></p>
+										<p class="le_info">无论你是在开车途中,还是在拥挤的地铁,</br>我们可以给你打电话和发短信,</br>同时语音接听来电和播报短信内容,</br>让你毫不费力的保持联系</p>
+								</div>
 							</div>
-
+						</div>
+					</div> -->
+					<div class="swiper-slide">
+							<div class="sile slide1 box_anim1"
+							style="background: linear-gradient(to right, #65d8dd, #c9f095); ">
+							<div class="anim1_center">
+								<div class="center_div">
+										<p class="le_title">智能家居</p>
+										<div class="le_in">
+											<span class="span_top">无需动手就可管理</span>
+											<span class="span_bottom">你的智能家居设备</span>
+										</div>
+								</div>
+							</div>
+							<div class="left_img_div"><span class="left_img_title ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">“调大空气净化器风速”</span>
+								<img src="images/smarthome-air.png" class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"></div>
+							<div class="right_img_div"> <img src="images/smarthome-light.png"
+									class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><span
+									class="right_img_title ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">“打开餐厅的灯”</span></div>
 						</div>
 					</div>
-				</li>
-			</ul>
-			<ul id="position">
-				<li class="active"></li>
-				<li class=""></li>
-				<li class=""></li>
-				<li class=""></li>
-			</ul>
-		</div>
+					<div class="swiper-slide">
+							<div class="sile slide2 box_anim2"
+							style="background: linear-gradient(to right, #8bbf50, #ced03e); ">
+							<div class="anim2_center">
+								<div class="center_div">
+										<p class="le_title">日常事务</p>
+										<p class="p_p1">“今天有什么安排”</p>
+										<p class="p_p2">“搜索附近的咖啡厅”</p>
+										<p class="p_p3">“定一个早上8点的闹钟”</p>
+								</div>
+								<div class="bottom_img_div">
+									<img src="images/tasks.png" class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+							<div class="sile slide3 box_anim3"
+							style="background: linear-gradient(to right, #dcd268, #d59eb0); ">
+							<div class="anim3_center">
+								<p class="le_title">音乐</p>
+								<p class="anim3_p1">无论你在旅途路上还是在散步途中,尽管开口对我说，我会找到你要听的歌曲，只管享受这段路途就好。</p>
+								
+								<p class="anim3_p3">“播放本周热歌榜”</p>
+								<div class="center_img_div">
+										<img src="images/music.png" class="center_img">
+										<div class="left_img_div ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><img src="images/earphone-left.png" alt=""></div>
+										<div class="right_img_div ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><img src="images/earphone-right.png" alt=""></div>
+								</div>
+								<p class="anim3_p2">“播放张杰的少年中国说”</p>
+								<p class="anim3_p4">“来首音乐吧”</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
 	</div>
 	<div id="eui-main-body">
 		<div class="home-business">
@@ -180,24 +214,33 @@
 	<div id="eui-main-footer" class="footer-bgcolor">
 	</div>
 
-	<script>
-		var accountid = window.localStorage.getItem('accountid');
-		var Username = window.localStorage.getItem('Username');
-		var scrollTop = $(window).scrollTop()
-		var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+
+
+</body>
+<script>
+	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	var scriptNode = document.createElement("script");
+	scriptNode.setAttribute("type", "text/javascript");
+	console.log(scriptNode)
 		if(!user) {
 			$('body').css({"min-width":"1200px"})
-		}
-		if(scrollTop >= 100){
-			$(".navbar").css({"background": "rgba(0,0,0,.3)"})
+			$('body').css({"min-height":"690px"})
+			scriptNode.setAttribute("src", "mixjs/pc_index.js");
 		}else{
-			$(".navbar").css({"background": "transparent"});
+			scriptNode.setAttribute("src", "mixjs/mobile_index.js");
 		}
+		
+		document.head.appendChild(scriptNode);
 		loadTop("index");
+
+
+
+		var accountid = window.localStorage.getItem('accountid');
+		var Username = window.localStorage.getItem('Username');
 		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
 		scriptTag.async = true;
-		scriptTag.src = '../common/js/avatar.js';
+		scriptTag.src = '../common/mixjs/avatar.js';
 		var head = document.getElementsByTagName('head')[0] || document.documentElement;
 		head.insertBefore(scriptTag, head.firstChild);
 
@@ -246,7 +289,4 @@
 		}
 		$('.pic')
 	</script>
-
-</body>
-
 </html>

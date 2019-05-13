@@ -21,6 +21,7 @@ var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
 function sendBlob(blob) {
+    console.log(blob)
     worker.postMessage(
         {
         	urlheader:urlheader,

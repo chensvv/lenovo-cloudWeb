@@ -15,7 +15,7 @@
 
 }
 .navbar-icon img{
-  width: 50px;  
+  width: 40px;  
 }
 .navbar-collapse{
     border: none;
@@ -23,6 +23,7 @@
 /* Title */
 .shu{
     color: #fff;
+    padding: 0 5px;
 }
 .navbar-default .navbar-brand {
     color: #777;
@@ -127,13 +128,11 @@
     height: 60px;
     line-height: 60px;
 }
-#login{
-	/*position: absolute;
-	right: 110px;
-	top: 25px;*/
-}
 .nav>li>a{
     padding: 0;
+}
+.nav>li>a .mobile_jt{
+    display: none;
 }
 .navbar-right{
     width: 20%;
@@ -169,12 +168,8 @@
     bottom: 0; */
     z-index: 100;
 }
-
-@media screen and (max-width:660px){
-   #eui-main-footer{
-        height: 60px;
-        display: none;
-	}
+.is_mobile_close{
+    display: none;
 }
 
 #eui-main-footer .footer .list .con {
@@ -196,10 +191,70 @@
 #lenovo-user-register{
     padding-left: 15px;
 }
+.mobile_nav_right{
+    display: none;
+}
 @media screen and (max-width:766px){
     .navbar{
         height: 40px;
         min-height: max-content;
+    }
+    .mobile_nav_right{
+        display: block;
+        background: transparent !important;
+        position: absolute;
+        right: 0;
+        width: auto !important;
+        padding-right: 20px !important;
+    }
+    .mobile_nav_right li{
+        border-bottom: none !important;
+    }
+    .mobile_nav_right #lenovo-user-name{
+        color: #fff;
+        padding-right: 0;
+    }
+    .mobile_nav_right #lenovo-user-register{
+        color: #fff;
+        padding-left: 0;
+    }
+    #eui-main-footer{
+        height: 60px;
+        display: none;
+    }
+    .nav>li{
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(160, 215, 143, .4);
+    }
+    .nav>li>a .mobile_jt{
+        display: block;
+        float: right;
+        margin-right: 25px;
+        background: url(../images/jt.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .is_mobile_close{
+        display: block;
+        height: 40px;
+        position: relative;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    }
+    .close_btn{
+        background: url(../images/close.png) no-repeat;
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translate(50%,-50%);
+        width: 15px;
+        height: 15px;
+        background-size: 100%;
+    }
+    .pc_navbar_right{
+        display: none;
     }
     .navbar-toggle{
         position: absolute;
@@ -208,16 +263,18 @@
         margin: 0;
         transform: translate(50%,-50%);
         border: none;
+        padding: 0 5px;
     }
     .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
         background-color: transparent;
     }
     #navbar{
         position: fixed;
-        top: 40px;
+        top: 0;
         left: 0;
         background: #fff;
-        height: 100%;
+        bottom: 0;
+        right: 0;
     }
     .navbar-nav{
         margin: 0;
@@ -259,20 +316,46 @@
     }
 
     .navbar-default .navbar-nav > li > a{
-        padding-left: 15px;
         color: #333;
+        background-color: transparent;
+    }
+    .nav-left >li > a{
+        display: inline-block !important;
+        padding-left: 30px;
+        width: 100%;
     }
     .navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #333;
-    /*background: #a5e8f7;*/
-}
-.navbar-default .navbar-nav > .open > a .caret,
-.navbar-default .navbar-nav > .open > a:hover .caret,
-.navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #333;
-    border-bottom-color: #333;
-}
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #333;
+        /*background: #a5e8f7;*/
+    }
+    .caret{
+        border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+        display: block;
+        float: right;
+        margin-right: 25px;
+        background: url(../images/open.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .navbar-default .navbar-nav > .open .caret{
+        background: url(../images/close.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .mobile_border{
+        border-bottom: 1px solid rgba(229, 229, 229, 1);
+        border-top: 1px solid rgba(160, 215, 143, .4);
+    }
+    .navbar-nav .open .dropdown-menu>li>a{
+        padding: 7px 0px 7px 45px;
+    }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
@@ -295,5 +378,27 @@
     
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
         color: #333;
+    }
+    .mobile_style{
+        text-align: center !important;
+        border: none !important;
+    }
+    .mobile_style .shu{
+        display: none !important;
+    }
+    .mobile_style #lenovo-user-name{
+        padding-right: 0;
+        background:linear-gradient(90deg,rgba(101,209,194,1) 0%,rgba(162,215,142,1) 100%);
+        text-align: center;
+        width: 70%;
+        display: block;
+        margin: 20px auto;
+        height: 38px;
+        line-height: 38px;
+        color: #fff;
+        border-radius: 4px;
+    }
+    .mobile_style #lenovo-user-register{
+        display: none;
     }
  }
