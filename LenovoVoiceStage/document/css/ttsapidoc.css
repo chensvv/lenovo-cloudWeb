@@ -164,12 +164,7 @@
 	word-wrap: break-word;
     word-break: break-all;
 }
-#eui-main-footer{
-    height: 100px;
-    width: 100%;
-    padding-top: 45px;
-    text-align: center;
-}
+
 #eui-main-footer .footer .list .con {
     margin-top: 10px;
     color: #b1b1b1;
