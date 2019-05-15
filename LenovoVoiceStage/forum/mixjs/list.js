@@ -132,7 +132,7 @@
 					str +="<div class=\"list-cell\">"
 								 +"<img class='info_img' src='../forum/images/head.png'/>"
 								 +"<div class='info_right'>"
-								 +"<p><a href='questiondetail.html?article="+val.articleId+" class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+								 +"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
 								 +"<div class=\'in_p\'>"
 			           +"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
 			           +"<span class='mg'>"+'发布于'+nowtime+"</span>"
