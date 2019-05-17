@@ -428,20 +428,27 @@
         position: absolute !important;
         background: #fff !important;
         top: 50px !important;
-        left: -40px !important;
+        left: -20px !important;
+        list-style: none;
+        border-radius: 2px;
     }
-
-    .open_style a{
-        padding-left: 10px !important;
+    .open_style li{
         border-bottom: 1px solid rgba(229, 229, 229, 1) !important;
+    }
+    .open_style a {
+        padding-left: 10px !important;
+        /*  */
+        color: #333;
+        padding: 0 20px;
     }
     .mobile_top_username{
         display: inline-block !important;
+        color: #fff !important;
     }
     .mobile_bottom_border{
         border-bottom: 1px solid rgba(160, 214, 143, .4);
     }
-    .mobile_top_username .carets{
+    .open_user{
         background: url(../images/down.png) no-repeat;
         background-size: 100%;
         background-position-y: center;

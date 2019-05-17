@@ -270,7 +270,6 @@
 					"secretkey" : secrkey
 	            },
 				success:function(res,status){
-					console.log(res)
 				   $(".mytextarea").val("");
 				   $(".comment-list").html(" ");
 				   //一级评论展示

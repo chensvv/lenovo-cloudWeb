@@ -239,7 +239,13 @@
 		
 		document.head.appendChild(scriptNode);
 		loadTop("index");
+		// $(document).ready(function () {
 
+			if(location.href.indexOf("#reloaded")==-1){
+				location.href=location.href+"#reloaded";
+				location.reload();
+			}
+// }
 
 
 		var accountid = window.localStorage.getItem('accountid');

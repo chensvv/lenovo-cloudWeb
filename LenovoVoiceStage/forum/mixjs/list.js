@@ -66,7 +66,6 @@
 		  async: false,
 		  success:function(res){
 				var num=res.datalist;
-				console.log(num)
 			var sortime=num.sort(function (a, b) { return new Date(b.createTime).getTime() - new Date(a.createTime).getTime() });
 		  	total=res.total;
 		   var str = "";
