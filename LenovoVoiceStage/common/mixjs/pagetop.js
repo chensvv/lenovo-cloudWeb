@@ -191,10 +191,8 @@ function loadTop(data) {
 
   $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462");
 if(Username=="" || Username==null||Username.length == 0){
-    console.log('111111')
     $('.mobile_style').removeClass('mobile_bottom_border')
 }else{
-    console.log('222222')
     $('.mobile_style').addClass('mobile_bottom_border')
 }
   if(navigator.userAgent.indexOf("MSIE")>0){
