@@ -581,8 +581,8 @@ p{margin: 0}
 	}
 	.box_anim1 .left_img_div {
 		position: absolute;
-		width: 211px;
-		height: 276px;
+		width: 213px;
+		height: 450px;
 		right: 20px;
 		left: auto;
 		top: 350px;
@@ -595,7 +595,7 @@ p{margin: 0}
 	.box_anim1 .right_img_div {
 		position: absolute;
 		width: 211px;
-		height: 276px;
+		height: 450px;
 		left: 20px;
 		right: auto;
 		top: -180px;
