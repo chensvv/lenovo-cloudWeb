@@ -55,4 +55,10 @@
 </html>
 
 <script>
+    var accountid = window.localStorage.getItem('accountid');
+    if(accountid=="" || accountid==null||accountid.length == 0){
+        $('.title_img').css({"display":"none"})
+    }else{
+        $('.title_img').css({"display":"block"})
+    }
 </script>

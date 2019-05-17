@@ -9,7 +9,10 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-
+if(!user){
+    $('html,body').css({"min-width":"1200px"})
+    $('html,body').css({"min-height":"685px"})
+}
 $(function () {
    //修改nlp结果
    $(".update").bind("keypress",function(event){
@@ -25,16 +28,6 @@ $(function () {
             });
         }
     })
-   
-    var win_h=$(window).height();
-    // console.log(win_h)
-	window.addEventListener('resize',function(){
-		if($(window).height()<win_h){
-            $(".realtime-btn").hide()
-		}else{
-			$(".realtime-btn").show()
-		}
-	})
 });
 function updateBtn(){
     var $val=$(".update").val();
@@ -107,6 +100,7 @@ function syntaxHighlight(json) {
 
 function updateStatus(status) {
     var statusP = document.getElementById( "status" );
+    document.getElementById("stutsP").style.display="block";
     var btn=$("<input type='button' id='updateBtn' onclick='updateBtn()' value='修改'>");
     var data = "";
     try {
@@ -156,8 +150,6 @@ function gotBuffers( buffers ) {
 function toggleRecording( e ) {
     $(".right_div_box").css({"display":"inline-block"})
     $('.left_div_box').css({"display":"none"})
-    // $('#record').attr('src','./images/Mic-act.png')
-    // console.log('22222222')
     var accountid = window.localStorage.getItem('accountid');
     if (accountid=="" || accountid==null||accountid.length == 0) {
         var statusP = document.getElementById( "status" );
@@ -169,16 +161,12 @@ function toggleRecording( e ) {
     var statusP = document.getElementById( "status" );
     if (e.classList.contains("recording")) {
         // stop recording
-        // console.log("1111111")
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
         statusP.innerHTML = '正在识别语音......';
-        // img_btn.src = 'images/Mic-act.png';
-        // $('.product-picture .pulse1').css("display","none");
-        //  $('.product-picture .pulse').css("display","none");
         
-        document.getElementById("analyser").style.display="none";
+        document.getElementById("analyser").style.display="block";
         document.getElementById("wavedisplay").style.display="block";
         
     } else {
@@ -193,14 +181,16 @@ function toggleRecording( e ) {
 //      $("#json").html("");
         $('pre').hide();
         $(".upd").css("display","none");
-//      img_btn.src = 'images/voice_btn_2.png';
-        // $('.product-picture .pulse').css("display","block");
-        // $('.product-picture .pulse1').css("display","block");  
         $(".shu").css("display","none")
+        
+        statusP.style.display="block"
         statusP.innerHTML = '请说话';
+        document.getElementById("stutsP").style.display="none";
         img_btn.src = 'images/Mic-act.png';
+        
         document.getElementById("analyser").style.display="block";
         document.getElementById("wavedisplay").style.display="none";
+        
     }
 }
 

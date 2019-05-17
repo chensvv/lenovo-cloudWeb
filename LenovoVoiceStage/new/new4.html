@@ -6,24 +6,26 @@
 		<title></title>
 		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
 		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />		
-		<!--<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />-->
+		<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />
 		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>	
+		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.1"></script>	
 		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
         <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 	</head>
 	<style>
-		.content img{
-			width: 70%;
-			margin: 0 auto;
-			display: block;
+		.navbar{
+			background: linear-gradient(to right, #ebbb6f, #d8d142);
 		}
 	</style>
 	<body>
 		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+		<div class="mobile_div">
+			<span class="back_arrows"></span>
+			<img src="../common/images/logo.png" class="top_logo">
+		</div>
 		<div class="newcontent">
 		   <h2>良心优品，新国民旗舰联想Z5首发1299元起！</h2>
 		   <span class="newtime">来源：联想/手机&nbsp;&nbsp;时间：2018-06-06</span>
@@ -46,7 +48,19 @@
 	</body>
 </html>
 <script>
+		var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+			$('.navbar').css({"display":"block"})
+			$('.mobile_div').css({"display":"none"})
+		}else{
+			$('.navbar').css({"display":"none"})
+			$('.mobile_div').css({"display":"block"})
+		}
+		$('.back_arrows').click(function(){
+			history.back(-1)
+		})
 	$(function(){
 		loadTop("newdata");
+
 	})
 </script>

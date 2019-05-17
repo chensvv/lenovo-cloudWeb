@@ -6,6 +6,7 @@
 		var secrkey = window.localStorage.getItem('secrkey');
 		var lenkey=null;
 		var secrkey=null;
+	
 		$.ajax({
 			type:"POST",
 			url:urlhead+"/lasf/userinfo",
@@ -23,6 +24,7 @@
 		});
 		
 		if (accountid=="" || accountid==null||accountid.length == 0) {
+			
 	        if(confirm("登陆后才能查看！")){
 				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 			    return;

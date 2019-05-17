@@ -20,6 +20,12 @@ var urlheader = urlhead+"/lasf/asr";
 var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
+var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+if(!user){
+    $('html,body').css({"min-width":"1200px"})
+	$('html,body').css({"min-height":"685px"})
+}
+
 function sendBlob(blob) {
     console.log(blob)
     worker.postMessage(

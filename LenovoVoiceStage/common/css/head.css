@@ -14,8 +14,15 @@
 	transition-timing-function:ease-in-out;
 
 }
+.navbar-icon{
+    width: 100px;
+}
 .navbar-icon img{
   width: 40px;  
+}
+.logo_text{
+    width: 60px !important;
+    padding-left: 5px;
 }
 .navbar-collapse{
     border: none;
@@ -180,7 +187,7 @@
 .footer-bgcolor{
 	background: #2f363e;
     color: #a9acb0;
-    margin-top: 30px;
+    margin-top: 0px !important;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
     color: #333;
@@ -193,6 +200,9 @@
 }
 .mobile_nav_right{
     display: none;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    border-color: none;
 }
 @media screen and (max-width:766px){
     .navbar{
@@ -222,7 +232,7 @@
         height: 60px;
         display: none;
     }
-    .nav>li{
+    .nav-left>li{
         width: 100%;
         text-align: left;
         border-bottom: 1px solid rgba(160, 215, 143, .4);
@@ -353,6 +363,9 @@
         border-bottom: 1px solid rgba(229, 229, 229, 1);
         border-top: 1px solid rgba(160, 215, 143, .4);
     }
+    .mobile_border2{
+        border-bottom: 1px solid rgba(229, 229, 229, 1);
+    }
     .navbar-nav .open .dropdown-menu>li>a{
         padding: 7px 0px 7px 45px;
     }
@@ -381,7 +394,8 @@
     }
     .mobile_style{
         text-align: center !important;
-        border: none !important;
+        /* border: none !important; */
+        width: 100%;
     }
     .mobile_style .shu{
         display: none !important;
@@ -397,6 +411,47 @@
         line-height: 38px;
         color: #fff;
         border-radius: 4px;
+    }
+    .lenovo-user-name2{
+        background: none !important;
+        text-align: left !important;
+        width: 100% !important;
+        color: #333 !important;
+        margin: 0 !important;
+        padding-left: 30px !important;
+        display: inline-block !important;
+        height: auto !important;
+        line-height: initial !important;
+        
+    }
+    .open_style{
+        position: absolute !important;
+        background: #fff !important;
+        top: 50px !important;
+        left: -40px !important;
+    }
+
+    .open_style a{
+        padding-left: 10px !important;
+        border-bottom: 1px solid rgba(229, 229, 229, 1) !important;
+    }
+    .mobile_top_username{
+        display: inline-block !important;
+    }
+    .mobile_bottom_border{
+        border-bottom: 1px solid rgba(160, 214, 143, .4);
+    }
+    .mobile_top_username .carets{
+        background: url(../images/down.png) no-repeat;
+        background-size: 100%;
+        background-position-y: center;
+        display: block;
+        float: right;
+        width: 10px;
+        height: 20px;
+    }
+    .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+        border-color: rgba(160, 214, 143, .4);
     }
     .mobile_style #lenovo-user-register{
         display: none;

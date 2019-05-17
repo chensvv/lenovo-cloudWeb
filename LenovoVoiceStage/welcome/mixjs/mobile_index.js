@@ -9,19 +9,15 @@ var swiper = new Swiper('.swiper-container', {
         var swiper_index = swiper.activeIndex
         
         if ($(window).scrollTop() >= 10) {
-            if(swiper_index == 3 || swiper_index == 4){
-                $(".navbar").css({"background": "rgba(0,0,0,.3)"})
-            }else if(swiper_index == 1 || swiper_index == 5){
-                $(".navbar").css({"background": "rgba(255,255,255,.3)"})
-            }else if(swiper_index == 2){
-                $(".navbar").css({"background": "rgba(1,117,117,.3)"})
-            }
-        }else{
-            if(swiper_index == 1 || swiper_index == 5){
-                $(".navbar").css({"background": "rgba(255,255,255,.3)"})
-            }else if(swiper_index == 2){
+            if(swiper_index == 1 || swiper_index == 5 || swiper_index == 2){
                 $(".navbar").css({"background": "rgba(1,117,117,.3)"})
             }else{
+                $(".navbar").css({"background": "rgba(0,0,0,.3)"})
+            }
+        }else{
+            if(swiper_index == 1 || swiper_index == 5 || swiper_index == 2){
+                $(".navbar").css({"background": "rgba(1,117,117,.3)"})
+            }else {
                 $(".navbar").css({"background": "transparent"})
             }
         }
@@ -29,19 +25,15 @@ var swiper = new Swiper('.swiper-container', {
             // 滚动条距离顶部的距离 大于 100px时
             // console.log(swiper_index)
                     if ($(window).scrollTop() >= 10) {
-                        if(swiper_index == 3 || swiper_index == 4){
-                            $(".navbar").css({"background": "rgba(0,0,0,.3)"})
-                        }else if(swiper_index == 1 || swiper_index == 5){
-                            $(".navbar").css({"background": "rgba(255,255,255,.3)"})
-                        }else if(swiper_index == 2){
+                        if(swiper_index == 1 || swiper_index == 5 || swiper_index == 2){
                             $(".navbar").css({"background": "rgba(1,117,117,.3)"})
+                        }else {
+                            $(".navbar").css({"background": "rgba(0,0,0,.3)"})
                         }
                     }else{
-                        if(swiper_index == 1 || swiper_index == 5){
-                            $(".navbar").css({"background": "rgba(255,255,255,.3)"})
-                        }else if(swiper_index == 2){
+                        if(swiper_index == 1 || swiper_index == 5 || swiper_index == 2){
                             $(".navbar").css({"background": "rgba(1,117,117,.3)"})
-                        }else{
+                        }else {
                             $(".navbar").css({"background": "transparent"})
                         }
                     }
