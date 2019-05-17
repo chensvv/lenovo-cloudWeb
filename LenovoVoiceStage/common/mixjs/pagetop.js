@@ -83,6 +83,7 @@ function close_mobile_nav(){
     
 }
 function loadTop(data) {
+    console.log(data)
     var params = "";
     var secretkey = window.localStorage.getItem('secretkey');
     var accountid = window.localStorage.getItem('accountid');
@@ -108,7 +109,7 @@ function loadTop(data) {
         params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name'>登录</a>";
     } else {
         
-        params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' class='mobile_top_username' id='lenovo-user-name'>"+ Username +"<span class=\'carets\'></span></a>";
+        params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' class='mobile_top_username' id='lenovo-user-name'>"+ Username +"<div class=\'open_user\'></div></a>";
         params += "                        <ul class=\'dropdown-menu open_style\'>";
         params += "                            <li><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
         params += "                            <li><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
