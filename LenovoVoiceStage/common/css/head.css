@@ -215,7 +215,7 @@
         position: absolute;
         right: 0;
         width: auto !important;
-        padding-right: 20px !important;
+        padding-right: 10px !important;
     }
     .mobile_nav_right li{
         border-bottom: none !important;

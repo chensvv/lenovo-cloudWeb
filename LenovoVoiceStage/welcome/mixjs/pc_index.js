@@ -42,7 +42,7 @@ var swiper = new Swiper('.swiper-container', {
         });
         
     },
-    // autoplay:4000,
+    autoplay:4000,
     effect: 'fade',
     pagination: '.swiper-pagination',
     slidesPerView: 1,

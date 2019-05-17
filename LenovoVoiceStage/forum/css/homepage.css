@@ -89,6 +89,8 @@
     top: 0;
     left: 0;
     right: 0;
+    height: 40px;
+    line-height: 40px;
 }
 .back_arrows{
 	position: absolute;
@@ -102,7 +104,6 @@
 }
 .top_logo{
 	width: 40px;
-	height: 40px;
 }
 @media screen and (max-width:414px){
     .nav-title{

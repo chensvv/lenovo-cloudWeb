@@ -553,10 +553,10 @@ p{margin: 0}
 	}
 	.box_anim0 .right_img_div{
 		right: auto;
-		top: 50px;
+		top: 0px;
 		height: 48%;
 		left: 52px;
-		width: 664px;
+		width: 480px;
 		transform: inherit;
 	}
 	.anim0_posi_right{
@@ -737,10 +737,11 @@ p{margin: 0}
 		width: 35%;
 	}
 	.box_anim0 .right_img_div{
-		width: 640px;
+		width: 340px;
+		top:0;
 	}
 	.box_anim0 .left_img_div{
-		width: 600px;
+		width: 490px;
 	}
 }
 
