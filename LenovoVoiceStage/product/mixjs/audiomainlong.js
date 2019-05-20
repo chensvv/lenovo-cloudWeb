@@ -27,7 +27,6 @@ if(!user){
 }
 
 function sendBlob(blob) {
-    console.log(blob)
     worker.postMessage(
         {
         	urlheader:urlheader,
@@ -137,8 +136,11 @@ function toggleRecording(e) {
         img_btn.src = 'images/Mic-nor.png';
         
     } else {
-    	if (!audioRecorder)
+    	if (!audioRecorder){
+            $("#status").html("此浏览器不能获得麦克风的权限");
             return;
+        }
+           
         e.classList.add("recording");
     	buff.length = 0;
     	window.clearInterval(int);

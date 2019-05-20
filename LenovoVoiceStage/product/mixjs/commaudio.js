@@ -29,17 +29,17 @@ function updateAnalysers(time) {
 		var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
 		var capHeight = 20;
 		var capStyle = '#FFFFFF',
-			gradient = analyserContext.createLinearGradient(0, 0, 0, 300);
+			gradient = analyserContext.createLinearGradient(110,228,187, .1);
 		gradient.addColorStop(1, '#3399ff');
 		gradient.addColorStop(0.5, '#3399ff');
 		gradient.addColorStop(0, '#f00');
-		var cwidth = canvasWidth;
-		var cheight = canvasHeight - 2;
-		var capYPositionArray = [];
+		// var cwidth = canvasWidth;
+		// var cheight = canvasHeight - 2;
+		// var capYPositionArray = [];
 		analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
-		analyserContext.fillStyle = '#FFFFFF';
-		//      analyserContext.lineCap = 'round';
-		var multiplier = analyserNode.frequencyBinCount / numBars;
+		analyserContext.fillStyle = 'rgba(124,238,187,1)';
+		    //  analyserContext.lineCap = 'round';
+		// var multiplier = analyserNode.frequencyBinCount / numBars;
 
 		function draw() {
 			analyserNode.getByteFrequencyData(freqByteData);
@@ -47,7 +47,8 @@ function updateAnalysers(time) {
 
 			analyserContext.lineWidth = 1;
 
-			analyserContext.strokeStyle = '#3399ff';
+            // 波纹颜色
+			analyserContext.strokeStyle = '#fff';
 
 			analyserContext.beginPath();
 

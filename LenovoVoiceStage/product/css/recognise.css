@@ -36,15 +36,26 @@ p{
     background-size: 100% 41px;
 }
 .eui-main-body {
-	margin: auto;
 	width: 100%;
-	height: 75%;
+	height: 70%;
+	padding-bottom: 10px;
+}
+@media screen and (min-height:750px){
+	.eui-main-body{
+		position: absolute;
+		width: 100%;
+		height: auto;
+		top: 200px;
+		bottom: 40px;
+		min-width: 1200px;
+		padding-bottom: 0;
+	}
 }
 .body-content{
 	height: 100%;
 }
 .product-picture{
-	height: 83%;
+	height: 90%;
     position: relative;
 }
 .body_banner {
@@ -142,9 +153,10 @@ p{
 
 #viz {
 	display: none;
-	/*border: 1px solid #2aabd2;*/
+	padding-top: 50px;
 	overflow: hidden;
-	height: 200px;
+	height: 100%;
+	background: rgb(124, 238, 187);
 	/*background-color: black;*/
 }
 
@@ -287,10 +299,10 @@ p{
 }
 ::-webkit-scrollbar {display:none;}
 .marvel-device.nexus5 {
-	width: 420px;
-	height: 424px;
+	width: 35%;
+	height: 89%;
 	background: url("../images/short-rec.png") no-repeat;
-	background-size: 100% auto;
+	background-size: 100% 100%;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%,0);
@@ -303,16 +315,6 @@ p{
 	    -webkit-box-sizing: content-box !important;
 	    box-sizing: content-box !important;
 	}
-
-	.top-bar .top-call{
-		width: 100px;
-		height: 2px;
-		background: #ccc;
-		margin-left: 34%;
-		margin-top: -25px;
-		border-radius: 2px;
-	}
-
 	.nexus5 .screen {
 	    box-shadow: none;
 	    text-align: left;
@@ -357,7 +359,7 @@ p{
 	.string { color: red; }
    .prompt{
 	   	overflow: hidden;
-	   	margin-top: 60px;
+	   	margin-top: 16%;
    }
    .left_div_box{
 	   margin-bottom: 20px;
@@ -371,12 +373,13 @@ p{
 		/* color: #FFFFFF; */
 		background: #fff;
 		margin-left: 30px;
+		position: relative;
    }
    
    .arrow_left{
 		position: absolute;
-		top: 60px;
-		left: 45px;
+		top: 0px;
+		left: -5px;
 		width: 0;
 		height: 0;
 		font-size: 0;
@@ -531,7 +534,7 @@ input {
 	}
 	.stat_right{
 		padding: 5px 8px;
-		letter-spacing: 2px;
+		letter-spacing: 1px;
 		color: #fff;
 		background:linear-gradient(90deg,rgba(76,198,141,1) 0%,rgba(91,187,181,1) 100%);
 	}

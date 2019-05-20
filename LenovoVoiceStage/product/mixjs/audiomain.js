@@ -11,7 +11,7 @@ var recIndex = 0;
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 if(!user){
     $('html,body').css({"min-width":"1200px"})
-    $('html,body').css({"min-height":"685px"})
+    $('html,body').css({"min-height":"740px"})
 }
 $(function () {
    //修改nlp结果
@@ -135,6 +135,7 @@ function gotBuffers( buffers ) {
     var canvas = document.getElementById( "wavedisplay" );
     var cancontext=canvas.getContext('2d');  
     var viz = document.getElementById( "viz" );
+    canvas.fillStyle="transparent"
    canvas.width=viz.offsetWidth;	 
     $(window).resize(function() {
     	canvas.width=viz.offsetWidth;
@@ -160,6 +161,11 @@ function toggleRecording( e ) {
     var img_btn = document.getElementById('record');
     var statusP = document.getElementById( "status" );
     if (e.classList.contains("recording")) {
+        if(!user){
+            document.getElementById('viz').style.display='none'
+        }
+        
+        img_btn.src = 'images/Mic-nor.png';
         // stop recording
         audioRecorder.stop();
         e.classList.remove("recording");
@@ -170,9 +176,13 @@ function toggleRecording( e ) {
         document.getElementById("wavedisplay").style.display="block";
         
     } else {
+        
         // start recording
-        if (!audioRecorder)
+        if (!audioRecorder){
+            $("#status").html("此浏览器不能获得麦克风的权限");
             return;
+        }
+            
         e.classList.add("recording");
         //Avatar数据统计
         avatarnum();
@@ -186,6 +196,9 @@ function toggleRecording( e ) {
         statusP.style.display="block"
         statusP.innerHTML = '请说话';
         document.getElementById("stutsP").style.display="none";
+        if(!user){
+            document.getElementById('viz').style.display='block'
+        }
         img_btn.src = 'images/Mic-act.png';
         
         document.getElementById("analyser").style.display="block";

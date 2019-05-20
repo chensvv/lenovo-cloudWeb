@@ -38,7 +38,8 @@ p{
 .eui-main-body {
 	margin: auto;
 	width: 100%;
-	height: 75%;
+	height: 70%;
+	padding-bottom: 40px;
 }
 .body-content{
 	height: 100%;

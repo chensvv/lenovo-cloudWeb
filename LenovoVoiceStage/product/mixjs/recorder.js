@@ -34,7 +34,7 @@ DEALINGS IN THE SOFTWARE.
     //判断浏览器是否支持
     //alert(typeof (Worker));
     if (typeof (Worker) == "undefined") {
-        console.log("对不起你的浏览器不支持worker");
+        alert("对不起你的浏览器不支持worker");
         return;
     }
     var worker = new Worker(WORKER_PATH);
