@@ -348,9 +348,9 @@ p{
 	}
 	
 	pre {
-		width: 350px;
+		width: 80%;
 		margin-top: 1px;
-		height: 220px;
+		height: 55%;
 		overflow-y: auto;
 		margin-left: auto;
 		margin-right: auto;
@@ -424,7 +424,7 @@ p{
    }
 
 .update{
-		width: 350px;
+		width: 80%;
 		margin-top: 10px;
 		color: red;
 		height: 30px;
@@ -456,9 +456,9 @@ p{
 	text-align: center;
 }
 #stutsP{
-	padding-top: 1px;
+	padding-top: 2px;
 	margin-left: 0;
-	width: 350px;
+	width: 80%;
 	margin: 0 auto;
 	color: #fff;
 }
@@ -466,15 +466,12 @@ input {
     outline: none;
 }
  @media screen and (max-height:660px){
-	.update{
-		width: 300px;
-	}
 	#stutsP{
-		width: 300px;
+		width: 80%;
 	}
 	pre{
-		width: 300px;
-		height: 135px;
+		width: 80%;
+		height: 55%;
 	}
 }
 @media screen and (max-width:414px){
@@ -490,8 +487,21 @@ input {
 	.recognise_title{
 		font-size: 25px;
 	}
+	.eui-main-body{
+		position: absolute;
+		width: 100%;
+		height: auto;
+		top: 150px;
+		bottom: 0;
+		padding-bottom: 0;
+		min-width: auto;
+	}
 	.prompt{
 		margin-top: 10px;
+	}
+	.body-content .content-title{
+		height: 10%;
+		font-size: 24px;
 	}
 	.product-picture{
 		height: 90%;
@@ -518,8 +528,8 @@ input {
 	.realtime-btn {
 		position: absolute;
 		left: 50%;
-		transform: translate(-50%,50%);
-		top: 60%;
+		transform: translate(-50%,0%);
+		bottom: 5%;
 		z-index: 9999;
 	}
 	.stat_left{
@@ -551,18 +561,18 @@ input {
 	}
 	.update{
 		border: 1px solid #4FC8A3;
-		width: 270px;
+		width: 80%;
 		border-radius: 3px;
 	}
 	#stutsP{
-		width: 270px;
+		width: 80%;
 		color: #313131;
 		display: flex;
     	justify-content: space-between;
 	}
 	pre{
-		width: 270px;
-		height: 270px;
+		width: 80%;
+		height: 55%;
 		background: none;
 		border: 1px solid rgba(128,194,105,1);
 		border-radius: 3px;
