@@ -1,23 +1,9 @@
-.navbar-default .navbar-nav > .active > a{
-	color: #777;
-}		
+	
 .dropdown-menu>li:nth-child(2)>a{
 	color: #1189f3;
 }	
 .dropdown-menu{
 	margin-right: 5px;
-}		
-.banner{
-	width: 100%;
-	height: 53px;
-	padding-left: 15%;
-	padding-right: 15%;
-	margin-top: 20px;
-	/*border: 1px solid #ccc;*/
-}
-.banner img{
-	width: 160px;
-	height: 50px;
 }
 .main{
 	width: 100%;
@@ -47,7 +33,7 @@
 }
 
 
-.main .userinfo .user_name{
+.main .userinfo .info_name{
 	float: right;
 	margin-top: 25px;
 	margin-right: 10px;
@@ -56,21 +42,12 @@
 	font-size: 18px;
 	color: #7d7a7a;				
 }
-
-@media screen and (max-width:320px){
-	.main .userinfo .uright{	
-		font-size: 14px;
-		color: #7d7a7a;				
-	}
-}
-
 .user_con{
-	width: 100%;
-	margin-top: 20px;
+	width: 60%;
+	margin:20px auto;
 }
 .user_con .lenkey{
 	width: 100%;
-	height: 30px;
 	font-size: 18px;
 	color: #757070;
 }
@@ -79,50 +56,31 @@
 	display: inline-block;
 }
 .user_con .key_con{
-	width: 16%;
 	text-align: right;
 	display: inline-block;		
 }
-@media screen and (max-width:920px){
-	.user_con .key_con{
-		width: 30%;
-		text-align: right;
-		display: inline-block;		
-	}
-	.user_con .val_width{
-		/*width: 50%;*/
-		display: inline-block;
-	}
-}
-@media screen and (max-width:540px){
-	.user_con .key_con{
-		width: 30%;
-		text-align: right;
-		display: inline-block;		
-		font-size: 16px;
-	}
-	.user_con .val_width{
-		width: 55%;
-		display: inline-block;
-		font-size: 14px;
-	}
-}
 @media screen and (max-width:414px){
+	.user_con{
+		width: 100%;
+	}
 	.user_con .key_con{
-		width: 22%;
 		text-align: right;
 		display: inline-block;		
 		font-size: 12px;
 	}
 	.user_con .val_width{
-		/*width: 55%;*/
 		display: inline-block;
 		font-size: 10px;
+	}
+	.num1 span{
+		font-size: 12px;
+	}
+	.num2 span{
+		font-size: 12px;
 	}
 }
 .user_con .seckey,.num1,.num2{
 	width: 100%;
-	height: 30px;
 	margin-top: 10px;
 	font-size: 18px;
 	color: #757070;
@@ -130,7 +88,6 @@
 
 .user_bottom{
 	width: 100%;
-	height: 10px;
 	border-top: 1px solid #eb403c;
 	margin-top: 150px;
 }
@@ -140,10 +97,6 @@
 
 
 #eui-main-footer{
-    height: 100px;
-    width: 100%;
-    padding-top: 45px;
-    text-align: center;
     position: fixed;
     bottom: 0px;
 }

@@ -108,7 +108,7 @@ function loadTop(data) {
         params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name'>登录</a>";
     } else {
         
-        params += "                        <a href=\'#\' target=\'_self\' class='mobile_top_username'>"+ Username +"<span class=\'open_user\'></span></a>";
+        params += "                        <a href=\'#\' target=\'_self\' class='mobile_top_username'><span class='user_name'>"+ Username +"</span><span class=\'open_user\'></span></a>";
         params += "                        <ul class=\' open_style\' style=\'display:none\'>";
         params += "                            <li><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
         params += "                            <li><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";

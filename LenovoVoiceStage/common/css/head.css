@@ -169,11 +169,10 @@
 #eui-main-footer{
     height: 40px;
     width: 100%;
-    padding-top: 10px;
-    text-align: center;
-    /* position: fixed;
-    bottom: 0; */
     z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .is_mobile_close{
     display: none;
@@ -462,5 +461,18 @@
     }
     .mobile_style #lenovo-user-register{
         display: none;
+    }
+    .user_name{
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+    }
+ }
+ @media screen and (max-width:320px){
+    .user_name{
+        max-width: 70px;
     }
  }

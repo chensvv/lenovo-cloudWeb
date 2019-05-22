@@ -651,6 +651,10 @@ p{margin: 0}
 		padding: 30px 30px;
 		height: 50%;
 	}
+	.box_anim2 .bottom_img_div img{
+		width: auto;
+		height: auto;
+	}
 	.box_anim3 .center_img_div{
 		width: 40%;
 		height: 47%;

@@ -55,7 +55,7 @@ p{
 	height: 100%;
 }
 .product-picture{
-	height: 90%;
+	height: 85%;
     position: relative;
 }
 .body_banner {
@@ -67,7 +67,7 @@ p{
 }
 
 .body-content .content-title {
-	height: 10%;
+	height: 15%;
 	font-family: 黑体;
 	font-size: 30px;
 	color: #1b1b1b;
@@ -300,13 +300,15 @@ p{
 ::-webkit-scrollbar {display:none;}
 .marvel-device.nexus5 {
 	width: 35%;
-	height: 89%;
+	height: 100%;
 	background: url("../images/short-rec.png") no-repeat;
 	background-size: 100% 100%;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%,0);
 	bottom: 0;
+	min-height: 445px;
+    max-height: 675px;
 }
 	.marvel-device {
 	    /*display: inline-block;*/
@@ -507,6 +509,7 @@ input {
 		left: unset;
 		transform: none;
 		bottom: unset;
+		min-height: initial;
 	}
 	.nexus5 .screen{
 		height: inherit;
@@ -527,8 +530,8 @@ input {
 		background:linear-gradient(90deg,rgba(91,187,181,1) 0%,rgba(76,198,141,1) 100%);
 	}
 	.arrow_left{
-		top: 10px;
-		left: 25px;
+		top: 0;
+		left: -5px;
 		border: solid 5px;
 		border-color: #4EC494 transparent transparent transparent;
 	}
