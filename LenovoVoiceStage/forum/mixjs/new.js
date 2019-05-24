@@ -1,10 +1,6 @@
 	$(function(){
 		loadTop("information");
-		$("#send").click(function(){
-			if($(".title").val()==""||$(".text").val()==""){
-				alert("标题或内容不能为空");
-				return false;
-			}
+	$("#send").click(function(){
 			var accountid = window.localStorage.getItem('accountid');
 		    if (accountid=="" || accountid==null||accountid.length == 0) {
 		        if(confirm("登陆后才能发表！")){

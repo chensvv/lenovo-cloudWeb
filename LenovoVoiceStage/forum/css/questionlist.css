@@ -11,7 +11,7 @@ p{
 }
 .nav-title{
 	height:200px;
-	background: linear-gradient(to right, #bbe260, #d9d34d);
+	background: linear-gradient(to right, #8ac18a, #b1d59b);
 	position: relative;
 	display: flex;
     justify-content: center;
@@ -54,7 +54,7 @@ p{
     display: inline-block;
     width: 150px;
     height: 40px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     text-align: center;
     line-height: 40px;
     font-size: 16px;
@@ -62,8 +62,13 @@ p{
     border-radius: 2px;
 
 }
+.list-titile a:active{
+    background: linear-gradient(to right, #618662,  #81a36c);
+}
 .list-titile a:hover{
-    text-decoration: none
+    text-decoration: none;
+    color: #fff;
+
 }
 .list-cell{
     padding: 30px 0 30px 30px;
@@ -135,7 +140,7 @@ p{
         padding: 20px 0 15px 15px;
     }
     .list-titile a{
-		background: linear-gradient(88deg,rgba(125,202,127,1) 0%,rgba(210,233,111,1) 100%);
+		background: linear-gradient(to right, #8ac18a, #b1d59b);
 		height: 30px;
 		line-height: 30px;
 	}

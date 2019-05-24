@@ -6,7 +6,7 @@ p{
 	margin: 0;
 }
 .posi_top {
-	background: linear-gradient(to right, #bbe260, #d9d34d);
+	background: linear-gradient(to right, #8ac18a, #b1d59b);
 	height: 60px;
 	position: fixed;
 	top: 0;
@@ -29,10 +29,13 @@ p{
 .qu_btn{
 	width: 140px;
     height: 35px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     border: none;
 	color: #fff;
 	outline: none;
+}
+.qu_btn:active{
+	background: linear-gradient(to right, #618662,  #81a36c);
 }
 .top_btn{
 	width: 140px;
@@ -44,10 +47,13 @@ p{
     font-size: 20px;
     margin: 0 50px 0 auto;
 }
+.top_btn:active{
+	background: none !important;
+}
 .qu_sub_btn{
 	width: 150px;
     height: 40px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     border: none;
 	color: #fff;
 	outline: none;
@@ -58,6 +64,14 @@ p{
 	font-size: 16px;
 	border-radius: 3px;
 }
+.No_send{
+    background:linear-gradient(88deg,rgba(139,194,139,1) 2%,rgba(174,210,153,1) 100%) !important;
+    opacity: .7;
+}
+.qu_sub_btn:active{
+    background: linear-gradient(to right, #618662,  #81a36c);
+}
+
 .floor{
 	padding-right: 10px;
 	color: #78d758;
@@ -65,6 +79,8 @@ p{
 .newcontent h2{
 	font-size: 26px;
 	color: #4b4a4a;
+	overflow: hidden;
+    word-wrap: break-word;
 }
 .autime{
 	 margin-bottom: 30px;
@@ -97,6 +113,7 @@ p{
 /*评论*/
 	.commentbox{
 		margin: 20px auto 100px;
+		text-align: center;
 	}
 	.mytextarea {
 	    width: 100%;
@@ -216,7 +233,7 @@ p{
 	margin: 0 0 0 auto;
     width: 60px;
     height: 25px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     text-align: center;
     display: block;
     line-height: 25px;
@@ -225,6 +242,9 @@ p{
 }
 .comment-content-footer .rowtext .replybox .send:hover{
 	cursor: pointer;
+}
+.comment-content-footer .rowtext .replybox .send:active{
+    background: linear-gradient(to right, #618662,  #81a36c);
 }
 .comment-content-header i{
 	margin-right: 5px;

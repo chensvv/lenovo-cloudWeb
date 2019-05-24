@@ -48,7 +48,7 @@
                         <div class="content-body-title">
                             <div class="body-label">标题</div>
                             <div class="body-context">
-                                <input type="text" class="title" name="title" maxlength="21" placeholder="小伙伴请注意，标题只能显示21个字哦！"/>
+                                <input type="text" class="title" name="title" maxlength="21" autocomplete="off" placeholder="小伙伴请注意，标题只能显示21个字哦！"/>
                             </div>
                         </div>
                         <div class="content-body-text">
@@ -56,7 +56,7 @@
                             <div class="body-context"><textarea class="text" placeholder="请输入内容"></textarea></div>
                         </div>
                         <div class="content-body-button">
-                            <a href="#" id="send">发表留言</a>
+                            <button id="send">发表留言</button>
                         </div>
                 </div>
             </div>
@@ -81,7 +81,26 @@ var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
     $('.back_arrows').click(function(){
         history.back(-1)
     })
-    // $('.title').on("input propertychange" ,function(){
-    //     console.log($(" input[name='title']").val().length)
-    // })
+    if($(".title").val()==""||$(".text").val()==""){
+                $('#send').attr('disabled','disabled');
+                $('#send').addClass('No_send')
+			}
+    $('.title,.text').on("input propertychange" ,function(){
+        if($(".title").val()!="" && $(".text").val()!=""){
+                $("#send").removeAttr("disabled");
+                $('#send').removeClass('No_send')
+			}else if($(".title").val()=="" || $(".text").val()==""){
+                $('#send').attr('disabled','disabled');
+                $('#send').addClass('No_send')
+            }
+    })
+    // $('.title').bind('input propertychange', function() {
+    //     if($(".title").val()==""||$(".text").val()==""){
+    //             $('#send').attr('disabled','disabled');
+    //             $('#send').addClass('No_send')
+	// 		}else{
+    //             $("#btn").removeAttr("disabled");
+	// 		}
+    // }
+   
 </script>

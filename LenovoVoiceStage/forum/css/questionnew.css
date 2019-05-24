@@ -6,7 +6,7 @@ p{
 }
 .nav-title{
 	height:200px;
-	background: linear-gradient(to right, #bbe260, #d9d34d);
+	background: linear-gradient(to right, #8ac18a, #b1d59b);
 	position: relative;
 	display: flex;
     justify-content: center;
@@ -62,17 +62,25 @@ p{
     width: 100%;
 }
 
-.content-body .content-body-button a{
+#send{
     display: inline-block;
     line-height: 37px;
     font-size: 16px;
     color: white;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     width: 200px;
     letter-spacing: 2px;
     text-decoration: none;
+    border: none;
+    outline: none;
 }
-
+.No_send{
+    background:linear-gradient(88deg,rgba(139,194,139,1) 2%,rgba(174,210,153,1) 100%) !important;
+    opacity: .7;
+}
+#send:active{
+    background: linear-gradient(to right, #618662,  #81a36c);
+}
 .content-body .content-body-button .button-body{
     height: 39px;
     width: 96px;

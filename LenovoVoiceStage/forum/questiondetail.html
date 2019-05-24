@@ -66,7 +66,7 @@
 		<!-- 快速回复框 -->
 		<div class="commentbox">
 			<textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
-			<div class="qu_sub_btn" id="comment">提交回复</div>
+			<button class="qu_sub_btn" id="comment">提交回复</button>
 		</div>
 	</div>
 
@@ -76,7 +76,20 @@
 
 </html>
 <script>
-	
+	if($(".mytextarea").val()==""){
+		$('#comment').attr('disabled','disabled');
+		$('#comment').addClass('No_send')
+	}
+    $('.mytextarea').on("input propertychange" ,function(){
+        if($(".mytextarea").val()!=""){
+                $("#comment").removeAttr("disabled");
+                $('#comment').removeClass('No_send')
+			}else{
+                $('#comment').attr('disabled','disabled');
+                $('#comment').addClass('No_send')
+            }
+    })
+
 	$(".qu_btn").click(function () {
 		$('html,body').animate({
 			scrollTop: $('#eui-main-footer').offset().top
