@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     height: 40px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
 }
 .mobile_div{
     line-height: 40px;
@@ -22,6 +22,7 @@
 .commentbox{
     width: 85%;
     margin: 100px auto 0;
+    text-align: center;
 }
 .mytextarea{
     width: 100%;
@@ -42,16 +43,21 @@
     color: #fff;
     font-size: 18px;
     padding-left: 50px;
-    overflow: hidden;
+    /* overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap; */
     display: block;
     width: 70%;
+    text-align: left;
+}
+.No_send{
+    background:linear-gradient(88deg,rgba(139,194,139,1) 2%,rgba(174,210,153,1) 100%) !important;
+    opacity: .7;
 }
 .qu_sub_btn{
 	width: 150px;
     height: 40px;
-    background: linear-gradient(to right, #bbe260, #d9d34d);
+    background: linear-gradient(to right, #8ac18a, #b1d59b);
     border: none;
 	color: #fff;
 	outline: none;

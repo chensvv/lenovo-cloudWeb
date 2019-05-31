@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>联想开放平台</title>
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
@@ -29,7 +29,7 @@
         <div class="commentbox">
             <div class="reply_arrows"></div>
             <textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
-            <div class="qu_sub_btn" id="comment">提交回复</div>
+            <button class="qu_sub_btn" id="comment">提交回复</button>
         </div>
         
 </body>
@@ -39,4 +39,17 @@
 $('.back_arrows').click(function(){
     history.back(-1);
 })
+if($(".mytextarea").val()==""){
+                $('#comment').attr('disabled','disabled');
+                $('#comment').addClass('No_send')
+			}
+    $('.mytextarea').on("input propertychange" ,function(){
+        if($(".mytextarea").val()!="" ){
+                $("#comment").removeAttr("disabled");
+                $('#comment').removeClass('No_send')
+			}else if($(".mytextarea").val()=="" || $(".text").val()==""){
+                $('#comment').attr('disabled','disabled');
+                $('#comment').addClass('No_send')
+            }
+    })
 </script>
