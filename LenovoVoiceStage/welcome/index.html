@@ -28,14 +28,13 @@
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../common/mixjs/commurl.js"></script>
 	
-	<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+	<!-- <script type="text/javascript" sync src="../common/mixjs/avatar.js"></script> -->
 	<script type="text/javascript" src="../common/mixjs/pagetop.js"></script>
 	<!-- <script src="./mixjs/index.js"></script> -->
 	<script src="./mixjs/swiper.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript"
 		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
-
 </head>
 <style>
 	.rows {
@@ -248,10 +247,9 @@
 		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
 		scriptTag.async = true;
-		scriptTag.src = '../common/mixjs/avatar.js';
+		scriptTag.src = "../common/mixjs/avatar.js";
 		var head = document.getElementsByTagName('head')[0] || document.documentElement;
 		head.insertBefore(scriptTag, head.firstChild);
-
 		var avatar = window.Avatar = window.Avatar || [];
 		avatar.push({
 			appKey: '5C9E6O46H2ZJ', // appkey
