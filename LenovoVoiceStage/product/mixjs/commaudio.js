@@ -132,27 +132,6 @@ function getUserMedia(constrains,success,error){
 }
 
 function initAudio() {
-    //     if (!navigator.getUserMedia)
-    //         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia  || navigator.msGetUserMedia;
-    //     if (!navigator.cancelAnimationFrame)
-    //         navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-    //     if (!navigator.requestAnimationFrame)
-    //         navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
-
-    // navigator.getUserMedia(
-    //     {
-    //         "audio": {
-    //             "mandatory": {
-    //                 "googEchoCancellation": "false",
-    //                 "googAutoGainControl": "false",
-    //                 "googNoiseSuppression": "false",
-    //                 "googHighpassFilter": "false"
-    //             },
-    //             "optional": []
-    //         }
-    //     }, gotStream, function(e) {
-    //         alert('此浏览器不能获得麦克风的权限!');
-	//     });
 	if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia){
         //调用用户媒体设备，访问摄像头
             getUserMedia({
@@ -167,18 +146,22 @@ function error(error){
 }
 
 window.addEventListener('load', initAudio );
-
-
 function LenovoIdSyncLoginState(lenovoid_wust) {
-        _club_login_status = true;
-        take_st_login = true;
-        jQuery.get('/lasf/logininfo', {
-            'securekey': lenovoid_wust
-        }, function(data) {
-            if (typeof(data) == 'undefined')
-                var data = {
-                    'status': 'error'
-                };
+    _club_login_status = true;
+    take_st_login = true;
+    $.ajax({
+            type:"get",
+            url:urlhead+"/lasf/logininfo",
+            headers:{
+                'channel':'cloudasr'
+            },
+            data:"securekey="+lenovoid_wust,
+            dataType:'json',
+            success:function(data){
+                if (typeof(data) == 'undefined')
+            var data = {
+                'status': 'error'
+            };
             if (data.status == 'success') {
                 document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
                 window.localStorage.setItem('secretkey',data.secretkey);
@@ -187,52 +170,19 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
                 window.localStorage.setItem('Username',data.Username);
                 //window.location.reload();
             } else if (data.status == 'failed') {
-                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
+//	                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fproduct%2Frecognise.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fproduct%2Frecognise.html';
+                   window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
             } else if (data.status == 'error') {
 
             }
-        }, 'json');
-    }
-
+            }
+       });
+}
 
 
 
 
 //Avatar数据统计
-function avatarnum(){
-   	var accountid = window.localStorage.getItem('accountid');
-    var Username = window.localStorage.getItem('Username');		
-    var scriptTag = document.createElement('script');
-			scriptTag.type = 'text/javascript';
-			scriptTag.async = true;
-			scriptTag.src = '../common/js/avatar.js';
-			var head= document.getElementsByTagName('head')[0] || document.documentElement;
-			head.insertBefore(scriptTag, head.firstChild);			
-			var avatar = window.Avatar = window.Avatar || [];
-			avatar.push({
-			    appKey: '5C9E6O46H2ZJ', // appkey
-			    pageId: 'two',		// 页面标识
-			    channel: 'webvoice2',		// 设置渠道
-			    versionName: '1.2', // 设置版本
-                versionCode: '01',	// 设置版本号
-			    init: function(){
-
-				}
-			});
-    function clickLink1(evt, target, arg1, arg2){
-		return ['Clickvoice', 'voice', '语音识别点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-	}
-	Avatar.push(['register', document.getElementById('record'), clickLink1]);
-    Avatar.push(['track', ['Clickvoice', 'voice', '语音识别点击', {Username:Username, accountid:accountid, arg3:0, arg4:0, arg5:0}, 0]]);
-
-    
-    function clickfile(evt, target){
-			return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-	}
-	Avatar.push(['register', document.getElementById('third'), clickfile]);
-}
-
-
 
 $(function(){
     var Username = window.localStorage.getItem('Username');

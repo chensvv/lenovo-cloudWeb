@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/ttsapidoc.css">
 		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+		<!-- <script type="text/javascript" src="../common/mixjs/avatar.js"></script> -->
 		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 		<script src="../common/mixjs/commurl.js"></script>
 		<script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
@@ -355,7 +355,7 @@ var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 	    var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
 		scriptTag.async = true;
-		scriptTag.src = 'avatar.js';
+		scriptTag.src = '../common/mixjs/avatar.js';
 		var head= document.getElementsByTagName('head')[0] || document.documentElement;
 		head.insertBefore(scriptTag, head.firstChild);			
 		var avatar = window.Avatar = window.Avatar || [];

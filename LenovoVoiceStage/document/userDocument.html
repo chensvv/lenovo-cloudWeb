@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="../common/css/animate.min.css">
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../common/mixjs/avatar.js"></script>
+	<!-- <script type="text/javascript" src="../common/mixjs/avatar.js"></script> -->
 	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 	<script src="../common/mixjs/commurl.js"></script>
 	<script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
@@ -45,7 +45,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
 							<div class="info_box">
 								<div class="info_title">API接入指南</div>
-								<div class="info_con"><a href="ASRApiDoc.html">API access guide</a></div>
+								<div class="info_con"><a href="ASRApiDoc.html" id="detail">API access guide</a></div>
 							</div>
 						</div>
 					</div>
@@ -91,12 +91,6 @@
 </html>
 
 <script>
-	// AOS.init({
-	// 	offset: 200,
-	// 	duration: 600,
-	// 	easing: 'ease-in-sine',
-	// 	delay: 100,
-	// });
 	$(function () {
 		loadTop("document");
 		if(navigator.userAgent.indexOf("MSIE")>0){
@@ -106,7 +100,7 @@
 		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
 		scriptTag.async = true;
-		scriptTag.src = 'avatar.js';
+		scriptTag.src = '../common/mixjs/avatar.js';
 		var head = document.getElementsByTagName('head')[0] || document.documentElement;
 		head.insertBefore(scriptTag, head.firstChild);
 		var avatar = window.Avatar = window.Avatar || [];
@@ -118,7 +112,6 @@
 			versionCode: '01', // 设置版本号
 			init: function () {}
 		});
-
 		function clickvoi(evt, target) {
 			return ['Clickpage2', 'voice', '语音页面点击', {
 				arg1: 0,
