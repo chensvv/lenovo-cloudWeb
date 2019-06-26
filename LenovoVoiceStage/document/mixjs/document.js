@@ -16,7 +16,6 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
                     'status': 'error'
                 };
 	            if (data.status == 'success') {
-	                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
 	                window.localStorage.setItem('secretkey',data.secretkey);
 	                window.localStorage.setItem('accountid',data.AccountID);
 	                window.localStorage.setItem('lenovoname',data.name);

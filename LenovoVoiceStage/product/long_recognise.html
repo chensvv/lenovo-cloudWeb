@@ -115,34 +115,35 @@
 		$('.voice_button').css({"padding-top":"130px"})
 	}
 	var accountid = window.localStorage.getItem('accountid');
-    var Username = window.localStorage.getItem('Username');		
-    var scriptTag = document.createElement('script');
-			scriptTag.type = 'text/javascript';
-			scriptTag.async = true;
-			scriptTag.src = '../common/mixjs/avatar.js';
-			var head= document.getElementsByTagName('head')[0] || document.documentElement;
-			head.insertBefore(scriptTag, head.firstChild);			
-            var avatar = window.Avatar = window.Avatar || [];
-            console.log(head.firstChild)
-			avatar.push({
-			    appKey: '5C9E6O46H2ZJ', // appkey
-			    pageId: 'two',		// 页面标识
-			    channel: 'webvoice2',		// 设置渠道
-			    versionName: '1.2', // 设置版本
-                versionCode: '01',	// 设置版本号
-			    init: function(){
+   function avatarnum(){
+		var Username = window.localStorage.getItem('Username');		
+		var scriptTag = document.createElement('script');
+				scriptTag.type = 'text/javascript';
+				scriptTag.async = true;
+				scriptTag.src = '../common/mixjs/avatar.js';
+				var head= document.getElementsByTagName('head')[0] || document.documentElement;
+				head.insertBefore(scriptTag, head.firstChild);			
+				var avatar = window.Avatar = window.Avatar || [];
+				avatar.push({
+					appKey: '5C9E6O46H2ZJ', // appkey
+					pageId: 'two',		// 页面标识
+					channel: 'webvoice2',		// 设置渠道
+					versionName: '1.2', // 设置版本
+					versionCode: '01',	// 设置版本号
+					init: function(){
 
-				}
-			});
-    function clickLink1(evt, target, arg1, arg2){
-		return ['Clickvoice', 'voice', '语音识别点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-	}
-	Avatar.push(['register', document.getElementById('record'), clickLink1]);
-    Avatar.push(['track', ['Clickvoice', 'voice', '语音识别点击', {Username:Username, accountid:accountid, arg3:0, arg4:0, arg5:0}, 0]]);
+					}
+				});
+		function clickLink1(evt, target, arg1, arg2){
+			return ['Clickvoice', 'voice', '语音识别点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+		}
+		Avatar.push(['register', document.getElementById('record'), clickLink1]);
+		Avatar.push(['track', ['Clickvoice', 'voice', '语音识别点击', {Username:Username, accountid:accountid, arg3:0, arg4:0, arg5:0}, 0]]);
 
-    
-    function clickfile(evt, target){
-			return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-	}
-	Avatar.push(['register', document.getElementById('third'), clickfile]);
+		
+		function clickfile(evt, target){
+				return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+		}
+		Avatar.push(['register', document.getElementById('third'), clickfile]);
+   }
 </script>
