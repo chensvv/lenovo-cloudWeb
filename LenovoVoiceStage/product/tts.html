@@ -64,12 +64,17 @@ var pause = document.getElementById('play-btn')
 var pauseImg = document.getElementById('play-img')
 var bgm = document.getElementById('bgMusic');
 var number = document.getElementById('number')
-var lenkey = window.localStorage.getItem('lenkey');
 var accountid = window.localStorage.getItem('accountid');
+
 window.onload = function(){
     $('.play-box').click(function(){
 		var textv = $('#textarea').val()
-		if($('#textarea').val() == ''){
+		if (accountid == "" || accountid == null || accountid.length == 0) {
+			if(confirm("请先登录")){
+				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+				return;
+			}
+		}else if(textv == ''){
 			alert('请输入要合成的内容')
 		}else{
 			if(bgm.paused){
