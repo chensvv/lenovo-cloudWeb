@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">  
+	<title>联想语音</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/tts.css?version=1.3" rel="stylesheet"/>
+    <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
+	<link rel="stylesheet" href="../welcome/css/all.css">
+	<link rel="stylesheet" href="../common/css/animate.min.css">
+    <script type="text/javascript" src="../common/mixjs/commurl.js"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../common/mixjs/scroll.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+</head>
+<style>
+</style>
+<body>
+	<div class="dis_flex">
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">语音合成</p>
+			<div class="bg_div"></div>
+		</div>
+		<div class="eui-main-body">
+            <div class="content-title">功能演示</div>
+            <div class="content-box">
+                <div class="content-top"><span class="hint">请输入需要合成的文本</span><span class="rand-btn" onclick="randomBtn()">随机示例</span></div>
+                <div class="text-box">
+                    <textarea class="content-text" id="textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" placeholder="在这里你可以输入任意想要说的话，我们会将文字信息合成自然、生动的人声。"></textarea>
+                    <div class="hint-num">您可以输入<span id="number">150</span>个字</div>
+                </div>
+                <div class="content-btn">
+                    <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
+					<audio id="bgMusic" autoplay>
+						
+					</audio>
+					<!-- http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg -->
+                </div>
+            </div>
+            
+		</div>
+			
+			<div id="eui-main-footer" class="footer-bgcolor">
+			</div> 
+	</div>
+
+
+  
+
+</body>
+</html>
+<script>
+$(function () {
+    loadTop("product");   
+});
+var pause = document.getElementById('play-btn')
+var pauseImg = document.getElementById('play-img')
+var bgm = document.getElementById('bgMusic');
+var number = document.getElementById('number')
+var lenkey = window.localStorage.getItem('lenkey');
+var accountid = window.localStorage.getItem('accountid');
+window.onload = function(){
+    $('.play-box').click(function(){
+		var textv = $('#textarea').val()
+		if($('#textarea').val() == ''){
+			alert('请输入要合成的内容')
+		}else{
+			if(bgm.paused){
+				
+				bgm.src = `http://10.110.148.59:8082/lasf/tts?text=${textv}&user=${accountid}`
+				bgm.play();
+				pause.innerHTML = '暂停'
+				pauseImg.src='./images/pause.png'
+			}else{
+				bgm.pause();
+				pause.innerHTML = '播放'
+				pauseImg.src='./images/play.png'
+			}
+		}
+	})
+}
+function setShowLength(obj, maxlength, id) {
+	var rem = maxlength - obj.value.length; 
+	var wid = id; 
+	if (rem < 0){ 
+		rem = 0; 
+	} 
+	document.getElementById(wid).innerHTML = rem; 
+} 
+var arrList = ['前方150米，请在道路尽头左转，进入后厂村路','前面还有27名等候人员排队','两岸猿声啼不住，轻舟已过万重山','白日依山尽，黄河入海流。欲穷千里目，更上一层楼']
+function randomBtn(){
+	var textVal = Math.floor((Math.random()*arrList.length));
+	document.getElementById('textarea').value = arrList[textVal]
+	
+}
+bgm.addEventListener('ended', function () {
+    pause.innerHTML = '播放'
+	pauseImg.src='./images/play.png'
+}, false);
+</script>

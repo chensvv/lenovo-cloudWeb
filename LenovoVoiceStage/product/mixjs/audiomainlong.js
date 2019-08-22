@@ -59,7 +59,7 @@ function updateStatus(status) {
             if (data2.length > 0) {
                 var liidselect = document.getElementById("liid_" + liid);
                 $("#liid_" + liid).text(data2);
-                $("#liid_" + liid).css("color","#74797acc");
+                $("#liid_" + liid).css("color","#000");
 
                 if (s.rawType == 'final') {
                 	$("#liid_" + liid).css("color","#000000");
@@ -134,13 +134,11 @@ function toggleRecording(e) {
         over++;
         audioRecorder.getBuffers(gotBuffers);
         img_btn.src = 'images/Mic-nor.png';
-        
     } else {
     	if (!audioRecorder){
             $("#status").html("此浏览器不能获得麦克风的权限");
             return;
         }
-           
         e.classList.add("recording");
     	buff.length = 0;
     	window.clearInterval(int);
@@ -159,12 +157,11 @@ function toggleRecording(e) {
 	        second=0;
 	        minute=minute+1;
 	      }
-	  
 	      if(minute>=60)
 	      {
 	        minute=0;
 	        hour=hour+1;
-	      }	      
+	      }
 	      document.getElementById('timetext').value=zero(hour)+':'+zero(minute)+':'+zero(second);
 	  
 	    }   	
@@ -176,7 +173,7 @@ function toggleRecording(e) {
             updateStatus(e.data);
             if (over == 1 && worker) {
                 worker.terminate();
-            }           
+            }
         };
         function record() {
             if (!audioRecorder) {
@@ -184,7 +181,7 @@ function toggleRecording(e) {
             }
             audioRecorder.clear();
             audioRecorder.record();
-            setTimeout(send, 450);
+            setTimeout(send, 100);
             function send() {
                 if (over != 1) {
                     audioRecorder.getBuffers(gotBuffers);
@@ -192,7 +189,8 @@ function toggleRecording(e) {
             }
         }
 
-        time1 = setInterval(record, 470);   
+        time1 = setInterval(record, 150);  
+        // window.onload = record() 
         // $(".prompt").css("display","none");
         $('.product-picture .pulse').css("display", "block");
         $('.product-picture .pulse1').css("display", "block");

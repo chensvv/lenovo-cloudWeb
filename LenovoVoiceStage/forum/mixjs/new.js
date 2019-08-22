@@ -31,7 +31,7 @@
 			  	$(".text").val("");
 			  	if(res.dataid){
 						alert("发表成功");
-						window.location.href="../forum/questionlist.html"
+						// window.location.href="../forum/questionlist.html"
 			  	}else{
 			  		alert("账号错误");
 			  	}
