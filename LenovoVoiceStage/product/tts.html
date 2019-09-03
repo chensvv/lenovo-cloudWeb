@@ -79,7 +79,7 @@ window.onload = function(){
 		}else{
 			if(bgm.paused){
 				
-				bgm.src = `http://10.110.148.59:8082/lasf/tts?text=${textv}&user=${accountid}`
+				bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
 				bgm.play();
 				pause.innerHTML = '暂停'
 				pauseImg.src='./images/pause.png'

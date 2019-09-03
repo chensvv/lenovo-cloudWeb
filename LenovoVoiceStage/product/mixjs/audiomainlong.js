@@ -46,6 +46,7 @@ function updateStatus(status) {
 
     try {
         var s = JSON.parse(status);
+        console.log(s.rawType)
         if (s.errorcode === 1) {
             data = s.errormessage
         } else {
@@ -57,9 +58,8 @@ function updateStatus(status) {
                 firstup = false;
             }
             if (data2.length > 0) {
-                var liidselect = document.getElementById("liid_" + liid);
                 $("#liid_" + liid).text(data2);
-                $("#liid_" + liid).css("color","#000");
+                $("#liid_" + liid).css("color","red");
 
                 if (s.rawType == 'final') {
                 	$("#liid_" + liid).css("color","#000000");
@@ -196,7 +196,7 @@ function toggleRecording(e) {
         $('.product-picture .pulse1').css("display", "block");
         var statusP = document.getElementById("status");
         statusP.innerHTML = '请说话';
-        if(statusP.innerHTML = '请说话'){
+        if(statusP.innerHTML == '请说话'){
             document.getElementById("dis_none").style.display = 'none';
             con.classList.add('con_box')
             $('.content_box').css({"padding":"50px 130px"})

@@ -27,7 +27,6 @@ function sendBlob(urlheader,blob, over,lenkey,secrkey) {
             "&spts=0&fpts=0&cpts=0&lrts=0";
         formData.append("param-data", params);
         formData.append("voice-data", new Blob([buf4]));
-        console.log(new Blob([buf4]))
 
         var request = new XMLHttpRequest();
         request.open("POST", URL);
