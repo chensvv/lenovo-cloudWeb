@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
 	<title>联想语音</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
@@ -10,16 +10,15 @@
     <link href="../common/css/head.css?version=1.2" rel="stylesheet"/>
 	<link rel="stylesheet" href="../welcome/css/all.css">
 	<link rel="stylesheet" href="../common/css/animate.min.css">
-    <!-- <script type="text/javascript" src="../common/mixjs/avatar.js"></script> -->
+    <script type="text/javascript" src="../common/mixjs/avatar.js"></script>
     <script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	<script src="mixjs/audiodisplay.js?version=1.2"></script>
-	<script src="mixjs/recorder.js?version=1.2"></script>
 	<script src="../common/mixjs/commurl.js"></script>
-	<script src="mixjs/audiomainlong.js?version=1.4"></script>	
-	<script src="mixjs/commaudio.js"></script>	
+	<script src="mixjs/audiomainlong.js?version=1.4"></script>
+	<script src="./mixjs/recorder.wav.min.js"></script>
 	<script src="../common/mixjs/scroll.js"></script>
+	<script src="./mixjs/axios.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
@@ -48,10 +47,10 @@
 		margin-top: 165px;
 	}
 	#eui-main-footer{
-			position: fixed;
-			bottom: 0;
-			min-width: 1200px;
-		}
+		position: fixed;
+		bottom: 0;
+		min-width: 1200px;
+	}
 </style>
 <body>
 	<div class="dis_flex">
@@ -65,14 +64,10 @@
 				<div class="body-content product-experience">
 					<div class="content-title product-title">产品体验</div>
 						<div class="product-picture" id="banner">
-							<div id="viz">
-								<canvas id="analyser" width="2000" style="display:none;" ></canvas>
-								<canvas id="wavedisplay"></canvas>
-							</div>
 							<div class="voice_button">
-								<div class="realtime-btn"><img id="record" src="images/Mic-nor.png"  onclick="toggleRecording(this);" />
+								<div class="realtime-btn"><img id="record" src="images/Mic-nor.png"  onclick="toggleRecording(this)" />
 								</div>
-								<input type="text" id="timetext" value="00时00分00秒" readonly><br>  
+								<input type="text" id="timetext" value="00时00分00秒" readonly><br>
 								
 							</div>
 							<div class="dis_box">
@@ -83,11 +78,7 @@
 												<span class="arrow_left"></span>
 										</div>
 										<div class="content_font">
-											<p class="prompt">识别结果：</p>
-											<div class="result_box" id="status2">
-												<span class="arrow_right"></span>
-											</div>
-											
+											<p class="prompt">识别结果：<span id="txt-f"></span></p>
 										</div>
 											
 									</div>
@@ -98,7 +89,7 @@
 			</div>
 			
 			<div id="eui-main-footer" class="footer-bgcolor">
-			</div> 
+			</div>
 	</div>
 
 

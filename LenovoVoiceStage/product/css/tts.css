@@ -129,3 +129,8 @@ p{
     border: none;
     outline: none;
 }
+@media screen and (max-width:414px){
+    .content-box {
+        width: 90%;
+    }
+}

@@ -78,7 +78,6 @@ window.onload = function(){
 			alert('请输入要合成的内容')
 		}else{
 			if(bgm.paused){
-				
 				bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
 				bgm.play();
 				pause.innerHTML = '暂停'

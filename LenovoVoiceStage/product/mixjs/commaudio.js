@@ -95,7 +95,7 @@ function toggleMono() {
 }
 
 function gotStream(stream) {
-	var audioContext = new AudioContext();
+    var audioContext = new AudioContext();
     inputPoint = audioContext.createGain();
     // Create an AudioNode from the stream.
     realAudioInput = audioContext.createMediaStreamSource(stream);
