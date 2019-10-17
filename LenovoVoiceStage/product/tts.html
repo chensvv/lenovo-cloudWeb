@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../common/mixjs/scroll.js"></script>
+	<script src="./mixjs/tts.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
@@ -38,7 +39,7 @@
                 </div>
                 <div class="content-btn">
                     <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
-					<audio id="bgMusic" autoplay>
+					<audio id="bgMusic" webkit-playsinline="true" playsinline="true" muted>
 						
 					</audio>
 					<!-- http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg -->
@@ -65,6 +66,8 @@ var pauseImg = document.getElementById('play-img')
 var bgm = document.getElementById('bgMusic');
 var number = document.getElementById('number')
 var accountid = window.localStorage.getItem('accountid');
+var lenkey = window.localStorage.getItem('lenkey');
+var secrkey = window.localStorage.getItem('secrkey');
 
 window.onload = function(){
     $('.play-box').click(function(){
@@ -78,8 +81,24 @@ window.onload = function(){
 			alert('请输入要合成的内容')
 		}else{
 			if(bgm.paused){
-				bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
-				bgm.play();
+				$.ajax({
+					url:`${urlhead}/lasf/tts`,
+					type:'get',
+					header:{
+						'channel': 'cloudasr',
+						'lenovokey':lenkey,
+						'secretkey': secrkey
+					},
+					data:{
+						text:textv,
+						user:accountid
+					},
+					success:function(res){
+						bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
+						bgm.play();
+
+					}
+				})
 				pause.innerHTML = '暂停'
 				pauseImg.src='./images/pause.png'
 			}else{
@@ -108,4 +127,6 @@ bgm.addEventListener('ended', function () {
     pause.innerHTML = '播放'
 	pauseImg.src='./images/play.png'
 }, false);
+
+
 </script>
