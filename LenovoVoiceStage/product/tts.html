@@ -93,19 +93,17 @@ window.onload = function(){
 						user:accountid
 					},
 					success:function(data,status,xhr){
-						console.log(xhr)
-						if(xhr.getResponseHeader('error') == null){
+						if(data.indexOf('error=') == -1){
 							bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
 							bgm.play();
+							pause.innerHTML = '暂停'
+							pauseImg.src='./images/pause.png'
 						}else{
-							document.getElementById('textarea').value = xhr.getResponseHeader('error')
+							document.getElementById('textarea').value = data.split("error=")[1]
 						}
-						
-
 					}
 				})
-				pause.innerHTML = '暂停'
-				pauseImg.src='./images/pause.png'
+				
 			}else{
 				bgm.pause();
 				pause.innerHTML = '播放'
