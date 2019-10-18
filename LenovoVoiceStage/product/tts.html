@@ -39,10 +39,9 @@
                 </div>
                 <div class="content-btn">
                     <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
-					<audio id="bgMusic" webkit-playsinline="true" playsinline="true" muted>
+					<audio id="bgMusic" autoplay>
 						
 					</audio>
-					<!-- http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg -->
                 </div>
             </div>
             
@@ -93,9 +92,15 @@ window.onload = function(){
 						text:textv,
 						user:accountid
 					},
-					success:function(res){
-						bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
-						bgm.play();
+					success:function(data,status,xhr){
+						console.log(xhr)
+						if(xhr.getResponseHeader('error') == null){
+							bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
+							bgm.play();
+						}else{
+							document.getElementById('textarea').value = xhr.getResponseHeader('error')
+						}
+						
 
 					}
 				})
