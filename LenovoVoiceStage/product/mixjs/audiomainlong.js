@@ -4,10 +4,12 @@ $(function () {
 
 var chunkInfo;
 var rec;
-var URL = 'https://voice.lenovo.com/lasf/asr'
+var URL = 'https://voice.lenovo.com/lasf/cloudasr'
 var ixid = new Date().getTime();
 var pidx = 1
 var over = 0
+var flag = true
+var chunkEnd
 var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
@@ -38,16 +40,15 @@ function toggleRecording(e) {
         clearInterval(time1);
         window.clearInterval(int);
         window.clearInterval(timers);
-        rec.stop()
-        window.location.reload();
         over++
+        rec.close()
+        sendEnd()
         $('.product-picture .pulse1').css("display", "none");
         $('.product-picture .pulse').css("display", "none");
         img_btn.src = 'images/Mic-nor.png';
     } else {
         e.classList.add("recording");
         window.clearInterval(int);
-        recd()
         millisecond = hour = minute = second = 0;
         document.getElementById('timetext').value = '00:00:00';
         int = setInterval(timer, 1000);
@@ -68,6 +69,8 @@ function toggleRecording(e) {
         }
         window.clearInterval(timers);
         $(".content_font").css("display", "block");
+        over = 0
+        recd()
         $('.product-picture .pulse').css("display", "block");
         $('.product-picture .pulse1').css("display", "block");
         var statusP = document.getElementById("status");
@@ -125,8 +128,7 @@ function recd() {
                     console.log(res.data.status)
                     if(res.data.errorcode === 1){
                         document.getElementById('txt-f').innerHTML = res.data.errormessage
-                    }else if(res.data.tawType == 'final'){
-                        $('#txt-f').append('')
+                        rec.stop()
                     }else{
                         document.getElementById('txt-f').innerHTML = res.data.rawText
                     }
@@ -134,22 +136,6 @@ function recd() {
             }).catch(function (error) {
                 console.log(error)
             })
-            // var xhr = new XMLHttpRequest();
-            // xhr.open("POST", URL, true)
-            // xhr.onload = function (e) {
-            //     if (xhr.readyState == 4 && xhr.status == 200) {
-            //         var rawTxt = JSON.parse(xhr.responseText);
-            //         console.log(rawTxt.status)
-                    
-            //             document.getElementById('txt-f').innerHTML = rawTxt.rawText
-                    
-            //         // console.log(rawTxt.rawText+'-------'+rawTxt.rawType)
-            //     }
-            // }
-            // xhr.setRequestHeader('channel', 'cloudasr');
-            // xhr.setRequestHeader('lenovokey', lenkey);
-            // xhr.setRequestHeader('secretkey', secrkey);
-            // xhr.send(data)
             
         }
     });
@@ -193,4 +179,27 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
             }
         }
     });
+}
+
+function sendEnd(){
+    var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
+        "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
+        "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
+        "&rsts=0" +
+        "&spts=0&fpts=0&cpts=0&lrts=0"
+        var data = new FormData()
+            data.append("param-data", params);
+            data.append("voice-data", new Blob([chunkInfo.data]));
+            axios.post(URL, data,{
+                headers:{
+                    'channel': 'cloudasr',
+                    'lenovokey':lenkey,
+                    'secretkey': secrkey
+                }
+            }).then(function (res) {
+                    
+                    
+            }).catch(function (error) {
+                console.log(error)
+            })
 }

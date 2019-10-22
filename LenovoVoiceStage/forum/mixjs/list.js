@@ -68,7 +68,7 @@
 				var num=res.datalist;
 			var sortime=num.sort(function (a, b) { return new Date(b.createTime).getTime() - new Date(a.createTime).getTime() });
 		  	total=res.total;
-		   var str = "";
+			 var str = "";
 		   $.each(res.datalist, function(idx,val) {
 		   	var nowtime = formatDateTime(val.createTime);
 		   	var replytime = formatDateTime(val.lastUpdateTime);

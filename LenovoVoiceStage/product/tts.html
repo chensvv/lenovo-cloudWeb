@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../common/mixjs/scroll.js"></script>
 	<script src="./mixjs/tts.js"></script>
+	<script src="./mixjs/axios.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
@@ -81,7 +82,7 @@ window.onload = function(){
 		}else{
 			if(bgm.paused){
 				$.ajax({
-					url:`${urlhead}/lasf/tts`,
+					url:`https://voice.lenovomm.com/lasf/cloudtts`,
 					type:'get',
 					header:{
 						'channel': 'cloudasr',
@@ -93,17 +94,20 @@ window.onload = function(){
 						user:accountid
 					},
 					success:function(data,status,xhr){
+						console.log(data)
 						if(data.indexOf('error=') == -1){
-							bgm.src = `${urlhead}/lasf/tts?text=${textv}&user=${accountid}`
+							bgm.src = `https://voice.lenovomm.com/lasf/cloudtts?text=${textv}&user=${accountid}`
 							bgm.play();
 							pause.innerHTML = '暂停'
 							pauseImg.src='./images/pause.png'
 						}else{
 							document.getElementById('textarea').value = data.split("error=")[1]
 						}
+					},
+					error:function(e){
+						console.log(e)
 					}
 				})
-				
 			}else{
 				bgm.pause();
 				pause.innerHTML = '播放'

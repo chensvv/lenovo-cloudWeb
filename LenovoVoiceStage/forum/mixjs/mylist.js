@@ -48,8 +48,11 @@ $(function(){
 		  	
 		  	var num=res.datalist;
 			var sortime=num.sort(function (a, b) { return new Date(b.createTime).getTime() - new Date(a.createTime).getTime() });
-		   var str = "";
+			 var str = "";
+			 console.log(res)
 		   $.each(res.datalist, function(idx,val) {
+
+				 
 			   	var nowtime = formatDateTime(val.createTime);
 			   	var replytime = formatDateTime(val.lastUpdateTime);
 			   	if(val.accountName==Username){
