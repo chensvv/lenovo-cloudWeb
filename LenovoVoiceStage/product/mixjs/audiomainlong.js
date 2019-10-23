@@ -126,7 +126,7 @@ function recd() {
                 }
             }).then(function (res) {
                     console.log(res.data.status)
-                    if(res.data.errorcode === 1){
+                    if(res.data.errormessage != ''){
                         document.getElementById('txt-f').innerHTML = res.data.errormessage
                         rec.stop()
                     }else{

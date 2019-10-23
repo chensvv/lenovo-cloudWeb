@@ -84,6 +84,7 @@
             },  
             data:{"username":Username,"lenovoid":accountid},
 			success:function(data){
+				console.log(data)
 				$('.val1').html(data.lenovokey);
 				$('.val2').html(data.secretkey);
 				$('.val3').html(data.totalAmount);

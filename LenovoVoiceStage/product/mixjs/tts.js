@@ -15,6 +15,7 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
                     'status': 'error'
                 };
             if (data.status == 'success') {
+                console.log(data)
                 window.localStorage.setItem('secretkey', data.secretkey);
                 window.localStorage.setItem('accountid', data.AccountID);
                 window.localStorage.setItem('lenovoname', data.name);

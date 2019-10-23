@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./mixjs/axios.min.js"></script>
+    <script src="https://loringheart.github.io/pcm_to_wav/pcm_to_wav.js"></script>
+    <script>
+        axios.get('https://voice.lenovomm.com/lasf/cloudtts',{
+            params:{
+                text:'我是老实人',
+                user:'10140802691'
+            },
+            headers:{
+                'channel': 'cloudasr',
+                'lenovokey':'LENOVO-VOICE-25c705e83m8865da1l7ac6d',
+                'secretkey': '266AC5CAC135A2221A0D8D9CBC896F4F',
+                'content-type': 'application/x-www-form-urlencoded'
+            }
+        }).then(res=>{
+            console.log(res.data)
+            pcm_wav(res.data,'11025','16','1');
+        })
+    </script>
+</body>
+</html>

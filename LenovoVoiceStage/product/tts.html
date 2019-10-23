@@ -40,7 +40,7 @@
                 </div>
                 <div class="content-btn">
                     <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
-					<audio id="bgMusic" autoplay>
+					<audio id="bgMusic" autoplay controls>
 						
 					</audio>
                 </div>
@@ -82,21 +82,25 @@ window.onload = function(){
 		}else{
 			if(bgm.paused){
 				$.ajax({
-					url:`https://voice.lenovomm.com/lasf/cloudtts`,
+					url:`https://voice.lenovo.com/lasf/cloudtts`,
 					type:'get',
-					header:{
+					headers:{
 						'channel': 'cloudasr',
 						'lenovokey':lenkey,
-						'secretkey': secrkey
+						'secretkey': secrkey,
+						'content-type': 'application/x-www-form-urlencoded'
+						
 					},
+					// contentType:'text/xml; charset=utf-8',
 					data:{
 						text:textv,
 						user:accountid
 					},
 					success:function(data,status,xhr){
-						console.log(data)
+						console.log(data.arrayBuffer())
 						if(data.indexOf('error=') == -1){
-							bgm.src = `https://voice.lenovomm.com/lasf/cloudtts?text=${textv}&user=${accountid}`
+							var blob = new Blob([data],{type:'audio/wav'})
+							bgm.src = window.URL.createObjectURL(blob)
 							bgm.play();
 							pause.innerHTML = '暂停'
 							pauseImg.src='./images/pause.png'
@@ -108,6 +112,28 @@ window.onload = function(){
 						console.log(e)
 					}
 				})
+				// axios.get('https://voice.lenovo.com/lasf/cloudtts',{
+				// 	params:{
+				// 		text:textv,
+				// 		user:accountid
+				// 	},
+				// 	headers:{
+				// 		'channel': 'cloudasr',
+				// 		'lenovokey':lenkey,
+				// 		'secretkey': secrkey,
+				// 		'content-type': 'application/x-www-form-urlencoded'
+				// 	}
+				// }).then(res=>{
+				// 	console.log(res.data)
+				// 	if(res.data.indexOf('error=') == -1){
+				// 			bgm.src = `https://voice.lenovo.com/lasf/cloudtts?text=${textv}&user=${accountid}`
+				// 			bgm.play();
+				// 			pause.innerHTML = '暂停'
+				// 			pauseImg.src='./images/pause.png'
+				// 		}else{
+				// 			document.getElementById('textarea').value = res.data.split("error=")[1]
+				// 		}
+				// })
 			}else{
 				bgm.pause();
 				pause.innerHTML = '播放'
