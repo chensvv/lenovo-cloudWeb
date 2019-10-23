@@ -15,7 +15,6 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
                 'status': 'error'
             };
             if (data.status == 'success') {
-                console.log(data)
                 document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
                 window.localStorage.setItem('secretkey',data.secretkey);
                 window.localStorage.setItem('accountid',data.AccountID);
@@ -29,9 +28,8 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
                     },  
                     data:{"username":data.Username,"lenovoid":data.AccountID},
                     success:function(data){
-                        console.log(data)
-                        window.localStorage.setItem('lenkey',data.lenovokey);	
-                        
+                        window.localStorage.setItem('lenkey',data.lenovokey);
+                        window.localStorage.setItem('secrkey',data.secretkey);
                     }
                     
                 });

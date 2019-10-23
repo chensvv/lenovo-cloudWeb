@@ -114,7 +114,7 @@ function recd() {
                 "&rsts=0" +
                 "&spts=0&fpts=0&cpts=0&lrts=0";
             // var blob = new Blob([buf4])
-            
+            console.log()
             var data = new FormData()
             data.append("param-data", params);
             data.append("voice-data", new Blob([buf4]));
@@ -125,10 +125,10 @@ function recd() {
                     'secretkey': secrkey
                 }
             }).then(function (res) {
-                    console.log(res.data.status)
-                    if(res.data.errormessage != ''){
+                    if(typeof(res.data.errormessage) == "string"){
                         document.getElementById('txt-f').innerHTML = res.data.errormessage
                         rec.stop()
+                        window.clearInterval(int)
                     }else{
                         document.getElementById('txt-f').innerHTML = res.data.rawText
                     }
