@@ -114,7 +114,6 @@ function recd() {
                 "&rsts=0" +
                 "&spts=0&fpts=0&cpts=0&lrts=0";
             // var blob = new Blob([buf4])
-            console.log()
             var data = new FormData()
             data.append("param-data", params);
             data.append("voice-data", new Blob([buf4]));
