@@ -87,22 +87,12 @@ var secrkey = window.localStorage.getItem('secrkey');
 				req.responseType = "arraybuffer";   // needs to be specific type to work
 				req.overrideMimeType('text/xml; charset = utf-8')
 				req.onload = function() {
-					
-					// if(this.status!=200){
-					//     throw "pcm文件不存在/文件格式错误！";
-					//     return;
-					// }
 					//根据pcm文件 填写 sampleRateTmp【采样率】（11025） 和sampleBits【采样精度】（16） channelCount【声道】（单声道1，双声道2）
 					var fileResult = addWavHeader(req.response,11025,16,1);
 					var blob = new Blob([fileResult], {type:'autio/wav'});
 					console.log(blob)
 					bgm.src = URL.createObjectURL(blob);
-					// if (callback) {
-					//     callback(src);
-					// }
 					bgm.play();
-					
-					
 				};
 				req.send(null);
 				
