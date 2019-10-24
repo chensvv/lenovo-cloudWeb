@@ -359,11 +359,10 @@
         background-position-y: center;
     }
     .mobile_border{
-        border-bottom: 1px solid rgba(229, 229, 229, 1);
         border-top: 1px solid rgba(160, 215, 143, .4);
     }
     .mobile_border2{
-        border-bottom: 1px solid rgba(229, 229, 229, 1);
+        border-top: 1px solid rgba(160, 215, 143, .4);
     }
     .navbar-nav .open .dropdown-menu>li>a{
         padding: 7px 0px 7px 45px;
