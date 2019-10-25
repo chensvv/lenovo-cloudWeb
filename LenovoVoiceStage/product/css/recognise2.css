@@ -204,7 +204,10 @@ p{
 	box-shadow: 1px 1px 40px #3399ff;
 	/* 阴影效果 */
 }
-
+.prompt{
+	height: 100%;
+	overflow-y: scroll;
+}
 @media screen and (max-width:414px){
 	.product-picture .realtime-btn .pulse {
 	width: 100px;

@@ -24,7 +24,6 @@ var hour, minute, second; //时 分 秒
 hour = minute = second = 0; //初始化
 var millisecond = 0; //毫秒
 var int;
-
 function toggleRecording(e) {
     $('#record').attr('src', './images/Mic-act.png')
     var con = document.getElementsByClassName('content_box')[0]
@@ -83,6 +82,13 @@ function toggleRecording(e) {
             })
             $('.arrow_right').css("display", "none")
         }
+        setInterval(function(){
+            var ph = $('.prompt').height()
+            var th = $('#txt-f').height()
+            if(th >=ph){
+                $('.prompt').scrollTop(9999999)
+            }
+        }, 250)
     }
 }
 
@@ -202,3 +208,7 @@ function sendEnd(){
                 console.log(error)
             })
 }
+
+
+
+        

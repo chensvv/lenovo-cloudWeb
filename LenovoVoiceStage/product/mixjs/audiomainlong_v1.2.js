@@ -111,6 +111,7 @@ var hour,minute,second;//时 分 秒
 	hour=minute=second=0;//初始化
 var millisecond=0;//毫秒
 var int;
+
 function toggleRecording(e) {
     $('#record').attr('src','./images/Mic-act.png')
     var con = document.getElementsByClassName('content_box')[0]
