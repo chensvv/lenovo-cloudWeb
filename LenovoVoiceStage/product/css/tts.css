@@ -10,7 +10,8 @@ p{
 .dis_flex{
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+    height: 100%;
+    position: relative;
 }
 .nav-title{
 	height:200px;
@@ -37,8 +38,7 @@ p{
 }
 .eui-main-body {
 	width: 100%;
-	height: 70%;
-	padding-bottom: 40px;
+    padding-bottom: 40px;
 }
 .content-title{
     padding: 20px 0;
@@ -46,7 +46,7 @@ p{
     text-align: center;
 }
 .content-box{
-    width: 650px;
+    width: 60%;
     margin: 0 auto;
 }
 .content-top{
@@ -87,7 +87,7 @@ p{
 .content-btn{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     padding-top: 35px;
 }
 .down-btn{
@@ -118,6 +118,7 @@ p{
     font-size: 24px;
     color: #fff;
     cursor: pointer;
+    margin: 0 auto;
 }
 .play-box img{
     width: 14px;
@@ -132,5 +133,40 @@ p{
 @media screen and (max-width:414px){
     .content-box {
         width: 90%;
+    }
+    .content-title {
+        padding: 10px 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .hint {
+        font-size: 16px;
+    }
+    .rand-btn {
+        font-size: 14px;
+    }
+    .text-box {
+        padding: 15px 20px 10px;
+    }
+    .hint-num {
+        font-size: 16px;
+    }
+    .content-btn {
+        padding-top: 1rem;
+    }
+    .nav-title{
+        height: 150px;
+    }
+    .recognise_title{
+        font-size: 25px;
+    }
+    .eui-main-body{
+        padding-bottom: 0;
+    }
+}
+@media screen and (max-height:568px){
+    .content-text {
+        height: auto;
+        min-height: 150px;
     }
 }

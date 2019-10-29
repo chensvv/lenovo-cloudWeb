@@ -21,6 +21,11 @@
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
 <style>
+	#eui-main-footer{
+		position: absolute;
+		bottom: 0;
+		min-width: 1200px;
+	}
 </style>
 <body>
 	<div class="dis_flex">
@@ -40,8 +45,8 @@
                 </div>
                 <div class="content-btn">
                     <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
-					<audio id="bgMusic" autoplay>
-						
+					<audio id="bgMusic">
+							您的浏览器不支持 audio 标签。
 					</audio>
                 </div>
             </div>
@@ -59,17 +64,24 @@
 </html>
 <script>
 $(function () {
-    loadTop("product");   
+	loadTop("product");
 });
 var pause = document.getElementById('play-btn')
 var pauseImg = document.getElementById('play-img')
 var bgm = document.getElementById('bgMusic');
 var number = document.getElementById('number')
+var textv
 var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
+var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+if(!user){
+    $('html,body').css({"min-width":"1200px"})
+	$('html,body').css({"min-height":"685px"})
+}
+
     $('.play-box').click(function(){
-		var textv = $('#textarea').val()
+		textv = $('#textarea').val()
 		if (accountid == "" || accountid == null || accountid.length == 0) {
 			if(confirm("请先登录")){
 				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
@@ -78,31 +90,10 @@ var secrkey = window.localStorage.getItem('secrkey');
 		}else if(textv == ''){
 			alert('请输入要合成的内容')
 		}else{
-			if(bgm.paused){
-				var req = new XMLHttpRequest();
-				req.open("GET", `https://voice.lenovo.com/lasf/cloudtts?text=${textv}&user=${accountid}`, true); // grab our audio file
-				req.setRequestHeader('channel','cloudasr')
-				req.setRequestHeader('lenovokey',lenkey)
-				req.setRequestHeader('secretkey',secrkey)
-				req.responseType = "arraybuffer";   // needs to be specific type to work
-				req.overrideMimeType('text/xml; charset = utf-8')
-				req.onload = function() {
-					//根据pcm文件 填写 sampleRateTmp【采样率】（11025） 和sampleBits【采样精度】（16） channelCount【声道】（单声道1，双声道2）
-					var fileResult = addWavHeader(req.response,11025,16,1);
-					var blob = new Blob([fileResult], {type:'autio/wav'});
-					bgm.src = URL.createObjectURL(blob);
-					bgm.play();
-				};
-				req.send(null);
-				
-			}else{
-				bgm.pause();
-				pause.innerHTML = '播放'
-				pauseImg.src='./images/play.png'
-			}
+			XMLhttp()
 		}
 	})
-
+	
 function setShowLength(obj, maxlength, id) {
 	var rem = maxlength - obj.value.length; 
 	var wid = id; 
@@ -123,13 +114,19 @@ bgm.addEventListener('ended', function () {
 }, false);
 
 bgm.addEventListener('waiting', function () {
-    pause.innerHTML = '加载中...'
-	pauseImg.src=''
+    pause.innerHTML = '暂停'
+	pauseImg.src='./images/pause.png'
 }, false);
 
 bgm.addEventListener('playing', function () {
     pause.innerHTML = '暂停'
 	pauseImg.src='./images/pause.png'
+}, false);
+bgm.addEventListener('error', function () {
+	console.log(bgm.error)
+    if(bgm.error.code == 1 || bgm.error.code == 2 || bgm.error.code == 3 || bgm.error.code == 4){
+		$('#textarea').val('此浏览器不支持音频播放')
+	}
 }, false);
 
 var addWavHeader = function(samples,sampleRateTmp,sampleBits,channelCount){
@@ -195,4 +192,21 @@ var addWavHeader = function(samples,sampleRateTmp,sampleBits,channelCount){
     }
     return view.buffer;
 }
-</script>
+function XMLhttp(){
+    var req = new XMLHttpRequest();
+    req.open("GET", `https://voice.lenovo.com/lasf/cloudtts?text=${textv}&user=${accountid}`, true); // grab our audio file
+    req.setRequestHeader('channel','cloudasr')
+    req.setRequestHeader('lenovokey',lenkey)
+    req.setRequestHeader('secretkey',secrkey)
+    req.responseType = "arraybuffer";   // needs to be specific type to work
+    req.overrideMimeType('text/xml; charset = utf-8')
+    req.onload = function() {
+        //根据pcm文件 填写 sampleRateTmp【采样率】（11025） 和sampleBits【采样精度】（16） channelCount【声道】（单声道1，双声道2）
+        var fileResult = addWavHeader(req.response,11025,16,1);
+        var blob = new Blob([fileResult], {type:'autio/wav'});
+        bgm.src = URL.createObjectURL(blob);
+        bgm.play();
+    };
+    req.send(null);
+}
+</script>                                       

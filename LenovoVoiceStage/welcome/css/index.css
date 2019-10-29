@@ -575,7 +575,7 @@ p{margin: 0}
 	.box_anim0 .left_img_div{
 		left: auto;
 		top: auto;
-		bottom: 42px;
+		bottom: 0px;
 		right: 52px;
 		height: 48%;
 		width: 664px;
@@ -605,7 +605,6 @@ p{margin: 0}
 		right: auto;
 		top: -180px;
 		text-align: center;
-		display: block;
 	}
 	.box_anim1 .right_img_title{
 		font-size: 16px;
