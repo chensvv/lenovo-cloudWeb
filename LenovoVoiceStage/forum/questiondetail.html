@@ -6,20 +6,20 @@
 	<meta http-equiv="Access-Control-Allow-Origin" content="*">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
 	<title></title>
-	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
 	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="css/questiondetail.css" />
-	
+
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.1"></script>
 	<script src="../common/mixjs/commurl.js"></script>
 	<script src="../product/mixjs/tts.js"></script>
 	<script type="text/javascript" src="./mixjs/detail.js"></script>
+	<script src="./mixjs/vue.js"></script>
+    <script src="../product/mixjs/axios.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-	<script type="text/javascript"
-		src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 	
 	
 	
@@ -27,6 +27,7 @@
 <style>
 	.del {
 		cursor: pointer;
+		padding-right: 20px;
 	}
 	.navbar {
 		background: linear-gradient(to right, #bbe260, #d9d34d);
@@ -40,99 +41,89 @@
 </style>
 
 <body>
-	<div class="posi_top">
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
-		<div class="posi_nav"><span class="posi_title"></span> <button class="qu_btn top_btn">快速回复</button></div>
-		<div class="mobile_div">
-			<span class="back_arrows"></span>
-			<span class="title_arrows"></span>
-		</div>
+	<div id="app">
+			<div class="posi_top">
+					<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+					<div class="posi_nav"><span class="posi_title"></span> <button class="qu_btn top_btn">快速回复</button></div>
+					<div class="mobile_div">
+						<span class="back_arrows"></span>
+						<span class="title_arrows"></span>
+					</div>
+				</div>
+			
+			
+			
+				<div class="newcontent">
+					<div class="qu_div"><button class="qu_btn mobile_btn">快速回复</button></div>
+					<h2 class="htitle"></h2>
+					<p class="autime">
+						<span class="newauthor padd_right">创作人</span>
+						<span>发布于：</span><span class="newtime padd_right"></span>
+						<span>浏览：</span><span>0</span>
+						<span>回复：</span><span class="reply_length">0</span>
+					</p>
+					<!-- 帖子内容区 -->
+					<div class="cont">
+						<!-- 帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容<br />
+						帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容 -->
+						 
+					</div>
+					<!-- 回复内容区 -->
+					<div class="comment-list" id="aa"></div>
+					<!-- 快速回复框 -->
+					<div class="commentbox">
+						<textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+						<button class="qu_sub_btn" id="comment">提交回复</button>
+					</div>
+				</div>
+			
+			
+				<div id="eui-main-footer" class="footer-bgcolor"></div>
 	</div>
-
-
-
-	<div class="newcontent">
-		<div class="qu_div"><button class="qu_btn mobile_btn">快速回复</button></div>
-		<h2 class="htitle"></h2>
-		<p class="autime">
-			<span class="newauthor padd_right">创作人</span>
-			<span>发布于：</span><span class="newtime padd_right"></span>
-			<span>浏览：</span><span>0</span>
-			<span>回复：</span><span class="reply_length">0</span>
-		</p>
-		<!-- 帖子内容区 -->
-		<div class="cont">
-			<!-- 帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容<br />
-			帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容 -->
-			 
-		</div>
-		<!-- 回复内容区 -->
-		<div class="comment-list" id="aa"></div>
-		<!-- 快速回复框 -->
-		<div class="commentbox">
-			<textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
-			<button class="qu_sub_btn" id="comment">提交回复</button>
-		</div>
-	</div>
-
-
-	<div id="eui-main-footer" class="footer-bgcolor"></div>
+	
 </body>
 
 </html>
 <script>
-	if($(".mytextarea").val()==""){
-		$('#comment').attr('disabled','disabled');
-		$('#comment').addClass('No_send')
-	}
-    $('.mytextarea').on("input propertychange" ,function(){
-        if($(".mytextarea").val()!=""){
-                $("#comment").removeAttr("disabled");
-                $('#comment').removeClass('No_send')
-			}else{
-                $('#comment').attr('disabled','disabled');
-                $('#comment').addClass('No_send')
-            }
-    })
-
-	$(".qu_btn").click(function () {
-		$('html,body').animate({
-			scrollTop: $('#eui-main-footer').offset().top
-		});
-	});
-	$('.back_arrows').click(function(){
-		history.back(-1)
-	})
-	$(function () {
-		var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-		if(user){
-			$('.mobile_div').css({"display":"block"})
-			$(".navbar").css({"display": "none"})
-			$(".posi_nav").css({"display": "none"});
-		}else{
-			$('.qu_btn').removeClass('mobile_btn')
-			$('.mobile_div').css({"display":"none"})
-		}
-		
-		$(window).scroll(function () {
-		// 滚动条距离顶部的距离 大于 100px时
-		if ($(window).scrollTop() >= 100) {
-			$(".navbar").css({"display": "none"})
-			if(!user){
-				$(".posi_nav").css({"display": "flex"});
-			}
-			
-		} else {
-			if(user){
-				$(".navbar").css({"display": "none"})
-				$(".mobile_div").css({"display": "block"});
-			}else{
-				$(".navbar").css({"display": "block"})
-			}
-			$(".posi_nav").css({"display": "none"});
-		}
-	})
-	
-})
+	// new Vue({
+	// 	el:'#app',
+	// 	data:{
+	// 		detail:[],
+	// 		articleid:"",
+	// 		Username:"",
+    //         accountid:"",
+    //         lenkey:"",
+    //         secrkey:"",
+	// 	},
+	// 	created(){
+	// 		this.articleid = this.getUrlParam('article')
+	// 		this.Username = window.localStorage.getItem('Username');
+    //         this.accountid = window.localStorage.getItem('accountid');
+    //         this.lenkey = window.localStorage.getItem('lenkey');
+	// 		this.secrkey = window.localStorage.getItem('secrkey');
+	// 		this.getDetail()
+	// 	},
+	// 	methods:{
+	// 		getUrlParam(name) {
+	// 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	// 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	// 			if (r != null) return unescape(r[2]); return null; //返回参数值
+	// 		},
+	// 		getDetail(){
+	// 			var params={
+	// 				articleid:this.articleid
+	// 			}
+	// 			axios.post('http://10.110.148.59:8080/lasf/forum/detail',params,{
+	// 				headers:{
+	// 					'channel': 'cloudasr',
+	// 					'lenovokey':this.lenkey,
+	// 					'secretkey': this.secrkey
+	// 				}
+	// 			}).then(res=>{
+	// 				console.log(res)
+	// 			})
+	// 		}
+	// 	}
+	// })
 
 </script>

@@ -1,10 +1,67 @@
 	$(function(){
-        loadTop("information");
+		loadTop("information");
+
+		var Username = window.localStorage.getItem('Username');
+		var lenkey = window.localStorage.getItem('lenkey');
+		var secrkey = window.localStorage.getItem('secrkey');
+		if($(".mytextarea").val()==""){
+			$('#comment').attr('disabled','disabled');
+			$('#comment').addClass('No_send')
+		}
+		$('.mytextarea').on("input propertychange" ,function(){
+			if($(".mytextarea").val()!=""){
+					$("#comment").removeAttr("disabled");
+					$('#comment').removeClass('No_send')
+				}else{
+					$('#comment').attr('disabled','disabled');
+					$('#comment').addClass('No_send')
+				}
+		})
+	
+		$(".qu_btn").click(function () {
+			$('html,body').animate({
+				scrollTop: $('#eui-main-footer').offset().top
+			});
+		});
+		$('.back_arrows').click(function(){
+			history.back(-1)
+		})
+		$(function () {
+			var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+			if(user){
+				$('.mobile_div').css({"display":"block"})
+				$(".navbar").css({"display": "none"})
+				$(".posi_nav").css({"display": "none"});
+			}else{
+				$('.qu_btn').removeClass('mobile_btn')
+				$('.mobile_div').css({"display":"none"})
+			}
+			
+			$(window).scroll(function () {
+			// 滚动条距离顶部的距离 大于 100px时
+			if ($(window).scrollTop() >= 100) {
+				$(".navbar").css({"display": "none"})
+				if(!user){
+					$(".posi_nav").css({"display": "flex"});
+				}
+				
+			} else {
+				if(user){
+					$(".navbar").css({"display": "none"})
+					$(".mobile_div").css({"display": "block"});
+				}else{
+					$(".navbar").css({"display": "block"})
+				}
+				$(".posi_nav").css({"display": "none"});
+			}
+		})
+		
+	})
 		function content(){
 			    
                 $.ajax({
 				  type:"POST",
-				  url:urlhead+"/lasf/forum/detail",
+				  url:"http://10.110.148.59:8082/lasf/forum/detail",
 				  dataType:"json",
 				  headers: {
 						"channel" : "cloudasr",
@@ -20,27 +77,24 @@
 						 var el="";
 						var arr = document.getElementsByClassName('comment-info').length+1;
 	                    if(val.commentLevel == 1){
-							// var arr = idx;
-							// console.log(arr)
 	                            var nowtime = formatDateTime(val.createTime);
-	                            el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>最后由"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span><span>回复于"+nowtime+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
-			                    el += "<p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-del'>";			
-			                    el +=  "</div><div class='col-update'>"
+	                            el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
+			                    el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
+								el +=  "</div><div class='col-update'>"
 			                    if(Username == val.accountName){
 			                    	el += "<span class='del'>删除</span>"
 			                    }else{
-			                    	
-			                    }
-			                    
-			                    el += "<span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
+
+								}
+			                    el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
 						     
-	                    }else  if(val.commentLevel == 2){             	                   		
-								 el += "<div class='reply'><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
+	                    }else if(val.commentLevel == 2){
+								 el += "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
 								 if(Username == val.accountName){
 			                    	el += "<span class='delchild'>删除</span>"
 			                     }else{
-			                    	
-			                     }
+
+								 }
 								 
 								 el += "</p></div>";
 						                       
@@ -53,7 +107,7 @@
 							}
 						});
 						var accountid = window.localStorage.getItem('accountid');
-						$(".comment-list").find(".del").unbind().click(function(){
+						$(".comment-list").find(".del").unbind().click(function(e){
 							
 						    if (accountid=="" || accountid==null||accountid.length == 0) {
 						        if(confirm("登陆后才能删除！")){
@@ -64,12 +118,13 @@
 									return;
 								}
 						    }
-							var valid = $(this).parent().parent().parent().parent().find(".valid").text();
+							var valid = $(this).parent().parent().parent().parent().find(".valid").text()
+							console.log('valid:'+valid)
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:urlhead+"/lasf/forum/delete",
-									data:{"dataid":valid,"accountname":Username},
+									url:'http://10.110.148.59:8082/lasf/forum/delete',
+									data:{"dataid":valid,"accountname":Username},              
 									headers: {
 										"channel" : "cloudasr",
 										"lenovokey" : lenkey,
@@ -96,7 +151,7 @@
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:urlhead+"/lasf/forum/delete",
+									url:"http://10.110.148.59:8082/lasf/forum/delete",
 									data:{"dataid":keyid,"accountname":Username},
 									headers: {
 										"channel" : "cloudasr",
@@ -111,9 +166,6 @@
 								return;
 							}
 						});
-						
-	
-					
 				   });
 	
 				  }
@@ -121,9 +173,7 @@
 		}
 		
 		
-		var Username = window.localStorage.getItem('Username');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
+		
 		//二级评论
 		function replyClick(el){
 			var accountid = window.localStorage.getItem('accountid');
@@ -140,12 +190,13 @@
 			var content = $(this).prev().val();
 			if(content != ""){
 				var tit=$(".htitle").text();
-	            var $content = $(this).parent().find(".mytextarea").val();
+				var $content = $(".comment_textarea").val();
 				var parentEl = $(this).parent().parent().parent().parent();
 				var pid=parentEl.find(".pid").html();
+				console.log(pid)
 				$.ajax({
 					type:"POST",
-					url:urlhead+"/lasf/forum/add?"+"datatype="+1,
+					url:`http://10.110.148.59:8082/lasf/forum/add?datatype=1`,
 				    dataType:'json',
 				    data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":pid},
 				    headers: {
@@ -202,12 +253,10 @@
 				window.location.href="./reply.html?article="+id;
 			})
 		}
-		
-		// console.log(id)
 		//文章展示
 		$.ajax({
 			type:'POST',
-			url:urlhead+'/lasf/forum/detail',
+			url:'http:10.110.148.59:8082/lasf/forum/detail',
 			dataType:'json',
 			data:{"articleid":id},
 			headers: {
@@ -259,11 +308,11 @@
 			var tit=$(".htitle").text();
 			var tit2 = $('.reply_arrows').text()
 			var $content = $("#content").val();
+			console.log(id)
 			$.ajax({
 				type:'POST',
-				url:urlhead+"/lasf/forum/add?"+"datatype="+1,
+				url:`http://10.110.148.59:8082/lasf/forum/add?datatype=1&title=${tit || tit2}&content=${$content}&accountname=${Username}&articleid=${id}&parentid=0`,
 				dataType:'json',
-				data:{"title":tit || tit2,"content":$content,"accountname":Username,"articleid":id,"parentid":0},
 				headers: {
 					"channel" : "cloudasr",
 					"lenovokey" : lenkey,
@@ -274,8 +323,6 @@
 				   $(".comment-list").html(" ");
 				   //一级评论展示
 					content();
-
-
 				}
 			})
 		});

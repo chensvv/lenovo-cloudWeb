@@ -232,17 +232,18 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			input.style.width='37px';
 			input.style.textAlign='center';
 			input.style.marginRight='5px';
-			input.style.outlineColor='#eefcd0';
+			input.style.outlineColor='none';
+			input.style.outline='none';
 			input.style.verticalAlign='middle';
 			input.setAttribute('type','text');
 			input.setAttribute('value',curPage);
 			var button = document.createElement('button'),
 				label = document.createElement('label'),
 				jumpDiv = document.createElement('div');
-			button.style.border='1px solid #ddd';
+			button.style.border='none';
 			button.style.verticalAlign='middle';
-			button.style.height='30px';
-			button.style.lineHeight='30px';
+			button.style.height='28px';
+			button.style.lineHeight='26px';
 			button.style.backgroundColor='#fafafa';
 			button.style.color='#333';
 			button.style.outline='none';
@@ -271,7 +272,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			});
 			hover(page);
 			button.onmouseover=function(){
-				button.style.color='#eefcd0';	
+				button.style.color='#8ac18a';	
 			};
 			button.onmouseout=function(){
 				button.style.color='#333';	
@@ -315,8 +316,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		page.onmouseover=function(e){
 			if(e.target.nodeName.toLocaleLowerCase()=='a'
 				&&!hasClass(e.target.parentNode,'active')&&!hasClass(e.target.parentNode,'no-active')){
-				e.target.style.color='#eefcd0';
-				e.target.style.backgroundColor='#333';
+				e.target.style.color='#8ac18a';
 			}
 		};
 		//cm add
@@ -448,11 +448,11 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			tempLi.childNodes[0].style.backgroundColor='#fafafa';
 			tempLi.firstElementChild.style.color = '#333';
 			if(tempLi.className == 'active'){
-				tempLi.childNodes[0].style.backgroundColor = '#eefcd0';
-				tempLi.childNodes[0].style.color='#333';
+				// tempLi.childNodes[0].style.backgroundColor = '#eefcd0';
+				tempLi.childNodes[0].style.color='#8ac18a';
 			}
-			tempLi.childNodes[0].style.border = '1px solid #ddd';
-			tempLi.childNodes[0].style.marginLeft = '-1px';
+			// tempLi.childNodes[0].style.border = '1px solid #ddd';
+			tempLi.childNodes[0].style.marginLeft = '3px';
 			tempLi.firstElementChild.style.textDecoration = 'none';
 			
 		}

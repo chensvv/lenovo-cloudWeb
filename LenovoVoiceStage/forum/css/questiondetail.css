@@ -141,7 +141,7 @@ p{
 	}
 	.comment-list .comment-info{
 		border-bottom: 1px solid #009944;
-		padding: 25px 10px;
+		padding: 20px 10px 10px;
 	}
 	.comment-list .comment-info header{
 		width: 10%;
@@ -203,21 +203,21 @@ p{
 .comment-right .content{
 	margin: 0;
 }
-.comment-right .comment-content-footer .del{
+/* .comment-right .comment-content-footer .del{
 	display: none;
 }
 .comment-right:hover .del{
 	display: inline-block;
-}
+} */
 .comment-list .reply{
 	padding: 5px 60px;
 }
-.comment-list .reply .delchild{
+/* .comment-list .reply .delchild{
 	display: none;
 }
 .comment-list .reply:hover .delchild{
     	display: block;
-}
+} */
 .comment-list .reply p{
 	margin: 0;
 	color: #636a6b;
@@ -250,6 +250,9 @@ p{
 }
 .comment-content-header i{
 	margin-right: 5px;
+}
+.reply-time{
+	float: left;
 }
 @media screen and (max-width:414px){
 	.posi_top{

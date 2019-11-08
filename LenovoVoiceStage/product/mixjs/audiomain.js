@@ -47,7 +47,7 @@ function sendBlob(blob) {
     reader.readAsArrayBuffer(blob, 'utf-8');
     reader.onload = function (e) {
         var buf = new Uint16Array(reader.result);
-        var buf2=[]; 
+        var buf2=[];
         Object.assign(buf2,buf);
         buf2.unshift(5,0,0,0);
         var buf4=new Uint16Array(buf2);

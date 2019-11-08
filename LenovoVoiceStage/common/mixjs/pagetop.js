@@ -180,7 +180,7 @@ function loadTop(data) {
         params += "                        <span class=\'shu\'>|</span>";
         params += "                        <a href=\'https://passport.lenovo.com/wauthen2/wauth/jsp/register.jsp?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vb=null&lenovoid.display=null&lenovoid.idp=null&lenovoid.source=voice.lenovomm.com&oldState=null?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vp=null&lenovoid.display=null&lenovoid_idp=null&lenovoid.source=voice.lenovomm.com&lenovoid.thirdname=null&lenovoid.qrstate=null&lenovoid.idreinfo=null&lenovoid.hidewechat=1&lenovoid.hideqrlogin=1&lenovoid.hideautologin=1&lenovoid.hidelanguage=1&lenovoid.realmImg=null&lenovoid.loginTxt=null&lenovoid.mainColor=null&lenovoid.hideqq=1&lenovoid.hideloginreg=1&lenovoid.hidesina=1&lenovoid.hideregmobile=1&lenovoid.hideregemail=1&lenovoid.hidesmslogin=1&lenovoid.webstate=0&lenovoid.userType=null&lenovoid.uAgreementTxt=null&lenovoid.uAgreementUrl=null&lenovoid.sdk=null&lenovoid.sn=null' target=\'_self\' id='lenovo-user-register'>注册</a>";
     } else {
-        params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' class='lenovo-user-name2' id='lenovo-user-name'>"+ Username +"<span class=\'caret\'></span></a>";
+        params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' class='lenovo-user-name2' id='lenovo-user-name'><span class='user_name'>"+ Username +"</span><span class=\'caret\'></span></a>";
         params += "                        <ul class=\'dropdown-menu\'>";
         params += "                            <li class='mobile_border'><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
         params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
@@ -205,5 +205,6 @@ $('.mobile_top_username').click(function(){
 })
   if(navigator.userAgent.indexOf("MSIE")>0){
     $('.nav-left li').css({"padding-left":"100px"})
+    
 }
 }

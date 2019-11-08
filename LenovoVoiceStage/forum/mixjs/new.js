@@ -18,13 +18,12 @@
 			var text=$(".text").val();
 			$.ajax({
 			  type:"POST",
-			  url:urlhead+"/lasf/forum/add?"+"datatype="+0,
+			  url:`http://10.110.148.59:8082/lasf/forum/add?datatype=0&title=${title}&content=${text}&accountname=${Username}`,
 			  dataType:"json",
-			  data:{"title":title,"content":text,"accountname":Username},
 			  headers: {
-			  	    "channel" : "cloudasr",
-					"lenovokey" : lenkey,
-					"secretkey" : secrkey
+			  	  "channel" : "cloudasr",
+						"lenovokey" : lenkey,
+						"secretkey" : secrkey
 		       },
 			  success:function(res){
 			  	$(".title").val("");
@@ -33,7 +32,7 @@
 						alert("发表成功");
 						// window.location.href="../forum/questionlist.html"
 			  	}else{
-			  		alert("账号错误");
+			  		alert(res.error);
 			  	}
 			  	
 			  }

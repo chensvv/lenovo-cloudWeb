@@ -62,6 +62,7 @@ p{
     font-size: 16px;
     cursor: pointer;
     border-bottom: 1px solid #779ED8;
+    float: right;
 }
 .text-box{
     border: 1px solid #C6CDE3;
@@ -89,6 +90,7 @@ p{
     flex-direction: row;
     justify-content: center;
     padding-top: 35px;
+    text-align: center;
 }
 .down-btn{
     width: 150px;
