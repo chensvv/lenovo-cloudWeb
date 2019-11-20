@@ -9,10 +9,6 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-if(!user){
-    $('html,body').css({"min-width":"1200px"})
-    $('html,body').css({"min-height":"740px"})
-}
 $(function () {
    //修改nlp结果
    $(".update").bind("keypress",function(event){
@@ -120,9 +116,7 @@ function updateStatus(status) {
     $("#status").html("识别结果");
     $("#status").css({"display":"none"});
     $("#stutsP").html("识别结果");
-    if(user){
-        $("#stutsP").append(btn)
-    }
+    $("#stutsP").append(btn)
 	$('#json').html(syntaxHighlight(s));
 	$('pre').slideDown(500);
 	$("#json .string").next(".key").css("color","red");
@@ -161,10 +155,7 @@ function toggleRecording( e ) {
     var img_btn = document.getElementById('record');
     var statusP = document.getElementById( "status" );
     if (e.classList.contains("recording")) {
-        if(!user){
-            document.getElementById('viz').style.display='none'
-        }
-        
+        document.getElementById('viz').style.display='none'
         img_btn.src = 'images/Mic-nor.png';
         // stop recording
         audioRecorder.stop();
@@ -196,9 +187,7 @@ function toggleRecording( e ) {
         statusP.style.display="block"
         statusP.innerHTML = '请说话';
         document.getElementById("stutsP").style.display="none";
-        if(!user){
-            document.getElementById('viz').style.display='block'
-        }
+        document.getElementById('viz').style.display='block'
         img_btn.src = 'images/Mic-act.png';
         
         document.getElementById("analyser").style.display="block";

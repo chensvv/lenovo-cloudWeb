@@ -40,16 +40,16 @@ $('.back_arrows').click(function(){
     history.back(-1);
 })
 if($(".mytextarea").val()==""){
-                $('#comment').attr('disabled','disabled');
-                $('#comment').addClass('No_send')
-			}
-    $('.mytextarea').on("input propertychange" ,function(){
-        if($(".mytextarea").val()!="" ){
-                $("#comment").removeAttr("disabled");
-                $('#comment').removeClass('No_send')
-			}else if($(".mytextarea").val()=="" || $(".text").val()==""){
-                $('#comment').attr('disabled','disabled');
-                $('#comment').addClass('No_send')
-            }
-    })
+    $('#comment').attr('disabled','disabled');
+    $('#comment').addClass('No_send')
+}
+$('.mytextarea').on("input propertychange" ,function(){
+    if($(".mytextarea").val()!="" ){
+            $("#comment").removeAttr("disabled");
+            $('#comment').removeClass('No_send')
+        }else if($(".mytextarea").val()=="" || $(".text").val()==""){
+            $('#comment').attr('disabled','disabled');
+            $('#comment').addClass('No_send')
+        }
+})
 </script>

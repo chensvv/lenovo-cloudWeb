@@ -8,16 +8,9 @@ var URL = 'https://voice.lenovo.com/lasf/cloudasr'
 var ixid = new Date().getTime();
 var pidx = 1
 var over = 0
-var flag = true
-var chunkEnd
 var accountid = window.localStorage.getItem('accountid');
 var lenkey = window.localStorage.getItem('lenkey');
 var secrkey = window.localStorage.getItem('secrkey');
-var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-if (!user) {
-    $('html,body').css({"min-width": "1200px"})
-    $('html,body').css({"min-height": "685px"})
-}
 var hour, minute, second; //时 分 秒
 hour = minute = second = 0; //初始化
 var millisecond = 0; //毫秒
@@ -105,7 +98,7 @@ function recd() {
             }).then(function (res) {
                     if(typeof(res.data.errormessage) == "string"){
                         document.getElementById('txt-f').innerHTML = res.data.errormessage
-                        rec.stop()
+                        rec.close()
                         window.clearInterval(int)
                     }else{
                         document.getElementById('txt-f').innerHTML = res.data.rawText
@@ -127,6 +120,7 @@ function recd() {
         document.getElementById('txt-f').innerHTML = (isUserNotAllow ? "用户拒绝了权限，" : "") + "无法录音:" + msg;
         if(!document.getElementById('txt-f').innerHTML.indexOf('无法录音')>-1){
             window.clearInterval(int);
+            rec.close()
         }
     });
     

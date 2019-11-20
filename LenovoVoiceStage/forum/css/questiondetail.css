@@ -21,7 +21,8 @@ p{
 }
 .newcontent{
 	width: 50%;
-    margin: 90px auto 30px auto;
+    padding-top: 90px;
+    margin: 0 auto;
 }
 .qu_div{
 	text-align: right;
