@@ -52,7 +52,7 @@
 		var total="";
     $.ajax({
 		  type:"POST",
-		  url:"http://10.110.148.59:8082/lasf/forum/list",
+		  url:urlhead+"/lasf/forum/list",
 		  dataType:"json",
 		  data:{"pagenum":1,"pagecount":10},
 		  headers: {
@@ -108,7 +108,7 @@
 		jump:function(curPage,pageSize){//跳转功能回调，传递回来2个参数，当前页和每页大小。如果没有设置分页下拉，则第二个参数永远为0。这里的this被指定为一个空对象，如果回调中需用到this请自行使用bind方法
 			$.ajax({
 			  type:"POST",
-			  url:"http://10.110.148.59:8082/lasf/forum/list",
+			  url:urlhead+"/lasf/forum/list",
 			  dataType:"json",
 			  data:{"pagenum":curPage,"pagecount":pageSize},
 			  headers: {

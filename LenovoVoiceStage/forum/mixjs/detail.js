@@ -61,7 +61,7 @@
 			    
                 $.ajax({
 				  type:"POST",
-				  url:"http://10.110.148.59:8082/lasf/forum/detail",
+				  url:urlhead+"/lasf/forum/detail",
 				  dataType:"json",
 				  headers: {
 						"channel" : "cloudasr",
@@ -123,7 +123,7 @@
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:'http://10.110.148.59:8082/lasf/forum/delete',
+									url:urlhead+'/lasf/forum/delete',
 									data:{"dataid":valid,"accountname":Username},              
 									headers: {
 										"channel" : "cloudasr",
@@ -151,7 +151,7 @@
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:"http://10.110.148.59:8082/lasf/forum/delete",
+									url:urlhead+"/lasf/forum/delete",
 									data:{"dataid":keyid,"accountname":Username},
 									headers: {
 										"channel" : "cloudasr",
@@ -196,7 +196,7 @@
 				console.log(pid)
 				$.ajax({
 					type:"POST",
-					url:`http://10.110.148.59:8082/lasf/forum/add?datatype=1`,
+					url:urlhead+'/lasf/forum/add?datatype=1',
 				    dataType:'json',
 				    data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":pid},
 				    headers: {
@@ -256,7 +256,7 @@
 		//文章展示
 		$.ajax({
 			type:'POST',
-			url:'http:10.110.148.59:8082/lasf/forum/detail',
+			url:urlhead+'/lasf/forum/detail',
 			dataType:'json',
 			data:{"articleid":id},
 			headers: {
@@ -311,7 +311,7 @@
 			console.log(id)
 			$.ajax({
 				type:'POST',
-				url:`http://10.110.148.59:8082/lasf/forum/add?datatype=1&title=${tit || tit2}&content=${$content}&accountname=${Username}&articleid=${id}&parentid=0`,
+				url:urlhead+'/forum/add?datatype=1&title='+tit || tit2+'&content='+$content+'&accountname='+Username+'&articleid='+id+'&parentid=0',
 				dataType:'json',
 				headers: {
 					"channel" : "cloudasr",

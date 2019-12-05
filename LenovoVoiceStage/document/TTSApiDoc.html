@@ -8,12 +8,10 @@
 	    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 	    <link href="css/ttsapidoc.css?version=1.1" rel="stylesheet" type="text/css"/>
 	    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=1.1"/>	    
-	    <link href="../common/css/aos.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=1.1"/>
 	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
-	    <script type="text/javascript" src="../common/js/aos.js?version=1.1"></script>
 	    <script src="../common/js/commurl.js"></script>
 	    <script type="text/javascript" src="js/document.js?version=1.1"></script>
 	    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
@@ -29,9 +27,9 @@
 		<!--<div id="eui-main-header"></div>-->
 		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 		</nav>
-		 <div class="content-title" aos="fade-down">语音合成接口V1</div>
-		<div id="eui-main-body" data-aos="animation_name">
-		    <div class="conent-header" aos="fade-right" aos-once="true">
+		 <div class="content-title">语音合成接口V1</div>
+		<div id="eui-main-body">
+		    <div class="conent-header" aos-once="true">
 		        <div class="urlheader">
 		            <div class="urleft contentleft">URL：</div>
 		            <div class="urlcontent contentright">http://{ip}/lasf/tts</div>
@@ -83,7 +81,7 @@
 		        </div>
 		    </div>
 		    
-		    <div class="content2" aos="fade-right" aos-once="true">
+		    <div class="content2">
 		        <div class="headinfo contentleft">内容信息：</div>
 		        <div class="contentright">
 	                  <h4 class="header-param-title"><b>参数说明:</b></h4>
@@ -234,7 +232,7 @@
 		        </div>
 		    </div>
 		    
-		    <div class="content3" aos="fade-left" aos-once="true">
+		    <div class="content3">
 		    	<div class="headinfo contentleft">返回格式：</div>
 		        <div class="contentright">Byte方式的语音文件</div>
 		    </div>
@@ -246,13 +244,4 @@
 </html>
 
 <script>
- AOS.init({
-		offset: 100,
-		duration: 600,
-		easing: 'ease-in-sine',
-		delay: 0,
-    });
-	$(function () {
-	   loadTop("document");
-	});
 </script>

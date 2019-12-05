@@ -19,15 +19,15 @@
 	<script src="./mixjs/tts.js"></script>
 	<script src="./mixjs/axios.min.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+    <style>
+        #eui-main-footer{
+            position: fixed;
+            bottom: 0;
+            min-width: 1200px;
+        }
+    </style>
 </head>
-<style>
-	#eui-main-footer{
-        position: fixed;
-		bottom: 0;
-        min-width: 1200px;
-	}
-</style>
 <body>
 	<div class="dis_flex">
 		<div class="nav-title">
@@ -88,14 +88,18 @@ if(!user){
 		textv = $('#textarea').val()
 		if (accountid == "" || accountid == null || accountid.length == 0) {
 			if(confirm("请先登录")){
+                console.log(333)
 				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 				return;
 			}
 		}else if(textv == ''){
+            console.log(1111)
 			alert('请输入要合成的内容')
 		}else if (window.navigator.userAgent.indexOf("MSIE")>=1){
+            console.log(222)
             $('#textarea').val('此浏览器不支持音频播放')
         }else{
+            console.log(4444)
 			XMLhttp()
 		}
 	})
@@ -135,7 +139,7 @@ bgm.addEventListener('playing', function () {
 bgm.addEventListener('error', function () {
 	console.log(bgm.error)
     if(bgm.error.code == 1 || bgm.error.code == 2 || bgm.error.code == 3 || bgm.error.code == 4){
-		$('#textarea').val('此浏览器不支持音频播放')
+        $('#textarea').val('此浏览器不支持音频播放')
 	}
 }, false);
 

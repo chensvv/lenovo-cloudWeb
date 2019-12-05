@@ -18,7 +18,7 @@
 			var text=$(".text").val();
 			$.ajax({
 			  type:"POST",
-			  url:`http://10.110.148.59:8082/lasf/forum/add?datatype=0&title=${title}&content=${text}&accountname=${Username}`,
+			  url:urlhead+'/lasf/forum/add?datatype=0&title='+title+'&content='+text+'&accountname='+Username,
 			  dataType:"json",
 			  headers: {
 			  	  "channel" : "cloudasr",

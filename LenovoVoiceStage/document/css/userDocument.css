@@ -103,6 +103,14 @@ p{
     color: #50a388;
 
 }
+@media screen and (max-width:770px){
+    .c_i_l{
+        justify-content: center;
+    }
+    .c_i_r{
+        justify-content: center;
+    }
+}
 @media screen and (max-width:414px){
     .recognise_title {
         color: #fff;
