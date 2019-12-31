@@ -2,7 +2,9 @@ html,body{
 	width: 100%;
 	height: 100%;
 	overflow-x: auto;
-	overflow-y: auto;
+    overflow-y: auto;
+    min-width: 1200px;
+	min-height: 685px;
 }
 p{
     margin: 0;
@@ -81,7 +83,7 @@ p{
 }
 .halfcy{
     position: absolute;
-    bottom: -6.5104vh;
+    bottom: -50px;
     left: 0;
     width: 50px;
     height: 100px;
@@ -194,4 +196,85 @@ p{
 }
 .z-g-b{
     min-height: 9.8958vh;
+}
+@media screen and (max-width:770px){
+    .recognise_title{
+        display: none;
+    }
+    .cyclo{
+        width: 51px;
+        height: 51px;
+        left: 6.5982vw;
+        top: 25.6667vh
+    }
+    .bcy{
+        width: 66px;
+        height: 66px;
+        right: 4.4978vw;
+    }
+    .halfcy{
+        right: 0;
+        left: auto;
+        border-radius: 100px 0 0 100px;
+        width: 30px;
+        height: 51px;
+        bottom: -25px;
+    }
+    .nav-f-b{
+        margin-top: 4rem;
+    }
+    .nav-f-sp,.nav-f-ls {
+        width: 75px;
+        height: 60px;
+    }
+    .nav-f-ls{
+        position: relative;
+    }
+    .nav-f-sp, .nav-f-ls{
+        margin-top: 0;
+    }
+    .mobile{
+        margin-top: 50px;
+    }
+    .voice-box{
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        transform: translate(-50%, 110%);
+        width: 70%;
+        height: 215px;
+    }
+    .clpage{
+        top: 30px;
+        color: #9ADFD8;
+        font-size: 14px;
+        right: 20px;
+    }
+    .voice-footer{
+        width: 52px;
+        height: 52px;
+        bottom: -23px;
+    }
+    .nav-f-sp span, .nav-f-ls span{
+        font-size: 12px;
+    }
+    .btn-t{
+        bottom: -7.11vh;
+        font-size: 12px;
+    }
+    .eui-main-body{
+        padding-bottom: 0;
+        font-size: 18px;
+    }
+    .voice-main{
+        padding: 3.5104vh 2.1962vw 0;
+    }
+}
+@media screen and (max-width: 1024px){
+    html, body {
+        width: 100%;
+        height: 100%;
+        min-width: auto;
+        min-height: auto;
+    }
 }

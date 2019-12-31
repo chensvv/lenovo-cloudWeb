@@ -15,9 +15,10 @@
     <script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../common/mixjs/scroll.js"></script>
+    <script src="../common/mixjs/scroll.js"></script>
+    <script src="./mixjs/recorder.wav.min.js"></script>
     <script src="./mixjs/axios.min.js"></script>
-    <script src="./mixjs/tts.js"></script>
+    <script src="./mixjs/assess.js"></script>
 	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
     <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
     <style>
@@ -44,7 +45,7 @@
                         <img src="./images/bah.png" alt="">
                         <span class="t">单词发音</span>
                     </div>
-                    <div class="nav-f-sp">
+                    <div class="nav-f-sp mobile">
                         <img src="./images/bav.png" alt="">
                         <span class="t">段落评测</span>
                     </div>
@@ -53,14 +54,14 @@
                         <span class="clpage" id="nextPage">切换下一张</span>
                         <div class="voice-header"><span class="header-title" id="indexV">1</span>/5</div>
                         <div class="voice-main" id="text"></div>
-                        <div class="voice-footer" onclick="record()"></div>
+                        <div class="voice-footer" onclick="record(this)"></div>
                         <span class="btn-t" id="ret">点我录音</span>
                     </div>
                     <div class="nav-f-sp">
                         <img src="./images/bab.png" alt="">
                         <span>情景问答</span>
                     </div>
-                    <div class="nav-f-ls">
+                    <div class="nav-f-ls mobile">
                         <img src="./images/bat.png" alt="">
                         <span class="t4">口语作文</span>
                     </div>
@@ -115,7 +116,7 @@ var getIndex = ((arrList,item)=>{
             };
         };
     })
-var indexValue = getIndex(arrList,valueText.innerHTML) 
+var indexValue = getIndex(arrList,valueText.innerHTML)
 indexV.innerHTML = Number(indexValue)+1
 nextPage.addEventListener('click',function(){
     var textVal = Math.floor((Math.random()*arrList.length));

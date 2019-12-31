@@ -4,8 +4,6 @@
 		var accountid = window.localStorage.getItem('accountid');
 		var lenkey = window.localStorage.getItem('lenkey');
 		var secrkey = window.localStorage.getItem('secrkey');
-		var lenkey=null;
-		var secrkey=null;
 		$.ajax({
 			type:"POST",
 			url:urlhead+"/lasf/userinfo",
@@ -52,7 +50,7 @@
 		var total="";
     $.ajax({
 		  type:"POST",
-		  url:urlhead+"/lasf/forum/list",
+		  url:"http://10.110.148.59:8082/lasf/forum/list",
 		  dataType:"json",
 		  data:{"pagenum":1,"pagecount":10},
 		  headers: {

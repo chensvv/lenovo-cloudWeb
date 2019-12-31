@@ -57,11 +57,15 @@
 		})
 		
 	})
+
+// function sortRule(a,b) {
+//     return a.id - b.id;
+// }
 		function content(){
 			    
                 $.ajax({
 				  type:"POST",
-				  url:urlhead+"/lasf/forum/detail",
+				  url:"http://10.110.148.59:8082/lasf/forum/detail",
 				  dataType:"json",
 				  headers: {
 						"channel" : "cloudasr",
@@ -70,13 +74,24 @@
 		            },
 				  data:{"articleid":id},
 				  success:function(res){
+					//   res.datalist = res.datalist.sort(sortRule)
 	                $.each(res.datalist, function(idx,val) {
 						var reply_length = res.datalist.length-1
 						$('.reply_length').text(reply_length)
 					var nowtime = formatDateTime(val.createTime);
 						 var el="";
 						var arr = document.getElementsByClassName('comment-info').length+1;
-	                    if(val.commentLevel == 1){
+	                    if(val.commentLevel == 2){
+							el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
+							if(Username == val.accountName){
+							   el += "<span class='delchild'>删除</span>"
+							}else{
+
+							}
+							
+							el += "</p></div>";
+							
+				   }else if(val.commentLevel == 1){
 	                            var nowtime = formatDateTime(val.createTime);
 	                            el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
 			                    el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
@@ -88,17 +103,7 @@
 								}
 			                    el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
 						     
-	                    }else if(val.commentLevel == 2){
-								 el += "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
-								 if(Username == val.accountName){
-			                    	el += "<span class='delchild'>删除</span>"
-			                     }else{
-
-								 }
-								 
-								 el += "</p></div>";
-						                       
-	                    }
+						}
 	                    $(".comment-list").append(el).find(".reply-btn").unbind().click(function(){
 							if($(this).parent().parent().find(".replybox").length > 0){
 								$(".replybox").remove();
@@ -119,11 +124,10 @@
 								}
 						    }
 							var valid = $(this).parent().parent().parent().parent().find(".valid").text()
-							console.log('valid:'+valid)
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:urlhead+'/lasf/forum/delete',
+									url:'http://10.110.148.59:8082/lasf/forum/delete',
 									data:{"dataid":valid,"accountname":Username},              
 									headers: {
 										"channel" : "cloudasr",
@@ -151,7 +155,7 @@
 							if(confirm("确认删除吗?")){
 								$.ajax({
 									type:"POST",
-									url:urlhead+"/lasf/forum/delete",
+									url:"http://10.110.148.59:8082/lasf/forum/delete",
 									data:{"dataid":keyid,"accountname":Username},
 									headers: {
 										"channel" : "cloudasr",
@@ -193,10 +197,9 @@
 				var $content = $(".comment_textarea").val();
 				var parentEl = $(this).parent().parent().parent().parent();
 				var pid=parentEl.find(".pid").html();
-				console.log(pid)
 				$.ajax({
 					type:"POST",
-					url:urlhead+'/lasf/forum/add?datatype=1',
+					url:'http://10.110.148.59:8082/lasf/forum/add?datatype=1',
 				    dataType:'json',
 				    data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":pid},
 				    headers: {
@@ -205,7 +208,7 @@
 						"secretkey" : secrkey
 		            },
 				    success:function(data){
-				    	history.go(0);
+						history.go(0);
 				    }
 				});
 
@@ -256,7 +259,7 @@
 		//文章展示
 		$.ajax({
 			type:'POST',
-			url:urlhead+'/lasf/forum/detail',
+			url:'http://10.110.148.59:8082/lasf/forum/detail',
 			dataType:'json',
 			data:{"articleid":id},
 			headers: {
@@ -265,10 +268,9 @@
 				"secretkey" : secrkey
             },
 			success:function(res,status){
-			
 			$.each(res.datalist, function(idx,val) {
 				var nowtime = formatDateTime(val.createTime);
-			//根据id获取详情数据				    
+			//根据id获取详情数据   
                     if(val.commentLevel == 0){
 //                    var str = "<div>"+val.content+"</div>";
 					  $(".htitle").text(val.title);
@@ -308,10 +310,9 @@
 			var tit=$(".htitle").text();
 			var tit2 = $('.reply_arrows').text()
 			var $content = $("#content").val();
-			console.log(id)
 			$.ajax({
 				type:'POST',
-				url:urlhead+'/forum/add?datatype=1&title='+tit || tit2+'&content='+$content+'&accountname='+Username+'&articleid='+id+'&parentid=0',
+				url:'http://10.110.148.59:8082/lasf/forum/add?datatype=1&content='+$content+'&accountname='+Username+'&articleid='+id+'&parentid=0&title='+tit || tit2,
 				dataType:'json',
 				headers: {
 					"channel" : "cloudasr",
