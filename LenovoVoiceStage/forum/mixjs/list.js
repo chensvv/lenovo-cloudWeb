@@ -50,7 +50,7 @@
 		var total="";
     $.ajax({
 		  type:"POST",
-		  url:"http://10.110.148.59:8082/lasf/forum/list",
+		  url:urlhead+"/lasf/forum/list",
 		  dataType:"json",
 		  data:{"pagenum":1,"pagecount":10},
 		  headers: {
