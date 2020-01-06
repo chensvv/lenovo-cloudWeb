@@ -61,9 +61,9 @@ function sendBlob(blob) {
            updateStatus(request.responseText);
         };
         
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
+		var accountid = $.base64.decode(window.localStorage.getItem('acd'))
+		var lenkey = $.base64.decode(window.localStorage.getItem('ls'));
+		var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 
         request.setRequestHeader('channel','cloudasr');
         request.setRequestHeader('lenovokey',lenkey);

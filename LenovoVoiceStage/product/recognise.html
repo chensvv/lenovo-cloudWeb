@@ -16,6 +16,7 @@
     <script type="text/javascript" src="../common/mixjs/pagetop.js"></script>
 
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../common/js/jquery.base64.js"></script>
 	<script type="text/javascript" src="mixjs/recognise.js"></script>
 	<script src="./mixjs/audiodisplay.js"></script>
 	<script src="./mixjs/recorder.js"></script>
@@ -93,7 +94,7 @@
 <!-- <script src="js/judbrowser.js"></script> -->
 <script>
 	function avatarnum(){
-		var accountid = window.localStorage.getItem('accountid');
+		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
 		var Username = window.localStorage.getItem('Username');		
 		var scriptTag = document.createElement('script');
 				scriptTag.type = 'text/javascript';
