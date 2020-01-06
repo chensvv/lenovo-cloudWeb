@@ -442,7 +442,6 @@ p{margin: 0}
 	}
 } */
 .row{
-	width: 50%;
 	display: flex;
 	justify-content: space-between;
 }
@@ -489,16 +488,16 @@ p{margin: 0}
 	overflow: hidden;
 	margin-bottom: 30px;
 	padding: 0;
-	margin-right: 30px;
 }
 .text-center{
 	margin-bottom: 0;
 }
 .bot_div{
 	width: 40%;
-	display: flex;
-	flex-wrap: wrap;
 	margin: 0 auto;
+}
+.w50{
+	width: 50%;
 }
 @media screen and (max-width:414px){
 	.box_anim0 .anim0_center{
@@ -771,7 +770,7 @@ p{margin: 0}
 
 	.row{
 		text-align: center;
-		width: 70%;
+		width: 100%;
 		display: block;
 	}
 	.bottom_row{
@@ -797,6 +796,7 @@ p{margin: 0}
 		display: inline-block;
 		margin-right: 10px;
 		margin-left: 10px;
+		float: none;
 	}
 }
 
@@ -813,6 +813,11 @@ p{margin: 0}
 	}
 }
 
+@media screen and (max-width: 320px){
+	.user_name{
+		max-width: 50px;
+	}
+}
 
 
 

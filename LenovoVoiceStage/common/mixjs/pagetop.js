@@ -92,11 +92,10 @@ function close_mobile_nav(){
 }
 function loadTop(data) {
     var params = "";
-    var secretkey = window.localStorage.getItem('secretkey');
-    var accountid = window.localStorage.getItem('accountid');
-    var lenovoname = window.localStorage.getItem('lenovoname');
-    var Username = window.localStorage.getItem('Username');
-    
+    var secretkey = window.localStorage.getItem('stk');
+    var accountid = window.localStorage.getItem('acd');
+    var lenovoname = window.localStorage.getItem('ln');
+    var Username = window.localStorage.getItem('un');
 	params +="			<div class=\'container\'>";
 	params +="				<div class=\'navbar-header\'>";
 	params +="					<button type=\'button\' onclick=\'open_nav()\' class=\'navbar-toggle collapsed\'>";

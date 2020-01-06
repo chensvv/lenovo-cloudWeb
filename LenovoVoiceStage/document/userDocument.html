@@ -45,7 +45,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
 							<div class="info_box">
 								<div class="info_title">SDK</div>
-								<div class="info_con"><a href="SDKDownload.html">Java、Python SDK</a></div>
+								<div class="info_con"><a href="SDKDownload.html" id="entry">Java、Python SDK</a></div>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
@@ -59,13 +59,13 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
 							<div class="info_box">
 								<div class="info_title">语音合成接口v1</div>
-								<div class="info_con"><a href="#">Speech synthesis interface v1</a></div>
+								<div class="info_con"><a href="#" id="entry">Speech synthesis interface v1</a></div>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
 							<div class="info_box">
 								<div class="info_title">语音识别协议</div>
-								<div class="info_con"><a href="#">Speech recognition protocol</a></div>
+								<div class="info_con"><a href="#" id="entry">Speech recognition protocol</a></div>
 							</div>
 						</div>
 					</div>
@@ -73,13 +73,13 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
 							<div class="info_box">
 								<div class="info_title">语音识别常见问题</div>
-								<div class="info_con"><a href="#">Common problems in speech recognition</a></div>
+								<div class="info_con"><a href="#" id="entry">Common problems in speech recognition</a></div>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
 							<div class="info_box">
 								<div class="info_title">语音识别常用参数</div>
-								<div class="info_con"><a href="#">Common parameters of speech recognition</a></div>
+								<div class="info_con"><a href="#" id="entry">Common parameters of speech recognition</a></div>
 							</div>
 						</div>
 					</div>
@@ -99,6 +99,8 @@
 <script>
 	$(function () {
 		loadTop("document");
+		$("#entry").attr("disabled",true);
+		$("#entry").css("pointer-events","none");
 		if(navigator.userAgent.indexOf("MSIE")>0){
 			$('.info_box').css({"margin":"0 auto 25px auto"})
 			$('.nav-left li').css({"padding-left":"100px"})

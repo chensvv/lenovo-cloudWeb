@@ -1,28 +1,26 @@
 	$(function(){
 		loadTop("information");
-		var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
-		$.ajax({
-			type:"POST",
-			url:urlhead+"/lasf/userinfo",
-			headers: {  
-				"channel" : "cloudasr"
-            },
-            data:{"username":Username,"lenovoid":accountid},
-			success:function(data){
-				lenkey=data.lenovokey;
-				secrkey=data.secretkey;
-			}
+		var Username = window.localStorage.getItem('un');
+		var accountid = $.base64.decode(window.localStorage.getItem('acd'))
+		// $.ajax({
+		// 	type:"POST",
+		// 	url:urlhead+"/lasf/userinfo",
+		// 	headers: {  
+		// 		"channel" : "cloudasr"
+    //         },
+    //         data:{"username":Username,"lenovoid":accountid},
+		// 	success:function(data){
+		// 		lenkey=data.lenovokey;
+		// 		secrkey=data.secretkey;
+		// 	}
 			
-		});
+		// });
 		
 		if (accountid=="" || accountid==null||accountid.length == 0) {
-			
 	        if(confirm("登录后才能查看！")){
-				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-			    return;
+						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+						localStorage.clear(); 
+			    	return;
 	        }else{
 				return;
 			}
@@ -52,40 +50,56 @@
 		  type:"POST",
 		  url:urlhead+"/lasf/forum/list",
 		  dataType:"json",
-		  data:{"pagenum":1,"pagecount":10},
+		  data:{
+				"pagenum":1,
+				"pagecount":10,
+				t:window.localStorage.getItem('token'),
+				lid:accountid
+			},
 		  headers: {
-		  	  "channel" : "cloudasr",
-					"lenovokey" : lenkey,
-					"secretkey" : secrkey
+		  	  "channel" : "cloudasr"
 		    },
 		  async: false,
 		  success:function(res){
-				var num=res.datalist;
-		  	total=res.total;
-			 var str = "";
-		   $.each(res.datalist, function(idx,val) {
-		   	var nowtime = formatDateTime(val.createTime);
-		   	var replytime = formatDateTime(val.lastUpdateTime);
-		   	if(isNaN(parseInt(replytime))){
-		        replytime="- -";
-		    }else{
-		        replytime=replytime;
+				if(res.errorcode !=1024){
+					var num=res.datalist;
+							total=res.total;
+					var str = "";
+					$.each(res.datalist, function(idx,val) {
+						var nowtime = formatDateTime(val.createTime);
+						var replytime = formatDateTime(val.lastUpdateTime);
+						if(isNaN(parseInt(replytime))){
+								replytime="- -";
+						}else{
+								replytime=replytime;
+						}
+						// <div class='delg'><img src='../forum/images/delete.png'/></div>
+						str +="<div class=\"list-cell\">"
+										+"<img class='info_img' src='../forum/images/head.png'/>"
+										+"<div class='info_right'>"
+										+"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+										+"<div class='in_p'>"
+										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+										+"<span class='mg'>"+'发布于'+nowtime+"</span>"
+										+"<span class='mg'>"+'最后回复于'+replytime+"</span>"
+										+"</div>"
+										+"</div>"
+										+"</div>";
+						});
+					$(".list-content").append(str);
+				}else{
+					if(confirm("登录超时，请重新登录")){
+						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+						localStorage.clear();
+						return;
+					}else{
+						return;
+					}
 				}
-				// <div class='delg'><img src='../forum/images/delete.png'/></div>
-		    str +="<div class=\"list-cell\">"
-								 +"<img class='info_img' src='../forum/images/head.png'/>"
-								 +"<div class='info_right'>"
-								 +"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
-								 +"<div class='in_p'>"
-			           +"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
-			           +"<span class='mg'>"+'发布于'+nowtime+"</span>"
-								 +"<span class='mg'>"+'最后回复于'+replytime+"</span>"
-								 +"</div>"
-								 +"</div>"
-			           +"</div>";
-			   });
-		   $(".list-content").append(str);
-		  }
+				
+			},error:function(err){
+				alert('服务器错误')
+			}
 		});
 		
 
@@ -108,37 +122,53 @@
 			  type:"POST",
 			  url:urlhead+"/lasf/forum/list",
 			  dataType:"json",
-			  data:{"pagenum":curPage,"pagecount":pageSize},
+			  data:{
+					"pagenum":curPage,
+					"pagecount":pageSize,
+					t:window.localStorage.getItem('token'),
+					lid:accountid
+				},
 			  headers: {
-			  	  "channel" : "cloudasr",
-						"lenovokey" : lenkey,
-						"secretkey" : secrkey
+			  	  "channel" : "cloudasr"
 			  },
 			  success:function(res){
-			  	$(".list-content").html("");
-			   var str = "";
-			   $.each(res.datalist, function(idx,val) {
-			   	var nowtime = formatDateTime(val.createTime);
-			   	var replytime = formatDateTime(val.lastUpdateTime);
-			   	if(isNaN(parseInt(replytime))){
-			        replytime="- -";
-			    }else{
-			        replytime=replytime;
-			    }
-					str +="<div class=\"list-cell\">"
-								 +"<img class='info_img' src='../forum/images/head.png'/>"
-								 +"<div class='info_right'>"
-								 +"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
-								 +"<div class=\'in_p\'>"
-			           +"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
-			           +"<span class='mg'>"+'发布于'+nowtime+"</span>"
-								 +"<span class='mg'>"+'最后回复于'+replytime+"</span>"
-								 +"</div>"
-								 +"</div>"
-			           +"</div>";
-			   });
-			   $(".list-content").append(str);
-			  }
+					if(res.errorcode != 1024){
+						$(".list-content").html("");
+						var str = "";
+						$.each(res.datalist, function(idx,val) {
+							var nowtime = formatDateTime(val.createTime);
+							var replytime = formatDateTime(val.lastUpdateTime);
+							if(isNaN(parseInt(replytime))){
+									replytime="- -";
+							}else{
+									replytime=replytime;
+							}
+							str +="<div class=\"list-cell\">"
+										+"<img class='info_img' src='../forum/images/head.png'/>"
+										+"<div class='info_right'>"
+										+"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+										+"<div class=\'in_p\'>"
+										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+										+"<span class='mg'>"+'发布于'+nowtime+"</span>"
+										+"<span class='mg'>"+'最后回复于'+replytime+"</span>"
+										+"</div>"
+										+"</div>"
+										+"</div>";
+						});
+						$(".list-content").append(str);
+					}else{
+						if(confirm("登录超时，请重新登录")){
+							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							localStorage.clear(); 
+							return;
+						}else{
+							return;
+						}
+					}
+			  	
+			  },error:function(err){
+					alert('服务器错误')
+				}
 			});
 		
 		},

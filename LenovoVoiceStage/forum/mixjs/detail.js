@@ -1,9 +1,9 @@
 	$(function(){
 		loadTop("information");
 
-		var Username = window.localStorage.getItem('Username');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
+		var Username = window.localStorage.getItem('un');
+		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
+		var token  = window.localStorage.getItem('token')
 		if($(".mytextarea").val()==""){
 			$('#comment').attr('disabled','disabled');
 			$('#comment').addClass('No_send')
@@ -68,111 +68,139 @@
 				  url:urlhead+"/lasf/forum/detail",
 				  dataType:"json",
 				  headers: {
-						"channel" : "cloudasr",
-						"lenovokey" : lenkey,
-						"secretkey" : secrkey
+						"channel" : "cloudasr"
 		            },
-				  data:{"articleid":id},
+				  data:{"articleid":id,lid:accountid,t:token},
 				  success:function(res){
-					//   res.datalist = res.datalist.sort(sortRule)
-	                $.each(res.datalist, function(idx,val) {
-						var reply_length = res.datalist.length-1
-						$('.reply_length').text(reply_length)
-					var nowtime = formatDateTime(val.createTime);
-						 var el="";
-						var arr = document.getElementsByClassName('comment-info').length+1;
-	                    if(val.commentLevel == 2){
-							el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
-							if(Username == val.accountName){
-							   el += "<span class='delchild'>删除</span>"
-							}else{
-
-							}
-							
-							el += "</p></div>";
-							
-				   }else if(val.commentLevel == 1){
-	                            var nowtime = formatDateTime(val.createTime);
-	                            el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
-			                    el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
-								el +=  "</div><div class='col-update'>"
-			                    if(Username == val.accountName){
-			                    	el += "<span class='del'>删除</span>"
-			                    }else{
-
-								}
-			                    el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
-						     
-						}
-	                    $(".comment-list").append(el).find(".reply-btn").unbind().click(function(){
-							if($(this).parent().parent().find(".replybox").length > 0){
-								$(".replybox").remove();
-							}else{
-								replyClick($(this));
-							}
-						});
-						var accountid = window.localStorage.getItem('accountid');
-						$(".comment-list").find(".del").unbind().click(function(e){
-							
-						    if (accountid=="" || accountid==null||accountid.length == 0) {
-						        if(confirm("登陆后才能删除！")){
-									window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-								    return;
-						        
-						        }else{
-									return;
-								}
-						    }
-							var valid = $(this).parent().parent().parent().parent().find(".valid").text()
-							if(confirm("确认删除吗?")){
-								$.ajax({
-									type:"POST",
-									url:urlhead+'/lasf/forum/delete',
-									data:{"dataid":valid,"accountname":Username},              
-									headers: {
-										"channel" : "cloudasr",
-										"lenovokey" : lenkey,
-										"secretkey" : secrkey
-						            },
-									success:function(data){
-										 history.go(0);
-									}
-								});
-							}else{
-								return;
-							}
-						});
-						$(".comment-list").find(".delchild").unbind().click(function(){
-							if (accountid=="" || accountid==null||accountid.length == 0) {
-						        if(confirm("登陆后才能删除！")){
-									window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-								    return;
-						        }else{
-									return;
-								}
-						    }
-							var keyid = $(this).parent().parent().find(".keyid").text();
-							if(confirm("确认删除吗?")){
-								$.ajax({
-									type:"POST",
-									url:urlhead+"/lasf/forum/delete",
-									data:{"dataid":keyid,"accountname":Username},
-									headers: {
-										"channel" : "cloudasr",
-										"lenovokey" : lenkey,
-										"secretkey" : secrkey
-						            },
-									success:function(data){
-										 history.go(0);
-									}
-								});
-							}else{
-								return;
-							}
-						});
-				   });
+					  if(res.errorcode !=1024){
+						//   res.datalist = res.datalist.sort(sortRule)
+						$.each(res.datalist, function(idx,val) {
+							var reply_length = res.datalist.length-1
+							$('.reply_length').text(reply_length)
+						var nowtime = formatDateTime(val.createTime);
+							 var el="";
+							var arr = document.getElementsByClassName('comment-info').length+1;
+							if(val.commentLevel == 2){
+								el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
+								if(Username == val.accountName){
+								   el += "<span class='delchild'>删除</span>"
+								}else{
 	
-				  }
+								}
+								
+								el += "</p></div>";
+								
+					   }else if(val.commentLevel == 1){
+									var nowtime = formatDateTime(val.createTime);
+									el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
+									el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
+									el +=  "</div><div class='col-update'>"
+									if(Username == val.accountName){
+										el += "<span class='del'>删除</span>"
+									}else{
+	
+									}
+									el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
+								 
+							}
+							$(".comment-list").append(el).find(".reply-btn").unbind().click(function(){
+								if($(this).parent().parent().find(".replybox").length > 0){
+									$(".replybox").remove();
+								}else{
+									replyClick($(this));
+								}
+							});
+							
+							$(".comment-list").find(".del").unbind().click(function(e){
+								
+								if (accountid=="" || accountid==null||accountid.length == 0) {
+									if(confirm("登陆后才能删除！")){
+										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+										localStorage.clear(); 
+										return;
+									
+									}else{
+										return;
+									}
+								}
+								var valid = $(this).parent().parent().parent().parent().find(".valid").text()
+								if(confirm("确认删除吗?")){
+									$.ajax({
+										type:"POST",
+										url:urlhead+'/lasf/forum/delete',
+										data:{"dataid":valid,"accountname":Username},              
+										headers: {
+											"channel" : "cloudasr"
+										},
+										success:function(data){
+											if(data.errorcode != 1024){
+												history.go(0);
+											}else{
+												if(confirm("登录超时，请重新登录")){
+													window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+													localStorage.clear(); 
+													return;
+												}else{
+													return;
+												}
+											}
+										}
+									});
+								}else{
+									return;
+								}
+							});
+							$(".comment-list").find(".delchild").unbind().click(function(){
+								if (accountid=="" || accountid==null||accountid.length == 0) {
+									if(confirm("登陆后才能删除！")){
+										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+										localStorage.clear(); 
+										return;
+									}else{
+										return;
+									}
+								}
+								var keyid = $(this).parent().parent().find(".keyid").text();
+								if(confirm("确认删除吗?")){
+									$.ajax({
+										type:"POST",
+										url:urlhead+"/lasf/forum/delete",
+										data:{"dataid":keyid,"accountname":Username},
+										headers: {
+											"channel" : "cloudasr"
+										},
+										success:function(data){
+											if(data.errorcode != 1024){
+												history.go(0);
+											}else{
+												if(confirm("登录超时，请重新登录")){
+													window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+													localStorage.clear(); 
+													return;
+												}else{
+													return;
+												}
+											}
+											 
+										}
+									});
+								}else{
+									return;
+								}
+							});
+					   });
+					  }else{
+						if(confirm("登录超时，请重新登录")){
+							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							localStorage.clear(); 
+							return;
+						}else{
+							return;
+						}
+					  }
+				  },error:function(err){
+					alert('服务器错误')
+				}
 		    });
 		}
 		
@@ -180,10 +208,10 @@
 		
 		//二级评论
 		function replyClick(el){
-			var accountid = window.localStorage.getItem('accountid');
 		    if (accountid=="" || accountid==null||accountid.length == 0) {
 		        if(confirm("登陆后才能回复！")){
 					window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+					localStorage.clear(); 
 				    return;
 		        }else{
 					return;
@@ -201,15 +229,26 @@
 					type:"POST",
 					url:urlhead+'/lasf/forum/add?datatype=1',
 				    dataType:'json',
-				    data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":pid},
+				    data:{"title":tit,"content":$content,"accountname":Username,"articleid":id,"parentid":pid,lid:accountid,t:token},
 				    headers: {
-				    	"channel" : "cloudasr",
-						"lenovokey" : lenkey,
-						"secretkey" : secrkey
+				    	"channel" : "cloudasr"
 		            },
 				    success:function(data){
-						history.go(0);
-				    }
+						if(data.errorcode !=1024){
+							history.go(0);
+						}else{
+							if(confirm("登录超时，请重新登录")){
+								window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+								localStorage.clear(); 
+								return;
+							}else{
+								return;
+							}
+						}
+						
+				    },error:function(err){
+						alert('服务器错误')
+					}
 				});
 
 
@@ -261,31 +300,40 @@
 			type:'POST',
 			url:urlhead+'/lasf/forum/detail',
 			dataType:'json',
-			data:{"articleid":id},
+			data:{"articleid":id,lid:accountid,t:token},
 			headers: {
-				"channel" : "cloudasr",
-				"lenovokey" : lenkey,
-				"secretkey" : secrkey
+				"channel" : "cloudasr"
             },
 			success:function(res,status){
-			$.each(res.datalist, function(idx,val) {
-				var nowtime = formatDateTime(val.createTime);
-			//根据id获取详情数据   
-                    if(val.commentLevel == 0){
-//                    var str = "<div>"+val.content+"</div>";
-					  $(".htitle").text(val.title);
-					  $(".posi_title").text(val.title);
-					  $(".title_arrows").text(val.title);
-					  $('.reply_arrows').text(val.title)
-				      $(".newauthor").text(val.accountName.replace(/(\w{3})\w{4}/, '$1****'));
-				      $(".newtime").text(nowtime);
-				      $('.cont').text(val.content);
-				    }
-			   });
+				if(res.errorcode !=1024){
+					$.each(res.datalist, function(idx,val) {
+						var nowtime = formatDateTime(val.createTime);
+					//根据id获取详情数据   
+							if(val.commentLevel == 0){
+		//                    var str = "<div>"+val.content+"</div>";
+							  $(".htitle").text(val.title);
+							  $(".posi_title").text(val.title);
+							  $(".title_arrows").text(val.title);
+							  $('.reply_arrows').text(val.title)
+							  $(".newauthor").text(val.accountName.replace(/(\w{3})\w{4}/, '$1****'));
+							  $(".newtime").text(nowtime);
+							  $('.cont').text(val.content);
+							}
+					   });
+				}else{
+					if(confirm("登录超时，请重新登录")){
+						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+						localStorage.clear(); 
+						return;
+					}else{
+						return;
+					}
+				}
+			},error:function(err){
+				alert('服务器错误')
 			}
 		})
-		    
-        var Username = window.localStorage.getItem('Username');
+
 
 		//一级评论展示
        content();
@@ -297,10 +345,10 @@
             	alert("评论不能为空。");
             	return;
             }
-			var accountid = window.localStorage.getItem('accountid');
 		    if (accountid=="" || accountid==null||accountid.length == 0) {
 		        if(confirm("登陆后才能评论！")){
 					window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+					localStorage.clear(); 
 				    return;
 		        }else{
 					return;
@@ -313,17 +361,31 @@
 			$.ajax({
 				type:'POST',
 				url:urlhead+'/lasf/forum/add?datatype=1&content='+$content+'&accountname='+Username+'&articleid='+id+'&parentid=0&title='+tit || tit2,
+				data:{
+					lid:accountid,
+					t:token
+				},
 				dataType:'json',
 				headers: {
-					"channel" : "cloudasr",
-					"lenovokey" : lenkey,
-					"secretkey" : secrkey
-	            },
+					"channel" : "cloudasr"
+				},
 				success:function(res,status){
-				   $(".mytextarea").val("");
-				   $(".comment-list").html(" ");
-				   //一级评论展示
-					content();
+				   if(res.errorcode !=1024){
+						$(".mytextarea").val("");
+						$(".comment-list").html(" ");
+						//一级评论展示
+						content();
+				   }else{
+					if(confirm("登录超时，请重新登录")){
+						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+						localStorage.clear(); 
+						return;
+					}else{
+						return;
+					}
+				   }
+				},error:function(err){
+					alert('服务器错误')
 				}
 			})
 		});

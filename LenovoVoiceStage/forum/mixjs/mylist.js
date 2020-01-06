@@ -27,9 +27,7 @@ $(function(){
 		    second = second < 10 ? ('0' + second) : second;     
 		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;      
 		};   
-		var Username = window.localStorage.getItem('Username');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
+		var Username = window.localStorage.getItem('un');
 		function unhtml(sHtml) {
 		  return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
 		}
@@ -40,9 +38,7 @@ $(function(){
 		  dataType:"json",
      	  data:{"pagecount":2000},
      	  headers: {
-				"channel" : "cloudasr",
-				"lenovokey" : lenkey,
-				"secretkey" : secrkey
+				"channel" : "cloudasr"
             },
 		  success:function(res){
 		  	
@@ -83,9 +79,7 @@ $(function(){
 							url:urlhead+"/lasf/forum/delete",
 							data:{"dataid":hid,"accountname":Username},
 							headers: {
-								"channel" : "cloudasr",
-								"lenovokey" : lenkey,
-								"secretkey" : secrkey
+								"channel" : "cloudasr"
 				            },
 							success:function(data){
 								 history.go(0);

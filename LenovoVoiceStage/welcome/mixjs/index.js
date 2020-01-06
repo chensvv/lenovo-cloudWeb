@@ -2,7 +2,7 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
     _club_login_status = true;
     take_st_login = true;
     $.ajax({
-            type:"get",
+            type:"post",
             url:urlhead+"/lasf/logininfo",
             headers:{
                 'channel':'cloudasr'
@@ -10,26 +10,24 @@ function LenovoIdSyncLoginState(lenovoid_wust) {
             data:"securekey="+lenovoid_wust,
             dataType:'json',
             success:function(data){
+                // console.log(data)
                 if (typeof(data) == 'undefined')
             var data = {
                 'status': 'error'
             };
             if (data.status == 'success') {
-                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
-                window.localStorage.setItem('secretkey',data.secretkey);
-                window.localStorage.setItem('accountid',data.AccountID);
-                window.localStorage.setItem('lenovoname',data.name);
-                window.localStorage.setItem('Username',data.Username);
+                window.localStorage.setItem('stk',$.base64.encode(data.secretkey));
+                window.localStorage.setItem('acd',$.base64.encode(data.AccountID));
+                window.localStorage.setItem('ln',$.base64.encode(data.name));
+                window.localStorage.setItem('un',data.Username);
+                window.localStorage.setItem('token',data.t)
                 $.ajax({
                     type:"POST",
                     url:urlhead+"/lasf/userinfo",
-                    headers: {  
-                        "channel" : "cloudasr"
-                    },  
-                    data:{"username":data.Username,"lenovoid":data.AccountID},
-                    success:function(data){
-                        window.localStorage.setItem('lenkey',data.lenovokey);
-                        window.localStorage.setItem('secrkey',data.secretkey);
+                    data:{username:data.Username,lenovoid:data.AccountID,t:data.t},
+                    success:function(res){
+                        window.localStorage.setItem('lk',$.base64.encode(res.lenovokey));
+                        window.localStorage.setItem('sk',$.base64.encode(res.secretkey));
                     }
                     
                 });
