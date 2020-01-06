@@ -73,8 +73,9 @@
 <script>
 	$(function(){
 		loadTop("product");
-		var Username = window.localStorage.getItem('Username');
-		var accountid = window.localStorage.getItem('accountid');
+		var Username = window.localStorage.getItem('un');
+		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
+		var token = $.base64.decode(window.localStorage.getItem('token'))
 		$('.uright').html(Username);
 		$.ajax({
 			type:"POST",
@@ -82,7 +83,7 @@
 			headers: {  
 				"channel" : "cloudasr"
             },  
-            data:{"username":Username,"lenovoid":accountid},
+            data:{"username":Username,"lenovoid":accountid,t:token},
 			success:function(data){
 				console.log(data)
 				$('.val1').html(data.lenovokey);
