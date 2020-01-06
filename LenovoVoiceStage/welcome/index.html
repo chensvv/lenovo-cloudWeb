@@ -31,8 +31,8 @@
 	<script type="text/javascript" src="../common/mixjs/pagetop.js"></script>
 	<script src="./mixjs/index.js"></script>
 	<script src="./mixjs/swiper.min.js"></script>
-	<!-- <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> -->
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
 </head>
 <style>
 	.rows {
@@ -219,7 +219,6 @@
 										<div class="bottom_img col-xs-6 col-sm-6 col-md-4 col-lg-4">
 											<img src="./images/madp.png" alt="">
 										</div>
-									<br/>
 										<div class="bottom_img col-xs-6 col-sm-6 col-md-4 col-lg-4">
 											<img src="./images/daysr.png" alt="">
 										</div>
@@ -268,7 +267,7 @@
 // }
 
 
-		var accountid = window.localStorage.getItem('accountid');
+		var accountid = $.base64.decode(window.localStorage.getItem('accountid'));
 		var Username = window.localStorage.getItem('Username');
 		var scriptTag = document.createElement('script');
 		scriptTag.type = 'text/javascript';
