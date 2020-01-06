@@ -9,6 +9,8 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+var lenkey = $.base64.decode(window.localStorage.getItem('ls'));
+var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 $(function () {
    //修改nlp结果
    $(".update").bind("keypress",function(event){
@@ -60,11 +62,6 @@ function sendBlob(blob) {
         request.onreadystatechange=function() {
            updateStatus(request.responseText);
         };
-        
-		var accountid = $.base64.decode(window.localStorage.getItem('acd'))
-		var lenkey = $.base64.decode(window.localStorage.getItem('ls'));
-		var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
-
         request.setRequestHeader('channel','cloudasr');
         request.setRequestHeader('lenovokey',lenkey);
         request.setRequestHeader('secretkey',secrkey);                
@@ -145,7 +142,7 @@ function gotBuffers( buffers ) {
 function toggleRecording( e ) {
     $(".right_div_box").css({"display":"inline-block"})
     $('.left_div_box').css({"display":"none"})
-    var accountid = window.localStorage.getItem('accountid');
+    var accountid = $.base64.decode(window.localStorage.getItem('acd'))
     if (accountid=="" || accountid==null||accountid.length == 0) {
         var statusP = document.getElementById( "status" );
         statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
