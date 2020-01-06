@@ -1,4 +1,3 @@
-
 // function LenovoIdSyncLoginState(lenovoid_wust) {
 //     _club_login_status = true;
 //     take_st_login = true;
