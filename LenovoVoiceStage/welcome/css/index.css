@@ -478,13 +478,15 @@ p{margin: 0}
 	overflow: hidden;
 	padding: 0;
 }
-.top_img img, .bottom_img img{
+.top_img img{
 	width: 100%;
 	height: 100%;
 }
-.bottom_img{
+.bottom_img img{
 	width: 150px;
 	height: 80px;
+}
+.bottom_img{
 	overflow: hidden;
 	margin-bottom: 30px;
 	padding: 0;
@@ -493,8 +495,9 @@ p{margin: 0}
 	margin-bottom: 0;
 }
 .bot_div{
-	width: 40%;
-	margin: 0 auto;
+	flex-wrap: wrap;
+	text-align: center;
+	width: 55%;
 }
 .w50{
 	width: 50%;
