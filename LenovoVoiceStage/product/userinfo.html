@@ -76,7 +76,7 @@
 		loadTop("product");
 		var Username = window.localStorage.getItem('un');
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
-		var token = $.base64.decode(window.localStorage.getItem('token'))
+		var token = window.localStorage.getItem('token')
 		$('.uright').html(Username);
 		$.ajax({
 			type:"POST",

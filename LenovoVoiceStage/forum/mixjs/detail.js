@@ -128,7 +128,7 @@
 									$.ajax({
 										type:"POST",
 										url:urlhead+'/lasf/forum/delete',
-										data:{"dataid":valid,"accountname":Username},              
+										data:{"dataid":valid,"accountname":Username,lid:accountid,t:token},              
 										headers: {
 											"channel" : "cloudasr"
 										},
@@ -165,7 +165,7 @@
 									$.ajax({
 										type:"POST",
 										url:urlhead+"/lasf/forum/delete",
-										data:{"dataid":keyid,"accountname":Username},
+										data:{"dataid":keyid,"accountname":Username,lid:accountid,t:token},
 										headers: {
 											"channel" : "cloudasr"
 										},
