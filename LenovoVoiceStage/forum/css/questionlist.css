@@ -72,8 +72,13 @@ p{
 }
 .list-cell{
     padding: 30px 0 30px 30px;
-    display: flex;
-    flex-direction: row;
+    display: -moz-box;  /* Firefox */
+	display: -ms-flexbox;    /* IE10 */
+	display: -webkit-box;    /* Safari */ 
+	display: -webkit-flex;    /* Chrome, WebKit */
+	display: box; 
+	display: flexbox; 
+	display: flex;
     background: #eefcd0;
     margin-bottom: 5px;
     position: relative;
@@ -94,10 +99,12 @@ p{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    display: block;
+    float: left;
 }
 .info_right{
     padding-left: 20px;
-    width: 100%;
+    float: left;
 }
 .lp_li_a{
     color: #333;

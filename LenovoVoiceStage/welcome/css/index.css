@@ -12,7 +12,7 @@ p{margin: 0}
 }
 
 #eui-main-body{
-	/* margin-top: 70px; */
+	padding-bottom: 70px;
 	width: 100%;
 	height: auto !important;
 	background-color: #fff;
@@ -442,8 +442,8 @@ p{margin: 0}
 	}
 } */
 .row{
-	display: flex;
-	justify-content: space-between;
+	
+	text-align: center;
 }
 .box_anim3 .right_img_div{
 	position: absolute;
@@ -477,6 +477,7 @@ p{margin: 0}
 	height: 80px;
 	overflow: hidden;
 	padding: 0;
+	display: inline-block;
 }
 .top_img img{
 	width: 100%;
@@ -495,7 +496,6 @@ p{margin: 0}
 	margin-bottom: 0;
 }
 .bot_div{
-	flex-wrap: wrap;
 	text-align: center;
 	width: 55%;
 }
