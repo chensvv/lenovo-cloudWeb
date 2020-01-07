@@ -479,7 +479,7 @@
         width: 80px;
     }
  }
- @media screen and (max-width:1000px){
+ @media screen and (max-width:1000px) and(min-width:321px){
     .user_name{
         max-width: 100px;
         overflow: hidden;
@@ -489,7 +489,9 @@
         vertical-align: middle;
     }
  }
- .animated .user_name{
-    max-width: none !important;
-    font-size: 12px;
+ .mo{
+     font-size: 12px;
+ }
+ .ua{
+     max-width: 120px;
  }

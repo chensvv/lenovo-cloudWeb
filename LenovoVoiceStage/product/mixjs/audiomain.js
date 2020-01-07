@@ -9,7 +9,7 @@ var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-var lenkey = $.base64.decode(window.localStorage.getItem('ls'));
+var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 $(function () {
    //修改nlp结果
