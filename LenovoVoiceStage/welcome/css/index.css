@@ -816,13 +816,6 @@ p{margin: 0}
 	}
 }
 
-@media screen and (max-width: 320px){
-	.user_name{
-		max-width: 50px;
-	}
-}
-
-
 
 
 

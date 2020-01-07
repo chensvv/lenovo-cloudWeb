@@ -24,6 +24,7 @@
     width: 60px !important;
     padding-left: 5px;
 }
+
 .navbar-collapse{
     border: none;
 }
@@ -428,18 +429,16 @@
         position: absolute !important;
         background: #fff !important;
         top: 50px !important;
-        left: -20px !important;
+        right: 0 !important;
         list-style: none;
         border-radius: 2px;
+        width: 95px;
     }
     .open_style li{
         border-bottom: 1px solid rgba(229, 229, 229, 1) !important;
     }
     .open_style a {
-        padding-left: 10px !important;
-        /*  */
         color: #333;
-        padding: 0 20px;
     }
     .mobile_top_username{
         display: inline-block !important;
@@ -467,7 +466,17 @@
  }
  @media screen and (max-width:320px){
     .user_name{
-        max-width: 70px;
+        max-width: 50px !important;
+    }
+    .logo_text {
+        width: 50px !important;
+        padding-left: 5px;
+    }
+    .navbar-icon img {
+        width: 30px;
+    }
+    .navbar-icon {
+        width: 80px;
     }
  }
  @media screen and (max-width:1000px){
@@ -479,4 +488,8 @@
         display: inline-block;
         vertical-align: middle;
     }
+ }
+ .animated .user_name{
+    max-width: none !important;
+    font-size: 12px;
  }
