@@ -13,9 +13,8 @@
         <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=1.1"/>
 	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
-		<script src="../common/js/commurl.js"></script>
-	    <script type="text/javascript" src="js/document.js?version=1.1"></script>
+	    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
+	    <script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
 		<style>
 			#eui-main-footer{
 				position: fixed;
@@ -24,15 +23,22 @@
 		</style>
 	</head>
 	<body>
-		<!--<div id="eui-main-header"></div>-->
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-		</nav>
-		 <div class="content-title">语音合成接口V1</div>
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title">语音合成接口V1</p>
+			<div class="bg_div"></div>
+			<div class="mobile_div">
+				<span class="back_arrows"></span>
+				<span class="client_title">语音合成接口V1</span>
+			</div>
+		</div>
+		<div class="content-title">语音合成接口参数说明</div>
 		<div id="eui-main-body">
 		    <div class="conent-header" aos-once="true">
 		        <div class="urlheader">
 		            <div class="urleft contentleft">URL：</div>
-		            <div class="urlcontent contentright">http://{ip}/lasf/tts</div>
+		            <div class="urlcontent contentright">https://voice.lenovo.com/lasf/cloudtts</div>
 		        </div>
 		        <div class="pathheader">
 		            <div class="urleft contentleft">方法：</div>
@@ -244,4 +250,27 @@
 </html>
 
 <script>
+	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+			$('.navbar').css({"display":"block"})
+			$('.mobile_div').css({"display":"none"})
+			$('.recognise_title').css({"display":"block"})
+			$('.bg_div').css({"display":"block"})
+		}else{
+			$('.navbar').css({"display":"none"})
+			$('.mobile_div').css({"display":"block"})
+			$('.recognise_title').css({"display":"none"})
+			$('.bg_div').css({"display":"none"})
+		}
+	$(function () {
+		loadTop("client");
+		$('.back_arrows').click(function(){
+			history.back(-1)
+		})
+		
+
+	});
+	$(function () {
+		loadTop("document");
+	})
 </script>

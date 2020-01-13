@@ -40,7 +40,7 @@ var swiper = new Swiper('.swiper-container', {
         });
 
     },
-    autoplay:false,
+    autoplay:4000,
     slidesPerView: 1,
     paginationClickable: true,
     loop: true,

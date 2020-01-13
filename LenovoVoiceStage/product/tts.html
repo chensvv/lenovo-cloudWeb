@@ -93,13 +93,10 @@ if(!user){
 				return;
 			}
 		}else if(textv == ''){
-            console.log(1111)
 			alert('请输入要合成的内容')
 		}else if (window.navigator.userAgent.indexOf("MSIE")>=1){
-            console.log(222)
             $('#textarea').val('此浏览器不支持音频播放')
         }else{
-            console.log(4444)
 			XMLhttp()
 		}
 	})
