@@ -9,6 +9,7 @@ var ixid = new Date().getTime();
 var pidx = 1
 var over = 0
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
+var accountidd = window.localStorage.getItem('acd')
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var hour, minute, second; //时 分 秒
@@ -18,7 +19,7 @@ var int;
 function toggleRecording(e) {
     $('#record').attr('src', './images/Mic-act.png')
     var con = document.getElementsByClassName('content_box')[0]
-    if (accountid == "" || accountid == null || accountid.length == 0) {
+    if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("status");
         statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;

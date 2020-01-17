@@ -71,11 +71,12 @@ $(function () {
 <script>
 var pause = document.getElementById('play-btn')
 var pauseImg = document.getElementById('play-img')
-var bgm = document.getElementById('bgMusic');
+var bgm = document.getElementById('bgMusic')
 var number = document.getElementById('number')
 var randBtn = document.getElementById('randBtn')
 var textv
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
+var accountidd = window.localStorage.getItem('acd')
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
@@ -86,9 +87,8 @@ if(!user){
 
     $('.play-box').click(function(){
 		textv = $('#textarea').val()
-		if (accountid == "" || accountid == null || accountid.length == 0) {
+		if (accountidd == "" || accountidd == null || accountidd.length == 0) {
 			if(confirm("请先登录")){
-                console.log(333)
 				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 				return;
 			}
@@ -205,10 +205,12 @@ var addWavHeader = function(samples,sampleRateTmp,sampleBits,channelCount){
 }
 function XMLhttp(){
     var req = new XMLHttpRequest();
-    req.open("GET", 'https://voice.lenovo.com/lasf/cloudtts?text='+textv+'&user='+accountid, true); // grab our audio file
+    var formData = 'text='+textv+'&user='+accountid
+    req.open("POST", 'https://voice.lenovo.com/lasf/cloudtts', true); // grab our audio file
     req.setRequestHeader('channel','cloudasr')
     req.setRequestHeader('lenovokey',lenkey)
     req.setRequestHeader('secretkey',secrkey)
+    req.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
     req.responseType = "arraybuffer";   // needs to be specific type to work
     req.overrideMimeType('text/xml; charset = utf-8')
     req.onload = function() {
@@ -218,6 +220,6 @@ function XMLhttp(){
         bgm.src = URL.createObjectURL(blob);
         bgm.play();
     };
-    req.send(null);
+    req.send(formData);
 }
 </script>                                       
