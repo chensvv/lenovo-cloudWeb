@@ -15,6 +15,7 @@
 	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
 		<script src="../common/js/jquery.base64.js"></script>
+		<script src="../common/mixjs/commurl.js"></script>
 	    <script type="text/javascript" src="mixjs/document.js?version=1.1"></script>
 		<style>
 			#eui-main-footer{
@@ -96,18 +97,53 @@
 	                  	<table border="1" cellspacing="" cellpadding="">
 	                  		<tr>
 	                  			<th>名称</th>
-	                  			<th>格式</th>
+								<th>格式</th>
+								<th>是否必须</th>
 	                  			<th>描述</th>
 	                  		</tr>
 	                  		<tr>
 	                  			<td>text</td>
-	                  			<td>String</td>
+								<td>String</td>
+								<td>是</td>
 	                  			<td>输入的文本内容</td>
 							</tr>
 							<tr>
 								<td>user</td>
 								<td>String</td>
+								<td>是</td>
 								<td>用户accountid</td>
+							</tr>
+							<tr>
+								<td>speed</td>
+								<td>Number</td>
+								<td>否</td>
+								<td>设置播放的语速，在0~9之间（支持浮点值），不传时默认为5</td>
+							</tr>
+							<tr>
+								<td>volume</td>
+								<td>int</td>
+								<td>否</td>
+								<td>设置语音的语量，在0~9之间（只支持整型值），不传时默认为5</td>
+							</tr>
+							<tr>
+								<td>pitch</td>
+								<td>Number</td>
+								<td>否</td>
+								<td>设置语音的音调，在0~9之间（支持浮点值），不传时默认为5中音调</td>
+							</tr>
+							<tr>
+								<td>audioType</td>
+								<td></td>
+								<td>否</td>
+								<td>
+										音频种类，可不填，不填时默认为3，表示mp3格式<br/>
+										audioType=4 ：返回16K采样率的pcm格式</br>
+										audioType=5 ：返回8K采样率的pcm格式<br/>
+										audioType=6 ：返回16K采样率的wav格式<br/>
+										audioType=6&rate=1 ：返回8K的wav格式<br/>
+										audioType=7 ：返回8k8bit的alaw格式文件<br/>
+										audioType=8 ：返回8k8bit的ulaw格式文件
+								</td>
 							</tr>
 	                  	</table>
 	                  </div>
@@ -116,7 +152,7 @@
 		    
 		    <div class="content3">
 		    	<div class="headinfo contentleft">返回格式：</div>
-		        <div class="contentright">pcm音频流</div>
+		        <div class="contentright">根据音频种类返回对应格式的音频流</div>
 		    </div>
 		</div>			
 		
