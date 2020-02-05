@@ -49,11 +49,11 @@
 		    <div class="user_con">
 		    	<div class="lenkey">
 		    	    <span class="key1 key_con">联想密钥(ak)：</span>
-		    	    <span class="val1 val_width"></span>
+		    	    <span class="val1 val_width">请发邮件给 liuyang83@lenovo.com 索取密钥</span>
 		    	</div>
 		    	<div class="seckey">
 		    	    <span class="key2 key_con">安全密钥(sk)：</span>
-		    	    <span class="val2 val_width"></span>
+		    	    <span class="val2 val_width">请发邮件给 liuyang83@lenovo.com 索取密钥</span>
 		    	</div>
 		    	<div class="num1">
 		    	    <span class="key3 key_con">今日访问总次数：</span>
@@ -88,9 +88,9 @@
             },  
             data:{"username":Username,"lenovoid":accountid,t:token},
 			success:function(data){
-				if(errorcode !=1024){
-					$('.val1').html(data.lenovokey);
-					$('.val2').html(data.secretkey);
+				if(data.errorcode !=1024){
+					// $('.val1').html(data.lenovokey);
+					// $('.val2').html(data.secretkey);
 					$('.val3').html(data.totalAmount);
 					$('.val4').html(data.remainAmount);	
 				}else{
