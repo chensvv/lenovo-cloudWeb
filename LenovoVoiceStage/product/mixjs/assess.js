@@ -8,7 +8,7 @@ var accountidd = window.localStorage.getItem('acd')
 var chunkInfo;
 var rec;
 var ixid = new Date().getTime();
-var URL = 'http://m.voice.lenovomm.com/evaluate_read'
+var URL = 'https://m.voice.lenovomm.com/evaluate_read'
 function record(e){
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
