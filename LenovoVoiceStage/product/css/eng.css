@@ -130,11 +130,14 @@ p{
     position: absolute;
     top: -5.2083vh;
     right: 2.5622vw;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #fff !important;
     /* padding-bottom: 5px; */
     color: #fff;
     font-size: 16px /* 16/16 */;
     cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
 }
 .voice-header{
     border-bottom: 2px solid #d8f2f0;
@@ -184,7 +187,7 @@ p{
 .grade p{
     display: inline-block;
     border-top: 5px solid #9cdad5;
-    min-width: 2.6354vw;
+    min-width: 4.6354vw;
     min-height: 5.2083vh;
 }
 .z-g{
@@ -269,6 +272,9 @@ p{
     .voice-main{
         padding: 3.5104vh 2.1962vw 0;
     }
+    .grade p{
+        min-width: 5.6354vw;
+    }
 }
 @media screen and (max-width: 1024px){
     html, body {
@@ -277,4 +283,17 @@ p{
         min-width: auto;
         min-height: auto;
     }
+}
+dot {
+    display: inline-block; 
+    height: 1em; line-height: 1;
+    text-align: left;
+    vertical-align: -.25em;
+    overflow: hidden;
+}
+dot::before {
+    display: block;
+    content: '...\A..\A.';
+    white-space: pre-wrap;   /* 也可以是white-space: pre */
+    animation: dot 3s infinite step-start both;
 }
