@@ -255,6 +255,9 @@ p{
 .reply-time{
 	float: left;
 }
+.posi_nav{
+	display: none;
+}
 @media screen and (max-width:414px){
 	.posi_top{
 		height: 40px;

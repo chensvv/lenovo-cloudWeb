@@ -130,7 +130,7 @@ function loadTop(data) {
     params +="              <div class=\'is_mobile_close\'>";
     params +="                  <span onclick=\'close_mobile_nav()\' class=\'close_btn\'></span>";
     params +="              </div>";
-	params +="					<ul class=\'nav navbar-nav nav-left\'>";
+	params +="					<ul class=\'nav navbar-nav nav-left hover-menu\'>";
     if(data == "index"){
         params += "                    <li class=\'active\'>";
     }else{
@@ -143,8 +143,8 @@ function loadTop(data) {
     }else{
         params += "                    <li>";
     }
-    params +="							<a href=\'#\' target=\'_self\' data-toggle=\'dropdown\'>产品服务<span class=\'caret\'></span></a>";
-	params +="							<ul class=\'dropdown-menu\'>";
+    params +="							<a href=\'#\' target=\'_self\' id=\'pro-control\' class=\'product\'>产品服务<span class=\'caret\'></span></a>";
+	params +="							<ul class=\'product-menu\' id=\'pro-ul\'>";
 	params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\'>短语音识别</a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>长语音识别 <span style=\'color:red\'>(Beta)</span></a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\'>语音合成 </a></li>";
@@ -174,7 +174,7 @@ function loadTop(data) {
     params += "                        <a href=\'#\' onclick=\'menu_forum_list()\' id=\'\' target=\'_self\' >给我留言 <span class=\'mobile_jt\'></span></a>";
     params += "                    </li>";
     params += "                </ul>";
-    params += "                <ul class=\'nav navbar-nav navbar-right\'>";
+    params += "                <ul class=\'nav navbar-nav navbar-right hover-menu\'>";
 
     params += "                    <li id=\'login1\' class=\'mobile_style\'>";
 
@@ -184,8 +184,8 @@ function loadTop(data) {
         params += "                        <span class=\'shu\'>|</span>";
         params += "                        <a href=\'https://passport.lenovo.com/wauthen2/wauth/jsp/register.jsp?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vb=null&lenovoid.display=null&lenovoid.idp=null&lenovoid.source=voice.lenovomm.com&oldState=null?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.ctx=aHR0cHM6XC9cL3ZvaWNlLmxlbm92b21tLmNvbVwvdm9pY2VQbGF0Zm9ybVwvd2VsY29tZVwvaW5kZXguaHRtbA&lenovoid.lang=zh_CN&lenovoid.uinfo=null&lenovoid.cb=https://voice.lenovomm.com/voicePlatform/welcome/index.html&lenovoid.vp=null&lenovoid.display=null&lenovoid_idp=null&lenovoid.source=voice.lenovomm.com&lenovoid.thirdname=null&lenovoid.qrstate=null&lenovoid.idreinfo=null&lenovoid.hidewechat=1&lenovoid.hideqrlogin=1&lenovoid.hideautologin=1&lenovoid.hidelanguage=1&lenovoid.realmImg=null&lenovoid.loginTxt=null&lenovoid.mainColor=null&lenovoid.hideqq=1&lenovoid.hideloginreg=1&lenovoid.hidesina=1&lenovoid.hideregmobile=1&lenovoid.hideregemail=1&lenovoid.hidesmslogin=1&lenovoid.webstate=0&lenovoid.userType=null&lenovoid.uAgreementTxt=null&lenovoid.uAgreementUrl=null&lenovoid.sdk=null&lenovoid.sn=null' target=\'_self\' id='lenovo-user-register'>注册</a>";
     } else {
-        params += "                        <a href=\'#\' target=\'_self\'  data-toggle=\'dropdown\' class='lenovo-user-name2' id='lenovo-user-name'><span class='user_name ua'>"+ Username +"</span><span class=\'caret\'></span></a>";
-        params += "                        <ul class=\'dropdown-menu\'>";
+        params += "                        <a href=\'#\' target=\'_self\' class='lenovo-user-name2' id='lenovo-user-name'><span class='user_name ua'>"+ Username +"</span><span class=\'caret\'></span></a>";
+        params += "                        <ul class=\'user-menu\' id=\'user-ul\'>";
         params += "                            <li class='mobile_border'><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
         params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
         params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_logout()\'>退出</a></li>";
@@ -209,6 +209,33 @@ $('.mobile_top_username').click(function(){
 })
   if(navigator.userAgent.indexOf("MSIE")>0){
     $('.nav-left li').css({"padding-left":"100px"})
-    
 }
+$(document).ready(function(){
+    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('.nav').removeClass('hover-menu')
+        $('#pro-control').attr('data-toggle','dropdown')
+        $('#pro-ul').removeClass('product-menu')
+        $('#pro-ul').addClass('dropdown-menu')
+        $('#user-ul').removeClass('user-menu')
+        $('#user-ul').addClass('dropdown-menu')
+        $('#lenovo-user-name').attr('data-toggle','dropdown')
+    }else{
+        $('.nav').addClass('hover-menu')
+        $('#pro-control').removeAttr('data-toggle')
+        $('#pro-ul').addClass('product-menu')
+        $('#pro-ul').removeClass('dropdown-menu')
+        $('#user-ul').addClass('user-menu')
+        $('#user-ul').removeClass('dropdown-menu')
+        $('#lenovo-user-name').removeAttr('data-toggle')
+    }
+})
+
+// $(document).ready(function(){
+//     $('.product').hover(function(){
+//         console.log('移入')
+//     },function(){
+//         console.log('移除')
+//     })
+// })
 }
+

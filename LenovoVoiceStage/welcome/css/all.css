@@ -320,9 +320,6 @@ a {
 	line-height: inherit;
 	cursor: pointer
 }
-a:focus, a:hover {
-	color: #1585cf
-}
 a img {
 	border: 0
 }
