@@ -64,7 +64,7 @@
 // }
 		function content(){
 			    
-                $.ajax({
+        $.ajax({
 				  type:"POST",
 				  url:urlhead+"/lasf/forum/detail",
 				  dataType:"json",
@@ -83,7 +83,7 @@
 							var arr = document.getElementsByClassName('comment-info').length+1;
 							if(val.commentLevel == 2){
 								el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
-								if(Username == val.accountName){
+								if(geTel(Username) == val.accountName){
 								   el += "<span class='delchild'>删除</span>"
 								}else{
 	
@@ -96,7 +96,7 @@
 									el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
 									el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
 									el +=  "</div><div class='col-update'>"
-									if(Username == val.accountName){
+									if(geTel(Username) == val.accountName){
 										el += "<span class='del'>删除</span>"
 									}else{
 	
@@ -282,6 +282,11 @@
 		//过滤特殊字符
 		function unhtml(sHtml) {
 		 return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+		}
+		// 手机号加密
+		function geTel(tel){
+				var reg = /^(\d{3})\d{4}(\d{4})$/;  
+				return tel.replace(reg, "$1****$2");
 		}
 		function getUrlParam(name) {
 		   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

@@ -109,6 +109,11 @@ p{
 }
 .col-update{
 	text-align: right;
+	color: #636a6b;
+}
+.col-update .del:hover ,.col-update .reply-btn:hover{
+	color: #8ac18a;
+	cursor: pointer;
 }
 .reply_content{
 	width: 100%;
@@ -182,12 +187,6 @@ p{
 .comment-content-footer .rowtext .hui{
 	float: right;
 }
-.reply-btn:hover{
-	cursor: pointer;
-}
-.del:hover{
-	cursor: pointer;
-}
 .rowtext .replybox{
 	margin-bottom: 20px;
 	padding: 0 20px;
@@ -209,11 +208,10 @@ p{
 	border-bottom: 1px solid #009944;
 }
 .comment-list .reply p .delchild{
-	color: #aaa;
 	float: right;
 }
 .comment-list .reply p .delchild:hover{
-	color: #337ab7;
+	color: #8ac18a;
 	cursor: pointer;
 }
 .comment-content-footer .rowtext .replybox .send{

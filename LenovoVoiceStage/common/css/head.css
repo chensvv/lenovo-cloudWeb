@@ -154,7 +154,7 @@ a:focus a:hover{
     justify-content: center;
 }
 .product-menu li{
-    width: 10%;
+    width: 120px;
     text-align: center;
 }
 .user-menu{
