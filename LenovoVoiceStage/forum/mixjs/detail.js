@@ -115,12 +115,12 @@
 							$(".comment-list").find(".del").unbind().click(function(e){
 								
 								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-									if(confirm("登陆后才能删除！")){
+									if(confirm("登录后才能删除！")){
 										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 										localStorage.clear(); 
 										return;
-									
 									}else{
+										localStorage.clear();
 										return;
 									}
 								}
@@ -142,6 +142,7 @@
 													localStorage.clear(); 
 													return;
 												}else{
+													localStorage.clear();
 													return;
 												}
 											}
@@ -153,11 +154,12 @@
 							});
 							$(".comment-list").find(".delchild").unbind().click(function(){
 								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-									if(confirm("登陆后才能删除！")){
+									if(confirm("登录后才能删除！")){
 										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 										localStorage.clear(); 
 										return;
 									}else{
+										localStorage.clear();
 										return;
 									}
 								}
@@ -179,6 +181,7 @@
 													localStorage.clear(); 
 													return;
 												}else{
+													localStorage.clear();
 													return;
 												}
 											}
@@ -196,6 +199,7 @@
 							localStorage.clear(); 
 							return;
 						}else{
+							localStorage.clear();
 							return;
 						}
 					  }
@@ -210,13 +214,14 @@
 		//二级评论
 		function replyClick(el){
 		    if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-		        if(confirm("登陆后才能回复！")){
-					window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-					localStorage.clear(); 
-				    return;
+		        if(confirm("登录后才能回复！")){
+							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							localStorage.clear(); 
+				    	return;
 		        }else{
-					return;
-				}
+							localStorage.clear();
+							return;
+						}
 		    }
 		el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='comment_textarea' ></textarea><span class='send'>发送</span></div>")
 		.find(".send").click(function(){
@@ -243,6 +248,7 @@
 									localStorage.clear(); 
 									return;
 								}else{
+									localStorage.clear();
 									return;
 								}
 							}
@@ -332,6 +338,7 @@
 						localStorage.clear(); 
 						return;
 					}else{
+						localStorage.clear();
 						return;
 					}
 				}
@@ -352,12 +359,13 @@
             	return;
             }
 		    if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-		        if(confirm("登陆后才能评论！")){
-					window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-					localStorage.clear(); 
-				    return;
+		        if(confirm("登录后才能评论！")){
+							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							localStorage.clear(); 
+							return;
 		        }else{
-					return;
+							localStorage.clear();
+						return;
 				}
 		    }
 		    
@@ -382,14 +390,15 @@
 						//一级评论展示
 						content();
 				   }else{
-					if(confirm("登录超时，请重新登录")){
-						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-						localStorage.clear(); 
-						return;
-					}else{
-						return;
-					}
-				   }
+						if(confirm("登录超时，请重新登录")){
+							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							localStorage.clear(); 
+							return;
+						}else{
+							localStorage.clear();
+							return;
+						}
+				  }
 				},error:function(err){
 					alert('服务器错误')
 				}

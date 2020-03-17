@@ -96,7 +96,6 @@ p{
 
 .cont{
 	font-size: 16px;
-    line-height: 30px;
     color: #3c3a3a;
     border-bottom: 1px solid #009944;
 	padding-bottom: 40px;
@@ -198,6 +197,9 @@ p{
 
 .comment-right .content{
 	margin: 0;
+	overflow: hidden;
+	word-break: break-word;
+	font-size: 16px;
 }
 .comment-list .reply{
 	padding: 5px 60px;
