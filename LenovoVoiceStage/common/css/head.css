@@ -60,6 +60,9 @@
     background-color: transparent;
 }
 /* Caret */
+.caret{
+    vertical-align: super;
+}
 .navbar-default .navbar-nav > .dropdown > a .caret {
     border-top-color: #777;
     border-bottom-color: #777;
@@ -106,6 +109,9 @@
     -moz-box-align:center;
     -webkit-box-align:center;
     text-align: center;
+}
+#login1{
+    display: flex;
 }
 .hover-menu li{
     position: relative;
@@ -430,8 +436,8 @@ a:focus a:hover{
     }
     .caret{
         border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+        border-left: none !important;
+        border-right: none !important;
         display: block;
         float: right;
         margin-right: 25px;
@@ -578,7 +584,16 @@ a:focus a:hover{
  }
  .mo{
      font-size: 12px;
+     max-width: 100px;
+     display: inline-block;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
  }
  .ua{
      max-width: 120px;
+     display: inline-block;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
  }
