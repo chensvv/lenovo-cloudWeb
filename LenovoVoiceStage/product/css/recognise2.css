@@ -204,6 +204,7 @@ p{
 .prompt{
 	height: 100%;
 	overflow-y: scroll;
+	user-select: all;
 }
 @media screen and (max-width:1024px){
 	html,body{
