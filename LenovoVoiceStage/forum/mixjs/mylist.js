@@ -2,12 +2,13 @@ $(function(){
 		loadTop("information");
 		var accountidd = window.localStorage.getItem('accountid');
 		if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-	        if(confirm("登陆后才能查看！")){
-				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-			    return;
+	        if(confirm("登录后才能查看！")){
+						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+			    	return;
 	        }else{
-				return;
-			}
+						localStorage.clear();
+						return;
+					}
 
 	    }
  

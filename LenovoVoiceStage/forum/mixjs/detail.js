@@ -79,54 +79,50 @@
 
 		})
 
-		// function sortRule(a,b) {
-		//     return a.id - b.id;
-		// }
-		function content() {
-
-			$.ajax({
-				type: "POST",
-				url: urlhead + "/lasf/forum/detail",
-				dataType: "json",
-				headers: {
-					"channel": "cloudasr"
-				},
-				data: {
-					"articleid": id,
-					lid: accountid,
-					t: token
-				},
-				success: function (res) {
-					if (res.errorcode != 1024) {
+// function sortRule(a,b) {
+//     return a.id - b.id;
+// }
+		function content(){
+			    
+        $.ajax({
+				  type:"POST",
+				  url:urlhead+"/lasf/forum/detail",
+				  dataType:"json",
+				  headers: {
+						"channel" : "cloudasr"
+		            },
+				  data:{"articleid":id,lid:accountid,t:token},
+				  success:function(res){
+					  if(res.errorcode !=1024){
 						//   res.datalist = res.datalist.sort(sortRule)
 						$.each(res.datalist, function (idx, val) {
 							var reply_length = res.datalist.length - 1
 							$('.reply_length').text(reply_length)
-							var nowtime = formatDateTime(val.createTime);
-							var el = "";
-							var arr = document.getElementsByClassName('comment-info').length + 1;
-							if (val.commentLevel == 2) {
-								el += "<div class='reply'><p class='keyid' hidden>" + val.id + "</p><div><a href='javascript:void(0)' class='replyname'>" + unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****') + "</a>&nbsp;:&nbsp;<span>" + unhtml(val.content) + "</span></div>" + "<p><span>" + nowtime + "</span>"
-								if (geTel(Username) == val.accountName) {
-									el += "<span class='delchild'>删除</span>"
-								} else {
-
+						var nowtime = formatDateTime(val.createTime);
+							 var el="";
+							var arr = document.getElementsByClassName('comment-info').length+1;
+							if(val.commentLevel == 2){
+								el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
+								if(geTel(Username) == val.accountName){
+								   el += "<span class='delchild'>删除</span>"
+								}else{
+	
 								}
 
 								el += "</p></div>";
-
-							} else if (val.commentLevel == 1) {
-								var nowtime = formatDateTime(val.createTime);
-								el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#" + arr + "</span><span class='auth'>" + unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****') + "</span></div><div class='comment-right' id=\"" + val.parentCommentId + "\">";
-								el += "<p class='pid' hidden>" + val.parentCommentId + "</p><p class='valid' hidden>" + val.id + "</p><p class='content'>" + unhtml(val.content) + "</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";
-								el += "</div><div class='col-update'>"
-								if (geTel(Username) == val.accountName) {
-									el += "<span class='del'>删除</span>"
-								} else {
-
-								}
-								el += "<span class='reply-time'>" + nowtime + "</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>";
-
+								
+					   }else if(val.commentLevel == 1){
+									var nowtime = formatDateTime(val.createTime);
+									el += "<div class='comment-info'><div class='comment-content-header'><span class='floor'>#"+arr+"</span><span class='auth'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span></div><div class='comment-right' id=\""+val.parentCommentId+"\">";					
+									el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
+									el +=  "</div><div class='col-update'>"
+									if(geTel(Username) == val.accountName){
+										el += "<span class='del'>删除</span>"
+									}else{
+	
+									}
+									el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
+								 
 							}
 							$(".comment-list").append(el).find(".reply-btn").unbind().click(function () {
 								if ($(this).parent().parent().find(".replybox").length > 0) {
@@ -135,16 +131,16 @@
 									replyClick($(this));
 								}
 							});
-
-							$(".comment-list").find(".del").unbind().click(function (e) {
-
-								if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-									if (confirm("登录后才能删除！")) {
+							
+							$(".comment-list").find(".del").unbind().click(function(e){
+								
+								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
+									if(confirm("登录后才能删除！")){
 										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 										localStorage.clear();
 										return;
-									} else {
-										localStorage.clear(); 
+									}else{
+										localStorage.clear();
 										return;
 									}
 								}
@@ -170,8 +166,8 @@
 													window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 													localStorage.clear();
 													return;
-												} else {
-													localStorage.clear(); 
+												}else{
+													localStorage.clear();
 													return;
 												}
 											}
@@ -181,13 +177,14 @@
 									return;
 								}
 							});
-							$(".comment-list").find(".delchild").unbind().click(function () {
-								if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-									if (confirm("登陆后才能删除！")) {
+							$(".comment-list").find(".delchild").unbind().click(function(){
+								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
+									if(confirm("登录后才能删除！")){
 										window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 										localStorage.clear();
 										return;
-									} else {
+									}else{
+										localStorage.clear();
 										return;
 									}
 								}
@@ -213,8 +210,8 @@
 													window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
 													localStorage.clear();
 													return;
-												} else {
-													localStorage.clear(); 
+												}else{
+													localStorage.clear();
 													return;
 												}
 											}
@@ -341,6 +338,11 @@
 		}
 		function geTel(tel){
 				return tel.substring(0, 3)+"****"+tel.substr(tel.length-4);
+		}
+		// 手机号加密
+		function geTel(tel){
+				var reg = /^(\d{3})\d{4}(\d{4})$/;  
+				return tel.replace(reg, "$1****$2");
 		}
 		function getUrlParam(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

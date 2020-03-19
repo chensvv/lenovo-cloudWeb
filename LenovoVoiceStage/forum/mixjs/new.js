@@ -10,7 +10,7 @@
 							localStorage.clear(); 
 				    	return;
 		        }else{
-							localStorage.clear(); 
+							localStorage.clear();
 							return;
 						}
 		    }
@@ -43,7 +43,7 @@
 							localStorage.clear(); 
 				    	return;
 		        }else{
-							localStorage.clear(); 
+							localStorage.clear();
 							return;
 						}
 					}

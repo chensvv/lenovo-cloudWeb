@@ -96,7 +96,6 @@ p{
 
 .cont{
 	font-size: 16px;
-    line-height: 30px;
     color: #3c3a3a;
     border-bottom: 1px solid #009944;
 	padding-bottom: 40px;
@@ -109,6 +108,11 @@ p{
 }
 .col-update{
 	text-align: right;
+	color: #636a6b;
+}
+.col-update .del:hover ,.col-update .reply-btn:hover{
+	color: #8ac18a;
+	cursor: pointer;
 }
 .reply_content{
 	width: 100%;
@@ -174,10 +178,6 @@ p{
 		color: #aaa;
 	}
 	
-
-
-
-
 .comment-content-header{
 	margin-bottom: 5px;
 	color: #898989;
@@ -185,12 +185,6 @@ p{
 }
 .comment-content-footer .rowtext .hui{
 	float: right;
-}
-.reply-btn:hover{
-	cursor: pointer;
-}
-.del:hover{
-	cursor: pointer;
 }
 .rowtext .replybox{
 	margin-bottom: 20px;
@@ -203,33 +197,25 @@ p{
 
 .comment-right .content{
 	margin: 0;
+	overflow: hidden;
+	word-break: break-word;
+	font-size: 16px;
 }
-/* .comment-right .comment-content-footer .del{
-	display: none;
-}
-.comment-right:hover .del{
-	display: inline-block;
-} */
 .comment-list .reply{
 	padding: 5px 60px;
+	overflow: hidden;
+    word-break: break-word;
 }
-/* .comment-list .reply .delchild{
-	display: none;
-}
-.comment-list .reply:hover .delchild{
-    	display: block;
-} */
 .comment-list .reply p{
 	margin: 0;
 	color: #636a6b;
 	border-bottom: 1px solid #009944;
 }
 .comment-list .reply p .delchild{
-	color: #aaa;
 	float: right;
 }
 .comment-list .reply p .delchild:hover{
-	color: #337ab7;
+	color: #8ac18a;
 	cursor: pointer;
 }
 .comment-content-footer .rowtext .replybox .send{

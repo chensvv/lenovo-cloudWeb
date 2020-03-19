@@ -20,12 +20,12 @@
 		if (accountidd=="" || accountidd==null||accountidd.length == 0) {
 	        if(confirm("登录后才能查看！")){
 						window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-						localStorage.clear(); 
+						localStorage.clear();
 			    	return;
 	        }else{
-						localStorage.clear(); 
-				return;
-			}
+						localStorage.clear();
+						return;
+					}
 
 	    }
 		function formatDateTime(timeStamp) {   
@@ -95,7 +95,7 @@
 						localStorage.clear();
 						return;
 					}else{
-						localStorage.clear(); 
+						localStorage.clear();
 						return;
 					}
 				}
@@ -165,7 +165,7 @@
 							localStorage.clear(); 
 							return;
 						}else{
-							localStorage.clear(); 
+							localStorage.clear();
 							return;
 						}
 					}

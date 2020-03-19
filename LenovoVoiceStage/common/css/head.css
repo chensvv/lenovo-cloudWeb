@@ -274,11 +274,9 @@ a:focus a:hover{
 .navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
     color: #fff;
 }
-#lenovo-user-name{
-    padding-right: 15px;
-}
 #lenovo-user-name_m{
     color: #fff;
+    padding-right: 15px;
 }
 #lenovo-user-register{
     padding-left: 15px;
@@ -309,6 +307,10 @@ a:focus a:hover{
         border-bottom: none !important;
     }
     .mobile_nav_right #lenovo-user-name{
+        color: #fff;
+        padding-right: 0;
+    }
+    .mobile_nav_right #lenovo-user-name_m{
         color: #fff;
         padding-right: 0;
     }
@@ -429,8 +431,8 @@ a:focus a:hover{
     }
     .caret{
         border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+        border-left: none !important;
+        border-right: none !important;
         display: block;
         float: right;
         margin-right: 25px;
@@ -487,7 +489,7 @@ a:focus a:hover{
     .mobile_style .shu{
         display: none !important;
     }
-    .mobile_style #lenovo-user-name{
+    .mobile_style #lenovo-user-name_m{
         padding-right: 0;
         background:linear-gradient(90deg,rgba(101,209,194,1) 0%,rgba(162,215,142,1) 100%);
         text-align: center;
