@@ -20,6 +20,7 @@ $(function(){
 					localStorage.clear(); 
 					return;
 				}else{
+					localStorage.clear(); 
 					return;
 				}
 			}

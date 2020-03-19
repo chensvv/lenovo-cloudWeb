@@ -23,6 +23,7 @@
 						localStorage.clear(); 
 			    	return;
 	        }else{
+						localStorage.clear(); 
 				return;
 			}
 
@@ -94,6 +95,7 @@
 						localStorage.clear();
 						return;
 					}else{
+						localStorage.clear(); 
 						return;
 					}
 				}
@@ -163,6 +165,7 @@
 							localStorage.clear(); 
 							return;
 						}else{
+							localStorage.clear(); 
 							return;
 						}
 					}

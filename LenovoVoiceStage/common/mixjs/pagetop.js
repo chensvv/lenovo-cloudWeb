@@ -112,7 +112,7 @@ function loadTop(data) {
     params += "                    <li id=\'login1\'>";
     if (Username=="" || Username==null||Username.length == 0) {
         
-        params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name'>登录</a>";
+        params += "                        <a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
     } else {
         
         params += "                        <a href=\'#\' target=\'_self\' class='mobile_top_username'><span class='user_name mo'>"+ Username +"</span><span class=\'open_user\'></span></a>";

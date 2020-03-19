@@ -154,7 +154,7 @@ a:focus a:hover{
     justify-content: center;
 }
 .product-menu li{
-    width: 10%;
+    width: 120px;
     text-align: center;
 }
 .user-menu{
@@ -277,6 +277,9 @@ a:focus a:hover{
 #lenovo-user-name{
     padding-right: 15px;
 }
+#lenovo-user-name_m{
+    color: #fff;
+}
 #lenovo-user-register{
     padding-left: 15px;
 }
@@ -285,6 +288,9 @@ a:focus a:hover{
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
     border-color: none;
+}
+.dropdown-menu{
+    padding: 0;
 }
 @media screen and (max-width:766px){
     .navbar{
@@ -493,6 +499,9 @@ a:focus a:hover{
         color: #fff;
         border-radius: 4px;
     }
+    .mobile_style .user_name{
+        overflow: unset;
+    }
     .lenovo-user-name2{
         background: none !important;
         text-align: left !important;
@@ -559,7 +568,7 @@ a:focus a:hover{
         width: 80px;
     }
  }
- @media screen and (max-width:1000px) and(min-width:321px){
+ @media screen and (max-width:1000px){
     .user_name{
         max-width: 100px;
         overflow: hidden;
@@ -571,7 +580,4 @@ a:focus a:hover{
  }
  .mo{
      font-size: 12px;
- }
- .ua{
-     max-width: 120px;
  }
