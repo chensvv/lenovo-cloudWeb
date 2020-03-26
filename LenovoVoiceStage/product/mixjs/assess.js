@@ -12,7 +12,7 @@ var URL = 'https://voice.lenovomm.com/xxzz/evaluate_read'
 function record(e){
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
-        statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        statusP.innerHTML = "<a href=\"../login/login.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
     if (e.classList.contains("recording")) {

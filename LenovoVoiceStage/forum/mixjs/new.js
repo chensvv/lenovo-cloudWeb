@@ -6,7 +6,7 @@
 			var accountidd = window.localStorage.getItem('acd')
 		    if (accountidd=="" || accountidd==null||accountidd.length == 0) {
 		        if(confirm("登录后才能发表！")){
-							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							window.location.href = "../login/login.html";
 							localStorage.clear(); 
 				    	return;
 		        }else{
@@ -39,7 +39,7 @@
 						}
 					}else{
 						if(confirm("登录超时，请重新登录")){
-							window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
+							window.location.href = "../login/login.html";
 							localStorage.clear(); 
 				    	return;
 		        }else{

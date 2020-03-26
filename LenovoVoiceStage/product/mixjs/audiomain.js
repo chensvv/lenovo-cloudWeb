@@ -18,7 +18,7 @@ $(function () {
 		if(event.keyCode == "13"){
             var $val=$(".update").val();
             $.ajax({
-                type:"get",
+                type:"post",
                 url:urlhead+"/lasf/nlp",
                 data:{"uid":"466543","vdm":"music","cmd":$val,"app":"kk"},	           
                 success:function(data){
@@ -145,7 +145,7 @@ function toggleRecording( e ) {
     $('.left_div_box').css({"display":"none"})
     if (accountidd=="" || accountidd==null||accountidd.length == 0) {
         var statusP = document.getElementById( "status" );
-        statusP.innerHTML = "<a href=\"https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        statusP.innerHTML = "<a href=\"../login/login.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
 
@@ -164,7 +164,6 @@ function toggleRecording( e ) {
         document.getElementById("wavedisplay").style.display="block";
         
     } else {
-        
         // start recording
         if (!audioRecorder){
             $("#status").html("此浏览器不能获得麦克风的权限");
@@ -176,7 +175,6 @@ function toggleRecording( e ) {
         avatarnum();
         audioRecorder.clear();
         audioRecorder.record();
-//      $("#json").html("");
         $('pre').hide();
         $(".upd").css("display","none");
         $(".shu").css("display","none")

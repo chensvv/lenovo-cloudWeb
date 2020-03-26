@@ -24,16 +24,16 @@
 	<link href="css/index.css?version=2.0" rel="stylesheet" />
 	<link rel="stylesheet" href="../common/css/animate.min.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
-	<script type="text/javascript" src="./mixjs/index.js?version=2.0"></script>
 	<script src="./mixjs/swiper.animate.min.js"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./mixjs/swiper.min.js"></script>
 	<script src="../common/mixjs/commurl.js?version=2.0"></script>
 	<script src="../common/js/jquery.base64.js"></script>
+	<script type="text/javascript" src="./mixjs/index.js?version=2.0"></script>
 	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
-	<script src="./mixjs/swiper.min.js"></script>
-	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+	<!-- <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
+	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> -->
 </head>
 <style>
 	.rows {
@@ -260,10 +260,10 @@
 		document.head.appendChild(scriptNode);
 		loadTop("index");
 		// $(document).ready(function () {
-			if(location.href.indexOf("#reloaded")==-1){
-				location.href=location.href+"#reloaded";
-				location.reload();
-			}
+			// if(location.href.indexOf("#reloaded")==-1){
+			// 	location.href=location.href+"#reloaded";
+			// 	location.reload();
+			// }
 // }
 		var accountid = $.base64.decode(window.localStorage.getItem('accountid'));
 		var Username = window.localStorage.getItem('Username');
