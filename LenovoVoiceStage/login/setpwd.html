@@ -123,14 +123,14 @@
 // 注册密码验证
 function isPassword(){
     var passCode = $("#password").val()
-    var passwordReg = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/
+    var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z~.'!@#￥$%^&*()-+_=:]{8,}$/
     if(passCode == ''){
         $('#errPass').text('请输入密码')
     }else if(passwordReg.test(passCode)){
         $('#errPass').text('')
         return true;
     }else{
-        $('#errPass').text('密码长度必须大于8个字符，包含数字、字母、特殊符号')
+        $('#errPass').text('密码长度必须包含数字、字母且大于8个字符')
         return false;
     }
 }
