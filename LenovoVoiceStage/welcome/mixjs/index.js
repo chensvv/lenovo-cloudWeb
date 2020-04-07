@@ -52,8 +52,7 @@
 			"channel" : "cloudasr"
 		},  
 		data:{"username":Username,"lenovoid":accountid,t:token},
-		success:function(data){	
-            console.log(data)	
+		success:function(data){
 			if(data.errorcode ==1024){
 				localStorage.clear(); 
 			}

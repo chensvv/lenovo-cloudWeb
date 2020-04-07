@@ -21,7 +21,11 @@ function menu_voice_tts(){
 }
 
 function menu_voice_assess(){
-    window.location.href = "../product/EngAssess.html";
+    window.location.href = "../product/engassess.html";
+}
+
+function menu_voice_eng(){
+    window.location.href = "../product/engaudio.html";
 }
 
 function menu_voice_synthesis(){
@@ -57,7 +61,7 @@ function set_pwd(){
 
 function user_logout(){
     window.localStorage.clear();
-    window.location.href = "../login/login.html";
+    location.reload()
 }
 
 function menu_forum_list(){
@@ -65,17 +69,6 @@ function menu_forum_list(){
 }
 function menu_new_data(){
 	window.location.href = "../new/newlist.html";
-}
-
-function is_not_login() {
-
-    session.setItem('refer', window.location.pathname);
-
-    if(typeof session.user_email == 'undefined'){
-        window.location.href="../login/login.html";
-        return true;
-    }
-    return false;
 }
 function open_nav(){
     $('#navbar').css({"display":"block"})
@@ -120,6 +113,7 @@ function loadTop(data) {
         params += "                        <ul class=\' open_style\' style=\'display:none\'>";
         params += "                            <li><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
         params += "                            <li><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
+        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'set_pwd()\'>修改密码</a></li>";
         params += "                            <li><a href=\'#\' onclick=\'user_logout()\'>退出</a></li>";
         params += "                        </ul>";
     }
@@ -150,6 +144,7 @@ function loadTop(data) {
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>长语音识别 <span style=\'color:red\'>(Beta)</span></a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\'>语音合成 </a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_assess()\'  id=\'\'>英语评测 </a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_eng()\'  id=\'\'>英语识别 </a></li>";
     params += "                        </ul>";
     params += "                    </li>";
 

@@ -19,7 +19,6 @@ function sendBlob(urlheader,blob, over,lenkey,secrkey) {
         }else{
             var buf4 = buf;
         }
-        console.log(over)
         var formData = new FormData();
         var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
             "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
