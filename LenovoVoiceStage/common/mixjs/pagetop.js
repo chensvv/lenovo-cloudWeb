@@ -21,7 +21,7 @@ function menu_voice_tts(){
 }
 
 function menu_voice_assess(){
-    window.location.href = "../product/engassess.html";
+    window.location.href = "../product/assess.html";
 }
 
 function menu_voice_eng(){
