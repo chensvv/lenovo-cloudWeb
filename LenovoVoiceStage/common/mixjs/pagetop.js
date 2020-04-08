@@ -140,11 +140,12 @@ function loadTop(data) {
     }
     params +="							<a href=\'#\' target=\'_self\' id=\'pro-control\' class=\'product\'>产品服务<span class=\'caret\'></span></a>";
 	params +="							<ul class=\'product-menu\' id=\'pro-ul\'>";
-	params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\'>短语音识别</a></li>";
-    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>长语音识别 <span style=\'color:red\'>(Beta)</span></a></li>";
+	params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\'>汉语短语音识别</a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>汉语长语音识别</a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_eng()\'  id=\'\'>英语短语音识别 </a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\'>语音合成 </a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_assess()\'  id=\'\'>英语评测 </a></li>";
-    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_eng()\'  id=\'\'>英语识别 </a></li>";
+
     params += "                        </ul>";
     params += "                    </li>";
 

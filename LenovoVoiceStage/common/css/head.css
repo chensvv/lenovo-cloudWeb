@@ -154,8 +154,9 @@ a:focus a:hover{
     justify-content: center;
 }
 .product-menu li{
-    width: 120px;
+    /* width: 120px; */
     text-align: center;
+    padding-left: 30px;
 }
 .user-menu{
     position: fixed;
