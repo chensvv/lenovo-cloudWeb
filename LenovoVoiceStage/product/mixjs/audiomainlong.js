@@ -105,7 +105,7 @@ function recd() {
                     }
                     
             }).catch(function (error) {
-                console.log(error)
+                document.getElementById('txt-f').innerHTML = '服务器错误，请稍后重试'
             })
             
         }

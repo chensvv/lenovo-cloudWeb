@@ -70,6 +70,8 @@ function recStop(){
             document.getElementById('integrity').innerHTML = res.data.integrity
             document.getElementById('degree').innerHTML = res.data.precision
             document.getElementById('score').innerHTML = res.data.overall
+        }).catch(err=>{
+            document.getElementById("text").innerHTML = '服务器错误，请稍后重试'
         })
     },function(msg){
         alert("录音失败:"+msg);

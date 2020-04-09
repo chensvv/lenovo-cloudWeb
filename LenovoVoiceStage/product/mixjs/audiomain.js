@@ -178,6 +178,8 @@ function recStop(){
                 }
             }).then(res=>{
                 updateStatus(res.data)
+            }).catch(err=>{
+                document.getElementById("status").innerHTML = '服务器错误，请稍后重试'
             })
         }
     },function(msg){

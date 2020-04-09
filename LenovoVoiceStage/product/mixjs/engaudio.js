@@ -91,7 +91,6 @@ function toggleRecording( e ) {
         
     } else {
         // start recording
-        
         e.classList.add("recording");
         //Avatar数据统计
         avatarnum();
@@ -179,6 +178,8 @@ function recStop(){
                 }
             }).then(res=>{
                 updateStatus(res.data)
+            }).catch(err=>{
+                document.getElementById( "status" ).innerHTML = '服务器错误，请稍后重试'
             })
         }
     },function(msg){
