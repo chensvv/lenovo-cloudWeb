@@ -21,7 +21,7 @@ function toggleRecording(e) {
     var con = document.getElementsByClassName('content_box')[0]
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("status");
-        statusP.innerHTML = "<a href=\"../login/login.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
     var img_btn = document.getElementById('record');
@@ -64,6 +64,12 @@ $(function () {
     millisecond = hour = minute = second = 0;
     document.getElementById('timetext').value = '00:00:00';
 })
+
+function user_login(){
+    var url = window.location.href
+    window.localStorage.setItem('returnurl',url)
+    window.location.href = "../login/login.html";
+}
 
 function recd() {
     rec = Recorder({

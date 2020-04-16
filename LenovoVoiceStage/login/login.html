@@ -207,6 +207,15 @@ function isLoginW(){
         $('#errloginW').text('')
     }
 }
+// function getQueryVariable(variable){
+//        var query = window.location.search.substring(1);
+//        var vars = query.split("&");
+//        for (var i=0;i<vars.length;i++) {
+//                var pair = vars[i].split("=");
+//                if(pair[0] == variable){return pair[1];}
+//        }
+//        return(false);
+// }
 $('#loginBtn').click(function(){
     var username = $("#loginPhone").val()
     var password = $.base64.encode($('#loginPassword').val())
@@ -227,7 +236,12 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                     window.localStorage.setItem('un',res.userName)
                     window.localStorage.setItem('token',res.token)
-                    window.location.href = '../welcome/index.html'
+                    if(window.localStorage.getItem('returnurl') == ''){
+                        window.location.href = '../welcome/index.html'
+                    }else{
+                        window.location.href = window.localStorage.getItem('returnurl')
+                    }
+                    
                 }else{
                     $('#errloginW').text(res.description)
                 }

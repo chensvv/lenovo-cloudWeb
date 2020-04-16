@@ -70,12 +70,18 @@ function updateStatus(status) {
     $(".upd").css("display","block");
 }
 
+function user_login(){
+    var url = window.location.href
+    window.localStorage.setItem('returnurl',url)
+    window.location.href = "../login/login.html";
+}
+
 function toggleRecording( e ) {
     $(".right_div_box").css({"display":"inline-block"})
     $('.left_div_box').css({"display":"none"})
     if (accountidd=="" || accountidd==null||accountidd.length == 0) {
         var statusP = document.getElementById( "status" );
-        statusP.innerHTML = "<a href=\"../login/login.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
 

@@ -15,10 +15,12 @@ $(function(){
 		data:{"username":Username,"lenovoid":accountid,t:token},
 		success:function(data){
 			if(data.errorcode ==1024){
+				$('body').css('overflow','hidden')
+				$("#click1,#click2,#click3,#click4").css("pointer-events","none");
 				localStorage.clear();
-				Popup.confirm("请登录后继续操作", fn)
+				Popup.alert("请登录后继续操作")
 			}else{
-				$("#entry,#entry1,#detail").css("pointer-events","auto");
+				$("#click1,#click12,#click3,#click4").css("pointer-events","auto");
 			}
 			// if(token == null){
 			// 	localStorage.clear();

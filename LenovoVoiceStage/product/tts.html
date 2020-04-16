@@ -25,6 +25,9 @@
             bottom: 0;
             min-width: 1200px;
         }
+        .textarea_box{
+            min-height: 206px;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +43,9 @@
             <div class="content-box">
                 <div class="content-top"><span class="hint">请输入需要合成的文本</span><span class="rand-btn" id="randBtn">随机示例</span></div>
                 <div class="text-box">
-                    <textarea class="content-text" id="textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" placeholder="在这里你可以输入任意想要说的话，我们会将文字信息合成自然、生动的人声。"></textarea>
+                    <div class="textarea_box" id="textarea_box">
+                        <textarea class="content-text" id="textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" placeholder="在这里你可以输入任意想要说的话，我们会将文字信息合成自然、生动的人声。"></textarea>
+                    </div>
                     <div class="hint-num">您可以输入<span id="number">150</span>个字</div>
                 </div>
                 <div class="content-btn">
@@ -87,10 +92,7 @@ if(!user){
     $('.play-box').click(function(){
 		textv = $('#textarea').val()
 		if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-			if(confirm("请先登录")){
-				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-				return;
-			}
+			document.getElementById('textarea_box').innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
 		}else if(textv == ''){
 			alert('请输入要合成的内容')
 		}else if (window.navigator.userAgent.indexOf("MSIE")>=1){

@@ -101,6 +101,7 @@ p{
 }
 .info_con a:hover,.info_con a:focus{
     color: #50a388;
+    text-decoration: underline;
 
 }
 @media screen and (max-width:770px){

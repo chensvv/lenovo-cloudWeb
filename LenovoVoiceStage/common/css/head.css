@@ -278,6 +278,10 @@ a:focus a:hover{
     color: #fff;
     padding-right: 15px;
 }
+#lenovo-user-name_m:hover,#lenovo-user-name_m:focus{
+    cursor: pointer;
+    color: #b6fffe;
+}
 #lenovo-user-register{
     padding-left: 15px;
 }

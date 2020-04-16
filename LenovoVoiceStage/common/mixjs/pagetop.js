@@ -62,8 +62,13 @@ function set_pwd(){
 function user_logout(){
     window.localStorage.clear();
     location.reload()
-}
 
+}
+function user_login(){
+    var url = window.location.href
+    window.localStorage.setItem('returnurl',url)
+    window.location.href = "../login/login.html";
+}
 function menu_forum_list(){
 	window.location.href = "../forum/questionlist.html";
 }
@@ -106,7 +111,7 @@ function loadTop(data) {
     params += "                    <li id=\'login1\'>";
     if (Username=="" || Username==null||Username.length == 0) {
         
-        params += "                        <a href=\'../login/login.html\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
+        params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
     } else {
         
         params += "                        <a href=\'#\' target=\'_self\' class='mobile_top_username'><span class='user_name mo'>"+ Username +"</span><span class=\'open_user\'></span></a>";
@@ -177,7 +182,7 @@ function loadTop(data) {
 
 
     if (Username=="" || Username==null||Username.length == 0) {
-        params += "                        <a href=\'../login/login.html\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
+        params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
         params += "                        <span class=\'shu\'>|</span>";
         params += "                        <a href=\'../login/login.html\' target=\'_self\' id='lenovo-user-register'>注册</a>";
     } else {

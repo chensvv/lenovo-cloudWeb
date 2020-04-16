@@ -1,6 +1,5 @@
 	$(function () {
 		loadTop("information");
-
 		var Username = window.localStorage.getItem('un');
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
 		var accountidd = window.localStorage.getItem('acd')
@@ -82,8 +81,8 @@
 // function sortRule(a,b) {
 //     return a.id - b.id;
 // }
+function fn(){}
 		function content(){
-			    
         $.ajax({
 				  type:"POST",
 				  url:urlhead+"/lasf/forum/detail",
@@ -133,17 +132,6 @@
 							});
 							
 							$(".comment-list").find(".del").unbind().click(function(e){
-								
-								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-									if(confirm("登录后才能删除！")){
-										window.location.href = "../login/login.html";
-										localStorage.clear();
-										return;
-									}else{
-										localStorage.clear();
-										return;
-									}
-								}
 								var valid = $(this).parent().parent().parent().parent().find(".valid").text()
 								if (confirm("确认删除吗?")) {
 									$.ajax({
@@ -162,14 +150,8 @@
 											if (data.errorcode != 1024) {
 												history.go(0);
 											} else {
-												if (confirm("登录超时，请重新登录")) {
-													window.location.href = "../login/login.html";
-													localStorage.clear();
-													return;
-												}else{
-													localStorage.clear();
-													return;
-												}
+												localStorage.clear();
+												Popup.confirm("请登录后继续操作！", fn)
 											}
 										}
 									});
@@ -178,16 +160,6 @@
 								}
 							});
 							$(".comment-list").find(".delchild").unbind().click(function(){
-								if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-									if(confirm("登录后才能删除！")){
-										window.location.href = "../login/login.html";
-										localStorage.clear();
-										return;
-									}else{
-										localStorage.clear();
-										return;
-									}
-								}
 								var keyid = $(this).parent().parent().find(".keyid").text();
 								if (confirm("确认删除吗?")) {
 									$.ajax({
@@ -206,14 +178,8 @@
 											if (data.errorcode != 1024) {
 												history.go(0);
 											} else {
-												if (confirm("登录超时，请重新登录")) {
-													window.location.href = "../login/login.html";
-													localStorage.clear();
-													return;
-												}else{
-													localStorage.clear();
-													return;
-												}
+												localStorage.clear();
+												Popup.confirm("请登录后继续操作！", fn)
 											}
 
 										}
@@ -224,18 +190,12 @@
 							});
 						});
 					} else {
-						if (confirm("登录超时，请重新登录")) {
-							window.location.href = "../login/login.html";
-							localStorage.clear();
-							return;
-						} else {
-							localStorage.clear(); 
-							return;
-						}
+						localStorage.clear();
+						Popup.confirm("请先登录！", fn)
 					}
 				},
 				error: function (err) {
-					alert('服务器错误')
+					Popup.alert("服务器错误")
 				}
 			});
 		}
@@ -244,16 +204,6 @@
 
 		//二级评论
 		function replyClick(el) {
-			if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-				if (confirm("登录后才能回复！")) {
-					window.location.href = "../login/login.html";
-					localStorage.clear();
-					return;
-				} else {
-					localStorage.clear(); 
-					return;
-				}
-			}
 			el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='comment_textarea' ></textarea><span class='send'>发送</span></div>")
 				.find(".send").click(function () {
 					var content = $(this).prev().val();
@@ -282,25 +232,19 @@
 								if (data.errorcode != 1024) {
 									history.go(0);
 								} else {
-									if (confirm("登录超时，请重新登录")) {
-										window.location.href = "../login/login.html";
-										localStorage.clear();
-										return;
-									} else {
-										localStorage.clear(); 
-										return;
-									}
+									localStorage.clear();
+									Popup.confirm("请登录后继续操作！", fn)
 								}
 
 							},
 							error: function (err) {
-								alert('服务器错误')
+								Popup.alert("服务器错误")
 							}
 						});
 
 
 					} else {
-						alert("空内容");
+						Popup.alert("空内容")
 					}
 				});
 		}
@@ -388,14 +332,8 @@
 						}
 					});
 				} else {
-					if (confirm("登录超时，请重新登录")) {
-						window.location.href = "../login/login.html";
-						localStorage.clear();
-						return;
-					} else {
-						localStorage.clear(); 
-						return;
-					}
+					localStorage.clear();
+					Popup.confirm("请登录后继续操作！", fn)
 				}
 			},
 			error: function (err) {
@@ -411,20 +349,9 @@
 		//评论一级添加
 		$("#comment").click(function () {
 			if ($("#content").val() == "") {
-				alert("评论不能为空。");
+				Popup.alert("评论不能为空")
 				return;
 			}
-			if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-				if (confirm("登录后才能评论！")) {
-					window.location.href = "../login/login.html";
-					localStorage.clear();
-					return;
-				} else {
-					localStorage.clear(); 
-					return;
-				}
-			}
-
 			var tit = $(".htitle").text();
 			var tit2 = $('.reply_arrows').text()
 			var $content = $("#content").val();
@@ -446,18 +373,12 @@
 						//一级评论展示
 						content();
 					} else {
-						if (confirm("登录超时，请重新登录")) {
-							window.location.href = "../login/login.html";
-							localStorage.clear();
-							return;
-						} else {
-							localStorage.clear(); 
-							return;
-						}
+						localStorage.clear();
+						Popup.confirm("请登录后继续操作！", fn)
 					}
 				},
 				error: function (err) {
-					alert('服务器错误')
+					Popup.alert("服务器错误")
 				}
 			})
 		});

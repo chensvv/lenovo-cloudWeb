@@ -3,30 +3,7 @@
 		var Username = window.localStorage.getItem('un');
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 		var accountidd = window.localStorage.getItem('acd')
-		// $.ajax({
-		// 	type:"POST",
-		// 	url:urlhead+"/lasf/userinfo",
-		// 	headers: {  
-		// 		"channel" : "cloudasr"
-    //         },
-    //         data:{"username":Username,"lenovoid":accountid},
-		// 	success:function(data){
-		// 		lenkey=data.lenovokey;
-		// 		secrkey=data.secretkey;
-		// 	}
-			
-		// });
-		
-		if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-	        if(confirm("登录后才能查看！")){
-						window.location.href = "../login/login.html";
-						localStorage.clear();
-			    	return;
-	        }else{
-						localStorage.clear();
-						return;
-					}
-	    }
+		function fn(){}
 		function formatDateTime(timeStamp) {   
 		    var date = new Date();  
 		    date.setTime(timeStamp * 1000);  
@@ -89,14 +66,8 @@
 						});
 					$(".list-content").append(str);
 				}else{
-					if(confirm("登录超时，请重新登录")){
-						window.location.href = "../login/login.html";
-						localStorage.clear();
-						return;
-					}else{
-						localStorage.clear();
-						return;
-					}
+					localStorage.clear();
+					Popup.confirm("请登录后继续操作", fn)
 				}
 				
 			},error:function(err){
@@ -159,14 +130,8 @@
 						});
 						$(".list-content").append(str);
 					}else{
-						if(confirm("登录超时，请重新登录")){
-							window.location.href = "../login/login.html";
-							localStorage.clear(); 
-							return;
-						}else{
-							localStorage.clear();
-							return;
-						}
+						localStorage.clear();
+						Popup.confirm("请登录后继续操作", fn)
 					}
 			  	
 			  },error:function(err){

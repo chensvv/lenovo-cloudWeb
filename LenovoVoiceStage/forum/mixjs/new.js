@@ -1,19 +1,8 @@
 	$(function(){
 		loadTop("information");
 		var Username = window.localStorage.getItem('un')
+		function fn(){}
 	$("#send").click(function(){
-			var accountid = $.base64.decode(window.localStorage.getItem('acd'))
-			var accountidd = window.localStorage.getItem('acd')
-		    if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-		        if(confirm("登录后才能发表！")){
-							window.location.href = "../login/login.html";
-							localStorage.clear(); 
-				    	return;
-		        }else{
-							localStorage.clear();
-							return;
-						}
-		    }
 			var title=$(".title").val();
 			var text=$(".text").val();
 			$.ajax({
@@ -38,14 +27,8 @@
 							alert(res.error);
 						}
 					}else{
-						if(confirm("登录超时，请重新登录")){
-							window.location.href = "../login/login.html";
-							localStorage.clear(); 
-				    	return;
-		        }else{
-							localStorage.clear();
-							return;
-						}
+						localStorage.clear();
+						Popup.confirm("请登录后继续操作", fn)
 					}
 			  },error:function(err){
 					alert('服务器错误')

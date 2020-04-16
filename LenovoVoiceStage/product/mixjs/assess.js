@@ -12,7 +12,7 @@ var URL = 'https://voice.lenovomm.com/xxzz/evaluate_read'
 function record(e){
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
-        statusP.innerHTML = "<a href=\"../login/login.html\" target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
         return;
     }
     if (e.classList.contains("recording")) {
@@ -24,6 +24,11 @@ function record(e){
         e.classList.add("recording");
         recOpen()
     }
+}
+function user_login(){
+    var url = window.location.href
+    window.localStorage.setItem('returnurl',url)
+    window.location.href = "../login/login.html";
 }
 function recOpen(success){
     rec=Recorder({
