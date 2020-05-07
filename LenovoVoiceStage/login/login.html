@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
     <meta http-equiv="Imagetoolbar" content="no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../framework/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
     <link href="css/login.css" rel="stylesheet"/>
-    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/step.css">
     <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script src="../common/js/jquery.base64.js"></script>
     <script src="../common/mixjs/commurl.js"></script>
+    <!-- <script src="./js/step.js"></script> -->
     <style>
     
     </style>
@@ -47,10 +49,51 @@
                                             </div>
                                         </div>
                                         <div class="con reg-input" id="regInput">
-                                            <div class="reg-input-box">
+                                                    <div class="pageCont">
+                                                        <div id="page1" class="stepPage">
+                                                            <div class="reg-input-box">
+                                                                <input type="email" id="regMail" placeholder="请输入邮箱" onblur="isMail()">
+                                                                <span id="errMail" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-input-box">
+                                                                <input type="phone" id="regPhone" placeholder="请输入手机号" onblur="isPhoneNum()">
+                                                                <span id="errPhone" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-input-box">
+                                                                <input type="text" id="regName" placeholder="请输入姓名" onblur="isName()">
+                                                                <span id="errName" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-input-box">
+                                                                <input type="text" id="regPany" placeholder="请输入公司名称" onkeyup="showTion()" onblur="isPany()">
+                                                                <span id="errPany" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-input-box" id="tionShow">
+                                                                <input type="text" id="regTion" placeholder="请输入部门名称" onblur="isTion()">
+                                                                <span id="errTion" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-btn-box">
+                                                                <button class="reg-btn" id="nextBtn">下一步</button>
+                                                            </div>
+                                                        </div>
+                                                        <div id="page2" class="stepPage">
+                                                            <div class="reg-input-box">
+                                                                <input type="password" id="regPassword" placeholder="设置密码" onblur="isPassword()">
+                                                                <span id="errPassword" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-input-box">
+                                                                <input type="password" id="regPasswordConfirm" placeholder="确认密码" onblur="confirmPass()">
+                                                                <span id="errConPass" class="err-text"></span>
+                                                            </div>
+                                                            <div class="reg-btn-box">
+                                                                <button class="reg-btn first-btn" id="firstBtn">上一步</button>
+                                                                <button class="reg-btn reg-btn_btn" id="regBtn">注册</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <!-- <div class="reg-input-box">
                                                 <input type="text" id="regPhone" placeholder="邮箱/手机号" onblur="isPhoneNum()">
                                                 <span id="errPhone" class="err-text"></span>
-                                            </div>
+                                            </div> -->
                                             <!-- <div class="reg-input-box">
                                                 <div class="code">
                                                     <input type="text" id="code" placeholder="验证码" class="code-input">
@@ -58,7 +101,7 @@
                                                 </div>
                                                 <span id="errCode" class="err-text"></span>
                                             </div> -->
-                                            <div class="reg-input-box">
+                                            <!-- <div class="reg-input-box">
                                                 <input type="password" id="regPassword" placeholder="设置密码" onblur="isPassword()">
                                                 <span id="errPassword" class="err-text"></span>
                                             </div>
@@ -68,7 +111,7 @@
                                             </div>
                                             <div class="reg-btn-box">
                                                 <button class="reg-btn" id="regBtn">注册</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -80,9 +123,13 @@
     var countdown = 60;
     var loginInput = document.getElementById('loginInput')
     var regInput = document.getElementById('regInput')
+    var tionInput = document.getElementById('tionShow')
     var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
     // 标签页切换
 $(".con").eq(0).show();
+$('#prevBtn').css('display','none')
+$('#tionShow').css('display','none')
+$('#page2').css('display','none')
 $(".btn-title span").click(function(){
     var num =$(".btn-title span").index(this);
     $(".con").hide();
@@ -94,22 +141,61 @@ $(".btn-title span").click(function(){
         $('#errloginP').text('')
         $('#loginPassword').val('')
         $('#errloginW').text('')
+        $('.user-login').addClass('reg-main')
         if(user){
             $('.user-login').addClass('muser-login')
-            $('.muser-login').css('height','380px')
         }
     }
     if(getStyle(regInput, 'display') == 'none'){
         $('#regPhone').val('')
         $('#errPhone').text('')
+        $('#regMail').val('')
+        $('#errMail').text('')
+        $('#regName').val('')
+        $('#errName').text('')
+        $('#regPany').val('')
+        $('#errPany').text('')
+        $('#regTion').val('')
+        $('#errTion').text('')
         $('#regPassword').val('')
         $('#errPassword').text('')
+        $('#userMsg').val('')
+        $('#errUserMsg').text('')
         $('#regPasswordConfirm').val('')
         $('#errConPass').text('')
-        if(user){
-            $('.user-login').css('height','350px')
+        $('.user-login').removeClass('reg-main')
+        $('#page1').css('display','block')
+        $('#page2').css('display','none')
+    }
+})
+$('#firstBtn').click(function(){
+    $('#page1').css('display','block')
+    $('#page2').css('display','none')
+})
+$('#nextBtn').click(function(){
+    var resPhone = isPhoneNum()
+    var resMail = isMail()
+    var resName = isName()
+    var resPany = isPany()
+    var resTion = isTion()
+    if(getStyle(tionInput, 'display') == 'none'){
+        if(resPhone && resMail && resName && resPany){
+            $('#page1').css('display','none')
+            $('#page2').css('display','block')
+        }else{
+            return false
+        }
+    }else{
+        if(resPhone && resMail && resName && resPany && resTion){
+            $('#page1').css('display','none')
+            $('#page2').css('display','block')
+        }else{
+            return false
         }
     }
+    
+    
+
 })
 // 发送验证码
 $("#secode").click(function (){
@@ -161,15 +247,87 @@ function setTime(obj) {
 function isPhoneNum(){
     var phonenum = $("#regPhone").val()
     var phoneReg = /^1[0-9]{10}$/
-    var mailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
+    
     if(phonenum == ''){
-        $('#errPhone').text('请输入手机号码或邮箱')
-    }else if(phoneReg.test(phonenum) || mailReg.test(phonenum)){
+        $('#errPhone').text('请输入手机号码')
+        return false
+    }else if(!phoneReg.test(phonenum)){
+        $('#errPhone').text('请输入正确格式的手机号码')
+        return false;
+    }else{
         $('#errPhone').text('')
         return true;
+    }
+}
+function isMail(){
+    var mailVal = $('#regMail').val()
+    var mailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
+    if(mailVal == ''){
+        $('#errMail').text('请输入邮箱')
+        return false
+    }else if(!mailReg.test(mailVal)){
+        $('#errMail').text('请输入正确格式的邮箱')
+        return false
     }else{
-        $('#errPhone').text('请输入正确的手机号码或邮箱')
-        return false;
+        $('#errMail').text('')
+        return true;
+    }
+}
+
+function isName(){
+    var nameVal = $('#regName').val()
+    var nameReg = /^\S+$/;
+    if(nameVal == ''){
+        $('#errName').text('请输入姓名')
+        return false
+    }else if(!nameReg.test(nameVal)){
+        $('#errName').text('姓名不能包含空格')
+        return false
+    }else{
+        $('#errName').text('')
+        return true
+    }
+}
+function isPany(){
+    var panyVal = $('#regPany').val()
+    var panyReg = /^\S+$/;
+    if(panyVal == ''){
+        $('#errPany').text('请输入公司名称')
+        return false
+    }else if(!panyReg.test(panyVal)){
+        $('#errPany').text('公司名称不能包含空格')
+        return false
+    }else{
+        $('#errPany').text('')
+        return true
+    }
+}
+function isTion(){
+    var tionVal = $('#regTion').val()
+    var tionReg = /^\S+$/;
+    if(getStyle(tionInput, 'display') == 'block'){
+        if(tionVal == ''){
+            $('#errTion').text('请输入部门名称')
+            return false
+        }else if(!tionReg.test(tionVal)){
+            $('#errTion').text('部门名称不能包含空格')
+            return false
+        }else{
+            $('#errTion').text('')
+            return true
+        }
+    }else{
+        $('#errTion').text('')
+    }
+    
+}
+function showTion(){
+    var panyVal = $('#regPany').val()
+    if(panyVal.indexOf('联想') != -1){
+        $('#tionShow').css('display','block')
+    }else{
+        $('#tionShow').css('display','none')
+        $('#errTion').text('')
     }
 }
 // 注册密码验证
@@ -253,28 +411,49 @@ $('#loginBtn').click(function(){
     }
 })
 $('#regBtn').click(function(){
-    var resPhone = isPhoneNum()
     var resPassword = isPassword()
     var resConpass = confirmPass()
-    var regUsername = $("#regPhone").val()
+    var regUserPhone = $("#regPhone").val()
     var regPassword = $.base64.encode($("#regPassword").val())
-    if(resPhone && resPassword && resConpass){
+    var regUserMail = $("#regMail").val()
+    var regUserName = $("#regName").val()
+    var regUserPany = $("#regPany").val()
+    var regUserTion = $("#regTion").val()
+    if(resPassword && resConpass){
         $.ajax({
             url:urlhead+'/lasf/web/register',
             type:'post',
             dataType:'json',
-            data:{u:regUsername,p:regPassword},
+            data:{u:regUserPhone,p:regPassword},
             success:function(res){
                 if(res.status == 0){
-                    $('#regBtn').text('注册成功，请登录')
+                    $('#errConPass').text('注册成功，请登录')
                     setTimeout(()=>{
                         $('#loginList').addClass('active')
                         $('#regList').removeClass('active')
                         $('#loginInput').css('display','block')
                         $('#regInput').css('display','none')
+                        $('#regPhone').val('')
+                        $('#errPhone').text('')
+                        $('#regMail').val('')
+                        $('#errMail').text('')
+                        $('#regName').val('')
+                        $('#errName').text('')
+                        $('#regPany').val('')
+                        $('#errPany').text('')
+                        $('#regTion').val('')
+                        $('#errTion').text('')
+                        $('#regPassword').val('')
+                        $('#errPassword').text('')
+                        $('#userMsg').val('')
+                        $('#errUserMsg').text('')
+                        $('#regPasswordConfirm').val('')
+                        $('#errConPass').text('')
+                        $('#page1').css('display','block')
+                        $('#page2').css('display','none')
                     },1000)
                 }else{
-                    $('#errPhone').text(res.error)
+                    $('#errConPass').text(res.error)
                 }
             },
             error:function(err){

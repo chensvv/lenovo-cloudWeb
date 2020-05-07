@@ -23,15 +23,14 @@ html,body{
 }
 .user-login{
     width: 400px;
-    height: 470px;
     background: #fff;
     border-radius: 20px;
     position: relative;
     top: 50%;
     transform: translateY(-47%);
     left: 58%;
+    padding-bottom: 20px;
 }
-
 .con{
     display:none;
 }
@@ -54,7 +53,7 @@ html,body{
     transform: translateX(-50%);
 }
 .btn-title{
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
     font-size: 20px;
 }
@@ -71,9 +70,12 @@ html,body{
     height: 50px;
     border: 1px solid #d6d6d6;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 15px;
     outline: none;
+}
+.reg-input-box input{
+    height: 40px;
 }
 .username{
     padding-bottom: 30px;
@@ -104,13 +106,13 @@ input::-webkit-input-placeholder {
     outline: none;
 }
 .login-btn-box{
-    padding: 50px 0;
+    padding: 45px 0;
 }
 .reg-btn-box{
     padding-top: 10px;
 }
 .reg-input .reg-input-box{
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     position: relative;
 }
 .login-input-box{
@@ -121,7 +123,7 @@ input::-webkit-input-placeholder {
     font-size: 12px;
     color: red;
     position: absolute;
-    top: 53px;
+    top: 41px;
     left: 0;
 }
 .code{
@@ -161,6 +163,26 @@ input::-webkit-input-placeholder {
     width: 60px !important;
     padding-left: 5px;
 }
+.first-btn{
+    width: 45%;
+    background: #a9deef;
+}
+.reg-btn_btn{
+    width: 45%;
+    float: right;
+}
+#page2 .reg-input-box{
+    padding-bottom: 30px;
+}
+#page2 .reg-input-box .err-text{
+    top: 51px;
+}
+#page2 .reg-input-box input{
+    height: 50px;
+}
+#page2 .reg-btn-box{
+    padding: 45px 0;
+}
 @media screen and (max-width:1024px){
     .logo_text {
         width: 60px !important;
@@ -175,7 +197,6 @@ input::-webkit-input-placeholder {
     }
     .user-login{
         width: 400px;
-        height: 470px;
         background: #fff;
         border-radius: 20px;
         position: relative;
@@ -204,7 +225,6 @@ input{
     }
     .user-login{
         width: 75%;
-        height: 350px;
         background: #fff;
         border-radius: 20px;
         position: relative;
@@ -219,7 +239,7 @@ input{
         padding: 30px 0;
     }
     .btn-title {
-        padding: 30px 0;
+        padding: 20px 0;
         text-align: center;
         font-size: 20px;
     }
@@ -241,7 +261,7 @@ input{
         left: 0;
     }
     .reg-input .reg-input-box {
-        padding-bottom: 25px;
+        padding-bottom: 20px;
         position: relative;
     }
     .username {
@@ -249,5 +269,18 @@ input{
     }
     .login-btn,.reg-btn{
         height: 40px;
+    }
+    #page2 .reg-input-box{
+        padding-bottom: 25px;
+    }
+    #page2 .reg-input-box .err-text{
+        top: 42px;
+    }
+    #page2 .reg-input-box input{
+        height: 40px;
+    }
+    #page2 .reg-btn-box{
+        padding: 32.5px 0;
+        /* margin-top: 5px; */
     }
 }
