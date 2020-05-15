@@ -77,11 +77,11 @@
                                                         </div>
                                                         <div id="page2" class="stepPage">
                                                             <div class="reg-input-box">
-                                                                <input type="password" id="regPassword" placeholder="设置密码" onblur="isPassword()">
+                                                                <input type="password" id="regPassword" placeholder="设置密码" autocomplete="off" onblur="isPassword()">
                                                                 <span id="errPassword" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="password" id="regPasswordConfirm" placeholder="确认密码" onblur="confirmPass()">
+                                                                <input type="password" id="regPasswordConfirm" placeholder="确认密码" autocomplete="off" onblur="confirmPass()">
                                                                 <span id="errConPass" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-btn-box">
@@ -125,6 +125,8 @@
     var regInput = document.getElementById('regInput')
     var tionInput = document.getElementById('tionShow')
     var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+    // console.log(getUrlParam('status'))
+    
     // 标签页切换
 $(".con").eq(0).show();
 $('#prevBtn').css('display','none')
@@ -394,12 +396,12 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                     window.localStorage.setItem('un',res.userName)
                     window.localStorage.setItem('token',res.token)
-                    if(window.localStorage.getItem('returnurl') == ''){
-                        window.location.href = '../welcome/index.html'
-                    }else{
+                    if(window.localStorage.getItem('returnurl') != ''){
                         window.location.href = window.localStorage.getItem('returnurl')
+                    }else{
+                        window.location.href = '../welcome/index.html'
                     }
-                    
+                    window.localStorage.removeItem('returnurl')
                 }else{
                     $('#errloginW').text(res.description)
                 }
@@ -424,34 +426,45 @@ $('#regBtn').click(function(){
             url:urlhead+'/lasf/web/register',
             type:'post',
             dataType:'json',
-            data:{u:regUserPhone,p:regPassword},
+            data:{email:regUserMail,phone:regUserPhone,u:regUserName,company:regUserPany,dept:regUserTion,p:regPassword},
             success:function(res){
                 if(res.status == 0){
-                    $('#errConPass').text('注册成功，请登录')
+                    $('#errConPass').text('注册成功，登录中...')
                     setTimeout(()=>{
-                        $('#loginList').addClass('active')
-                        $('#regList').removeClass('active')
-                        $('#loginInput').css('display','block')
-                        $('#regInput').css('display','none')
-                        $('#regPhone').val('')
-                        $('#errPhone').text('')
-                        $('#regMail').val('')
-                        $('#errMail').text('')
-                        $('#regName').val('')
-                        $('#errName').text('')
-                        $('#regPany').val('')
-                        $('#errPany').text('')
-                        $('#regTion').val('')
-                        $('#errTion').text('')
-                        $('#regPassword').val('')
-                        $('#errPassword').text('')
-                        $('#userMsg').val('')
-                        $('#errUserMsg').text('')
-                        $('#regPasswordConfirm').val('')
-                        $('#errConPass').text('')
-                        $('#page1').css('display','block')
-                        $('#page2').css('display','none')
+                        window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
+                        window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
+                        window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
+                        window.localStorage.setItem('un',res.userName)
+                        window.localStorage.setItem('token',res.token)
+                        if(window.localStorage.getItem('returnurl') != ''){
+                            window.location.href = window.localStorage.getItem('returnurl')
+                        }else{
+                            window.location.href = '../welcome/index.html'
+                        }
+                        // $('#loginList').addClass('active')
+                        // $('#regList').removeClass('active')
+                        // $('#loginInput').css('display','block')
+                        // $('#regInput').css('display','none')
+                        // $('#regPhone').val('')
+                        // $('#errPhone').text('')
+                        // $('#regMail').val('')
+                        // $('#errMail').text('')
+                        // $('#regName').val('')
+                        // $('#errName').text('')
+                        // $('#regPany').val('')
+                        // $('#errPany').text('')
+                        // $('#regTion').val('')
+                        // $('#errTion').text('')
+                        // $('#regPassword').val('')
+                        // $('#errPassword').text('')
+                        // $('#userMsg').val('')
+                        // $('#errUserMsg').text('')
+                        // $('#regPasswordConfirm').val('')
+                        // $('#errConPass').text('')
+                        // $('#page1').css('display','block')
+                        // $('#page2').css('display','none')
                     },1000)
+                    window.localStorage.removeItem('returnurl')
                 }else{
                     $('#errConPass').text(res.error)
                 }
@@ -468,5 +481,22 @@ $('#regBtn').click(function(){
 function getStyle(obj, attr) {
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
 }
+
+function getUrlParam(name) {
+        // 取得url中?后面的字符
+        var query = window.location.search.substring(1);
+        // 把参数按&拆分成数组
+        var param_arr = query.split("&");
+        for (var i = 0; i < param_arr.length; i++) {
+            var pair = param_arr[i].split("=");
+            if (pair[0] == name) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+    if(getUrlParam('status') == 'reg'){
+        $('#regList').click()
+    }
 </script>
 </html>

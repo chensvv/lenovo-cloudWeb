@@ -36,14 +36,13 @@ a:hover {
 .popup_box p {
     text-align: center;
     color: #333;
-    padding: 0 10px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     line-height: 130px;
     font-size: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .popup_box h1 {
 	width:28px;
@@ -111,3 +110,10 @@ a:hover {
 	margin-left:20px;
 }
 /* 弹窗 end */
+@media screen and (max-width:766px){
+	.popup_box{
+		width: 250px;
+		transform: translate(-50%, -50%);
+		margin: 0;
+	}
+}

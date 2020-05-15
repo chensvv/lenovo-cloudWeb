@@ -71,7 +71,7 @@
 				}
 				
 			},error:function(err){
-				alert('服务器错误')
+				Popup.Nalert("服务器错误！")
 			}
 		});
 		
@@ -135,7 +135,7 @@
 					}
 			  	
 			  },error:function(err){
-					alert('服务器错误')
+					Popup.Nalert("服务器错误！")
 				}
 			});
 		

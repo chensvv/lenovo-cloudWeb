@@ -18,7 +18,7 @@ $(function(){
 				$('body').css('overflow','hidden')
 				$("#click1,#click2,#click3,#click4").css("pointer-events","none");
 				localStorage.clear();
-				Popup.alert("请登录后继续操作")
+				Popup.alert("登录超时，请重新登录！")
 			}else{
 				$("#click1,#click12,#click3,#click4").css("pointer-events","auto");
 			}

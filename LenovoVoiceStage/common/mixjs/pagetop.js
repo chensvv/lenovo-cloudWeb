@@ -69,6 +69,11 @@ function user_login(){
     window.localStorage.setItem('returnurl',url)
     window.location.href = "../login/login.html";
 }
+function user_reg(){
+    var url = window.location.href
+    window.localStorage.setItem('returnurl',url)
+    window.location.href = "../login/login.html?status=reg";
+}
 function menu_forum_list(){
 	window.location.href = "../forum/questionlist.html";
 }
@@ -184,7 +189,7 @@ function loadTop(data) {
     if (Username=="" || Username==null||Username.length == 0) {
         params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
         params += "                        <span class=\'shu\'>|</span>";
-        params += "                        <a href=\'../login/login.html\' target=\'_self\' id='lenovo-user-register'>注册</a>";
+        params += "                        <a onclick=\'user_reg()\' target=\'_self\' id='lenovo-user-register'>注册</a>";
     } else {
         params += "                        <a href=\'#\' target=\'_self\' class='lenovo-user-name2' id='lenovo-user-name'><span class='user_name ua'>"+ Username +"</span><span class=\'caret\'></span></a>";
         params += "                        <ul class=\'user-menu\' id=\'user-ul\'>";

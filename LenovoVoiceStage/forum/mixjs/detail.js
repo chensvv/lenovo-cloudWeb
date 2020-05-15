@@ -133,7 +133,8 @@ function fn(){}
 							
 							$(".comment-list").find(".del").unbind().click(function(e){
 								var valid = $(this).parent().parent().parent().parent().find(".valid").text()
-								if (confirm("确认删除吗?")) {
+								function del(){
+									console.log(111)
 									$.ajax({
 										type: "POST",
 										url: urlhead + '/lasf/forum/delete',
@@ -155,13 +156,37 @@ function fn(){}
 											}
 										}
 									});
-								} else {
-									return;
 								}
+								Popup.Nconfirm("确认删除吗？", del)
+								// if (confirm("确认删除吗?")) {
+								// 	$.ajax({
+								// 		type: "POST",
+								// 		url: urlhead + '/lasf/forum/delete',
+								// 		data: {
+								// 			"dataid": valid,
+								// 			"accountname": Username,
+								// 			lid: accountid,
+								// 			t: token
+								// 		},
+								// 		headers: {
+								// 			"channel": "cloudasr"
+								// 		},
+								// 		success: function (data) {
+								// 			if (data.errorcode != 1024) {
+								// 				history.go(0);
+								// 			} else {
+								// 				localStorage.clear();
+								// 				Popup.confirm("请登录后继续操作！", fn)
+								// 			}
+								// 		}
+								// 	});
+								// } else {
+								// 	return;
+								// }
 							});
 							$(".comment-list").find(".delchild").unbind().click(function(){
 								var keyid = $(this).parent().parent().find(".keyid").text();
-								if (confirm("确认删除吗?")) {
+								function delChild(){
 									$.ajax({
 										type: "POST",
 										url: urlhead + "/lasf/forum/delete",
@@ -179,23 +204,48 @@ function fn(){}
 												history.go(0);
 											} else {
 												localStorage.clear();
-												Popup.confirm("请登录后继续操作！", fn)
+												Popup.confirm("登录超时，请重新登录!", fn)
 											}
 
 										}
 									});
-								} else {
-									return;
 								}
+								Popup.Nconfirm("确认删除吗？", delChild)
+								// if (confirm("确认删除吗?")) {
+								// 	$.ajax({
+								// 		type: "POST",
+								// 		url: urlhead + "/lasf/forum/delete",
+								// 		data: {
+								// 			"dataid": keyid,
+								// 			"accountname": Username,
+								// 			lid: accountid,
+								// 			t: token
+								// 		},
+								// 		headers: {
+								// 			"channel": "cloudasr"
+								// 		},
+								// 		success: function (data) {
+								// 			if (data.errorcode != 1024) {
+								// 				history.go(0);
+								// 			} else {
+								// 				localStorage.clear();
+								// 				Popup.confirm("登录超时，请重新登录！", fn)
+								// 			}
+
+								// 		}
+								// 	});
+								// } else {
+								// 	return;
+								// }
 							});
 						});
 					} else {
 						localStorage.clear();
-						Popup.confirm("请先登录！", fn)
+						Popup.confirm("登录超时，请重新登录！", fn)
 					}
 				},
 				error: function (err) {
-					Popup.alert("服务器错误")
+					Popup.Nalert("服务器错误")
 				}
 			});
 		}
@@ -233,18 +283,18 @@ function fn(){}
 									history.go(0);
 								} else {
 									localStorage.clear();
-									Popup.confirm("请登录后继续操作！", fn)
+									Popup.confirm("登录超时，请重新登录！", fn)
 								}
 
 							},
 							error: function (err) {
-								Popup.alert("服务器错误")
+								Popup.Nalert("服务器错误")
 							}
 						});
 
 
 					} else {
-						Popup.alert("空内容")
+						Popup.Nalert("内容不能为空！")
 					}
 				});
 		}
@@ -333,11 +383,11 @@ function fn(){}
 					});
 				} else {
 					localStorage.clear();
-					Popup.confirm("请登录后继续操作！", fn)
+					Popup.confirm("登录超时，请重新登录！", fn)
 				}
 			},
 			error: function (err) {
-				alert('服务器错误')
+				Popup.Nalert('服务器错误！')
 			}
 		})
 
@@ -349,7 +399,7 @@ function fn(){}
 		//评论一级添加
 		$("#comment").click(function () {
 			if ($("#content").val() == "") {
-				Popup.alert("评论不能为空")
+				Popup.Nalert("评论不能为空！")
 				return;
 			}
 			var tit = $(".htitle").text();
@@ -374,11 +424,11 @@ function fn(){}
 						content();
 					} else {
 						localStorage.clear();
-						Popup.confirm("请登录后继续操作！", fn)
+						Popup.confirm("登录超时，请重新登录！", fn)
 					}
 				},
 				error: function (err) {
-					Popup.alert("服务器错误")
+					Popup.Nalert("服务器错误！")
 				}
 			})
 		});

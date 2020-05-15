@@ -21,17 +21,17 @@
 						$(".title").val("");
 						$(".text").val("");
 						if(res.dataid){
-							alert("发表成功");
+							Popup.Nalert("服务器错误！")
 							window.location.href="../forum/questionlist.html"
 						}else{
-							alert(res.error);
+							Popup.Nalert("服务器错误！")
 						}
 					}else{
 						localStorage.clear();
 						Popup.confirm("请登录后继续操作", fn)
 					}
 			  },error:function(err){
-					alert('服务器错误')
+				Popup.Nalert("服务器错误！")
 				}
 			});
 		})

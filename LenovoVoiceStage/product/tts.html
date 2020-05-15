@@ -12,12 +12,14 @@
     <link href="css/tts.css?version=2.0" rel="stylesheet"/>
     <link href="../common/css/head.css?version=2.0" rel="stylesheet"/>
 	<link rel="stylesheet" href="../welcome/css/all.css">
-	<link rel="stylesheet" href="../common/css/animate.min.css">
+    <link rel="stylesheet" href="../common/css/animate.min.css">
+    <link rel="stylesheet" href="../common/css/popup.css">
     <script type="text/javascript" src="../common/mixjs/commurl.js?version=2.0"></script>
     <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
     <script src="../common/js/jquery.base64.js"></script>
+    <script src="../common/mixjs/popup.js"></script>
     <script src="./mixjs/axios.min.js"></script>
     <style>
         #eui-main-footer{
@@ -27,6 +29,14 @@
         }
         .textarea_box{
             min-height: 206px;
+        }
+        .wait-btn{
+            display: none;
+        }
+        .hollow-dots-spinner{
+            display: none;
+            margin-left: 30px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -49,7 +59,16 @@
                     <div class="hint-num">您可以输入<span id="number">150</span>个字</div>
                 </div>
                 <div class="content-btn">
-                    <div class="play-box"><img src="./images/play.png" id="play-img"><button id="play-btn">播放</button> </div>
+                    <div class="play-box">
+                        <img src="./images/play.png" id="play-img">
+                        <button id="play-btn">播放</button>
+                        <button class="wait-btn" id="wait-btn">暂停</button>
+                        <div class="hollow-dots-spinner" :style="spinnerStyle">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
 					<audio id="bgMusic">
 							您的浏览器不支持 audio 标签。
 					</audio>
@@ -59,7 +78,7 @@
 		</div>
 			
 			<div id="eui-main-footer" class="footer-bgcolor">
-			</div> 
+            </div>
 	</div>
 
 
@@ -84,6 +103,7 @@ var accountidd = window.localStorage.getItem('acd')
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+var statu = 0
 if(!user){
     $('html,body').css("min-width","1200px")
 	$('html,body').css("min-height","685px")
@@ -94,14 +114,18 @@ if(!user){
 		if (accountidd == "" || accountidd == null || accountidd.length == 0) {
 			document.getElementById('textarea_box').innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
 		}else if(textv == ''){
-			alert('请输入要合成的内容')
+			Popup.Nalert("请输入要合成的内容！")
 		}else if (window.navigator.userAgent.indexOf("MSIE")>=1){
             $('#textarea').val('此浏览器不支持音频播放')
         }else{
+            $('#play-btn').css('display','none')
+            $('#wait-btn').css('display','none')
+            $('#play-img').css('display','none')
+            $('.hollow-dots-spinner').css('display','block')
+            
 			XMLhttp()
 		}
-	})
-	
+    })
 function setShowLength(obj, maxlength, id) {
 	var rem = maxlength - obj.value.length; 
 	var wid = id; 
@@ -119,19 +143,33 @@ randBtn.addEventListener('click',function(){
     var textVal = Math.floor((Math.random()*arrList.length));
 	document.getElementById('textarea').value = arrList[textVal]
 })
-
+// function bf(){
+//     if(bgm!==null){             
+//         //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+//         // console.log(bgm.paused);
+//         if(bgm.paused == true){
+//             bgm.play();//audio.play();// 这个就是播放  
+//         }else{
+//             bgm.pause();// 这个就是暂停
+//         }
+//     } 
+// }
 bgm.addEventListener('ended', function () {
-    pause.innerHTML = '播放'
+    $('#play-btn').css('display','inline-block')
+    $('#wait-btn').css('display','none')
 	pauseImg.src='./images/play.png'
 }, false);
 
 bgm.addEventListener('waiting', function () {
-    pause.innerHTML = '暂停'
+    $('#play-btn').css('display','none')
+    $('#wait-btn').css('display','inline-block')
     pauseImg.src='./images/pause.png'
+    // bgm.pause()
 }, false);
 
 bgm.addEventListener('playing', function () {
-    pause.innerHTML = '暂停'
+    $('#play-btn').css('display','none')
+    $('#wait-btn').css('display','inline-block')
 	pauseImg.src='./images/pause.png'
 }, false);
 bgm.addEventListener('error', function () {
@@ -220,6 +258,9 @@ function XMLhttp(){
         var blob = new Blob([fileResult], {type:'autio/wav'});
         bgm.src = URL.createObjectURL(blob);
         bgm.play();
+        $('#wait-btn').css('display','inline-block')
+        $('.hollow-dots-spinner').css('display','none')
+        $('#play-img').css('display','inline-block')
     };
     req.send(formData);
 }
