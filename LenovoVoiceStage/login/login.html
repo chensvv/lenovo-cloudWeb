@@ -396,7 +396,7 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                     window.localStorage.setItem('un',res.userName)
                     window.localStorage.setItem('token',res.token)
-                    if(window.localStorage.getItem('returnurl') != ''){
+                    if(window.localStorage.getItem('returnurl') != null){
                         window.location.href = window.localStorage.getItem('returnurl')
                     }else{
                         window.location.href = '../welcome/index.html'
@@ -436,7 +436,7 @@ $('#regBtn').click(function(){
                         window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                         window.localStorage.setItem('un',res.userName)
                         window.localStorage.setItem('token',res.token)
-                        if(window.localStorage.getItem('returnurl') != ''){
+                        if(window.localStorage.getItem('returnurl') != null){
                             window.location.href = window.localStorage.getItem('returnurl')
                         }else{
                             window.location.href = '../welcome/index.html'
