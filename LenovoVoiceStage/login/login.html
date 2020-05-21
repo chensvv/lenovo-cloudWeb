@@ -35,12 +35,12 @@
                                    <div class="context">
                                         <div class="con login-input" id="loginInput">
                                             <div class="username login-input-box">
-                                                <input type="text" id="loginPhone" placeholder="邮箱/手机号" onblur="isLoginP()">
-                                                <span id="errloginP" class="err-text"></span>
+                                                <input type="text" id="loginPhone" placeholder="用户名" onblur="isLoginP()">
+                                                <span id="errloginP" class="login-err-text"></span>
                                             </div>
                                             <div class="password login-input-box">
                                                 <input type="password" id="loginPassword" placeholder="密码" onblur="isLoginW()">
-                                                <span id="errloginW" class="err-text"></span>
+                                                <span id="errloginW" class="login-err-text"></span>
                                             </div>
                                             <!-- <div class="forget"><span>忘记密码</span></div> -->
                                             <div class="login-btn-box">
@@ -52,23 +52,23 @@
                                                     <div class="pageCont">
                                                         <div id="page1" class="stepPage">
                                                             <div class="reg-input-box">
-                                                                <input type="email" id="regMail" placeholder="请输入邮箱" onblur="isMail()">
-                                                                <span id="errMail" class="err-text"></span>
+                                                                <input type="text" id="regUser" placeholder="请输入用户名" autocomplete="off" onblur="isUser()">
+                                                                <span id="errUser" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="phone" id="regPhone" placeholder="请输入手机号" onblur="isPhoneNum()">
+                                                                <input type="phone" id="regPhone" placeholder="请输入手机号" autocomplete="off" onblur="isPhoneNum()">
                                                                 <span id="errPhone" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regName" placeholder="请输入姓名" onblur="isName()">
+                                                                <input type="text" id="regName" placeholder="请输入姓名" autocomplete="off" onblur="isName()">
                                                                 <span id="errName" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regPany" placeholder="请输入公司名称" onkeyup="showTion()" onblur="isPany()">
+                                                                <input type="text" id="regPany" placeholder="请输入公司名称" autocomplete="off" onkeyup="showTion()" onblur="isPany()">
                                                                 <span id="errPany" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-input-box" id="tionShow">
-                                                                <input type="text" id="regTion" placeholder="请输入部门名称" onblur="isTion()">
+                                                                <input type="text" id="regTion" placeholder="请输入部门名称" autocomplete="off" onblur="isTion()">
                                                                 <span id="errTion" class="err-text"></span>
                                                             </div>
                                                             <div class="reg-btn-box">
@@ -151,8 +151,8 @@ $(".btn-title span").click(function(){
     if(getStyle(regInput, 'display') == 'none'){
         $('#regPhone').val('')
         $('#errPhone').text('')
-        $('#regMail').val('')
-        $('#errMail').text('')
+        $('#regUser').val('')
+        $('#errUser').text('')
         $('#regName').val('')
         $('#errName').text('')
         $('#regPany').val('')
@@ -176,19 +176,19 @@ $('#firstBtn').click(function(){
 })
 $('#nextBtn').click(function(){
     var resPhone = isPhoneNum()
-    var resMail = isMail()
+    var resUser = isUser()
     var resName = isName()
     var resPany = isPany()
     var resTion = isTion()
     if(getStyle(tionInput, 'display') == 'none'){
-        if(resPhone && resMail && resName && resPany){
+        if(resPhone && resUser && resName && resPany){
             $('#page1').css('display','none')
             $('#page2').css('display','block')
         }else{
             return false
         }
     }else{
-        if(resPhone && resMail && resName && resPany && resTion){
+        if(resPhone && resUser && resName && resPany && resTion){
             $('#page1').css('display','none')
             $('#page2').css('display','block')
         }else{
@@ -249,7 +249,6 @@ function setTime(obj) {
 function isPhoneNum(){
     var phonenum = $("#regPhone").val()
     var phoneReg = /^1[0-9]{10}$/
-    
     if(phonenum == ''){
         $('#errPhone').text('请输入手机号码')
         return false
@@ -261,18 +260,19 @@ function isPhoneNum(){
         return true;
     }
 }
-function isMail(){
-    var mailVal = $('#regMail').val()
+function isUser(){
+    var userVal = $('#regUser').val()
     var mailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-    if(mailVal == ''){
-        $('#errMail').text('请输入邮箱')
+    var phoneReg = /^1[0-9]{10}$/
+    if(userVal == ''){
+        $('#errUser').text('请输入邮箱或手机号')
         return false
-    }else if(!mailReg.test(mailVal)){
-        $('#errMail').text('请输入正确格式的邮箱')
-        return false
-    }else{
-        $('#errMail').text('')
+    }else if(mailReg.test(userVal) || phoneReg.test(userVal)){
+        $('#errUser').text('')
         return true;
+    }else{
+        $('#errUser').text('请输入正确格式的邮箱或手机号')
+        return false
     }
 }
 
@@ -390,6 +390,7 @@ $('#loginBtn').click(function(){
             dataType:'json',
             data:{u:username,p:password},
             success:function(res){
+                console.log(res)
                 if(res.status == 0){
                     window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
                     window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
@@ -417,7 +418,7 @@ $('#regBtn').click(function(){
     var resConpass = confirmPass()
     var regUserPhone = $("#regPhone").val()
     var regPassword = $.base64.encode($("#regPassword").val())
-    var regUserMail = $("#regMail").val()
+    var regUser = $("#regUser").val()
     var regUserName = $("#regName").val()
     var regUserPany = $("#regPany").val()
     var regUserTion = $("#regTion").val()
@@ -426,7 +427,7 @@ $('#regBtn').click(function(){
             url:urlhead+'/lasf/web/register',
             type:'post',
             dataType:'json',
-            data:{email:regUserMail,phone:regUserPhone,u:regUserName,company:regUserPany,dept:regUserTion,p:regPassword},
+            data:{u:regUser,phone:regUserPhone,username:regUserName,company:regUserPany,dept:regUserTion,p:regPassword},
             success:function(res){
                 if(res.status == 0){
                     $('#errConPass').text('注册成功，登录中...')
