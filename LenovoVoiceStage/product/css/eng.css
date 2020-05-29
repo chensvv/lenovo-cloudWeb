@@ -4,7 +4,6 @@ html,body{
 	overflow-x: auto;
     overflow-y: auto;
     min-width: 1200px;
-	min-height: 685px;
 }
 p{
     margin: 0;
@@ -17,7 +16,7 @@ p{
     position: relative;
 }
 .nav-title{
-	height:54.6875vh;
+	height:385px;
     background: #a0efe7;
     background-size: cover; 
 	position: relative;
@@ -26,12 +25,11 @@ p{
 .recognise_title{
 	color: #fff;
 	font-size: 4rem;
-    letter-spacing: 0.7321vw;
-    padding-top: 9.7656vh;
+    padding-top: 75px;
 }
 .nav-f{
     width: 100%;
-    padding-top: 3.2552vh;
+    padding-top: 30px;
 }
 .nav-f-b{
     display: flex;
@@ -46,12 +44,12 @@ p{
 }
 .eui-main-body {
 	width: 100%;
-    padding-bottom: 5.2083vh;
-    padding-top: 18.2292vh;
+    margin-top: 140px;
     text-align: center;
     color: #9cdad5;
     font-weight: bold;
     font-size: 26px;
+    margin-bottom: 40px;
 }
 .cyclo{
     position: absolute;
@@ -92,14 +90,14 @@ p{
     box-shadow: 0px 0px 40px -10px transparent;
 }
 .nav-f-sp{
-    width: 11.713vw;
-    height: 16.9271vh;
+    width: 160px;
+    height: 130px;
 }
 .nav-f-ls{
-    width: 13.1772vw;
-    height: 16.9271vh;
-    padding-left: 2.1962vw;
-    padding-right: 2.1962vw;
+    width: 150px;
+    height: 130px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .nav-f-sp,.nav-f-ls{
     margin-top: 4rem;
@@ -115,21 +113,22 @@ p{
     padding-top: 0.651vh;
 }
 .nav-f-sp .t{
-    padding-right: 2.9283vw;
+    padding-right: 45px;
 }
 .voice-box{
     background: url(../images/card.png) no-repeat;
     background-size: 100% 100%;
-    width: 30.0146vw;
-    height: 42.0573vh;
+    width: 400px;
+    height: 322px;
     position: relative;
     text-align: left;
     padding-top: 2.8646vh;
+    margin-right: 10px;
 }
 .clpage{
     position: absolute;
-    top: -5.2083vh;
-    right: 2.5622vw;
+    top: -35px;
+    right: 30px;
     border-bottom: 1px solid #fff !important;
     /* padding-bottom: 5px; */
     color: #fff;
@@ -142,7 +141,7 @@ p{
 .voice-header{
     border-bottom: 2px solid #d8f2f0;
     width: 97.4%;
-    padding: 1.9531vh 2.1962vw 0.651vh;
+    padding: 12px 0 12px 15px;
     color: #cacaca;
     letter-spacing: 0.1464vw;
 }
@@ -151,7 +150,7 @@ p{
     font-size: 18px /* 18/16 */;
 }
 .voice-main{
-    padding: 6.5104vh 2.1962vw 0;
+    padding: 25px 30px 25px 20px;
     font-size: 16px /* 16/16 */;
 }
 .voice-footer{
@@ -166,12 +165,7 @@ p{
     cursor: pointer;
 }
 .btn-t{
-    position: absolute;
-    bottom: -9.1146vh;
-    left: 50%;
-    transform: translate(-50%, 0px);
-    color: #84c3bd;
-    font-size: 12px /* 15/16 */;
+    font-size: 12px;
     font-weight: 400;
 }
 .grade{
@@ -201,6 +195,9 @@ p{
     min-height: 9.8958vh;
 }
 @media screen and (max-width:770px){
+    .nav-f{
+        padding-top: 40px;
+    }
     .recognise_title{
         display: none;
     }
@@ -224,7 +221,7 @@ p{
         bottom: -25px;
     }
     .nav-f-b{
-        margin-top: 4rem;
+        margin-top: 20px;
     }
     .nav-f-sp,.nav-f-ls {
         width: 75px;
@@ -232,12 +229,13 @@ p{
     }
     .nav-f-ls{
         position: relative;
+        padding-left: 0;
     }
     .nav-f-sp, .nav-f-ls{
         margin-top: 0;
     }
     .mobile{
-        margin-top: 50px;
+        margin-top: 30px;
     }
     .voice-box{
         position: absolute;
@@ -246,6 +244,7 @@ p{
         transform: translate(-50%, 110%);
         width: 70%;
         height: 215px;
+        margin-left: 0;
     }
     .clpage{
         top: 30px;
@@ -261,13 +260,10 @@ p{
     .nav-f-sp span, .nav-f-ls span{
         font-size: 12px;
     }
-    .btn-t{
-        bottom: -7.11vh;
-        font-size: 12px;
-    }
     .eui-main-body{
-        padding-bottom: 0;
+        margin-bottom: 0;
         font-size: 18px;
+        margin-top: 70px;
     }
     .voice-main{
         padding: 3.5104vh 2.1962vw 0;
@@ -275,25 +271,23 @@ p{
     .grade p{
         min-width: 5.6354vw;
     }
-}
-@media screen and (max-width: 1024px){
+    .z-g-b{
+        margin-top: 15px;
+    }
     html, body {
         width: 100%;
         height: 100%;
         min-width: auto;
         min-height: auto;
     }
+    .nav-f-sp .t {
+        padding-right: 20px;
+    }
 }
-dot {
-    display: inline-block; 
-    height: 1em; line-height: 1;
-    text-align: left;
-    vertical-align: -.25em;
-    overflow: hidden;
-}
-dot::before {
-    display: block;
-    content: '...\A..\A.';
-    white-space: pre-wrap;   /* 也可以是white-space: pre */
-    animation: dot 3s infinite step-start both;
+@media screen and (max-width:320px){
+    .eui-main-body{
+        margin-bottom: 0;
+        font-size: 18px;
+        margin-top: 100px;
+    }
 }

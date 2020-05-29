@@ -60,6 +60,16 @@
 			</nav>
 			<p class="recognise_title">长语音识别</p>
 			<div class="bg_div"></div>
+			<div class="com-sel">
+				<select class="com-opt" id="langSel">
+					<option value="chinese" selected>中文</option>
+					<option value="english" >English</option>
+				</select>
+				<select class="com-opt com-opt-samp" id="sampSel">
+					<option value="16000" selected>16K</option>
+					<option value="8000" >8K</option>
+				</select>
+			</div>
 		</div>
 		<div class="eui-main-body">
 				<div class="body-content product-experience">
@@ -99,7 +109,9 @@
 </body>
 </html>
 <script>
-
+$(function () {
+    loadTop("product");
+});
 	if(navigator.userAgent.indexOf("MSIE")>0){
 		$('.voice_button').css({"padding-top":"130px"})
 	}

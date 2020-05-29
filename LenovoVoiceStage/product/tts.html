@@ -104,10 +104,8 @@ var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 var statu = 0
-if(!user){
-    $('html,body').css("min-width","1200px")
-	$('html,body').css("min-height","685px")
-}
+var n = 0
+var arrList = ['前方150米，请在道路尽头左转，进入后厂村路。','前面还有27名等候人员排队','两岸猿声啼不住，轻舟已过万重山','白日依山尽，黄河入海流。欲穷千里目，更上一层楼。']
 
     $('.play-box').click(function(){
 		textv = $('#textarea').val()
@@ -134,14 +132,13 @@ function setShowLength(obj, maxlength, id) {
 	} 
 	document.getElementById(wid).innerHTML = rem; 
 } 
-var arrList = ['前方150米，请在道路尽头左转，进入后厂村路。','前面还有27名等候人员排队','两岸猿声啼不住，轻舟已过万重山','白日依山尽，黄河入海流。欲穷千里目，更上一层楼。']
-// function randomBtn(){
-// 	var textVal = Math.floor((Math.random()*arrList.length));
-// 	document.getElementById('textarea').value = arrList[textVal]
-// }
+
 randBtn.addEventListener('click',function(){
-    var textVal = Math.floor((Math.random()*arrList.length));
-	document.getElementById('textarea').value = arrList[textVal]
+    n = n + 1;
+    if(n == arrList.length){
+        n = 0;
+    }
+    document.getElementById('textarea').innerHTML = arrList[n];
 })
 // function bf(){
 //     if(bgm!==null){             

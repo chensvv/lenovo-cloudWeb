@@ -125,7 +125,6 @@
     var regInput = document.getElementById('regInput')
     var tionInput = document.getElementById('tionShow')
     var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-    // console.log(getUrlParam('status'))
     
     // 标签页切换
 $(".con").eq(0).show();
@@ -376,6 +375,17 @@ function isLoginW(){
 //        }
 //        return(false);
 // }
+// $('#search_input').bind('keyup', function(event) {
+// 　　if (event.keyCode == "13") {
+// 　　　　//回车执行查询
+// 　　　　$('#search_button').click();
+// 　　}
+// });
+$(document).keypress(function(e) { 
+  if((e.keyCode || e.which)==13) {
+      $('#loginBtn').click()
+  }
+});
 $('#loginBtn').click(function(){
     var username = $("#loginPhone").val()
     var password = $.base64.encode($('#loginPassword').val())
@@ -429,6 +439,7 @@ $('#regBtn').click(function(){
             dataType:'json',
             data:{u:regUser,phone:regUserPhone,username:regUserName,company:regUserPany,dept:regUserTion,p:regPassword},
             success:function(res){
+                // console.log(res)
                 if(res.status == 0){
                     $('#errConPass').text('注册成功，登录中...')
                     setTimeout(()=>{

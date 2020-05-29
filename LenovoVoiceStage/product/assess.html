@@ -55,7 +55,6 @@
                         <div class="voice-header"><span class="header-title" id="indexV">1</span>/5</div>
                         <div class="voice-main" id="text"></div>
                         <div class="voice-footer" onclick="record(this)"></div>
-                        <span class="btn-t" id="ret">点我录音</span>
                     </div>
                     <div class="nav-f-sp">
                         <img src="./images/bab.png" alt="">
@@ -69,6 +68,7 @@
             </div>
         </div>
 		<div class="eui-main-body">
+                <div><span class="btn-t" id="ret">点我录音</span></div>
             <div class="z-g-b"><span>综合得分</span><br/><span class="z-g" id="score"></span></div>
             <div class="grade">
                 <div>
@@ -85,10 +85,10 @@
                 </div>
             </div>
 		</div>
-			<div id="eui-main-footer" class="footer-bgcolor">
-			</div> 
+			
 	</div>
-
+    <div id="eui-main-footer" class="footer-bgcolor">
+        </div> 
 
   
 
@@ -100,6 +100,7 @@ $(function () {
 });
 </script>
 <script>
+    var n = 0
 var arrList = ["They often create amazing things from simple ideas.",
                 "Welcome to the show.",
                 "China's space technology has advanced quickly in less than sixty years.",
@@ -109,20 +110,13 @@ var nextPage = document.getElementById('nextPage')
 var valueText = document.getElementById('text')
 var indexV = document.getElementById('indexV')
 valueText.innerHTML="They often create amazing things from simple ideas."
-var getIndex = ((arrList,item)=>{
-        for(var i in arrList){
-            if(arrList[i] == item){
-              return i;
-            };
-        };
-    })
-var indexValue = getIndex(arrList,valueText.innerHTML)
-indexV.innerHTML = Number(indexValue)+1
 nextPage.addEventListener('click',function(){
-    var textVal = Math.floor((Math.random()*arrList.length));
-    valueText.innerHTML = arrList[textVal]
-    var indexValue = getIndex(arrList,valueText.innerHTML)
-    indexV.innerHTML = Number(indexValue)+1
+    n = n + 1;
+    if(n == arrList.length){
+        n = 0;
+    }
+    indexV.innerHTML = n+1
+    valueText.innerHTML = arrList[n];
 })
 
 

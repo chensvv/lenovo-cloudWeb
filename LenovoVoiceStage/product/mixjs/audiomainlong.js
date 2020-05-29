@@ -1,11 +1,7 @@
-$(function () {
-    loadTop("product");
-});
-
 var chunkInfo;
 var rec;
-var URL = 'https://voice.lenovo.com/lasf/cloudasr'
-var ixid = new Date().getTime();
+var urlInfo = 'https://voice.lenovo.com/lasf/cloudasr'
+var ixid
 var pidx = 1
 var over = 0
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
@@ -16,6 +12,9 @@ var hour, minute, second; //时 分 秒
 hour = minute = second = 0; //初始化
 var millisecond = 0; //毫秒
 var int;
+var lang;
+var samp;
+
 function toggleRecording(e) {
     $('#record').attr('src', './images/Mic-act.png')
     var con = document.getElementsByClassName('content_box')[0]
@@ -29,17 +28,23 @@ function toggleRecording(e) {
         e.classList.remove("recording");
         window.clearInterval(int);
         over++
-        rec.close()
+        rec.stop()
         sendEnd()
         $('.product-picture .pulse1').css("display", "none");
         $('.product-picture .pulse').css("display", "none");
         img_btn.src = 'images/Mic-nor.png';
-    } else {
-        e.classList.add("recording");
+        $('#langSel').attr('disabled',false)
+        $('#sampSel').attr('disabled',false)
         millisecond = hour = minute = second = 0;
         document.getElementById('timetext').value = '00:00:00';
+        pidx = 1
+    } else {
+        e.classList.add("recording");
+        $('#langSel').attr('disabled',true)
+        $('#sampSel').attr('disabled',true)
         int = setInterval(timer, 1000);
         over = 0
+        ixid = new Date().getTime();
         recd()
         document.getElementById("dis_none").style.display = 'none';
         con.classList.add('con_box')
@@ -55,7 +60,6 @@ function toggleRecording(e) {
                 $('.prompt').scrollTop(9999999)
             }
         }, 250)
-        
     }
 }
 
@@ -63,11 +67,19 @@ $(function () {
     window.clearInterval(int);
     millisecond = hour = minute = second = 0;
     document.getElementById('timetext').value = '00:00:00';
+    lang = $('#langSel').find('option:selected').val()
+    samp = $('#sampSel').find('option:selected').val()
+    $('#langSel').change(function(){
+        lang = $('#langSel').find('option:selected').val()
+    })
+    $('#sampSel').change(function(){
+        samp = $('#sampSel').find('option:selected').val()
+    })
 })
 
 function user_login(){
-    var url = window.location.href
-    window.localStorage.setItem('returnurl',url)
+    var urlHref = window.location.href
+    window.localStorage.setItem('returnurl',urlHref)
     window.location.href = "../login/login.html";
 }
 
@@ -75,14 +87,18 @@ function recd() {
     rec = Recorder({
         type: "wav",
         bitRate: 16,
-        sampleRate: 16000,
+        sampleRate: samp,
         bufferSize: 4096,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
             var buf = chunkInfo.data
             if (pidx == 1) {
                 var buf2 = [];
-                buf2.unshift(5, 0, 0, 0);
+                if(samp == '8000'){
+                    buf2.unshift(1, 0, 0, 0);
+                }else{
+                    buf2.unshift(5, 0, 0, 0);
+                }
                 var buf4 = new Int16Array(buf2);
             } else {
                 var buf4 = buf;
@@ -91,11 +107,11 @@ function recd() {
                 "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
                 "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
                 "&rsts=0" +
-                "&spts=0&fpts=0&cpts=0&lrts=0";
+                "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
             var data = new FormData()
             data.append("param-data", params);
             data.append("voice-data", new Blob([buf4]));
-            axios.post(URL, data,{
+            axios.post(urlInfo, data,{
                 headers:{
                     'channel': 'cloudasr',
                     'lenovokey':lenkey,
@@ -152,18 +168,17 @@ function sendEnd(){
         "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
         "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
         "&rsts=0" +
-        "&spts=0&fpts=0&cpts=0&lrts=0"
+        "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
         var data = new FormData()
             data.append("param-data", params);
             data.append("voice-data", new Blob([chunkInfo.data]));
-            axios.post(URL, data,{
+            axios.post(urlInfo, data,{
                 headers:{
                     'channel': 'cloudasr',
                     'lenovokey':lenkey,
                     'secretkey': secrkey
                 }
             }).then(function (res) {
-                    
                     
             }).catch(function (error) {
                 console.log(error)

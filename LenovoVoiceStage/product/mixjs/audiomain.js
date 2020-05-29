@@ -1,8 +1,9 @@
-
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
-var accountidd = window.localStorage.getItem('acd')
-var URL = urlhead +'/lasf/asr'
+var accountidd = window.localStorage.getItem('acd');
+var lang
+var samp
+var urlInfo = urlhead +'/lasf/asr';
 $(function () {
    //修改nlp结果
    $(".update").bind("keypress",function(event){
@@ -18,7 +19,16 @@ $(function () {
             });
         }
     })
+    lang = $('#langSel').find('option:selected').val()
+    samp = $('#sampSel').find('option:selected').val()
+    $('#langSel').change(function(){
+        lang = $('#langSel').find('option:selected').val()
+    })
+    $('#sampSel').change(function(){
+        samp = $('#sampSel').find('option:selected').val()
+    })
 });
+
 //封装json数据显示方法
 function syntaxHighlight(json) {
 	    if (typeof json != 'string') {
@@ -35,8 +45,8 @@ function syntaxHighlight(json) {
 	            cls = 'boolean';
 	        } else if (/null/.test(match)) {
 	            cls = 'null';
-	        }
-	        return '<span class="' + cls + '">' + match + '</span>';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
 	    });
 }
 
@@ -62,7 +72,7 @@ function updateStatus(status) {
     $("#status").html("识别结果");
     $("#status").css({"display":"none"});
     $("#stutsP").html("识别结果");
-    $("#stutsP").append(btn)
+    $("#stutsP").append(btn);
 	$('#json').html(syntaxHighlight(status));
 	$('pre').slideDown(500);
 	$("#json .string").next(".key").css("color","red");
@@ -71,14 +81,14 @@ function updateStatus(status) {
 }
 
 function user_login(){
-    var url = window.location.href
-    window.localStorage.setItem('returnurl',url)
+    var urlHref = window.location.href
+    window.localStorage.setItem('returnurl',urlHref);
     window.location.href = "../login/login.html";
 }
 
 function toggleRecording( e ) {
-    $(".right_div_box").css({"display":"inline-block"})
-    $('.left_div_box').css({"display":"none"})
+    $(".right_div_box").css({"display":"inline-block"});
+    $('.left_div_box').css({"display":"none"});
     if (accountidd=="" || accountidd==null||accountidd.length == 0) {
         var statusP = document.getElementById( "status" );
         statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
@@ -92,31 +102,32 @@ function toggleRecording( e ) {
         // stop recording
         e.classList.remove("recording");
         statusP.innerHTML = '正在识别语音......';
-        $('.viz').css('display','none')
-        recStop()
-        
+        $('.viz').css('display','none');
+        recStop();
+        $('#langSel').attr('disabled',false)
+        $('#sampSel').attr('disabled',false)
     } else {
         // start recording
-        
         e.classList.add("recording");
-        //Avatar数据统计
-        avatarnum();
+        $('#langSel').attr('disabled',true)
+        $('#sampSel').attr('disabled',true)
         $('pre').hide();
         $(".upd").css("display","none");
-        $(".shu").css("display","none")
-        $('.viz').css('display','block')
-        statusP.style.display="block"
+        $(".shu").css("display","none");
+        $('.viz').css('display','block');
+        statusP.style.display="block";
         statusP.innerHTML = '请说话';
         document.getElementById("stutsP").style.display="none";
         img_btn.src = 'images/Mic-act.png';
-        recOpen()
-        
+        recOpen();
+        //Avatar数据统计
+         avatarnum();
     }
 }
 
 function recOpen(success){
     rec=Recorder({
-        type:"wav",sampleRate:16000,bitRate:16 ,
+        type:"wav",sampleRate:samp,bitRate:16 ,
         onProcess:function(buffers,powerLevel,bufferDuration,bufferSampleRate){
             wave.input(buffers[buffers.length-1],powerLevel,bufferSampleRate);//输入音频数据，更新显示波形
         }
@@ -158,7 +169,7 @@ function recStart(){//打开了录音后才能进行start、stop调用
 function recStop(){
     rec.stop(function(blob,duration){
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-        // rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+        rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
         rec=null;
         var reader = new FileReader();
         reader.readAsArrayBuffer(blob, 'utf-8');
@@ -166,17 +177,22 @@ function recStop(){
             var buf = new Uint16Array(reader.result);
             var buf2=[];
             Object.assign(buf2,buf);
-            buf2.unshift(5,0,0,0);
+            if(samp == '8000'){
+                buf2.unshift(1, 0, 0, 0);
+            }else{
+                buf2.unshift(5, 0, 0, 0);
+            }
+            // buf2.unshift(5,0,0,0);
             var buf4=new Uint16Array(buf2);
             var formData = new FormData();
             var ixid  = new Date().getTime();
             var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.0.0&did=83102d26aaca24ba&uid=30323575" +
                 "&stm=0&key=a&ssm=true&vdm=music&rvr=&sce=cmd&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
                 "&dev=lenovo.rt.urc.lv.develop&ixid="+ixid+"&pidx=1&over=1&rsts=0" +
-                "&spts=0&fpts=0&cpts=0&lrts=0";
+                "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
             formData.append("param-data", params);
             formData.append("voice-data", new Blob([buf4]));
-            axios.post(URL,formData,{
+            axios.post(urlInfo,formData,{
                 headers:{
                     // 'content-type': 'multipart/form-data',
                     'lenovokey':lenkey,

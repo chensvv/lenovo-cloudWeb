@@ -1,14 +1,11 @@
-
-
-
 var accountid = $.base64.decode(window.localStorage.getItem('acd'));
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var accountidd = window.localStorage.getItem('acd')
 var chunkInfo;
 var rec;
-var ixid = new Date().getTime();
-var URL = 'https://voice.lenovomm.com/xxzz/evaluate_read'
+var urlInfo = 'https://voice.lenovomm.com/xxzz/evaluate_read'
+// var urlInfo = 'http://10.110.148.57:8080/lasf/evaluate_read'
 function record(e){
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
@@ -59,25 +56,64 @@ function recStop(){
         rec=null;
         // console.log(document.getElementById('text').innerHTML)
         // blob.arrayBuffer().then(function(arr){console.log(new Uint8Array(arr))})
-        var params = "ixid="+ixid+"&uid=30323575&text="+document.getElementById('text').innerHTML+
-                    "&datatype=1&pidx=1&over=1&token=1111111111&source=1"
-        var data = new FormData()
-        data.append("data",params)
-        data.append("audio",blob)
-        axios.post(URL,data,{
-            headers:{
-                // 'content-type': 'multipart/form-data',
-                'lenovokey':lenkey,
-                'secretkey': secrkey
-            }
-        }).then(res=>{
-            document.getElementById('fluency').innerHTML = res.data.fluent_score
-            document.getElementById('integrity').innerHTML = res.data.integrity
-            document.getElementById('degree').innerHTML = res.data.precision
-            document.getElementById('score').innerHTML = res.data.overall
-        }).catch(err=>{
-            document.getElementById("text").innerHTML = '服务器错误，请稍后重试'
-        })
+
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(blob, 'utf-8');
+        reader.onload = function (e) {
+            var buf = new Uint16Array(reader.result);
+            var buf2=[];
+            Object.assign(buf2,buf);
+            buf2.unshift(5,0,0,0);
+            var buf4=new Uint16Array(buf2);
+            var data = new FormData()
+            var ixid  = new Date().getTime();
+            data.append('ixid',ixid)
+            data.append('uid','30323575')
+            data.append('text',document.getElementById('text').innerHTML)
+            data.append('datatype','1')
+            data.append('pidx','1')
+            data.append('over','1')
+            data.append('token','1111111111')
+            data.append('source','1')
+            data.append('dtp','lenovo%2FleSumsung%2Fandroid')
+            data.append('ver','1.0.0')
+            data.append('did','83102d26aaca24ba')
+            data.append('stm','0')
+            data.append('key','a')
+            data.append('ssm','true')
+            data.append('vdm','music')
+            data.append('rvr','')
+            data.append('sce','cmd')
+            data.append('ntt','wifi')
+            data.append('aue','speex-wb%3B7')
+            data.append('auf','audio%2FL16%3Brate%3D16000')
+            data.append('dev','lenovo.rt.urc.lv.develop')
+            data.append('pidx','1')
+            data.append('over','1')
+            data.append('rsts','0')
+            data.append('spts','0')
+            data.append('fpts','0')
+            data.append('cpts','0')
+            data.append('lrts','0')
+            data.append("voicedata",new Blob([buf4]))
+            axios.post(urlInfo,data,{
+                headers:{
+                    // 'content-type': 'multipart/form-data',
+                    'lenovokey':lenkey,
+                    'secretkey': secrkey
+                }
+            }).then(res=>{
+                document.getElementById('fluency').innerHTML = res.data.fluent_score
+                document.getElementById('integrity').innerHTML = res.data.integrity
+                document.getElementById('degree').innerHTML = res.data.overall_pronunciation
+                document.getElementById('score').innerHTML = res.data.overall
+            }).catch(err=>{
+                document.getElementById("text").innerHTML = '服务器错误，请稍后重试'
+            })
+        }
+
+
+        
     },function(msg){
         alert("录音失败:"+msg);
         rec.close();//可以通过stop方法的第3个参数来自动调用close

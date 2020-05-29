@@ -16,7 +16,7 @@ $(function(){
 		success:function(data){
 			if(data.errorcode ==1024){
 				localStorage.clear();
-				Popup.confirm("请登录后继续操作", fn)
+				Popup.confirm("请登录后继续操作！", fn)
 			}else{
 				$("#entry,#entry1,#detail").css("pointer-events","auto");
 			}
