@@ -91,6 +91,9 @@ p{
     border-radius: 0;
     letter-spacing: 1px;
 }
+.com-opt option{
+	color: #333;
+}
 .com-opt-samp{
 	margin-left: 30px;
 }
