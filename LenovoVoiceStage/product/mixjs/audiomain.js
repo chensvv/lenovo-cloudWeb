@@ -52,9 +52,10 @@ function syntaxHighlight(json) {
 
 
 function updateStatus(status) {
-    var statusP = document.getElementById( "status" );
     document.getElementById("stutsP").style.display="block";
-    var btn=$("<input type='button' id='updateBtn' onclick='updateBtn()' value='修改'>");
+    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('#updateBtn').css('display','block')
+    }
     var data = "";
     try {
         if (status.errorcode === 1) {
@@ -68,11 +69,8 @@ function updateStatus(status) {
     }catch(e){
         data = '没听清楚，请点击麦克风后再说一次';
     }
-//  statusP.innerHTML = data;
-    $("#status").html("识别结果");
-    $("#status").css({"display":"none"});
-    $("#stutsP").html("识别结果");
-    $("#stutsP").append(btn);
+    $("#statusD").css("display","none");
+    $("#stutsP span").css("display",'inline-block');
 	$('#json').html(syntaxHighlight(status));
 	$('pre').slideDown(500);
 	$("#json .string").next(".key").css("color","red");
@@ -90,18 +88,17 @@ function toggleRecording( e ) {
     $(".right_div_box").css({"display":"inline-block"});
     $('.left_div_box').css({"display":"none"});
     if (accountidd=="" || accountidd==null||accountidd.length == 0) {
-        var statusP = document.getElementById( "status" );
-        statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        $('#statusU').css('display','block')
         return;
     }
 
     var img_btn = document.getElementById('record');
-    var statusP = document.getElementById( "status" );
     if (e.classList.contains("recording")) {
         img_btn.src = 'images/Mic-nor.png';
         // stop recording
         e.classList.remove("recording");
-        statusP.innerHTML = '正在识别语音......';
+        $('#statusP').css('display','none')
+        $('#statusD').css('display','block')
         $('.viz').css('display','none');
         recStop();
         $('#langSel').attr('disabled',false)
@@ -115,8 +112,7 @@ function toggleRecording( e ) {
         $(".upd").css("display","none");
         $(".shu").css("display","none");
         $('.viz').css('display','block');
-        statusP.style.display="block";
-        statusP.innerHTML = '请说话';
+        $('#statusP').css('display','block')
         document.getElementById("stutsP").style.display="none";
         img_btn.src = 'images/Mic-act.png';
         recOpen();

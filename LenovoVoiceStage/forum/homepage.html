@@ -8,17 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <title>联想语音开放平台</title>
+    <title i18n="i18n.title">联想语音开放平台</title>
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/homepage.css?version=2.0" rel="stylesheet" />
     <link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />
+    <link href="css/homepage.css?version=2.0" rel="stylesheet" />
     <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
     <script type="text/javascript" src="mixjs/forumcommon.js?version=2.0"></script>
     <script src="../common/mixjs/commurl.js?version=2.0"></script>
     <script type="text/javascript" src="mixjs/new.js?version=2.0"></script>
+    <script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
     <style>
         #eui-main-footer {
             position: fixed;
@@ -68,6 +70,7 @@
 </html>
 
 <script>
+    loadTop("information");
     var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 	if(!user){
         $('.navbar').css({"display":"block"})

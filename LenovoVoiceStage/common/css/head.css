@@ -12,14 +12,16 @@
 
 }
 .navbar-icon{
-    width: 100px;
+    width: 135px;
+    text-align: left;
 }
 .navbar-icon img{
   width: 40px;  
 }
-.logo_text{
-    width: 60px !important;
-    padding-left: 5px;
+.logo_text_left{
+    vertical-align: middle;
+    color: #fff;
+    margin-left: 4px;
 }
 
 .navbar-collapse{
@@ -84,7 +86,7 @@
     background-color: #DDD;
 }
 .nav-left{
-	width: 80%;
+	width: 65%;
     display:-webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -110,6 +112,7 @@
 .hover-menu li{
     position: relative;
     transition: all 200ms ease-in;
+    min-width: 112px;
 }
 .hover-menu li:hover .product-menu ,.hover-menu li:hover .user-menu {
     top: 60px;
@@ -154,7 +157,7 @@ a:focus a:hover{
     justify-content: center;
 }
 .product-menu li{
-    width: 130px;
+    padding-right: 35px;
     text-align: center;
 }
 .user-menu{
@@ -189,7 +192,7 @@ a:focus a:hover{
     flex-wrap: nowrap;
 }
 .user-menu li{
-    padding-right: 50px;
+    padding-right: 35px;
 }
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
     background-color: transparent;
@@ -294,7 +297,81 @@ a:focus a:hover{
 .dropdown-menu{
     padding: 0;
 }
+#box{
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+#down{
+    border-radius: 6px;
+    width: 110px;
+    display: none;
+    position: absolute;
+    height: 70px;
+    background: #fff;
+}
+#down ul{
+    padding: 0;
+    margin: 0;
+}
+#down li{
+    list-style: none;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: center;
+}
+.opimg{
+  width: 20px !important;
+  vertical-align: middle;
+}
+#down li:hover{
+    background-color: #eee;
+}
+.optxt{
+    vertical-align: middle;
+    display: inline-block;
+    width: 60px;
+    text-align: left;
+}
+.tri-down{
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #000;
+    display: inline-block;
+    vertical-align: middle;
+}
+.b-m{
+      display: inline-block;
+}
+.b-m .optxt{
+    text-align-last: center;
+}
+.drop-down{
+    position: absolute;
+    top: 16px;
+    right: 50px;
+}
 @media screen and (max-width:766px){
+    .drop-down{
+        display: none;
+    }
+    .navbar-icon{
+        width: auto;
+    }
+    .logo_text_left{
+        display: none;
+    }
     .navbar{
         height: 40px;
         min-height: max-content;
@@ -523,17 +600,19 @@ a:focus a:hover{
     .open_style{
         position: absolute !important;
         background: #fff !important;
-        top: 50px !important;
+        top: 40px !important;
         right: 0 !important;
         list-style: none;
         border-radius: 2px;
-        width: 95px;
+        min-width: 200px;
+        text-align: right;
     }
     .open_style li{
         border-bottom: 1px solid rgba(229, 229, 229, 1) !important;
     }
     .open_style a {
         color: #333;
+        padding-right: 11px;
     }
     .mobile_top_username{
         display: inline-block !important;
@@ -562,10 +641,6 @@ a:focus a:hover{
  @media screen and (max-width:320px){
     .user_name{
         max-width: 50px !important;
-    }
-    .logo_text {
-        width: 50px !important;
-        padding-left: 5px;
     }
     .navbar-icon img {
         width: 30px;

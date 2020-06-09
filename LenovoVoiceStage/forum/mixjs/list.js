@@ -1,9 +1,89 @@
 	$(function(){
-		loadTop("information");
 		var Username = window.localStorage.getItem('un');
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 		var accountidd = window.localStorage.getItem('acd')
+		var token = window.localStorage.getItem('token')
+		var total=""
 		function fn(){}
+		if(token == '' || token == null || token == undefined){
+			if(getCookie('grycan.cn.bLang') =='english'){
+				Popup.confirm("Please log in first！", fn)
+			}else{
+				Popup.confirm("请登录后继续操作！", fn)
+			}
+		}else{
+			$.ajax({
+				type:"POST",
+				url:urlhead+"/lasf/forum/list",
+				dataType:"json",
+				data:{
+					"pagenum":1,
+					"pagecount":10,
+					t:token,
+					lid:accountid
+				},
+				headers: {
+						"channel" : "cloudasr"
+					},
+				async: false,
+				success:function(res){
+					if(res.errorcode !=1024){
+						var num=res.datalist;
+								total=res.total;
+						var str = "";
+						$.each(res.datalist, function(idx,val) {
+							var nowtime = formatDateTime(val.createTime);
+							var replytime = formatDateTime(val.lastUpdateTime);
+							if(isNaN(parseInt(replytime))){
+									replytime="- -";
+							}else{
+									replytime=replytime;
+							}
+							if(getCookie('grycan.cn.bLang') == 'english'){
+								str +="<a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"
+										+"<div class=\"list-cell\">"
+										+"<img class='info_img' src='../forum/images/head.png'/>"
+										+"<div class='info_right'>"
+										+"<p><span>"+unhtml(val.title)+"</span></p>"
+										+"<div class=\'in_p\'>"
+										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+										+"<span class='mg'>"+'<span>release：</span>'+nowtime+"</span>"
+										+"<span class='mg'>"+'<span>Last reply：</span>'+replytime+"</span>"
+										+"</div>"
+										+"</div>"
+										+"</div>"
+										+"</a>"
+							}else{
+								str +="<a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"
+										+"<div class=\"list-cell\">"
+										+"<img class='info_img' src='../forum/images/head.png'/>"
+										+"<div class='info_right'>"
+										+"<p><span>"+unhtml(val.title)+"</span></p>"
+										+"<div class=\'in_p\'>"
+										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+										+"<span class='mg'>"+'<span>发布于：</span>'+nowtime+"</span>"
+										+"<span class='mg'>"+'<span>最后回复于：</span>'+replytime+"</span>"
+										+"</div>"
+										+"</div>"
+										+"</div>"
+										+"</a>"
+							}
+							});
+						$(".list-content").append(str);
+					}else{
+						localStorage.clear();
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.confirm("Login timeout！", fn)
+						}else{
+							Popup.confirm("登录超时，请重新登录", fn)
+						}
+					}
+					
+				},error:function(err){
+					
+				}
+			});
+		}
 		function formatDateTime(timeStamp) {   
 		    var date = new Date();  
 		    date.setTime(timeStamp * 1000);  
@@ -18,62 +98,13 @@
 		    var second = date.getSeconds();    
 		    minute = minute < 10 ? ('0' + minute) : minute;      
 		    second = second < 10 ? ('0' + second) : second;     
-		    return y + '-' + m + '-' + d;      
+		    return y + '-' + m + '-' + d +' '+h+':'+minute;      
 		};  
 		function unhtml(sHtml) {
 		 return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
 		}
-		var total="";
-    $.ajax({
-		  type:"POST",
-		  url:urlhead+"/lasf/forum/list",
-		  dataType:"json",
-		  data:{
-				"pagenum":1,
-				"pagecount":10,
-				t:window.localStorage.getItem('token'),
-				lid:accountid
-			},
-		  headers: {
-		  	  "channel" : "cloudasr"
-		    },
-		  async: false,
-		  success:function(res){
-				if(res.errorcode !=1024){
-					var num=res.datalist;
-							total=res.total;
-					var str = "";
-					$.each(res.datalist, function(idx,val) {
-						var nowtime = formatDateTime(val.createTime);
-						var replytime = formatDateTime(val.lastUpdateTime);
-						if(isNaN(parseInt(replytime))){
-								replytime="- -";
-						}else{
-								replytime=replytime;
-						}
-						// <div class='delg'><img src='../forum/images/delete.png'/></div>
-						str +="<div class=\"list-cell\">"
-										+"<img class='info_img' src='../forum/images/head.png'/>"
-										+"<div class='info_right'>"
-										+"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
-										+"<div class='in_p'>"
-										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
-										+"<span class='mg'>"+'发布于'+nowtime+"</span>"
-										+"<span class='mg'>"+'最后回复于'+replytime+"</span>"
-										+"</div>"
-										+"</div>"
-										+"</div>";
-						});
-					$(".list-content").append(str);
-				}else{
-					localStorage.clear();
-					Popup.confirm("请登录后继续操作", fn)
-				}
-				
-			},error:function(err){
-				Popup.Nalert("服务器错误！")
-			}
-		});
+		
+   
 		
 
 		
@@ -98,7 +129,7 @@
 			  data:{
 					"pagenum":curPage,
 					"pagecount":pageSize,
-					t:window.localStorage.getItem('token'),
+					t:token,
 					lid:accountid
 				},
 			  headers: {
@@ -116,26 +147,49 @@
 							}else{
 									replytime=replytime;
 							}
-							str +="<div class=\"list-cell\">"
+							if(getCookie('grycan.cn.bLang') == 'english'){
+								str +="<a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"
+										+"<div class=\"list-cell\">"
 										+"<img class='info_img' src='../forum/images/head.png'/>"
 										+"<div class='info_right'>"
-										+"<p><a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"+unhtml(val.title)+"</a></p>"
+										+"<p><span>"+unhtml(val.title)+"</span></p>"
 										+"<div class=\'in_p\'>"
 										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
-										+"<span class='mg'>"+'发布于'+nowtime+"</span>"
-										+"<span class='mg'>"+'最后回复于'+replytime+"</span>"
+										+"<span class='mg'>"+'<span>release：</span>'+nowtime+"</span>"
+										+"<span class='mg'>"+'<span>Last reply：</span>'+replytime+"</span>"
 										+"</div>"
 										+"</div>"
-										+"</div>";
+										+"</div>"
+										+"</a>"
+							}else{
+								str +="<a href='questiondetail.html?article="+val.articleId+"' class='lp_li_a'>"
+										+"<div class=\"list-cell\">"
+										+"<img class='info_img' src='../forum/images/head.png'/>"
+										+"<div class='info_right'>"
+										+"<p><span>"+unhtml(val.title)+"</span></p>"
+										+"<div class=\'in_p\'>"
+										+"<span class='mg'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</span>"
+										+"<span class='mg'>"+'<span>发布于：</span>'+nowtime+"</span>"
+										+"<span class='mg'>"+'<span>最后回复于：</span>'+replytime+"</span>"
+										+"</div>"
+										+"</div>"
+										+"</div>"
+										+"</a>"
+							}
+							
 						});
 						$(".list-content").append(str);
 					}else{
 						localStorage.clear();
-						Popup.confirm("请登录后继续操作", fn)
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.confirm("Login timeout！", fn)
+						}else{
+							Popup.confirm("登录超时，请重新登录", fn)
+						}
 					}
 			  	
 			  },error:function(err){
-					Popup.Nalert("服务器错误！")
+					
 				}
 			});
 		
@@ -144,3 +198,16 @@
 	
 	
 })
+
+function getCookie(name){
+	var strcookie = document.cookie;//获取cookie字符串
+	var arrcookie = strcookie.split("; ");//分割
+	//遍历匹配
+	for ( var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == name){
+			return arr[1];
+		}
+	}
+	return "";
+}

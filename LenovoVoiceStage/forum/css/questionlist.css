@@ -1,6 +1,36 @@
 html,body{
     width:100%;
 }
+
+.drop-down{
+	float: right;
+	position: static;
+}
+.drop-down #box{
+	height: 60px;
+    line-height: 60px;
+}
+.tri-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+.optxt{
+	color: #fff;
+}
+#down,#down li{
+	border-radius: 0;
+	background: rgba(0,0,0,.3);
+}
+#down li:hover{
+	background: rgba(0,0,0,.3);
+}
+
+
 p{
 	margin: 0;
 }
@@ -29,8 +59,8 @@ p{
 }
 .recognise_title{
 	color: #fff;
-	font-size: 4rem;
-    letter-spacing: 10px;
+	font-size: 34px;
+    letter-spacing: 2px;
     line-height: 200px;
     margin-bottom: 0 !important;
 }
@@ -105,14 +135,20 @@ p{
 .info_right{
     padding-left: 20px;
     float: left;
+    max-width: 75%;
 }
-.lp_li_a{
-    color: #333;
-    font-size: 16px;
+.info_right p{
+    min-height: 25px;
+}
+.info_right p span{
     white-space: nowrap;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.lp_li_a{
+    color: #333;
+    font-size: 16px;
 }
 .lp_li_a:hover{
     color: #333
@@ -125,7 +161,9 @@ p{
 .mg{
     padding-right: 15px;
 }
-
+.mg span{
+    padding-right: 3px;
+}
 #pageDiv{
     display: none !important;
 }
@@ -149,8 +187,8 @@ p{
     }
     .recognise_title {
         color: #fff;
-        font-size: 25px;
-        letter-spacing: 10px;
+        font-size: 34px;
+    letter-spacing: 2px;
         line-height: 150px;
     }
     .eui-main-body{

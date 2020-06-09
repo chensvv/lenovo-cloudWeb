@@ -9,10 +9,40 @@
     align-items: center;
 }
 
+
+
+.drop-down{
+	float: right;
+	position: static;
+}
+.drop-down #box{
+	height: 60px;
+    line-height: 60px;
+}
+.tri-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+.optxt{
+	color: #fff;
+}
+#down,#down li{
+	border-radius: 0;
+	background: rgba(0,0,0,.3);
+}
+#down li:hover{
+	background: rgba(0,0,0,.3);
+}
+
 .recognise_title{
 	color: #fff;
-	font-size: 4rem;
-	letter-spacing: 10px;
+	font-size: 34px;
+    letter-spacing: 2px;
 }
 .bg_div{
 	background: url("../images/bight.png") no-repeat;
@@ -40,7 +70,7 @@
 }
 .content-title{
 	width:90%;
-	margin: 50px auto;
+	margin: 30px auto;
 	text-align: center;
 	font-size: 24px;
 	font-weight: bold;
@@ -104,21 +134,30 @@
 .content1 .header-content strong{
 	color: red;
 }
-.content1 .content-table table,.content2 .content-table table{
+.content1 .content-table table,.content2 .content-table table,.content4 .content-table table{
 	width: 94%;
 	text-align: center;
 }
-.content1 .content-table table th,.content2 .content-table table th{
+.content1 .content-table table th,.content2 .content-table table th,.content4 .content-table table th{
 	text-align: center;
 	background: #C0C0C0;
 }
-.content1 .content-table table td,.content2 .content-table table td{
+.content1 .content-table table td,.content2 .content-table table td,.content4 .content-table table td{
 	padding: 6px;
 	word-wrap:break-word;
 	word-break:break-all;
 }
-
-#eui-main-body .content2,.content3{
+.content4 .content-table table a{
+	color: #333;
+	text-decoration: underline !important;
+}
+.content4 .content-table table a:hover{
+	color: #0da9f5;
+}
+.content4 .content-table table tr:hover{
+	background: none !important;
+}
+#eui-main-body .content2,.content3,.content4{
 	width: 100%;
 	height: 100%;
 	/*height: 154px;*/

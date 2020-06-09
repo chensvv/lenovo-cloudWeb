@@ -2,6 +2,36 @@
 html,body{
     width:100%;
 }
+
+
+.drop-down{
+	float: right;
+	position: static;
+}
+.drop-down #box{
+	height: 60px;
+    line-height: 60px;
+}
+.tri-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+.optxt{
+	color: #fff;
+}
+#down,#down li{
+	border-radius: 0;
+	background: rgba(0,0,0,.3);
+}
+#down li:hover{
+	background: rgba(0,0,0,.3);
+}
+
 p{
 	margin: 0;
 }
@@ -16,8 +46,8 @@ p{
 }
 .recognise_title{
 	color: #fff;
-	font-size: 4rem;
-	letter-spacing: 10px;
+	font-size: 34px;
+    letter-spacing: 2px;
 	line-height: 200px;
 }
 .bg_div{
@@ -33,6 +63,11 @@ p{
 	margin: 0 auto;
 	display: inline;
 }
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+}
 .module-content{
 	padding-top: 30px;
     margin-bottom: 50px;
@@ -45,22 +80,32 @@ p{
 }
 .info_box:hover{
 	cursor: pointer;
+	box-shadow: 0px 12px 15px 0px rgba(152,158,158,0.18);
 }
 .info_img{
 	width: 100%;
 	height: 300px;
+	overflow: hidden;
 }
 .info_img img{
 	height: 300px;
     width: 100%;
-    object-fit: cover;
+	object-fit: cover;
+	transition: all 0.6s;
+}
+.info_img img:hover{
+	transform: scale(1.1);
 }
 .info_con{
 	padding: 15px 10px 15px 15px;
 }
 .info_con_title{
 	color: #313131;
-    font-weight: 600;
+	font-weight: 600;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
 }
 .info_con_title:hover,.info_con_title:focus{
 	color: #313131;
@@ -81,14 +126,19 @@ p{
 	margin-bottom: 30px;
     display: block;
     color: #898989;
+    text-align: center;
 }
 .content{
-	line-height: 30px;
+	font-size: 16px;
 }
 .content img{
 	width: 100%;
-	margin: 10px 0;
 	height: 100%;
+}
+.content p{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-indent: 33px;
 }
 .mobile_div{
 	text-align: center;
@@ -121,8 +171,8 @@ p{
 	}
 	.recognise_title {
 		color: #fff;
-		font-size: 25px;
-		letter-spacing: 10px;
+		font-size: 34px;
+    	letter-spacing: 2px;
 		line-height: 150px;
 	}
 	.row{

@@ -14,7 +14,9 @@ function record(e){
     }
     if (e.classList.contains("recording")) {
         e.classList.remove("recording");
-        document.getElementById('ret').innerHTML = '点我录音'
+        $('#recing').css('display','none')
+        $('.spinner').css('display','block')
+        $('.loading-box').css('display','block')
         $('#nextPage').attr('disabled',false)
         recStop()
     } else {
@@ -36,7 +38,8 @@ function recOpen(success){
     rec.open(function(){//打开麦克风授权获得相关资源
         //dialog&&dialog.Cancel(); 如果开启了弹框，此处需要取消
         rec.start() //此处可以立即开始录音，但不建议这样编写，因为open是一个延迟漫长的操作，通过两次用户操作来分别调用open和start是推荐的最佳流程
-        document.getElementById('ret').innerHTML = '录音中<dot>...</dot>'
+        $('#ret').css('display','none')
+        $('#recing').css('display','block')
         $('#nextPage').attr('disabled',true)
         success&&success();
     },function(msg,isUserNotAllow){//用户拒绝未授权或不支持
@@ -103,6 +106,9 @@ function recStop(){
                     'secretkey': secrkey
                 }
             }).then(res=>{
+                $('.spinner').css('display','none')
+                $('.loading-box').css('display','none')
+                $('#ret').css('display','block')
                 document.getElementById('fluency').innerHTML = res.data.fluent_score
                 document.getElementById('integrity').innerHTML = res.data.integrity
                 document.getElementById('degree').innerHTML = res.data.overall_pronunciation

@@ -1,6 +1,37 @@
 html,body{
     width:100%;
 }
+
+
+.drop-down{
+	float: right;
+	position: static;
+}
+.drop-down #box{
+	height: 60px;
+    line-height: 60px;
+}
+.tri-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+.optxt{
+	color: #fff;
+}
+#down,#down li{
+	border-radius: 0;
+	background: rgba(0,0,0,.3);
+}
+#down li:hover{
+	background: rgba(0,0,0,.3);
+}
+
+
 p{
 	margin: 0;
 }
@@ -15,8 +46,8 @@ p{
 }
 .recognise_title{
 	color: #fff;
-	font-size: 4rem;
-    letter-spacing: 10px;
+	font-size: 34px;
+    letter-spacing: 2px;
     line-height: 200px;
     margin-bottom: 0 !important;
 }
@@ -82,7 +113,7 @@ p{
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .info_con{
     width: 100%;
@@ -116,7 +147,7 @@ p{
     .recognise_title {
         color: #fff;
         font-size: 25px;
-        letter-spacing: 10px;
+        letter-spacing: 2px;
         line-height: 150px;
         margin-bottom: 0;
     }

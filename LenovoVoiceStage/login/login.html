@@ -2,91 +2,120 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <title>联想语音开放平台</title>
+    <title i18n="i18n.title">联想语音开放平台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
     <meta http-equiv="Imagetoolbar" content="no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../framework/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../common/css/head.css">
     <link href="css/login.css" rel="stylesheet"/>
     <link rel="stylesheet" href="./css/step.css">
     <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../common/js/jquery.i18n.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script src="../common/js/jquery.base64.js"></script>
+    <script src="../common/js/com.js"></script>
     <script src="../common/mixjs/commurl.js"></script>
     <!-- <script src="./js/step.js"></script> -->
     <style>
-    
+        
     </style>
 </head>
 <body>
     <div class="user-box" id="user-box">
-            <div class='navbar-icon'>
-                <img src='../common/images/logo_img.png'><img src='../common/images/logo_text.png' class='logo_text'>
+            <div class='navbar-icon2'>
+                <div class="logo-box">
+                    <img src='../common/images/logo_img.png'>
+                    <span class='logo_text' i18n="i18n.writ">联想语音</span>
+                </div>
+                <div class="drop-down">
+                    <div id="box">
+                        <div id="b-m" class="b-m">
+                            <img src="../common/images/china.png" class="opimg" id="op-img">
+                            <span class="optxt" id="op-txt">简体中文</span>
+                        </div>
+                        <div class="tri-down"></div>
+                    </div>
+                    <div id="down">
+                        <ul class="phones">
+                            <li><img src="../common/images/china.png" class="opimg" id="op-img"> <span class="optxt">简体中文</span></li>
+                            <li><img src="../common/images/usa.png" class="opimg" id="op-img"> <span class="optxt">English</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
                     <div class="user-login">
                             <div class="main">
                                     <div class="btn-title">
-                                        <span class="active spanList" id="loginList">登录</span>
-                                        <span class="spanList" id="regList">注册</span>
+                                        <span class="active spanList" id="loginList" i18n="i18n.signIn">登录</span>
+                                        <span class="spanList" id="regList" i18n="i18n.signUp">注册</span>
                                     </div>
                                    <div class="context">
                                         <div class="con login-input" id="loginInput">
                                             <div class="username login-input-box">
-                                                <input type="text" id="loginPhone" placeholder="用户名" onblur="isLoginP()">
-                                                <span id="errloginP" class="login-err-text"></span>
+                                                <input type="text" id="loginPhone" placeholder="用户名" i18n-only="placeholder" i18n="i18n.loginUser" oninput="isLoginP()">
+                                                <span id="errloginP" class="login-err-text" i18n="i18n.loginP">请输入用户名或手机号</span>
                                             </div>
                                             <div class="password login-input-box">
-                                                <input type="password" id="loginPassword" placeholder="密码" onblur="isLoginW()">
-                                                <span id="errloginW" class="login-err-text"></span>
+                                                <input type="password" id="loginPassword" placeholder="密码" i18n-only="placeholder" i18n="i18n.loginPass" oninput="isLoginW()">
+                                                <span id="errloginW" class="login-err-text" i18n="i18n.loginW">请输入密码</span>
+                                                <span id="loginreq" class="login-req"></span>
                                             </div>
                                             <!-- <div class="forget"><span>忘记密码</span></div> -->
                                             <div class="login-btn-box">
-                                                <button class="login-btn" id="loginBtn">登录</button>
-                                                <span class="hint-msg">推荐使用联想账号登录</span>
+                                                <button class="login-btn" id="loginBtn"  i18n="i18n.signIn">登录</button>
+                                                <span class="hint-msg" i18n="i18n.logWay">推荐使用联想账号登录</span>
                                             </div>
                                         </div>
                                         <div class="con reg-input" id="regInput">
                                                     <div class="pageCont">
                                                         <div id="page1" class="stepPage">
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regUser" placeholder="请输入用户名" autocomplete="off" onblur="isUser()">
-                                                                <span id="errUser" class="err-text"></span>
+                                                                <input type="text" id="regUser" placeholder="请输入用户名" i18n-only="placeholder" i18n="i18n.regUser" autocomplete="off" onblur="isUser()" oninput="userInput()">
+                                                                <span id="errUserNull" class="err-text" i18n="i18n.errUserNull">请输入邮箱或手机号</span>
+                                                                <span id="errUserNo" class="err-text" i18n="i18n.errUserNo">请输入正确格式的邮箱或手机号</span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="phone" id="regPhone" placeholder="请输入手机号" autocomplete="off" onblur="isPhoneNum()">
-                                                                <span id="errPhone" class="err-text"></span>
+                                                                <input type="phone" id="regPhone" placeholder="请输入手机号" i18n-only="placeholder" i18n="i18n.regPhone" autocomplete="off" onblur="isPhoneNum()" oninput="userPhone()">
+                                                                <span id="errPhoneNull" class="err-text" i18n="i18n.errPhoneNull">请输入手机号</span>
+                                                                <span id="errPhoneNo" class="err-text" i18n="i18n.errPhoneNo">请输入正确的手机号</span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regName" placeholder="请输入姓名" autocomplete="off" onblur="isName()">
-                                                                <span id="errName" class="err-text"></span>
+                                                                <input type="text" id="regName" placeholder="请输入姓名" i18n-only="placeholder" i18n="i18n.regName" autocomplete="off" onblur="isName()" oninput="nameInput()">
+                                                                <span id="errNameNull" class="err-text" i18n="i18n.errNameNull">请输入姓名</span>
+                                                                <span id="errNameSp" class="err-text" i18n="i18n.errNameSp">姓名不能包含空格</span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regPany" placeholder="请输入公司名称" autocomplete="off" onkeyup="showTion()" onblur="isPany()">
-                                                                <span id="errPany" class="err-text"></span>
+                                                                <input type="text" id="regPany" placeholder="请输入公司名称" i18n-only="placeholder" i18n="i18n.regPany" autocomplete="off" onkeyup="showTion()" onblur="isPany()" oninput="panyInput()">
+                                                                <span id="errPanyNull" class="err-text" i18n="i18n.errPanyNull">请输入公司名称</span>
+                                                                <span id="errPanySp" class="err-text" i18n="i18n.errPanySp">公司名称不能包含空格</span>
                                                             </div>
                                                             <div class="reg-input-box" id="tionShow">
-                                                                <input type="text" id="regTion" placeholder="请输入部门名称" autocomplete="off" onblur="isTion()">
-                                                                <span id="errTion" class="err-text"></span>
+                                                                <input type="text" id="regTion" placeholder="请输入部门名称" i18n-only="placeholder" i18n="i18n.regTion" autocomplete="off" onblur="isTion()" oninput="tionInputval()">
+                                                                <span id="errTionNull" class="err-text" i18n="i18n.errTionNull">请输入部门名称</span>
+                                                                <span id="errTionSp" class="err-text" i18n="i18n.errTionSp">部门名称不能包含空格</span>
                                                             </div>
                                                             <div class="reg-btn-box">
-                                                                <button class="reg-btn" id="nextBtn">下一步</button>
+                                                                <button class="reg-btn" id="nextBtn" i18n="i18n.next">下一步</button>
                                                             </div>
                                                         </div>
                                                         <div id="page2" class="stepPage">
                                                             <div class="reg-input-box">
-                                                                <input type="password" id="regPassword" placeholder="设置密码" autocomplete="off" onblur="isPassword()">
-                                                                <span id="errPassword" class="err-text"></span>
+                                                                <input type="password" id="regPassword" placeholder="设置密码" i18n-only="placeholder" i18n="i18n.setPass" autocomplete="off" onblur="isPassword()" oninput="passInput()">
+                                                                <span id="errPasswordNull" class="err-text" i18n="i18n.errPasswordNull">请输入密码</span>
+                                                                <span id="errPasswordR" class="err-text" i18n="i18n.errPasswordR">密码长度必须包含数字、字母且大于8个字符</span>
                                                             </div>
                                                             <div class="reg-input-box">
-                                                                <input type="password" id="regPasswordConfirm" placeholder="确认密码" autocomplete="off" onblur="confirmPass()">
-                                                                <span id="errConPass" class="err-text"></span>
+                                                                <input type="password" id="regPasswordConfirm" placeholder="确认密码" i18n-only="placeholder" i18n="i18n.passCon" autocomplete="off" onblur="confirmPass()">
+                                                                <span id="errConPass" class="err-text" i18n="i18n.errConPass">两次密码输入不一致</span>
+                                                                <span id="logIng" class="err-text reg-ok" i18n="i18n.logIng">注册成功，登录中...</span>
                                                             </div>
                                                             <div class="reg-btn-box">
-                                                                <button class="reg-btn first-btn" id="firstBtn">上一步</button>
-                                                                <button class="reg-btn reg-btn_btn" id="regBtn">注册</button>
+                                                                <button class="reg-btn first-btn" id="firstBtn" i18n="i18n.prev">上一步</button>
+                                                                <button class="reg-btn reg-btn_btn" id="regBtn" i18n="i18n.signUp">注册</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -120,13 +149,12 @@
 
 </body>
 <script>
-    var countdown = 60;
-    var loginInput = document.getElementById('loginInput')
-    var regInput = document.getElementById('regInput')
-    var tionInput = document.getElementById('tionShow')
-    var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-    
-    // 标签页切换
+var countdown = 60;
+var loginInput = document.getElementById('loginInput')
+var regInput = document.getElementById('regInput')
+var tionInput = document.getElementById('tionShow')
+var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+// 标签页切换
 $(".con").eq(0).show();
 $('#prevBtn').css('display','none')
 $('#tionShow').css('display','none')
@@ -149,21 +177,14 @@ $(".btn-title span").click(function(){
     }
     if(getStyle(regInput, 'display') == 'none'){
         $('#regPhone').val('')
-        $('#errPhone').text('')
+        $('.err-text').css('display','none')
         $('#regUser').val('')
-        $('#errUser').text('')
         $('#regName').val('')
-        $('#errName').text('')
         $('#regPany').val('')
-        $('#errPany').text('')
         $('#regTion').val('')
-        $('#errTion').text('')
         $('#regPassword').val('')
-        $('#errPassword').text('')
         $('#userMsg').val('')
-        $('#errUserMsg').text('')
         $('#regPasswordConfirm').val('')
-        $('#errConPass').text('')
         $('.user-login').removeClass('reg-main')
         $('#page1').css('display','block')
         $('#page2').css('display','none')
@@ -244,19 +265,31 @@ function setTime(obj) {
         setTime(obj) 
     },1000) //每1000毫秒执行一次
 }
+function userPhone(){
+    if($("#regPhone").val() !=''){
+        $('#errPhoneNull').css('display','none')
+    }
+}
 // 注册手机号邮箱验证
 function isPhoneNum(){
     var phonenum = $("#regPhone").val()
     var phoneReg = /^1[0-9]{10}$/
     if(phonenum == ''){
-        $('#errPhone').text('请输入手机号码')
+        $('#errPhoneNull').css('display','block')
+        $('#errPhoneNo').css('display','none')
         return false
     }else if(!phoneReg.test(phonenum)){
-        $('#errPhone').text('请输入正确格式的手机号码')
+        $('#errPhoneNo').css('display','block')
         return false;
     }else{
-        $('#errPhone').text('')
+        $('#errPhoneNull').css('display','none')
+        $('#errPhoneNo').css('display','none')
         return true;
+    }
+}
+function userInput(){
+    if($('#regUser').val() !=''){
+        $('#errUserNull').css('display','none')
     }
 }
 function isUser(){
@@ -264,43 +297,65 @@ function isUser(){
     var mailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
     var phoneReg = /^1[0-9]{10}$/
     if(userVal == ''){
-        $('#errUser').text('请输入邮箱或手机号')
+        $('#errUserNull').css('display','block')
+        $('#errUserNo').css('display','none')
         return false
     }else if(mailReg.test(userVal) || phoneReg.test(userVal)){
-        $('#errUser').text('')
+        $('#errUserNull').css('display','none')
+        $('#errUserNo').css('display','none')
         return true;
     }else{
-        $('#errUser').text('请输入正确格式的邮箱或手机号')
+        $('#errUserNo').css('display','block')
         return false
     }
 }
 
+function nameInput(){
+    if($('#regName').val() !=''){
+        $('#errNameNull').css('display','none')
+    }
+}
 function isName(){
     var nameVal = $('#regName').val()
     var nameReg = /^\S+$/;
     if(nameVal == ''){
-        $('#errName').text('请输入姓名')
+        $('#errNameNull').css('display','block')
+        $('#errNameSp').css('display','none')
         return false
     }else if(!nameReg.test(nameVal)){
-        $('#errName').text('姓名不能包含空格')
+        $('#errNameSp').css('display','block')
         return false
     }else{
-        $('#errName').text('')
+        $('#errNameNull').css('display','none')
+        $('#errNameSp').css('display','none')
         return true
+    }
+}
+
+function panyInput(){
+    if($('#regPany').val() !=''){
+        $('#errPanyNull').css('display','none')
     }
 }
 function isPany(){
     var panyVal = $('#regPany').val()
     var panyReg = /^\S+$/;
     if(panyVal == ''){
-        $('#errPany').text('请输入公司名称')
+        $('#errPanyNull').css('display','block')
+        $('#errPanySp').css('display','none')
         return false
     }else if(!panyReg.test(panyVal)){
-        $('#errPany').text('公司名称不能包含空格')
+        $('#errPanySp').css('display','block')
         return false
     }else{
-        $('#errPany').text('')
+        $('#errPanyNull').css('display','none')
+        $('#errPanySp').css('display','none')
         return true
+    }
+}
+function tionInputval(){
+    if($('#regTion').val() !=''){
+        $('#errTionNull').css('display','none')
     }
 }
 function isTion(){
@@ -308,27 +363,37 @@ function isTion(){
     var tionReg = /^\S+$/;
     if(getStyle(tionInput, 'display') == 'block'){
         if(tionVal == ''){
-            $('#errTion').text('请输入部门名称')
+            $('#errTionNull').css('display','block')
+            $('#errTionSp').css('display','none')
             return false
         }else if(!tionReg.test(tionVal)){
-            $('#errTion').text('部门名称不能包含空格')
+            $('#errTionSp').css('display','block')
             return false
         }else{
-            $('#errTion').text('')
+            $('#errTionNull').css('display','none')
+            $('#errTionSp').css('display','none')
             return true
         }
     }else{
-        $('#errTion').text('')
+        $('#errTionNull').css('display','none')
+        $('#errTionSp').css('display','none')
     }
     
 }
 function showTion(){
     var panyVal = $('#regPany').val()
-    if(panyVal.indexOf('联想') != -1){
+    if(panyVal.indexOf('联想') != -1 || panyVal.indexOf('Lenovo') != -1 || panyVal.indexOf('lenovo') != -1){
         $('#tionShow').css('display','block')
     }else{
         $('#tionShow').css('display','none')
-        $('#errTion').text('')
+        $('#errTionNull').css('display','none')
+        $('#errTionSp').css('display','none')
+    }
+}
+
+function passInput(){
+    if($("#regPassword").val() !=''){
+        $('#errPasswordNull').css('display','none')
     }
 }
 // 注册密码验证
@@ -336,12 +401,14 @@ function isPassword(){
     var passCode = $("#regPassword").val()
     var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z~.'!@#￥$%^&*()+-_=:]{8,}$/
     if(passCode == ''){
-        $('#errPassword').text('请输入密码')
+        $('#errPasswordNull').css('display','block')
+        $('#errPasswordR').css('display','none')
     }else if(passwordReg.test(passCode)){
-        $('#errPassword').text('')
+        $('#errPasswordNull').css('display','none')
+        $('#errPasswordR').css('display','none')
         return true;
     }else{
-        $('#errPassword').text('密码长度必须包含数字、字母且大于8个字符')
+        $('#errPasswordR').css('display','block')
         return false;
     }
 }
@@ -349,21 +416,23 @@ function isPassword(){
 function confirmPass(){
     var conPassCode = $("#regPasswordConfirm").val()
     if($("#regPassword").val() == conPassCode){
-        $('#errConPass').text('')
+        $('#errConPass').css('display','none')
         return true
     }else{
-        $('#errConPass').text('两次密码输入不一致')
+        $('#errConPass').css('display','block')
         return false
     }
 }
+// console.log($("#loginPhone").val())
 function isLoginP(){
     if($("#loginPhone").val() !=''){
-        $('#errloginP').text('')
+        
+        $('#errloginP').css('display','none')
     }
 }
 function isLoginW(){
     if($('#loginPassword').val() !=''){
-        $('#errloginW').text('')
+        $('#errloginW').css('display','none')
     }
 }
 // function getQueryVariable(variable){
@@ -390,17 +459,19 @@ $('#loginBtn').click(function(){
     var username = $("#loginPhone").val()
     var password = $.base64.encode($('#loginPassword').val())
     if(username == ''){
-        $('#errloginP').text('请输入手机号码或邮箱')
+        $('#errloginP').css('display','block')
+        // $('#errloginP').text('请输入用户名或手机号')
     }else if(password == ''){
-        $('#errloginW').text('请输入密码')
+        $('#errloginW').css('display','block')
+        // $('#errloginW').text('请输入密码')
     }else{
         $.ajax({
             url:urlhead+'/lasf/web/login',
             type:'post',
             dataType:'json',
-            data:{u:username,p:password},
+            data:{u:username,p:password,language:getCookie('grycan.cn.bLang')},
             success:function(res){
-                console.log(res)
+                // console.log(res)
                 if(res.status == 0){
                     window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
                     window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
@@ -414,7 +485,7 @@ $('#loginBtn').click(function(){
                     }
                     window.localStorage.removeItem('returnurl')
                 }else{
-                    $('#errloginW').text(res.description)
+                    $('#loginreq').text(res.description)
                 }
             },
             error:function(err){
@@ -437,11 +508,19 @@ $('#regBtn').click(function(){
             url:urlhead+'/lasf/web/register',
             type:'post',
             dataType:'json',
-            data:{u:regUser,phone:regUserPhone,username:regUserName,company:regUserPany,dept:regUserTion,p:regPassword},
+            data:{
+                u:regUser,
+                phone:regUserPhone,
+                username:regUserName,
+                company:regUserPany,
+                dept:regUserTion,
+                p:regPassword,
+                language:getCookie('grycan.cn.bLang')
+            },
             success:function(res){
                 // console.log(res)
                 if(res.status == 0){
-                    $('#errConPass').text('注册成功，登录中...')
+                    $('#logIng').css('display','block')
                     setTimeout(()=>{
                         window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
                         window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
@@ -495,20 +574,36 @@ function getStyle(obj, attr) {
 }
 
 function getUrlParam(name) {
-        // 取得url中?后面的字符
-        var query = window.location.search.substring(1);
-        // 把参数按&拆分成数组
-        var param_arr = query.split("&");
-        for (var i = 0; i < param_arr.length; i++) {
-            var pair = param_arr[i].split("=");
-            if (pair[0] == name) {
-                return pair[1];
-            }
+    // 取得url中?后面的字符
+    var query = window.location.search.substring(1);
+    // 把参数按&拆分成数组
+    var param_arr = query.split("&");
+    for (var i = 0; i < param_arr.length; i++) {
+        var pair = param_arr[i].split("=");
+        if (pair[0] == name) {
+            return pair[1];
         }
-        return (false);
     }
-    if(getUrlParam('status') == 'reg'){
-        $('#regList').click()
-    }
+    return (false);
+}
+
+if(getUrlParam('status') == 'reg'){
+    $('#regList').click()
+}
+    
+function getCookie(name){
+	var strcookie = document.cookie;//获取cookie字符串
+	var arrcookie = strcookie.split("; ");//分割
+	//遍历匹配
+	for ( var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == name){
+			return arr[1];
+		}
+	}
+	return "";
+}
+
+
 </script>
 </html>

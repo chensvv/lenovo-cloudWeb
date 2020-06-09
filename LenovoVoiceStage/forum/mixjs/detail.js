@@ -1,5 +1,4 @@
 	$(function () {
-		loadTop("information");
 		var Username = window.localStorage.getItem('un');
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
 		var accountidd = window.localStorage.getItem('acd')
@@ -103,7 +102,11 @@ function fn(){}
 							if(val.commentLevel == 2){
 								el+= "<div class='reply'><p class='keyid' hidden>"+val.id+"</p><div><a href='javascript:void(0)' class='replyname'>"+unhtml(val.accountName).replace(/(\w{3})\w{4}/, '$1****')+"</a>&nbsp;:&nbsp;<span>"+unhtml(val.content)+"</span></div>"+ "<p><span>"+nowtime+"</span>"
 								if(geTel(Username) == val.accountName){
-								   el += "<span class='delchild'>删除</span>"
+									if(getCookie('grycan.cn.bLang') =='english'){
+										el += "<span class='delchild'>delete</span>"
+									}else{
+										el += "<span class='delchild'>删除</span>"
+									}
 								}else{
 	
 								}
@@ -116,12 +119,19 @@ function fn(){}
 									el += "<p class='pid' hidden>"+val.parentCommentId+"</p><p class='valid' hidden>"+val.id+"</p><p class='content'>"+unhtml(val.content)+"</p><div class='comment-content-footer'><div class='rowtext'><div class='col-dels'>";			
 									el +=  "</div><div class='col-update'>"
 									if(geTel(Username) == val.accountName){
-										el += "<span class='del'>删除</span>"
+										if(getCookie('grycan.cn.bLang') =='english'){
+											el += "<span class='del'>delete</span>"
+										}else{
+											el += "<span class='del'>删除</span>"
+										}
 									}else{
 	
 									}
-									el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
-								 
+									if(getCookie('grycan.cn.bLang') =='english'){
+										el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>reply</span></div></div></div><div class='reply-list'></div></div></div>"; 
+									}else{
+										el += "<span class='reply-time'>"+nowtime+"</span><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'></div></div></div>"; 
+									}
 							}
 							$(".comment-list").append(el).find(".reply-btn").unbind().click(function () {
 								if ($(this).parent().parent().find(".replybox").length > 0) {
@@ -134,7 +144,6 @@ function fn(){}
 							$(".comment-list").find(".del").unbind().click(function(e){
 								var valid = $(this).parent().parent().parent().parent().find(".valid").text()
 								function del(){
-									console.log(111)
 									$.ajax({
 										type: "POST",
 										url: urlhead + '/lasf/forum/delete',
@@ -152,12 +161,22 @@ function fn(){}
 												history.go(0);
 											} else {
 												localStorage.clear();
-												Popup.confirm("请登录后继续操作！", fn)
+												if(getCookie('grycan.cn.bLang') =='english'){
+													Popup.confirm("Login timeout！", fn)
+												}else{
+													Popup.confirm("登录超时，请重新登录！", fn)
+												}
+												
 											}
 										}
 									});
 								}
-								Popup.Nconfirm("确认删除吗？", del)
+								if(getCookie('grycan.cn.bLang') =='english'){
+									Popup.Nconfirm("Are you sure to delete?", del)
+								}else{
+									Popup.Nconfirm("确认删除吗？", del)
+								}
+								
 								// if (confirm("确认删除吗?")) {
 								// 	$.ajax({
 								// 		type: "POST",
@@ -204,13 +223,22 @@ function fn(){}
 												history.go(0);
 											} else {
 												localStorage.clear();
-												Popup.confirm("登录超时，请重新登录!", fn)
+												if(getCookie('grycan.cn.bLang') =='english'){
+													Popup.confirm("Login timeout！", fn)
+												}else{
+													Popup.confirm("登录超时，请重新登录！", fn)
+												}
 											}
 
 										}
 									});
 								}
-								Popup.Nconfirm("确认删除吗？", delChild)
+								if(getCookie('grycan.cn.bLang') =='english'){
+									Popup.Nconfirm("Are you sure to delete?", delChild)
+								}else{
+									Popup.Nconfirm("确认删除吗？", delChild)
+								}
+								
 								// if (confirm("确认删除吗?")) {
 								// 	$.ajax({
 								// 		type: "POST",
@@ -241,11 +269,15 @@ function fn(){}
 						});
 					} else {
 						localStorage.clear();
-						Popup.confirm("登录超时，请重新登录！", fn)
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.confirm("Login timeout！", fn)
+						}else{
+							Popup.confirm("登录超时，请重新登录！", fn)
+						}
 					}
 				},
 				error: function (err) {
-					Popup.Nalert("服务器错误")
+					
 				}
 			});
 		}
@@ -254,8 +286,14 @@ function fn(){}
 
 		//二级评论
 		function replyClick(el) {
-			el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='comment_textarea' ></textarea><span class='send'>发送</span></div>")
-				.find(".send").click(function () {
+			var secondTeply
+			if(getCookie('grycan.cn.bLang') =='english'){
+				secondTeply = el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='Say something......' class='comment_textarea' ></textarea><span class='send'>send</span></div>")
+			}else{
+				secondTeply = el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='comment_textarea' ></textarea><span class='send'>发送</span></div>")
+			}
+			
+			secondTeply.find(".send").click(function () {
 					var content = $(this).prev().val();
 					if (content != "") {
 						var tit = $(".htitle").text();
@@ -283,18 +321,26 @@ function fn(){}
 									history.go(0);
 								} else {
 									localStorage.clear();
-									Popup.confirm("登录超时，请重新登录！", fn)
+									if(getCookie('grycan.cn.bLang') =='english'){
+										Popup.confirm("Login timeout！", fn)
+									}else{
+										Popup.confirm("登录超时，请重新登录！", fn)
+									}
 								}
 
 							},
 							error: function (err) {
-								Popup.Nalert("服务器错误")
+								
 							}
 						});
 
 
 					} else {
-						Popup.Nalert("内容不能为空！")
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.Nalert("Comment cannot be empty!")
+						}else{
+							Popup.Nalert("评论不能为空！")
+						}
 					}
 				});
 		}
@@ -383,11 +429,15 @@ function fn(){}
 					});
 				} else {
 					localStorage.clear();
-					Popup.confirm("登录超时，请重新登录！", fn)
+					if(getCookie('grycan.cn.bLang') =='english'){
+						Popup.confirm("Login timeout！", fn)
+					}else{
+						Popup.confirm("登录超时，请重新登录！", fn)
+					}
 				}
 			},
 			error: function (err) {
-				Popup.Nalert('服务器错误！')
+
 			}
 		})
 
@@ -399,7 +449,11 @@ function fn(){}
 		//评论一级添加
 		$("#comment").click(function () {
 			if ($("#content").val() == "") {
-				Popup.Nalert("评论不能为空！")
+				if(getCookie('grycan.cn.bLang') =='english'){
+					Popup.Nalert("Comment cannot be empty!")
+				}else{
+					Popup.Nalert("评论不能为空！")
+				}
 				return;
 			}
 			var tit = $(".htitle").text();
@@ -424,12 +478,30 @@ function fn(){}
 						content();
 					} else {
 						localStorage.clear();
-						Popup.confirm("登录超时，请重新登录！", fn)
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.confirm("Login timeout！", fn)
+						}else{
+							Popup.confirm("登录超时，请重新登录！", fn)
+						}
 					}
 				},
 				error: function (err) {
-					Popup.Nalert("服务器错误！")
+
 				}
 			})
 		});
 	})
+
+
+	function getCookie(name){
+		var strcookie = document.cookie;//获取cookie字符串
+		var arrcookie = strcookie.split("; ");//分割
+		//遍历匹配
+		for ( var i = 0; i < arrcookie.length; i++) {
+			var arr = arrcookie[i].split("=");
+			if (arr[0] == name){
+				return arr[1];
+			}
+		}
+		return "";
+	}

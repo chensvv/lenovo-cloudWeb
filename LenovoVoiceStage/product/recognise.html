@@ -2,7 +2,7 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-	<title>联想语音开放平台</title>
+	<title i18n="i18n.title">联想语音开放平台</title>
 	<meta http-equiv="Imagetoolbar" content="no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
@@ -11,8 +11,8 @@
 	<link href="../common/css/head.css?version=2.0" rel="stylesheet"/>
 	<link rel="stylesheet" href="../welcome/css/all.css">
 	<link rel="stylesheet" href="../common/css/animate.min.css">
+	<link href="css/recognise.css?version=2.0" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-    <link href="css/recognise.css?version=2.0" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../common/js/jquery.base64.js"></script>
@@ -21,6 +21,9 @@
 	<script src="./mixjs/recorder.wav.min.js"></script>
 	<script src="./mixjs/axios.min.js"></script>
 	<script src="./mixjs/waveview.js"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+	
 	<style>
 		#eui-main-footer{
 			position: fixed;
@@ -35,7 +38,7 @@
 			<div class="nav-title">
 					<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 					</nav>
-					<p class="recognise_title">短语音识别</p>
+					<p class="recognise_title" i18n='i18n.shortASR'>短语音识别</p>
 					<div class="bg_div"></div>
 					<div class="com-sel">
 						<select class="com-opt" id="langSel">
@@ -50,31 +53,31 @@
 			</div>
 		<div class="eui-main-body">
 			<div class="body-content product-experience">
-				<div class="content-title product-title">开始体验</div>
+				<div class="content-title product-title" i18n="i18n.proEx">产品体验</div>
 				<!-- <div class="product-content"> -->
 					<div class="product-picture">
-						
-						
 						<div class="marvel-device nexus5">
 							<div class="screen">
 								<div class="prompt" style="">
 									<div class="left_div_box">
-											<span class="stat_left">点击Mic开始对话，再次点击结束录音<span class="arrow_left" style=""></span></span>
-											
+											<span class="stat_left"><span i18n="i18n.Miclick">点击Mic开始对话，再次点击结束录音</span><span class="arrow_left" style=""></span></span>
 									</div>
 									<div class="right_div_box">
-											<span id="status" class="stat_right">
-											</span>
+											<span id="statusU" class="stat_right"><a onclick='user_login()' target="_self" id='lenovo-user-name' i18n="i18n.firstLogin">请先登录</a></span>
+											<span id="statusP" class="stat_right" i18n="i18n.speak">请说话</span>
+											<span id="statusD" class="stat_right" i18n="i18n.recogVoice">正在识别语音......</span>
 											<span class="arrow_right" style=""></span>
 									</div>
 								</div>
 								<div class="viz">
 								</div>
 								<div class="upd">
-										<input type="text" name="" id="" value="" class="update"/>
-										<!-- <input type="button" name="" id="" value="修改" class="subdate"/> -->
+									<input type="text" name="" id="" value="" class="update"/>
 								</div>
-								<p id="stutsP"></p>
+								<p id="stutsP">
+									<span class i18n="i18n.disResult">识别结果</span>
+									<input type='button' id='updateBtn' onclick='updateBtn()' value='修改'>
+								</p>
 								<pre style="display: none;"><code id="json"></code></pre>
 								<div class="realtime-btn">
 										<img id="record" src="images/Mic-nor.png" style="cursor: pointer;"  onclick="toggleRecording(this);" />
@@ -93,11 +96,8 @@
 
 
 </body>
-</html>
 <script>
-	$(function () {
-		loadTop("product");
-	});
+	loadTop("product");
 	function avatarnum(){
 		var accountid = $.base64.decode(window.localStorage.getItem('acd'));
 		var Username = window.localStorage.getItem('un');		
@@ -132,3 +132,5 @@
 	}
 
 </script>
+</html>
+

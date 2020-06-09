@@ -1,5 +1,4 @@
 $(function(){
-		loadTop("information");
 		var accountidd = window.localStorage.getItem('accountid');
 		if (accountidd=="" || accountidd==null||accountidd.length == 0) {
 	        if(confirm("登录后才能查看！")){

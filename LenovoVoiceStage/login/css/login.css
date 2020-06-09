@@ -125,6 +125,12 @@ input::-webkit-input-placeholder {
     position: absolute;
     top: 41px;
     left: 0;
+    display: none;
+    line-height: 13px;
+}
+.reg-ok{
+    color: #46b44b;
+    line-height: normal;
 }
 .login-err-text{
     padding-left: 5px;
@@ -133,6 +139,8 @@ input::-webkit-input-placeholder {
     position: absolute;
     top: 52px;
     left: 0;
+    display: none;
+    line-height: 13px;
 }
 .code{
     width: 100%;
@@ -158,19 +166,25 @@ input::-webkit-input-placeholder {
     padding: 10px 0 0 5px;
     display: block;
 }
-.navbar-icon{
-    width: 100px;
-    position: absolute;
-    top: 16px;
-    left: 15px;
+.navbar-icon2 .logo-box{
+    padding-top: 16px;
+    padding-left: 15px;
+    display: inline-block;
 }
-.navbar-icon img{
+.trans-en{
+    float: right;
+    margin-top: 16px;
+    margin-right: 40px;
+}
+.navbar-icon2 img{
     width: 40px;  
 }
+
 .logo_text{
-    width: 60px !important;
-    padding-left: 5px;
+    vertical-align: middle;
+    color: #d7edfa;
 }
+
 .first-btn{
     width: 45%;
     background: #a9deef;
@@ -190,6 +204,15 @@ input::-webkit-input-placeholder {
 }
 #page2 .reg-btn-box{
     padding: 45px 0;
+}
+.login-req{
+    padding-left: 5px;
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    line-height: 13px;
 }
 @media screen and (max-width:1024px){
     .logo_text {
@@ -267,6 +290,8 @@ input{
         position: absolute;
         top: 42px;
         left: 0;
+        display: none;
+        line-height: 13px;
     }
     .reg-input .reg-input-box {
         padding-bottom: 20px;

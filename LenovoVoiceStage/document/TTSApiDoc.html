@@ -1,189 +1,199 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Imagetoolbar" content="no" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>联想语音开放平台</title>
-	    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-	    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	    <link href="css/ttsapidoc.css?version=2.0" rel="stylesheet" type="text/css"/>
-	    <link href="../common/css/popup.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=2.0"/>
-	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../common/mixjs/popup.js"></script>
-		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
-		<script src="../common/js/jquery.base64.js"></script>
-		<script src="../common/mixjs/commurl.js?version=2.0"></script>
-	    <script type="text/javascript" src="mixjs/islogin.js"></script>
-		<style>
-			#eui-main-footer{
-				position: fixed;
-				bottom: 0;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="nav-title">
-			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-			</nav>
-			<p class="recognise_title">语音合成接口V1</p>
-			<div class="bg_div"></div>
-			<div class="mobile_div">
-				<span class="back_arrows"></span>
-				<span class="client_title">语音合成接口V1</span>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Imagetoolbar" content="no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title i18n="i18n.title">联想语音开放平台</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../common/css/popup.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../common/css/head.css?version=2.0" />
+	<link href="css/ttsapidoc.css?version=2.0" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../common/mixjs/popup.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=1.2"></script>
+	<script src="../common/js/jquery.base64.js"></script>
+	<script src="../common/mixjs/commurl.js?version=2.0"></script>
+	<script type="text/javascript" src="mixjs/islogin.js"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+	<style>
+		#eui-main-footer {
+			position: fixed;
+			bottom: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="nav-title">
+		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+		</nav>
+		<p class="recognise_title" i18n="i18n.ttsInter">语音合成接口V1</p>
+		<div class="bg_div"></div>
+		<div class="mobile_div">
+			<span class="back_arrows"></span>
+			<span class="client_title" i18n="i18n.ttsInter">语音合成接口V1</span>
+		</div>
+	</div>
+	<div class="content-title" i18n="i18n.TTSinterface">语音合成接口参数说明</div>
+	<div id="eui-main-body">
+		<div class="conent-header" aos-once="true">
+			<div class="urlheader">
+				<div class="urleft contentleft">URL</div>
+				<div class="urlcontent contentright">https://voice.lenovo.com/lasf/cloudtts</div>
+			</div>
+			<div class="pathheader">
+				<div class="urleft contentleft" i18n="i18n.method">方法</div>
+				<div class="urlcontent contentright">POST</div>
+			</div>
+			<div class="formatheader">
+				<div class="urleft contentleft" i18n="i18n.format">格式</div>
+				<div class="urlcontent contentright">application/x-www-form-urlencoded</div>
 			</div>
 		</div>
-		<div class="content-title">语音合成接口参数说明</div>
-		<div id="eui-main-body">
-		    <div class="conent-header" aos-once="true">
-		        <div class="urlheader">
-		            <div class="urleft contentleft">URL：</div>
-		            <div class="urlcontent contentright">https://voice.lenovo.com/lasf/cloudtts</div>
-		        </div>
-		        <div class="pathheader">
-		            <div class="urleft contentleft">方法：</div>
-		            <div class="urlcontent contentright">POST</div>
-		        </div>
-		        <div class="formatheader">
-		            <div class="urleft contentleft">格式：</div>
-		            <div class="urlcontent contentright">application/x-www-form-urlencoded</div>
-		        </div>
-			</div>
-			<div class="content1">
-					<div class="headinfo contentleft">头信息</div>
-					
-					
-					<div class="contentright">
-						  
-						  <h4 class="header-param-title  title"><b>参数说明:</b></h4>
-						  <div class="content-table">
-							  <table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
-								  <tr>
-									  <th>名称</th>
-									  <th>格式</th>
-									  <th>取值(样例)</th>
-									  <th>描述</th>
-								  </tr>
-								  <tr>
-									  <td>lenovoKey</td>
-									  <td>String</td>
-									  <td>LENOVO-VOICE-aaabbbccc</td>
-									  <td>账户公钥(右上角开发者信息中获取)</td>
-								  </tr>
-								  <tr>
-									  <td>secretKey</td>
-									  <td>String</td>
-									  <td>kasdjkfsldjsldfjkdkkkde</td>
-									  <td>账户私钥(右上角开发者信息中获取)</td>	
-								  </tr>
-								  <tr>
-									  <td>channel</td>
-									  <td>String</td>
-									  <td>cloudasr</td>
-									  <td>来源渠道</td>                  			
-								  </tr>
-							  </table>
-						  </div>
-					</div>
-									
+		<div class="content1">
+			<div class="headinfo contentleft" i18n="i18n.headers">头信息</div>
+
+
+			<div class="contentright">
+
+				<h4 class="header-param-title  title"><b i18n="i18n.paramdes">参数说明：</b></h4>
+				<div class="content-table">
+					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
+						<tr>
+							<th i18n="i18n.name">名称</th>
+							<th i18n="i18n.conformat">格式</th>
+							<th i18n="i18n.conval">取值(样例)</th>
+							<th i18n="i18n.describe">描述</th>
+						</tr>
+						<tr>
+							<td>lenovoKey</td>
+							<td>String</td>
+							<td>LENOVO-VOICE-aaabbbccc</td>
+							<td i18n="i18n.desc4">账户公钥(右上角开发者信息中获取)</td>
+						</tr>
+						<tr>
+							<td>secretKey</td>
+							<td>String</td>
+							<td>kasdjkfsldjsldfjkdkkkde</td>
+							<td i18n="i18n.desc5">账户私钥(右上角开发者信息中获取)</td>
+						</tr>
+						<tr>
+							<td>channel</td>
+							<td>String</td>
+							<td>cloudasr</td>
+							<td i18n="i18n.desc6">来源渠道</td>
+						</tr>
+					</table>
 				</div>
-		    <div class="content2">
-		        <div class="headinfo contentleft">内容信息：</div>
-		        <div class="contentright">
-	                  <h4 class="header-param-title"><b>参数说明:</b></h4>
-	                  <div class="content-table">
-	                  	<table border="1" cellspacing="" cellpadding="">
-	                  		<tr>
-	                  			<th>名称</th>
-								<th>格式</th>
-								<th>是否必须</th>
-	                  			<th>描述</th>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>text</td>
-								<td>String</td>
-								<td>是</td>
-	                  			<td>输入的文本内容</td>
-							</tr>
-							<tr>
-								<td>user</td>
-								<td>String</td>
-								<td>是</td>
-								<td>用户accountid</td>
-							</tr>
-							<tr>
-								<td>speed</td>
-								<td>Number</td>
-								<td>否</td>
-								<td>设置播放的语速，在0~9之间（支持浮点值），不传时默认为5</td>
-							</tr>
-							<tr>
-								<td>volume</td>
-								<td>int</td>
-								<td>否</td>
-								<td>设置语音的语量，在0~9之间（只支持整型值），不传时默认为5</td>
-							</tr>
-							<tr>
-								<td>pitch</td>
-								<td>Number</td>
-								<td>否</td>
-								<td>设置语音的音调，在0~9之间（支持浮点值），不传时默认为5中音调</td>
-							</tr>
-							<tr>
-								<td>audioType</td>
-								<td></td>
-								<td>否</td>
-								<td>
-										音频种类，可不填，不填时默认为3，表示mp3格式<br/>
-										audioType=4 ：返回16K采样率的pcm格式</br>
-										audioType=5 ：返回8K采样率的pcm格式<br/>
-										audioType=6 ：返回16K采样率的wav格式<br/>
-										audioType=6&rate=1 ：返回8K的wav格式<br/>
-										audioType=7 ：返回8k8bit的alaw格式文件<br/>
-										audioType=8 ：返回8k8bit的ulaw格式文件
-								</td>
-							</tr>
-	                  	</table>
-	                  </div>
-		        </div>
-		    </div>
-		    
-		    <div class="content3">
-		    	<div class="headinfo contentleft">返回格式：</div>
-		        <div class="contentright">根据音频种类返回对应格式的音频流</div>
-		    </div>
-		</div>			
-		
-		
-		<div id="eui-main-footer" class="footer-bgcolor"></div>
-	</body>
+			</div>
+
+		</div>
+		<div class="content2">
+			<div class="headinfo contentleft" i18n="i18n.content">内容信息</div>
+			<div class="contentright">
+				<h4 class="header-param-title"><b i18n="i18n.paramdes">参数说明：</b></h4>
+				<div class="content-table">
+					<table border="1" cellspacing="" cellpadding="">
+						<tr>
+							<th i18n="i18n.name">名称</th>
+							<th i18n="i18n.conformat">格式</th>
+							<th i18n="i18n.ismust">是否必须</th>
+							<th i18n="i18n.describe">描述</th>
+						</tr>
+						<tr>
+							<td>text</td>
+							<td>String</td>
+							<td i18n="i18n.yes">是</td>
+							<td i18n="i18n.tce">输入的文本内容</td>
+						</tr>
+						<tr>
+							<td>user</td>
+							<td>String</td>
+							<td i18n="i18n.yes">是</td>
+							<td i18n="i18n.accid">用户accountid</td>
+						</tr>
+						<tr>
+							<td>speed</td>
+							<td>Number</td>
+							<td i18n="i18n.no">否</td>
+							<td i18n="i18n.speed">设置播放的语速，在0~9之间（支持浮点值），不传时默认为5</td>
+						</tr>
+						<tr>
+							<td>volume</td>
+							<td>int</td>
+							<td i18n="i18n.no">否</td>
+							<td i18n="i18n.spq">设置语音的语量，在0~9之间（只支持整型值），不传时默认为5</td>
+						</tr>
+						<tr>
+							<td>pitch</td>
+							<td>Number</td>
+							<td i18n="i18n.no">否</td>
+							<td i18n="i18n.itt">设置语音的音调，在0~9之间（支持浮点值），不传时默认为5中音调</td>
+						</tr>
+						<tr>
+							<td>audioType</td>
+							<td></td>
+							<td i18n="i18n.no">否</td>
+							<td>
+								<span i18n="i18n.audiotype">音频种类，可不填，不填时默认为3，表示mp3格式</span> <br />
+								audioType=4 ：<span i18n="i18n.16kpcm">返回16K采样率的pcm格式</span> </br>
+								audioType=5 ：<span i18n="i18n.8kpcm">返回8K采样率的pcm格式</span> <br />
+								audioType=6 ：<span i18n="i18n.16kwav">返回16K采样率的wav格式</span> <br />
+								audioType=6&rate=1 ：<span i18n="i18n.8kwav">返回8K采样率的wav格式</span> <br />
+								audioType=7 ：<span i18n="i18n.alaw">返回8k8bit的alaw格式文件</span> <br />
+								audioType=8 ：<span i18n="i18n.ulaw">返回8k8bit的ulaw格式文件</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="content3">
+			<div class="headinfo contentleft" i18n="i18n.response">返回格式</div>
+			<div class="contentright" i18n="i18n.audiostream">根据音频种类返回对应格式的音频流</div>
+		</div>
+		<div class="content4">
+			<div class="headinfo contentleft" i18n="i18n.problems">问题与下载</div>
+			<div class="contentright">
+				<div class="content-table">
+					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
+						<tr>
+							<td><a href="./SDKDownload.html"  i18n="i18n.sdkdownload">SDK下载</a></td>
+							<td><a href="../forum/questionlist.html" i18n="i18n.proan">常见问题与解答</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="eui-main-footer" class="footer-bgcolor"></div>
+</body>
+
 </html>
 
 <script>
+	loadTop("document");
 	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-	if(!user){
-			$('.navbar').css({"display":"block"})
-			$('.mobile_div').css({"display":"none"})
-			$('.recognise_title').css({"display":"block"})
-			$('.bg_div').css({"display":"block"})
-		}else{
-			$('.navbar').css({"display":"none"})
-			$('.mobile_div').css({"display":"block"})
-			$('.recognise_title').css({"display":"none"})
-			$('.bg_div').css({"display":"none"})
-		}
-	$(function () {
-		loadTop("client");
-		$('.back_arrows').click(function(){
-			history.back(-1)
-		})
-		
-
-	});
-	$(function () {
-		loadTop("document");
+	if (!user) {
+		$('.navbar').css("display","block")
+		$('.mobile_div').css("display","none")
+		$('.recognise_title').css("display","block")
+		$('.bg_div').css("display", "block")
+	} else {
+		$('.navbar').css("display","none")
+		$('.mobile_div').css("display", "block")
+		$('.recognise_title').css("display", "none")
+		$('.bg_div').css("display", "none")
+	}
+	$('.back_arrows').click(function () {
+		history.back(-1)
 	})
 </script>

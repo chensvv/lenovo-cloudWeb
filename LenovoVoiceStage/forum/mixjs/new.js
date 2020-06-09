@@ -1,5 +1,4 @@
 	$(function(){
-		loadTop("information");
 		var Username = window.localStorage.getItem('un')
 		function fn(){}
 	$("#send").click(function(){
@@ -21,17 +20,16 @@
 						$(".title").val("");
 						$(".text").val("");
 						if(res.dataid){
-							Popup.Nalert("服务器错误！")
 							window.location.href="../forum/questionlist.html"
 						}else{
-							Popup.Nalert("服务器错误！")
+							Popup.Nalert("发帖失败，请稍后重试！")
 						}
 					}else{
 						localStorage.clear();
 						Popup.confirm("请登录后继续操作", fn)
 					}
 			  },error:function(err){
-				Popup.Nalert("服务器错误！")
+					
 				}
 			});
 		})

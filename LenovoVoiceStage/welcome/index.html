@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="Imagetoolbar" content="no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>联想语音开放平台</title>
+	<title i18n="i18n.title">联想语音开放平台</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
 	<script>
 		// 页面开始加载前的时间，用于统计页面加载时间
@@ -28,12 +28,12 @@
 	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
 	<script src="./mixjs/swiper.min.js"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
 	<script src="../common/mixjs/commurl.js?version=2.0"></script>
-	<script src="../common/js/jquery.base64.js"></script>
+	<script src="../common/js/jquery.base64.js"></script> 
 	<script type="text/javascript" src="./mixjs/index.js?version=2.0"></script>
 	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
-	<!-- <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-	<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> -->
 </head>
 <style>
 	.rows {
@@ -189,7 +189,7 @@
 	</div>
 	<div id="eui-main-body">
 			<!-- <div class="row"> -->
-					<h4 style="padding:3rem 0 3rem 0; font-size:32px;" class="text-center">成功案例</h4>
+					<h4 style="padding:3rem 0 3rem 0; font-size:32px;" class="text-center" i18n="i18n.stories">成功案例</h4>
 					<!-- <div class="lenovo_yuyin"> -->
 						<div class="row w50">
 							<div class="top_img">
@@ -208,7 +208,7 @@
 								<img src="./images/clf.png" alt="">
 							</div>
 						</div>
-						<h4 style="padding:3rem 0 3rem 0; font-size:32px;" class="text-center">合作伙伴</h4>
+						<h4 style="padding:3rem 0 3rem 0; font-size:32px;" class="text-center" i18n="i18n.partner">合作伙伴</h4>
 						<!-- <div class="container"> -->
 								<div class="row bot_div">
 										<div class="bottom_img col-xs-6 col-sm-6 col-md-4 col-lg-4">
@@ -230,13 +230,8 @@
 											<img src="./images/more.png" alt="">
 										</div>
 									</div>
-
 						<!-- </div> -->
-								
-							
-						
 					<!-- </div> -->
-
 			<!-- </div> -->
 	</div>
 	<div id="eui-main-footer" class="footer-bgcolor">
@@ -246,6 +241,7 @@
 
 </body>
 <script>
+	loadTop("index");
 	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 	var scriptNode = document.createElement("script");
 	scriptNode.setAttribute("type", "text/javascript");
@@ -258,13 +254,6 @@
 		}
 		
 		document.head.appendChild(scriptNode);
-		loadTop("index");
-		// $(document).ready(function () {
-			// if(location.href.indexOf("#reloaded")==-1){
-			// 	location.href=location.href+"#reloaded";
-			// 	location.reload();
-			// }
-// }
 		var accountid = $.base64.decode(window.localStorage.getItem('accountid'));
 		var Username = window.localStorage.getItem('Username');
 		var scriptTag = document.createElement('script');
@@ -283,9 +272,6 @@
 			versionCode: '01', // 设置版本号
 			init: function () {}
 		});
-		
-
-
 		function clickvoi(evt, target) {
 			return ['Clickpage2', 'voice', '语音页面点击', {
 				arg1: 0,
@@ -316,6 +302,5 @@
 				arg5: 0
 			}, 0]]);
 		}
-		$('.pic')
 	</script>
 </html>

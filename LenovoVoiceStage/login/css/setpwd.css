@@ -32,6 +32,15 @@ html,body{
     left: 50%;
     padding: 0 80px;
 }
+.logo-box{
+    padding-top: 16px;
+    padding-left: 15px;
+    display: inline-block;
+}
+.logo_text{
+    vertical-align: middle;
+    color: #d7edfa;
+}
 .main{
     width: 100%;
     
@@ -43,7 +52,7 @@ html,body{
     border-bottom: 2px solid #d3d3d3;
     font-size: 32px;
     padding: 40px 0 20px;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 .main-input{
     width: 100%;
@@ -88,6 +97,8 @@ html,body{
     position: absolute;
     top: 83px;
     left: 0;
+    line-height: 12px;
+    display: none;
 }
 .main-hint{
     text-align: center;
@@ -105,18 +116,8 @@ html,body{
     display: inline-block;
     font-size: 20px;
 }
-.navbar-icon{
-    width: 100px;
-    position: absolute;
-    top: 16px;
-    left: 15px;
-}
-.navbar-icon img{
+.navbar-icon2 img{
     width: 40px;  
-}
-.logo_text{
-    width: 60px !important;
-    padding-left: 5px;
 }
 input{
     -webkit-appearance: none;
@@ -212,6 +213,7 @@ input{
         position: absolute;
         top: 63px;
         left: 0;
+        line-height: 12px;
     }
     .main-btn{
         padding: 0;

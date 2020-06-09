@@ -103,33 +103,29 @@ function loadTop(data) {
 	params +="			<div class=\'container\'>";
 	params +="				<div class=\'navbar-header\'>";
 	params +="					<button type=\'button\' onclick=\'open_nav()\' class=\'navbar-toggle collapsed\'>";
-	params +="							    <span class=\'sr-only\'>Toggle navigation</span>";
-	params +="							    <span class=\'icon-bar\'></span>";
-	params +="							    <span class=\'icon-bar\'></span>";
-	params +="							    <span class=\'icon-bar\'></span>";
-	params +="							</button>";
+    params +="			            <span class=\'sr-only\'>Toggle navigation</span>";
+    params +="						<span class=\'icon-bar\'></span>";
+    params +="						<span class=\'icon-bar\'></span>";
+    params +="						<span class=\'icon-bar\'></span>";
+    params +="					</button>";
 	params +="					<div class=\'navbar-icon\'>";
-    params +="						<img src=\'../common/images/logo_img.png\' alt=\'\'><img src=\'../common/images/logo_text.png\' class=\'logo_text\'>";
+    params +="						<img src=\'../common/images/logo_img.png\' alt=\'\'><span class='logo_text_left' i18n='i18n.writ'>联想语音</span>";
     params +="					</div>";
-    
     params += "                <ul class=\'nav navbar-nav navbar-right mobile_nav_right\' id=\'right_mobile\'>";
     params += "                    <li id=\'login1\'>";
     if (Username=="" || Username==null||Username.length == 0) {
-        
-        params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
+        params += "                    <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m' i18n='i18n.signIn'>登录</a>";
     } else {
-        
-        params += "                        <a href=\'#\' target=\'_self\' class='mobile_top_username'><span class='user_name mo'>"+ Username +"</span><span class=\'open_user\'></span></a>";
+        params += "                    <a href=\'#\' target=\'_self\' class='mobile_top_username'><span class='user_name mo'>"+ Username +"</span><span class=\'open_user\'></span></a>";
         params += "                        <ul class=\' open_style\' style=\'display:none\'>";
-        params += "                            <li><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
-        params += "                            <li><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
-        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'set_pwd()\'>修改密码</a></li>";
-        params += "                            <li><a href=\'#\' onclick=\'user_logout()\'>退出</a></li>";
+        params += "                            <li><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank' i18n='i18n.accountInfo'>联想账号信息</a></li>";
+        params += "                            <li><a href=\'#\' onclick=\'user_info()\' i18n='i18n.devInfo'>开发者信息</a></li>";
+        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'set_pwd()\' i18n='i18n.changePass'>修改密码</a></li>";
+        params += "                            <li><a href=\'#\' onclick=\'user_logout()\' i18n='i18n.signOut'>退出</a></li>";
         params += "                        </ul>";
     }
     params += "                    </li>";
     params += "                </ul>";
-
 	params +="				</div>";
     params +="				<div id=\'navbar\' class=\'collapse navbar-collapse animated\'>";
     params +="              <div class=\'is_mobile_close\'>";
@@ -137,76 +133,94 @@ function loadTop(data) {
     params +="              </div>";
 	params +="					<ul class=\'nav navbar-nav nav-left hover-menu\'>";
     if(data == "index"){
-        params += "                    <li class=\'active\'>";
+        params += "                <li class=\'active\'>";
     }else{
         params += "                    <li>";
     }
-    params +="							<a href=\'#\' onclick=\'menu_first_page()\' target=\'_self\'>首页 <span class=\'mobile_jt\'></span></a>";
-    params += "                    </li>";
+    params +="							    <a href=\'#\' onclick=\'menu_first_page()\' target=\'_self\'><span i18n='i18n.homepage'>首页</span><span class=\'mobile_jt\'></span></a>";
+    params += "                        </li>";
     if(data == "product"){
         params += "                    <li class=\'active\'>";
     }else{
-        params += "                    <li>";
+        params += "                <li>";
     }
-    params +="							<a href=\'#\' target=\'_self\' id=\'pro-control\' class=\'product\'>产品服务<span class=\'caret\'></span></a>";
+    params +="							<a href=\'#\' target=\'_self\' id=\'pro-control\' class=\'product\'><span i18n='i18n.product'>产品服务</span><span class=\'caret\'></span></a>";
 	params +="							<ul class=\'product-menu\' id=\'pro-ul\'>";
-	params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\'>短语音识别</a></li>";
-    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\'>长语音识别</a></li>";
+	params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_recognise()\'  id=\'second\' i18n='i18n.shortSpeech'>短语音识别</a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\' i18n='i18n.realtime'>长语音识别</a></li>";
     // params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_eng()\'  id=\'\'>英语短语音识别 </a></li>";
-    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\'>语音合成 </a></li>";
-    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_assess()\'  id=\'\'>英语评测 </a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\' i18n='i18n.synthesis'>语音合成 </a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_assess()\'  id=\'\' i18n='i18n.assess'>英语评测 </a></li>";
 
     params += "                        </ul>";
     params += "                    </li>";
 
     if(data == "document"){
-        params += "                    <li class=\'active\'>";
+        params += "                <li class=\'active\'>";
     }else{
         params += "                    <li class=\'\'>";
     }
-    params += "                        <a href=\'#\' onclick=\'menu_product_document()\' id=\'third\' target=\'_self\' >开发资源 <span class=\'mobile_jt\'></span></a>";
+    params += "                        <a href=\'#\' onclick=\'menu_product_document()\' id=\'third\' target=\'_self\' ><span i18n='i18n.document'>开发资源</span> <span class=\'mobile_jt\'></span></a>";
     params += "                    </li>";
     if(data == "newdata"){
-        params += "                    <li class=\'active\'>";
+        params += "                <li class=\'active\'>";
     }else{
         params += "                    <li class=\'\'>";
     }
-    params += "                        <a href=\'#\' onclick=\'menu_new_data()\' id=\'\' target=\'_self\' >新闻资讯 <span class=\'mobile_jt\'></span></a>";
+    params += "                        <a href=\'#\' onclick=\'menu_new_data()\' id=\'\' target=\'_self\' ><span i18n='i18n.infor'>新闻资讯</span> <span class=\'mobile_jt\'></span></a>";
     params += "                    </li>";
     if(data == "information"){
-        params += "                    <li class=\'active\'>";
+        params += "                <li class=\'active\'>";
     }else{
         params += "                    <li class=\'\'>";
     }
-    params += "                        <a href=\'#\' onclick=\'menu_forum_list()\' id=\'\' target=\'_self\' >给我留言 <span class=\'mobile_jt\'></span></a>";
+    params += "                        <a href=\'#\' onclick=\'menu_forum_list()\' id=\'\' target=\'_self\' ><span i18n='i18n.message'>给我留言</span> <span class=\'mobile_jt\'></span></a>";
     params += "                    </li>";
     params += "                </ul>";
     params += "                <ul class=\'nav navbar-nav navbar-right hover-menu\'>";
-
     params += "                    <li id=\'login1\' class=\'mobile_style\'>";
-
-
     if (Username=="" || Username==null||Username.length == 0) {
-        params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m'>登录</a>";
+        params += "                        <a onclick=\'user_login()\' target=\'_self\' id='lenovo-user-name_m' i18n='i18n.signIn'>登录</a>";
         params += "                        <span class=\'shu\'>|</span>";
-        params += "                        <a onclick=\'user_reg()\' target=\'_self\' id='lenovo-user-register'>注册</a>";
+        params += "                        <a onclick=\'user_reg()\' target=\'_self\' id='lenovo-user-register' i18n='i18n.signUp'>注册</a>";
     } else {
         params += "                        <a href=\'#\' target=\'_self\' class='lenovo-user-name2' id='lenovo-user-name'><span class='user_name ua'>"+ Username +"</span><span class=\'caret\'></span></a>";
         params += "                        <ul class=\'user-menu\' id=\'user-ul\'>";
-        params += "                            <li class='mobile_border'><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank'>联想账号信息</a></li>";
-        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_info()\'>开发者信息</a></li>";
-        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'set_pwd()\'>修改密码</a></li>";
-        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_logout()\'>退出</a></li>";
+        params += "                            <li class='mobile_border'><a href=\'https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=myaccount&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN\' target='_blank' i18n='i18n.accountInfo'>联想账号信息</a></li>";
+        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_info()\' i18n='i18n.devInfo'>开发者信息</a></li>";
+        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'set_pwd()\' i18n='i18n.changePass'>修改密码</a></li>";
+        params += "                            <li class='mobile_border2'><a href=\'#\' onclick=\'user_logout()\' i18n='i18n.signOut'>退出</a></li>";
         params += "                        </ul>";
     }
     params += "                    </li>";
     params += "                </ul>";
-    params += "            </div>";
+    params +="              <div class='drop-down'>";
+    params +="                <div id='box'>";
+    params +="                    <div id='b-m' class='b-m'>";
+    params +="                        <img src='../common/images/china.png' class='opimg' id='op-img'>";
+    params +="                        <span class='optxt' id='op-txt'>简体中文</span>"
+    params +="                    </div>"
+    params +="                    <div class='tri-down'></div>"
+    params +="                </div>"
+    params +="                <div id='down'>"
+    params +="                    <ul class='phones'>"
+    params +="                        <li><img src='../common/images/china.png' class='opimg' id='op-img'> <span class='optxt'>简体中文</span></li>"
+    params +="                        <li><img src='../common/images/usa.png' class='opimg' id='op-img'> <span class='optxt'>English</span></li>"
+    params +="                    </ul>"
+    params +="                </div>"
+    params +="            </div>"
+    params += "         </div>";
     params += "        </div>";
 
   $('.navbar').html(params);
 
-  $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462");
+
+  if(getCookie('grycan.cn.bLang') =='english'){
+    $('#eui-main-footer').html("Lenovo Voice&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;copyright&nbsp;&nbsp;1998－2015&nbsp;&nbsp;Artificial Intelligence Laboratory of Lenovo Group Co., Ltd&nbsp;&nbsp;京ICP备05000462");
+  }else{
+    $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462");
+  }
+  
 if(Username=="" || Username==null||Username.length == 0){
     $('.mobile_style').removeClass('mobile_bottom_border')
 }else{
@@ -245,5 +259,17 @@ $(document).ready(function(){
 //         console.log('移除')
 //     })
 // })
+}
+function getCookie(name){
+	var strcookie = document.cookie;//获取cookie字符串
+	var arrcookie = strcookie.split("; ");//分割
+	//遍历匹配
+	for ( var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == name){
+			return arr[1];
+		}
+	}
+	return "";
 }
 
