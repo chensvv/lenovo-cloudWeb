@@ -3,7 +3,7 @@ var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var accountidd = window.localStorage.getItem('acd');
 var lang
 var samp
-var urlInfo = urlhead +'/lasf/asr';
+var urlInfo = urlhead +'/lasf/cloudasr';
 $(function () {
    //修改nlp结果
    $(".update").bind("keypress",function(event){
