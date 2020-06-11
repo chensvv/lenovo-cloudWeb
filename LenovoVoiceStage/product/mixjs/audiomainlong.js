@@ -103,13 +103,19 @@ function recd() {
             } else {
                 var buf4 = buf;
             }
-            var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
-                "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
-                "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
-                "&rsts=0" +
-                "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
+            // var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
+            //     "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
+            //     "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
+            //     "&rsts=0" +
+            //     "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
             var data = new FormData()
-            data.append("param-data", params);
+            data.append("scene ", 'long');
+            data.append("language ", lang);
+            data.append("sample ", '1');
+            data.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
+            data.append("sessionid", ixid);
+            data.append("packageid", pidx++);
+            data.append("over", over);
             data.append("voice-data", new Blob([buf4]));
             axios.post(urlInfo, data,{
                 headers:{
@@ -164,13 +170,19 @@ function zero(n) {
 }
 
 function sendEnd(){
-    var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
-        "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
-        "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
-        "&rsts=0" +
-        "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
-        var data = new FormData()
-            data.append("param-data", params);
+    // var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.2&did=83102d26aaca24ba&uid=30323575" +
+    //     "&stm=0&key=a&ssm=true&vdm=all&rvr=&sce=iat&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
+    //     "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
+    //     "&rsts=0" +
+    //     "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
+            var data = new FormData()
+            data.append("scene ", 'long');
+            data.append("language ", lang);
+            data.append("sample ", '1');
+            data.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
+            data.append("sessionid", ixid);
+            data.append("packageid", pidx++);
+            data.append("over", over);
             data.append("voice-data", new Blob([chunkInfo.data]));
             axios.post(urlInfo, data,{
                 headers:{

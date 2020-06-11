@@ -122,6 +122,7 @@ function toggleRecording( e ) {
 }
 
 function recOpen(success){
+    console.log(samp)
     rec=Recorder({
         type:"wav",sampleRate:samp,bitRate:16 ,
         onProcess:function(buffers,powerLevel,bufferDuration,bufferSampleRate){
@@ -182,15 +183,21 @@ function recStop(){
             var buf4=new Uint16Array(buf2);
             var formData = new FormData();
             var ixid  = new Date().getTime();
-            var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.0.0&did=83102d26aaca24ba&uid=30323575" +
-                "&stm=0&key=a&ssm=true&vdm=music&rvr=&sce=cmd&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
-                "&dev=lenovo.rt.urc.lv.develop&ixid="+ixid+"&pidx=1&over=1&rsts=0" +
-                "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
-            formData.append("param-data", params);
+            // var params = "dtp=lenovo%2FleSumsung%2Fandroid&ver=1.0.0&did=83102d26aaca24ba&uid=30323575" +
+            //     "&stm=0&key=a&ssm=true&vdm=music&rvr=&sce=cmd&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
+            //     "&dev=lenovo.rt.urc.lv.develop&ixid="+ixid+"&pidx=1&over=1&rsts=0" +
+            //     "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
+            formData.append("scene ", 'short');
+            formData.append("language ", lang);
+            formData.append("sample ", '1');
+            formData.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
+            formData.append("sessionid", ixid);
+            formData.append("packageid", "1");
+            formData.append("over", "1");
             formData.append("voice-data", new Blob([buf4]));
             axios.post(urlInfo,formData,{
                 headers:{
-                    // 'content-type': 'multipart/form-data',
+                    'channel':'cloudasr',
                     'lenovokey':lenkey,
                     'secretkey': secrkey
                 }
