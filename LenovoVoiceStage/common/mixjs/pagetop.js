@@ -24,9 +24,9 @@ function menu_voice_assess(){
     window.location.href = "../product/assess.html";
 }
 
-function menu_voice_file(){
-    window.location.href = "../product/voicefile.html";
-}
+// function menu_voice_file(){
+//     window.location.href = "../product/voicefile.html";
+// }
 
 function menu_voice_synthesis(){
     window.location.href = "../product/synthesis.html";
