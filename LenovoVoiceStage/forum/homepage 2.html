@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title i18n="i18n.title">联想语音开放平台</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />
+    <link href="css/homepage.css?version=2.0" rel="stylesheet" />
+    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+    <script type="text/javascript" src="mixjs/forumcommon.js?version=2.0"></script>
+    <script src="../common/mixjs/commurl.js?version=2.0"></script>
+    <script type="text/javascript" src="mixjs/new.js?version=2.0"></script>
+    <script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+    <style>
+        #eui-main-footer {
+            position: fixed;
+            bottom: 0;
+        }
+        .logo_text{
+			width: 56px !important;
+			padding-left:1px; 
+		}
+    </style>
+</head>
+
+<body>
+    <div class="nav-title">
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+        <div class="mobile_div">
+            <span class="back_arrows"></span>
+            <div class="logo_div">
+                    <img src="../common/images/logo_img.png" class="top_logo">
+                    <img src="../common/images/logo_text.png" class="logo_text">
+            </div>
+        </div>
+        <div class="recognise_title">
+            <img src="../forum/images/head.png" alt="">
+            <span>13帖子</span><span class="span2">10回复</span>
+        </div>
+        <div class="bg_div"></div>
+    </div>
+    <div class="eui-main-body">
+            <div id="tab">
+                <p class="title">
+                    <span class="tab" onclick="changeTab(this)">Ta的帖子</span>
+                    <span onclick="changeTab(this)">Ta的回复</span>
+                </p>
+                <div class="content">暂无内容~</div>
+                <div>暂无内容~</div>
+            </div>
+    </div>
+
+    <div id="eui-main-footer" class="footer-bgcolor"></div>
+
+
+
+
+</body>
+
+</html>
+
+<script>
+    loadTop("information");
+    var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+        $('.navbar').css({"display":"block"})
+        $('.mobile_div').css({"display":"none"})
+    }else{
+        $('.navbar').css({"display":"none"})
+        $('.mobile_div').css({"display":"block"})
+    }
+    $('.back_arrows').click(function(){
+        history.back(-1)
+    })
+    // $(function () {
+        // $(".text div").hide();
+        // $(".text div:first").show();
+        // $(".menu a").click(function () {
+        //     $(this).addClass("curr").siblings().removeClass("curr");
+        //     $(".text div").hide();
+        //     var tt = $(this).attr("href");
+        //     $(tt).show();
+
+        // });
+        // 获取所有的span标签组
+	var tabs = document.getElementById("tab").getElementsByTagName("span");
+	// 获取所有的div标签组
+	var cts = document.getElementById("tab").getElementsByTagName("div");
+ 
+	function changeTab(current) {
+		for(i = 0; i < tabs.length; i++) {
+			if(tabs[i] == current) {
+				tabs[i].className = "tab";
+				cts[i].className = "content";
+			} else {
+				tabs[i].className = "";
+				cts[i].className = "";
+			}
+		}
+	}
+
+    // });
+</script>
