@@ -1,0 +1,117 @@
+#eui-main-body{
+  margin:auto;
+  width: 1110px;
+}
+
+#eui-main-body .app-manager{
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#eui-main-body .app-manager .manager-title{
+    font-family: 黑体;
+    font-size: 50px;
+    font-weight: bolder;
+    width:30%;
+    height: 100%;
+    float: left;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+#eui-main-body .app-manager .manager-operation{
+    width: 70%;
+    height: 100%;
+    float: right;
+    text-align: right;
+    padding-top: 30px;
+}
+
+#eui-main-body .app-manager .manager-operation a{
+    font-size: 16px;
+    color: #b1b1b1;
+}
+
+#eui-main-body .app-manager .manager-operation img{
+    padding-left: 30px;
+    padding-right: 5%;
+}
+
+#eui-main-body .app-list{
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+#eui-main-body .app-list .app-cell{
+    height: 150px;
+    width: 100%;
+    margin-top: 25px;
+    border: 1px solid #e5e5e5;
+    padding-top:3px;
+}
+
+#eui-main-body .app-list .app-cell .cell-icon{
+    margin-left: 20px;
+    background-image: url("../images/app.jpg");
+    background-repeat: no-repeat;
+    height: 144px;
+    width: 13%;
+    display: block;
+    float: left;
+}
+
+#eui-main-body .app-list .app-cell .cell-name{
+    width: 15%;
+    height: 120px;
+    float: left;
+    font-size: 22px;
+    font-weight: bolder;
+    padding-left: 30px;
+    margin-top: 15px;
+    border-right: 1px solid #e5e5e5;
+}
+
+#eui-main-body .app-list .app-cell .cell-name .name-appname{
+    margin-top: 6%;
+}
+
+#eui-main-body .app-list .app-cell .cell-name .name-apptype{
+    margin-top: 8%;
+}
+
+#eui-main-body .app-list .app-cell .cell-attribute{
+    width: 40%;
+    float: left;
+    padding-left: 30px;
+}
+
+#eui-main-body .app-list .app-cell .cell-attribute .attr-stage{
+    margin-top: 6%;
+    padding-left: 29px;
+}
+
+#eui-main-body .app-list .app-cell .cell-attribute .attr-appid{
+    margin-top: 3%;
+    padding-left: 9px;
+}
+
+#eui-main-body .app-list .app-cell .cell-attribute .attr-createtime{
+    margin-top: 3%;
+}
+
+#eui-main-body .app-list .app-cell .cell-operate{
+    text-align: center;
+}
+
+#eui-main-body .app-list .app-cell .cell-operate .operate-view{
+    margin-top: 2%;
+}
+
+#eui-main-body .app-list .app-cell .cell-operate .operate-update{
+    margin-top: 1%;
+}
+
+#eui-main-body .app-list .app-cell .cell-operate .operate-delete{
+    margin-top: 1%;
+}
