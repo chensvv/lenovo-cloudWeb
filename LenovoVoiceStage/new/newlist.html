@@ -1,97 +1,156 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 			
-		<title></title>
-		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />		
-		<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />
-		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>	
-		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
-	</head>
-	<style>
-		.morenew{
-      		width: 84%;
-      		margin: 100px auto 159px auto;
-      		/*border: 1px solid red;*/
-      	}
-      	.morenew h2{
-      		color: #1786d4;
-      		font-size: 20px;
-      	}
-      	.morenew hr{
-      		margin-top: 10px;
-      		border-top: 1px solid #1786d4;
-      	}
-      	.mainnew{
-      		margin-left: 20px;
-      		overflow: auto;
-      	}
-      	.mainnew li{
-      		width: 100%;
-      		height: 28px;
-      		text-decoration: none;
-      		list-style: none;
 
-      	}
-      	.mainnew li a{
-      		color: #716d6d;
-      		text-decoration: none;
-      		float: left;
-      		font-size: 16px;
-      	}
-      	.mainnew li a:hover{
-      		color: #0a8dbf;
-      	}
-      	.morenew ul li .tim{
-      		float: right;
-      		margin-right: 20px;
-      		color: #716d6d;
-      	}
-      	.mainnew li:before {
-			content: "\02022";
-			float: left;
-			margin-right: 10px;
-			color: #1786d4;			    		    
-		}
-		.rows{
-			margin-bottom: 180px;
-		}
-		a{
-			color: #CCCCCC;
-		}
-		a:link { 
-		color:red; 
-		text-decoration:none; 
-		}
-	</style>
-	<body>
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
-		<div class="morenew">
-            	<h2><i>新闻资讯</i></h2><hr />
-            	<ul class="mainnew" id="demoContent">
-            		<li><a href="new5.html" target="_blank">AI乐语音，一句话全搞定！</a><sapn class="tim">2018-11-05</sapn></li>
-            		<li><a href="new4.html" target="_blank">良心优品，新国民旗舰联想Z5首发1299元起！</a><sapn class="tim">2018-06-06</sapn></li>
-                    <li><a href="new0.html" target="_blank">千元玩转人脸解锁 入手Lenovo S5</a><sapn class="tim">2018-04-18</sapn></li>
-                    <li><a href="new1.html" target="_blank">清明节买个联想S5自驾游：用语音控制手机更安全</a><sapn class="tim">2018-04-07</sapn></li>
-                    <li><a href="new2.html" target="_blank">联想手机S5乐语音体验6过Siri，用了就再也回不去了</a><sapn class="tim">2018-03-29</sapn></li>
-            	</ul>
-            	<hr />
-        </div>
-        
-        <div id="eui-main-footer" class="footer-bgcolor">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title i18n="i18n.title">联想语音开放平台</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../welcome/css/all.css?version=2.0" rel="stylesheet" />
+	<link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css?version=2.0" />
+	<link rel="stylesheet" href="../common/css/animate.min.css">
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+	<script src="../common/mixjs/commurl.js?version=2.0"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+</head>
+<style>
+	#eui-main-footer {
+		position: fixed;
+		bottom: 0;
+	}
+</style>
+
+<body>
+		<div class="nav-title">
+			<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+			</nav>
+			<p class="recognise_title" i18n="i18n.infor">新闻资讯</p>
+			<div class="bg_div"></div>
 		</div>
-	</body>
+		<div class="eui-main-body">
+			<div class="recognise-module">
+
+				<div class="module-content">
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew7(this)">
+								<div class="info_img"><img src="./img/k5pro0.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">前后四摄，开启旗舰机娱乐体验！联想K5 Pro</a>
+									<p class="info_con_res">联想K5 Pro搭载前后1600万*相机，四摄只会拍照，AI深度学习，智慧如瞳......四摄智慧拍照，为新时代的照片画质代言。美，从这一刻开始</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew8(this)">
+								<div class="info_img"><img src="./img/s5pro0.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">从“学习人眼”到“超越人眼” 联想S5 Pro</a>
+									<p class="info_con_res">骁龙660处理器 | 前后2000万 AI 四摄 | 深度相机光学变焦 | 零光感人脸解锁 | 偶像级美颜</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew6(this)">
+								<div class="info_img"><img src="./img/201903270343195053.png" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">联想研究院人工智能实验室语音团队在国际大赛中喜获第二名</a>
+									<p class="info_con_res">近日，联想研究院人工智能实验室语音团队（LeVoice）在 Interspeech VOiCES（Voices Obscured in Complex Environmental Settings）国际远场语音识别比赛固定系统项目中，喜获第二名的好成绩，系统性能位于国际第一梯队。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew0(this)">
+								<div class="info_img"><img src="./img/001.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">千元玩转人脸解锁 入手Lenovo S5</a>
+									<p class="info_con_res">最近热销的Lenovo S5，其设计感是十分不错的，自称是“更符合国人手感”的手机。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew5(this)">
+								<div class="info_img"><img src="./img/401.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">AI乐语音，一句话全搞定</a>
+									<p class="info_con_res">AI乐语音，一句话全搞定，点击“乐语音”图标，或者长按home键，进入界面后说出命令，如：“打电话给10086”，乐语音就会进行相应操作，再次点击屏幕下方圆形按钮，可继续输入命令，如：”取消“，即可取消拨打电话。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box" onclick="goNew4(this)">
+								<div class="info_img"><img src="./img/40.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">良心优品，新国民旗舰联想Z5首发1299元起！</a>
+									<p class="info_con_res">6月5日，联想Z5在北京发布。该机主打的是高颜值、高性价比。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row con_box">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_l">
+							<div class="info_box" onclick="goNew2(this)">
+								<div class="info_img"><img src="./img/203.jpg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">联想手机S5乐语音体验6过Siri，用了就再也回不去了</a>
+									<p class="info_con_res">现在是互联网时代，不要说购物，就连"乞讨"都实现了"线上服务"，没有现金？不要紧，我有二维码啊！ 不可否认，现在的手机带给我们太多的便捷，但这些便捷还不够，如果可以不用自己操作，让手机自己操作就更加完美了。</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 c_i_r">
+							<div class="info_box" onclick="goNew1(this)">
+								<div class="info_img"><img src="./img/01.jpeg" alt=""></div>
+								<div class="info_con">
+									<a href="#" class="info_con_title">清明节买个联想S5自驾游：用语音控制手机更安全</a>
+									<p class="info_con_res">关于语音识别，如今的手机厂商要解决的不是技术问题，而是心理学问题。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="eui-main-footer" class="footer-bgcolor"></div>
+
+
+</body>
+
 </html>
 <script>
-$(function(){
-	loadTop("newdata");
- 
-})
+	loadTop('newdata')
+	function goNew0(e){
+		window.location.href='new0.html'
+	}
+	function goNew1(e){
+		window.location.href='new1.html'
+	}
+	function goNew2(e){
+		window.location.href='new2.html'
+	}
+	function goNew4(e){
+		window.location.href='new4.html'
+	}
+	function goNew5(e){
+		window.location.href='new5.html'
+	}
+	function goNew6(e){
+		window.location.href='new6.html'
+	}
+	function goNew7(e){
+		window.location.href='new7.html'
+	}
+	function goNew8(e){
+		window.location.href='new8.html'
+	}
 </script>

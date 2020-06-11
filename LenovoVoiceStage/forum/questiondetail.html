@@ -1,51 +1,128 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />		
-		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
-		<link rel="stylesheet" type="text/css" href="css/questiondetail.css"/>
-		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>	
-		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
-        <script type="text/javascript" src="js/detail.js"></script>
-	</head>
-	<style>
-		.del{
-			cursor: pointer;
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta http-equiv="Imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  />
+	<title i18n="i18n.title">联想语音开放平台</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/questiondetail.css?version=2.0" />
+	<link rel="stylesheet" href="../common/css/popup.css">
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+	<script src="../common/js/jquery.base64.js"></script>
+	<script src="../common/mixjs/popup.js"></script>
+	<script src="../common/mixjs/commurl.js?version=2.0"></script>
+	<script src="./mixjs/vue.js"></script>
+	<script src="../product/mixjs/axios.min.js"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+	<script type="text/javascript" src="./mixjs/detail.js?version=2.0"></script>
+	
+</head>
+<style>
+	.del {
+		cursor: pointer;
+		padding-right: 20px;
+	}
+	.padd_right {
+		padding-right: 30px;
+	}
+	#eui-main-footer{
+		position: fixed;
+		bottom: 0;
+	}
+	
+</style>
+
+<body>
+	<div id="app">
+			<div class="posi_top">
+					<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+					<div class="posi_nav"><span class="posi_title"></span> <button class="qu_btn top_btn" i18n="i18n.quickreply">快速回复</button></div>
+					<div class="mobile_div">
+						<span class="back_arrows"></span>
+						<span class="title_arrows"></span>
+					</div>
+				</div>
+				<div class="newcontent">
+					<div class="qu_div"><button class="qu_btn mobile_btn" i18n="i18n.quickreply">快速回复</button></div>
+					<h2 class="htitle"></h2>
+					<p class="autime">
+						<span class="newauthor padd_right" i18n="i18n.author">创作人</span>
+						<span i18n="i18n.pubTime">发布于：</span><span class="newtime padd_right"></span>
+						<span i18n="i18n.views">浏览：</span><span>0</span>
+						<span i18n="i18n.reply">回复：</span><span class="reply_length">0</span>
+					</p>
+					<!-- 帖子内容区 -->
+					<div class="cont">
+						<!-- 帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容<br />
+						帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容 -->
+						 
+					</div>
+					<!-- 回复内容区 -->
+					<div class="comment-list" id="aa"></div>
+					<!-- 快速回复框 -->
+					<div class="commentbox">
+						<textarea cols="80" rows="50" placeholder="来说几句吧......" i18n-only="placeholder" i18n="i18n.saysome" class="mytextarea" id="content"></textarea>
+						<button class="qu_sub_btn" id="comment" i18n="i18n.publish">提交回复</button>
+					</div>
+				</div>
 			
-		}
-		.del:hover{
-			color: #1585cf;
-		}
-	</style>
-	<body>
-		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
-		<div class="newcontent">
-		   <h2 class="htitle"></h2>
-		   <p class="autime"><span>来源：</span><span class="newauthor"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间：</span><span class="newtime"></span></p>
-		   <div class="cont">	
-		   	     
-		                                    
-		   </div>
-		</div>
-		<div class="container">
-			<div class="commentbox">
-				<textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
-				<div class="btn btn-info pull-right" id="comment">评论</div>
-			</div>
-			<div class="comment-list" id="aa"></div>
-		</div>
-		
-		<div id="eui-main-footer" class="footer-bgcolor"></div>
-	</body>
+			
+				<div id="eui-main-footer" class="footer-bgcolor"></div>
+	</div>
+	
+</body>
+
 </html>
 <script>
+	loadTop("information");
+	// new Vue({
+	// 	el:'#app',
+	// 	data:{
+	// 		detail:[],
+	// 		articleid:"",
+	// 		Username:"",
+    //         accountid:"",
+    //         lenkey:"",
+    //         secrkey:"",
+	// 	},
+	// 	created(){
+	// 		this.articleid = this.getUrlParam('article')
+	// 		this.Username = window.localStorage.getItem('Username');
+    //         this.accountid = window.localStorage.getItem('accountid');
+    //         this.lenkey = window.localStorage.getItem('lenkey');
+	// 		this.secrkey = window.localStorage.getItem('secrkey');
+	// 		this.getDetail()
+	// 	},
+	// 	methods:{
+	// 		getUrlParam(name) {
+	// 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	// 			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	// 			if (r != null) return unescape(r[2]); return null; //返回参数值
+	// 		},
+	// 		getDetail(){
+	// 			var params={
+	// 				articleid:this.articleid
+	// 			}
+	// 			axios.post('http://10.110.148.59:8080/lasf/forum/detail',params,{
+	// 				headers:{
+	// 					'channel': 'cloudasr',
+	// 					'lenovokey':this.lenkey,
+	// 					'secretkey': this.secrkey
+	// 				}
+	// 			}).then(res=>{
+	// 				console.log(res)
+	// 			})
+	// 		}
+	// 	}
+	// })
 
-	
 </script>
-

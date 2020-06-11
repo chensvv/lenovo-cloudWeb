@@ -3,19 +3,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-		<title></title>
+		<meta http-equiv="Imagetoolbar" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title i18n="i18n.title">联想语音开放平台</title>
 		<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
 		<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />		
-		<!--<link href="../welcome/css/all.css?version=1.1" rel="stylesheet" />-->
-		<link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link href="../welcome/css/all.css?version=2.0" rel="stylesheet" />
+		<link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />		
+		<link rel="stylesheet" type="text/css" href="css/style.css?version=2.0"/>
 		<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../common/js/pagetop.js?version=1.1"></script>	
-		<script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script>
+		<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>	
+		<script src="../common/js/jquery.i18n.js"></script>
+		<script src="../common/js/com.js"></script>
 	</head>
 	<style>
+		.navbar{
+			background: linear-gradient(to right, #d8ca78, #e2cd7a);
+		}
 		.vid_wrap,.vid_wrap2{
 			width:80%;
 			background: #000;
@@ -37,21 +42,26 @@
 	</style>
 	<body>
 		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+		<div class="mobile_div">
+			<span class="back_arrows"></span>
+			<div class="logo_div">
+					<img src="../common/images/logo_img.png" class="top_logo">
+					<img src="../common/images/logo_text.png" class="logo_text">
+			</div>
+		</div>
 		<div class="newcontent">
 		   <h2>AI乐语音，一句话全搞定！</h2>
 		   <span class="newtime">来源：联想/手机&nbsp;&nbsp;时间：2018-11-05</span>
-		   <div class="content">	
-				<p style="text-indent: 2em;">AI乐语音，一句话全搞定，点击“乐语音”图标，或者长按home键，进入界面后说出命令，如：“打电话给10086”，乐语音就会进行相应操作，再次点击屏幕下方圆形按钮，可继续输入命令，如：”取消“，即可取消拨打电话。</p>
+		   <div class="content">
+				<p>AI乐语音，一句话全搞定，点击“乐语音”图标，或者长按home键，进入界面后说出命令，如：“打电话给10086”，乐语音就会进行相应操作，再次点击屏幕下方圆形按钮，可继续输入命令，如：”取消“，即可取消拨打电话。</p>
 				<div class="vid_wrap">
 					<video class="vide" src="img/lenovovoice.mp4" controls="controls" autoplay loop></video>	
 				</div>
-				
-				<p style="text-indent: 2em;">AI乐语音，还可以语音接听电话，当来语音电话时，说"接听"或"拒接"。更多功能，待你解锁！</p>	
+				<p>AI乐语音，还可以语音接听电话，当来语音电话时，说"接听"或"拒接"。更多功能，待你解锁！</p>	
 				<div class="vid_wrap2">
 					<video class="vide2" src="img/voide2.mp4" controls="controls" loop></video>	                                   
 				</div>
-
-				<p style="text-indent: 2em;">其实乐语音还有更多的功能，比如叫外卖、玩游戏等等，小伙伴们快来体验吧！</p>	                                    
+				<p>其实乐语音还有更多的功能，比如叫外卖、玩游戏等等，小伙伴们快来体验吧！</p>	                                    
 		   </div>
 		</div>
 		
@@ -61,7 +71,16 @@
 	</body>
 </html>
 <script>
-	$(function(){
-		loadTop("newdata");
+	loadTop("newdata");
+	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+		$('.navbar').css({"display":"block"})
+		$('.mobile_div').css({"display":"none"})
+	}else{
+		$('.navbar').css({"display":"none"})
+		$('.mobile_div').css({"display":"block"})
+	}
+	$('.back_arrows').click(function(){
+		history.back(-1)
 	})
 </script>

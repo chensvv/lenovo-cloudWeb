@@ -1,323 +1,421 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>联想语音</title>
-	    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
-	    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	    <link href="css/ttsapidoc.css?version=1.1" rel="stylesheet" type="text/css"/>
-	    <!--<link href="../common/css/pagetop.css" rel="stylesheet" type="text/css" />-->
-        <link rel="stylesheet" type="text/css" href="../common/css/head.css?version=1.1"/>	    
-	    <link href="../common/css/aos.css" rel="stylesheet" type="text/css" />
-	    <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
-	    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="../common/js/avatar.js"></script>
-	    <script type="text/javascript" src="../common/js/pagetop.js?version=1.2"></script>
-	    <script type="text/javascript" src="../common/js/aos.js?version=1.1"></script>
-	    <script type="text/javascript" src="js/document.js?version=1.1"></script>
-	    <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/wauth/js/LenovoId.js"></script>
-        <script type="text/javascript" src="https://passport.lenovo.com/wauthen2/synCookie.jhtml?lenovoid_realm=voice.lenovomm.com"></script> 
-	</head>
-	<body>
-		<!--<div id="eui-main-header"></div>-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Imagetoolbar" content="no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title i18n="i18n.title">联想语音开放平台</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+	<link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../welcome/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/ttsapidoc.css?version=2.0">
+	<link rel="stylesheet" href="../common/css/popup.css">
+	<link href="css/client.css?version=2.0" rel="stylesheet" />
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../common/mixjs/popup.js"></script>
+	<script src="../common/js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+	<script src="../common/mixjs/commurl.js?version=2.0"></script>
+	<script type="text/javascript" src="mixjs/islogin.js"></script>
+	<script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+	<style>
+		#eui-main-footer {
+			position: fixed;
+			bottom: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="nav-title">
 		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 		</nav>
-		 <div class="content-title" aos="fade-down">语音识别接口参数说明</div>
-		<div id="eui-main-body" data-aos="animation_name">
-		    <div class="conent-header" aos="fade-right" aos-once="true">
-		        <div class="urlheader">
-		            <div class="urleft contentleft">URL：</div>
-		            <div class="urlcontent contentright">https://voice.lenovomm.com/lasf/asr</div>
-		        </div>
-		        <div class="pathheader">
-		            <div class="urleft contentleft">方法：</div>
-		            <div class="urlcontent contentright">POST</div>
-		        </div>
-		        <div class="formatheader">
-		            <div class="urleft contentleft">格式：</div>
-		            <div class="urlcontent contentright">multipart/form-data</div>
-		        </div>
-		    </div>
-		    
-		    <div class="content1" aos="fade-left" aos-once="true">
-		        <div class="headinfo contentleft">头信息：</div>
-		        <div class="contentright">
-		              <p class="header-content">User-Agent的值是JSON字符串.格式:<strong>User-Agent:{platform=[android 4.2.x], name=[com.test.test], version=[1.0.1.130101_xxx]}</strong></p>
-	                  <h4 class="header-param-title  title"><b>参数说明:</b></h4>
-	                  <div class="content-table">
-	                  	<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
-	                  		<tr>
-	                  			<th>名称</th>
-	                  			<th>格式</th>
-	                  			<th>取值(样例)</th>
-	                  			<th>描述</th>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>platform</td>
-	                  			<td>String</td>
-	                  			<td>android 4.2.x</td>
-	                  			<td>发起请求的平台信息</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>name</td>
-	                  			<td>String</td>
-	                  			<td>com.test.test</td>
-	                  			<td>发起请求的应用程序的名称</td>	
-	                  		</tr>
-	                  		<tr>
-	                  			<td>version</td>
-	                  			<td>String</td>
-	                  			<td>1.0.1.130101_xxx</td>
-	                  			<td>发起请求的应用程序的版本</td>                  			
-	                  		</tr>
-	                  	</table>
-	                  </div>
-		        </div>
-		    </div>
-		    
-		    <div class="content2" aos="fade-right" aos-once="true">
-		        <div class="headinfo contentleft">内容信息：</div>
-		        <div class="contentright">
-	                  <h4 class="header-param-title"><b>参数说明:</b></h4>
-	                  <div class="content-table">
-	                  	<table border="1" cellspacing="" cellpadding="">
-	                  		<tr>
-	                  			<th>名称</th>
-	                  			<th>格式</th>
-	                  			<th>内容类型</th>
-	                  			<th>描述</th>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>param-data</td>
-	                  			<td>String</td>
-	                  			<td>text/plain</td>
-	                  			<td>将下表中所有的参数以URL的格式拼接</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>voice-data</td>
-	                  			<td>ByteArray</td>
-	                  			<td>application/i7-voice</td>
-	                  			<td>语音数据</td>
-	                  		</tr>
-	                  	</table>
-	                  </div>
-	                  
-	                   <h4 class="header-param-title title"><b>参数说明:</b>&nbsp;param-data</h4>
-	                  <div class="content-table">
-	                  	<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
-	                  		<tr>
-	                  			<th>名称</th>
-	                  			<th>格式</th>
-	                  			<th>取值(样例)</th>
-	                  			<th>描述</th>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>cpf</td>
-	                  			<td>字符串</td>
-	                  			<td>android</td>
-	                  			<td>客户端平台</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>dtp</td>
-	                  			<td>字符串</td>
-	                  			<td>lenovo</td>
-	                  			<td>设备类型</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>ver</td>
-	                  			<td>字符串</td>
-	                  			<td>1.0.0</td>
-	                  			<td>客户端协议版本</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>did</td>
-	                  			<td>字符串</td>
-	                  			<td>90:a4:de:ba:41:a5</td>
-	                  			<td>设备编号</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>uid</td>
-	                  			<td>数字</td>
-	                  			<td>526</td>
-	                  			<td>用户唯一标识</td>
-	                  			
-	                  		</tr>
-	                  		<tr>
-	                  			<td>dev</td>
-	                  			<td>字符串</td>
-	                  			<td>com.lenovo.rt.urc</td>
-	                  			<td>开发者标识</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>app</td>
-	                  			<td>字符串</td>
-	                  			<td>com.lenovo.leos.lestore</td>
-	                  			<td>应用名称</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>stm</td>
-	                  			<td>数字</td>
-	                  			<td>1356663021692</td>
-	                  			<td>开始时间</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>key</td>
-	                  			<td>字符串</td>
-	                  			<td>AuENpLV5JiK5zTMirmS8ZG7hDaS1eSYi</td>
-	                  			<td>安全密钥</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>ssm</td>
-	                  			<td>布尔类型</td>
-	                  			<td>false</td>
-	                  			<td>会话模式</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>vdm</td>
-	                  			<td>字符串</td>
-	                  			<td>all</td>
-	                  			<td>垂直领域<br>
-	                  			    all:全领域识别<br>
-									ctc:联系人领域<br>
-									vod:视频领域<br>
-									app:应用领域<br>
-									was:网址查询领域</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>rvr</td>
-	                  			<td>字符串</td>
-	                  			<td>空字符串</td>
-	                  			<td>限定取值：取值:确定/取消</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>sce</td>
-	                  			<td>字符串</td>
-	                  			<td>cmd</td>
-	                  			<td>使用场景：cmd:命令模式;iat:听写模式</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>ntt</td>
-	                  			<td>字符串</td>
-	                  			<td>wifi</td>
-	                  			<td>网络类型</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>aue</td>
-	                  			<td>字符串</td>
-	                  			<td>speex-wb;7</td>
-	                  			<td>音频编码</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>auf</td>
-	                  			<td>字符串</td>
-	                  			<td>audio/L16;source=outer;rate=16000</td>
-	                  			<td>音频格式</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>ixid</td>
-	                  			<td>数字</td>
-	                  			<td>1356663021692</td>
-	                  			<td>会话唯一标识</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>pidx</td>
-	                  			<td>数字</td>
-	                  			<td>1</td>
-	                  			<td>会话交互内的包的序列号</td>
-	                  		</tr>
-	                  		<tr>
-	                  			<td>over</td>
-	                  			<td>数字</td>
-	                  			<td>1</td>
-	                  			<td>是否尾包<br/>0:不是尾包<br/>1:尾包且正常结束<br/>2:尾包,原因客户端主动结束</td>
-	                  		</tr>
-	                  	</table>
-	                  </div>
-		        </div>
-		    </div>
-		    
-		    <div class="content3" aos="fade-left" aos-once="true">
-		    	<div class="headinfo contentleft result">返回格式：</div>
-		        <!--<div class="contentright">Byte方式的语音文件</div>-->
-		        <div class="contentright">
-		            <div class="result-content">
-		                <div>{</div>
-		                <div class="result-padding">&quot;allDur&quot;:4314,</div>
-		                <div class="result-padding">&quot;asrDur&quot;:4254,</div>
-		                <div class="result-padding">&quot;asrVersion&quot;:&quot;1.0.13.8.20&quot;,</div>
-		                <div class="result-padding">&quot;confidence&quot;:100,</div>
-		                <div class="result-padding">&quot;desc&quot;:&quot;&quot;,</div>
-		                <div class="result-padding">&quot;nConf&quot;:[100],</div>
-		                <div class="result-padding">&quot;nText&quot;:[&quot;Motor-Tober player&quot;],</div>
-		                <div class="result-padding">&quot;nlpVersion&quot;:&quot;1.1.6.2146&quot;,</div>
-		                <div class="result-padding">&quot;rawText&quot;:&quot;Motor-Tober player&quot;,</div>
-		                <div class="result-padding">&quot;result&quot;:null,</div>
-		                <div class="result-padding">&quot;status&quot;:&quot;success&quot;,</div>
-		                <div class="result-padding">&quot;time&quot;:1503994221761</div>
-		                <div>}</div>
-		            </div>
-		            <div class="result-comment">
-		                <div>&nbsp;</div>
-		                <div>总耗费时间(ms)</div>
-		                <div>语音识别引擎耗费时间(ms)</div>
-		                <div>语音识别引擎版本</div>
-		                <div>语音识别置信度</div>
-		                <div>结果描述</div>
-		                <div>多备选置信度，按顺序依次对应</div>
-		                <div>最终解析结果</div>
-		                <div>语义引擎版本</div>
-		                <div>语音识别引擎解析结果</div>
-		                <div>语音处理结果</div>
-		                <div>结果状态，success:成功，failed:失败</div>
-		                <div>服务器时间</div>
-		                <div>&nbsp;</div>
-		            </div>
-		        </div>
-		    </div>
-		</div>				
-		
-		<div id="eui-main-footer" class="footer-bgcolor"></div>
-	</body>
+		<p class="recognise_title" i18n="i18n.APIguide">API接入指南</p>
+		<div class="bg_div"></div>
+		<div class="mobile_div">
+			<span class="back_arrows"></span>
+			<span class="client_title" i18n="i18n.APIguide">API接入指南</span>
+		</div>
+	</div>
+	<div class="content-title" i18n="i18n.ASRinterface">语音识别接口参数说明</div>
+	<div id="eui-main-body">
+		<div class="conent-header">
+			<div class="urlheader">
+				<div class="urleft contentleft">URL</div>
+				<div class="urlcontent contentright">https://voice.lenovomm.com/lasf/asr</div>
+			</div>
+			<div class="pathheader">
+				<div class="urleft contentleft" i18n="i18n.method">方法</div>
+				<div class="urlcontent contentright">POST</div>
+			</div>
+			<div class="formatheader">
+				<div class="urleft contentleft" i18n="i18n.format">格式</div>
+				<div class="urlcontent contentright">multipart/form-data</div>
+			</div>
+
+		</div>
+
+		<div class="content1">
+			<div class="headinfo contentleft" i18n="i18n.headers">头信息</div>
+
+
+			<div class="contentright">
+				<p class="header-content"><span i18n="i18n.agent">User-Agent的值是JSON字符串.格式</span>：<strong>User-Agent:{platform=[android 4.2.x],
+						name=[com.test.test], version=[1.0.1.130101_xxx]}</strong></p>
+				<h4 class="header-param-title  title"><b i18n="i18n.paramdes">参数说明:</b></h4>
+				<div class="content-table">
+					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
+						<tr>
+							<th i18n="i18n.name">名称</th>
+							<th i18n="i18n.conformat">格式</th>
+							<th i18n="i18n.conval">取值(样例)</th>
+							<th i18n="i18n.describe">描述</th>
+						</tr>
+						<tr>
+							<td>platform</td>
+							<td>String</td>
+							<td>android 4.2.x</td>
+							<td i18n="i18n.desc1">发起请求的平台信息</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>String</td>
+							<td>com.test.test</td>
+							<td i18n="i18n.desc2">发起请求的应用程序的名称</td>
+						</tr>
+						<tr>
+							<td>version</td>
+							<td>String</td>
+							<td>1.0.1.130101_xxx</td>
+							<td i18n="i18n.desc3">发起请求的应用程序的版本</td>
+						</tr>
+
+						<tr>
+							<td>lenovoKey</td>
+							<td>String</td>
+							<td>LENOVO-VOICE-aaabbbccc</td>
+							<td i18n="i18n.desc4">账户公钥(右上角开发者信息中获取)</td>
+						</tr>
+						<tr>
+							<td>secretKey</td>
+							<td>String</td>
+							<td>kasdjkfsldjsldfjkdkkkde</td>
+							<td i18n="i18n.desc5">账户私钥(右上角开发者信息中获取)</td>
+						</tr>
+						<tr>
+							<td>channel</td>
+							<td>String</td>
+							<td>cloudasr</td>
+							<td i18n="i18n.desc6">来源渠道</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="content2">
+			<div class="headinfo contentleft" i18n="i18n.content">内容信息</div>
+			<div class="contentright">
+				<h4 class="header-param-title"><b i18n="i18n.paramdes">参数说明:</b></h4>
+				<div class="content-table">
+					<table border="1" cellspacing="" cellpadding="">
+						<tr>
+							<th i18n="i18n.name">名称</th>
+							<th i18n="i18n.conformat">格式</th>
+							<th i18n="i18n.contype">内容类型</th>
+							<th i18n="i18n.describe">描述</th>
+						</tr>
+						<tr>
+							<td>param-data</td>
+							<td>String</td>
+							<td>text/plain</td>
+							<td i18n="i18n.desc7">将下表中所有的参数以URL的格式拼接</td>
+						</tr>
+						<tr>
+							<td>voice-data</td>
+							<td>ByteArray</td>
+							<td>application/i7-voice</td>
+							<td i18n="i18n.desc8">语音数据</td>
+						</tr>
+					</table>
+				</div>
+
+				<h4 class="header-param-title title"><b i18n="i18n.paramdes">参数说明:</b>&nbsp;param-data</h4>
+				<div class="content-table">
+					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
+						<tr>
+							<th i18n="i18n.name">名称</th>
+							<th i18n="i18n.conformat">格式</th>
+							<th i18n="i18n.conval">取值(样例)</th>
+							<th i18n="i18n.describe">描述</th>
+						</tr>
+						<tr>
+							<td>cpf</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>android</td>
+							<td i18n="i18n.client">客户端平台</td>
+						</tr>
+						<tr>
+							<td>dtp</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>lenovo</td>
+							<td i18n="i18n.eqtype">设备类型</td>
+						</tr>
+						<tr>
+							<td>ver</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>1.0.0</td>
+							<td i18n="i18n.cpver">客户端协议版本</td>
+						</tr>
+						<tr>
+							<td>did</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>90:a4:de:ba:41:a5</td>
+							<td i18n="i18n.eqNo">设备编号</td>
+						</tr>
+						<tr>
+							<td>uid</td>
+							<td i18n="i18n.number">数字</td>
+							<td>526</td>
+							<td i18n="i18n.uui">用户唯一标识</td>
+
+						</tr>
+						<tr>
+							<td>dev</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>com.lenovo.rt.urc</td>
+							<td i18n="i18n.devid">开发者标识</td>
+						</tr>
+						<tr>
+							<td>app</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>com.lenovo.leos.lestore</td>
+							<td i18n="i18n.appname">应用名称</td>
+						</tr>
+						<tr>
+							<td>stm</td>
+							<td i18n="i18n.number">数字</td>
+							<td>1356663021692</td>
+							<td i18n="i18n.starttime">开始时间</td>
+						</tr>
+						<tr>
+							<td>ssm</td>
+							<td i18n="i18n.boolean">布尔型</td>
+							<td>false</td>
+							<td i18n="i18n.smode">会话模式</td>
+						</tr>
+						<tr>
+							<td>vdm</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>all</td>
+							<td>
+								<span i18n="i18n.vdm">垂直领域</span> <br>
+								all: <span i18n="i18n.dmw">全领域识别</span> <br>
+								ctc: <span i18n="i18n.cona">联系人领域</span> <br>
+								vod: <span i18n="i18n.vf">视频领域</span> <br>
+								app: <span i18n="i18n.appa">应用领域</span> <br>
+								was: <span i18n="i18n.websa">网址查询领域</span> 
+							</td>
+						</tr>
+						<tr>
+							<td>rvr</td>
+							<td i18n="i18n.string">字符串</td>
+							<td i18n="i18n.kstr">空字符串</td>
+							<td i18n="i18n.lv">限定取值：取值:确定/取消</td>
+						</tr>
+						<tr>
+							<td>sce</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>cmd</td>
+							<td i18n="i18n.us">使用场景：cmd:命令模式;iat:听写模式</td>
+						</tr>
+						<tr>
+							<td>ntt</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>wifi</td>
+							<td i18n="i18n.nettype">网络类型</td>
+						</tr>
+						<tr>
+							<td>aue</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>speex-wb;7</td>
+							<td i18n="i18n.ac">音频编码</td>
+						</tr>
+						<tr>
+							<td>auf</td>
+							<td i18n="i18n.string">字符串</td>
+							<td>audio/L16;source=outer;rate=16000</td>
+							<td i18n="i18n.at">音频格式</td>
+						</tr>
+						<tr>
+							<td>ixid</td>
+							<td i18n="i18n.number">数字</td>
+							<td>1356663021692</td>
+							<td i18n="i18n.suid">会话唯一标识</td>
+						</tr>
+						<tr>
+							<td>pidx</td>
+							<td i18n="i18n.number">数字</td>
+							<td>1</td>
+							<td i18n="i18n.cesn">会话交互内的包的序列号</td>
+						</tr>
+						<tr>
+							<td>over</td>
+							<td i18n="i18n.number">数字</td>
+							<td>1</td>
+							<td>
+								<span i18n="i18n.tb">是否尾包</span><br />
+								0: <span i18n="i18n.ntb">不是尾包</span> <br />
+								1: <span i18n="i18n.tpe">尾包且正常结束</span><br />
+								2: <span i18n="i18n.ep">尾包,原因客户端主动结束</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="content3">
+			<div class="headinfo contentleft result" i18n="i18n.response">返回格式</div>
+			<!--<div class="contentright">Byte方式的语音文件</div>-->
+			<div class="contentright">
+				<div class="result-content">
+					<div>{</div>
+					<div class="result_box">
+						<div class="result-padding">"allDur":4314,</div>
+						<div class="result_right" i18n="i18n.alldur">总耗费时间(ms)</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"asrDur":4254,</div>
+						<div class="result_right" i18n="i18n.asrdur">语音识别引擎耗费时间(ms)</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"asrVersion":"1.0.13.8.20",</div>
+						<div class="result_right" i18n="i18n.asrver">语音识别引擎版本</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"confidence":100,</div>
+						<div class="result_right" i18n="i18n.confidence">语音识别置信度</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"desc":"",</div>
+						<div class="result_right" i18n="i18n.desc">结果描述</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"nConf":[100],</div>
+						<div class="result_right" i18n="i18n.nConf">多备选置信度，按顺序依次对应</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"nText":["Motor-Tober player"],</div>
+						<div class="result_right" i18n="i18n.nText">最终解析结果</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"nlpVersion":"1.1.6.2146",</div>
+						<div class="result_right" i18n="i18n.nlpVer">语义引擎版本</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"rawText":"Motor-Tober player",</div>
+						<div class="result_right" i18n="i18n.rawText">语音识别引擎解析结果</div>
+					</div>
+
+					<div class="result_box">
+						<div class="result-padding">"result":null,</div>
+						<div class="result_right" i18n="i18n.result">语音处理结果</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"status":"success",</div>
+						<div class="result_right" i18n="i18n.status">结果状态，success:成功，failed:失败</div>
+					</div>
+					<div class="result_box">
+						<div class="result-padding">"time":1503994221761</div>
+						<div class="result_right" i18n="i18n.time">服务器时间</div>
+					</div>
+
+					<div>}</div>
+				</div>
+			</div>
+		</div>
+		<div class="content4">
+			<div class="headinfo contentleft" i18n="i18n.problems">问题与下载</div>
+			<div class="contentright">
+				<div class="content-table">
+					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
+						<tr>
+							<td><a href="./SDKDownload.html" i18n="i18n.sdkdownload">SDK下载</a></td>
+							<td><a href="../forum/questionlist.html" i18n="i18n.proan">常见问题与解答</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="eui-main-footer" class="footer-bgcolor"></div>
+</body>
+
 </html>
 
 <script>
-    AOS.init({
-		offset: 100,
-		duration: 600,
-		easing: 'ease-in-sine',
-		delay: 0,
-   });
-    $(function () {
-	    loadTop("document");
-	    var scriptTag = document.createElement('script');
-		scriptTag.type = 'text/javascript';
-		scriptTag.async = true;
-		scriptTag.src = 'avatar.js';
-		var head= document.getElementsByTagName('head')[0] || document.documentElement;
-		head.insertBefore(scriptTag, head.firstChild);			
-		var avatar = window.Avatar = window.Avatar || [];
-		avatar.push({
-			    appKey: '5C9E6O46H2ZJ', // appkey
-			    pageId: 'three',		// 页面标识
-			    channel: 'webvoice3.1',		// 设置渠道
-			    versionName: '1.2', // 设置版本
-                versionCode: '01',	// 设置版本号
-			    init: function(){
-	
-				}
-		});
-		
-		function clickvoi(evt, target){
-			 
-				return ['Clickpage2', 'voice', '语音页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
+	loadTop("document");
+	var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if (!user) {
+		$('.navbar').css("display","block")
+		$('.mobile_div').css("display", "none")
+		$('.recognise_title').css("display", "block")
+		$('.bg_div').css("display", "block")
+	} else {
+		$('.navbar').css("display", "none")
+		$('.mobile_div').css("display", "block")
+		$('.recognise_title').css("display","none")
+		$('.bg_div').css("display", "none")
+	}
+	$('.back_arrows').click(function () {
+		history.back(-1)
+	})
+	var scriptTag = document.createElement('script');
+	scriptTag.type = 'text/javascript';
+	scriptTag.async = true;
+	scriptTag.src = '../common/mixjs/avatar.js';
+	var head = document.getElementsByTagName('head')[0] || document.documentElement;
+	head.insertBefore(scriptTag, head.firstChild);
+	var avatar = window.Avatar = window.Avatar || [];
+	avatar.push({
+		appKey: '5C9E6O46H2ZJ', // appkey
+		pageId: 'three', // 页面标识
+		channel: 'webvoice3.1', // 设置渠道
+		versionName: '1.2', // 设置版本
+		versionCode: '01', // 设置版本号
+		init: function () {
+
 		}
-		Avatar.push(['register', document.getElementById('second'), clickvoi]);
-			
-		function clickfile(evt, target){
-				return ['Clickpage3', 'files', '文档页面点击', {arg1:0, arg2:0, arg3:0, arg4:0, arg5:0}, 0];
-		}
-		Avatar.push(['register', document.getElementById('third'), clickfile]);
 	});
-	
+
+	function clickvoi(evt, target) {
+
+		return ['Clickpage2', 'voice', '语音页面点击', {
+			arg1: 0,
+			arg2: 0,
+			arg3: 0,
+			arg4: 0,
+			arg5: 0
+		}, 0];
+	}
+	Avatar.push(['register', document.getElementById('second'), clickvoi]);
+
+	function clickfile(evt, target) {
+		return ['Clickpage3', 'files', '文档页面点击', {
+			arg1: 0,
+			arg2: 0,
+			arg3: 0,
+			arg4: 0,
+			arg5: 0
+		}, 0];
+	}
+	Avatar.push(['register', document.getElementById('third'), clickfile]);
 </script>

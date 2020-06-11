@@ -158,7 +158,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		page.style.fontSize='14px';
 		page.style.color='#333';
 		page.style.display='inline-block';
-//		page.style.margin='0 auto';
+		page.style.textAlign='center';
 		//removeChildNodes(page);
 		var totalCount = parseInt(option.totalCount) >=0 ?
 			parseInt(option.totalCount) : 0;//总记录条数
@@ -232,17 +232,18 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			input.style.width='37px';
 			input.style.textAlign='center';
 			input.style.marginRight='5px';
-			input.style.outlineColor='#388E3C';
+			input.style.outlineColor='none';
+			input.style.outline='none';
 			input.style.verticalAlign='middle';
 			input.setAttribute('type','text');
 			input.setAttribute('value',curPage);
 			var button = document.createElement('button'),
 				label = document.createElement('label'),
 				jumpDiv = document.createElement('div');
-			button.style.border='1px solid #ddd';
+			button.style.border='none';
 			button.style.verticalAlign='middle';
-			button.style.height='30px';
-			button.style.lineHeight='30px';
+			button.style.height='28px';
+			button.style.lineHeight='26px';
 			button.style.backgroundColor='#fafafa';
 			button.style.color='#333';
 			button.style.outline='none';
@@ -253,7 +254,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			button.id = 'jump';
 			button.innerHTML = '跳转';
 			label.style.marginRight='15px';	
-			label.style.verticalAlign='middle';
+			// label.style.verticalAlign='middle';
 			label.id = 'show_label';
 			label.innerHTML = '共 '+totalPage+' 页';
 			jumpDiv.appendChild(label);
@@ -271,7 +272,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			});
 			hover(page);
 			button.onmouseover=function(){
-				button.style.color='#388E3C';	
+				button.style.color='#8ac18a';	
 			};
 			button.onmouseout=function(){
 				button.style.color='#333';	
@@ -315,8 +316,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		page.onmouseover=function(e){
 			if(e.target.nodeName.toLocaleLowerCase()=='a'
 				&&!hasClass(e.target.parentNode,'active')&&!hasClass(e.target.parentNode,'no-active')){
-				e.target.style.color='#388e3c';
-				e.target.style.backgroundColor='#eee';
+				e.target.style.color='#8ac18a';
 			}
 		};
 		//cm add
@@ -375,7 +375,7 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		return false;
 	}
 	function changeColor(node){
-		node.style.backgroundColor='#388E3C';
+		node.style.backgroundColor='#eefcd0';
 	}
 	
 	function createPageList(curPage,totalPage,showCount){
@@ -395,8 +395,14 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			prev = document.createElement('li');
 		next.className = 'next';
 		prev.className = 'prev';
-		next.innerHTML = '下一页';
-		prev.innerHTML = '上一页';
+		if(getCookie('grycan.cn.bLang') == 'english'){
+			next.innerHTML = 'next';
+			prev.innerHTML = 'prev';
+		}else{
+			next.innerHTML = '下一页';
+			prev.innerHTML = '上一页';
+		}
+		
 		first.className = 'first';
 		last.className = 'last';
 		first.innerHTML = '首页';
@@ -448,11 +454,11 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			tempLi.childNodes[0].style.backgroundColor='#fafafa';
 			tempLi.firstElementChild.style.color = '#333';
 			if(tempLi.className == 'active'){
-				tempLi.childNodes[0].style.backgroundColor = '#388E3C';
-				tempLi.childNodes[0].style.color='#fff';
+				// tempLi.childNodes[0].style.backgroundColor = '#eefcd0';
+				tempLi.childNodes[0].style.color='#8ac18a';
 			}
-			tempLi.childNodes[0].style.border = '1px solid #ddd';
-			tempLi.childNodes[0].style.marginLeft = '-1px';
+			// tempLi.childNodes[0].style.border = '1px solid #ddd';
+			tempLi.childNodes[0].style.marginLeft = '3px';
 			tempLi.firstElementChild.style.textDecoration = 'none';
 			
 		}
@@ -492,7 +498,18 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 		initPage:initPage
 	}
 })(window);
-
+function getCookie(name){
+	var strcookie = document.cookie;//获取cookie字符串
+	var arrcookie = strcookie.split("; ");//分割
+	//遍历匹配
+	for ( var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == name){
+			return arr[1];
+		}
+	}
+	return "";
+}
 
 
 

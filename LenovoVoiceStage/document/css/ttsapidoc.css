@@ -1,6 +1,76 @@
+
+
+.nav-title{
+	height:200px;
+	background: linear-gradient(to right, #4fc8a3, #96c97a);
+	position: relative;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.drop-down{
+	float: right;
+	position: static;
+}
+.drop-down #box{
+	height: 60px;
+    line-height: 60px;
+}
+.tri-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+.optxt{
+	color: #fff;
+}
+#down,#down li{
+	border-radius: 0;
+	background: rgba(0,0,0,.3);
+}
+#down li:hover{
+	background: rgba(0,0,0,.3);
+}
+
+.recognise_title{
+	color: #fff;
+	font-size: 34px;
+    letter-spacing: 2px;
+}
+.bg_div{
+	background: url("../images/bight.png") no-repeat;
+	width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    background-size: 100% 41px;
+}
+
+.back_arrows{
+	position: absolute;
+		left: 20px;
+		top: 50%;
+		transform: translate(0,-50%);
+		background: url(../../common/images/back.png) no-repeat;
+		background-size: 100%;
+		height: 20px;
+		width: 20px;
+}
+
+.client_title{
+	color: #fff;
+    font-size: 16px;
+}
 .content-title{
 	width:90%;
-	margin: 70px auto;
+	margin: 30px auto;
 	text-align: center;
 	font-size: 24px;
 	font-weight: bold;
@@ -27,19 +97,20 @@
 	line-height: 42px;
 }
 .contentleft{
-	width: 10%;	
-	height: 100%;
+	width: 10%;
+    height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-	float: left;
-	border: 1px solid #ccc;
-	padding-right: 15px;
-	text-align: right;
-	font-size: 16px;
-	font-weight: bold;
-	box-sizing: border-box;
-	background: #b2defd;
+    float: left;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: bold;
+    box-sizing: border-box;
+    background: #b2defd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .conent-header .urlheader .urlcontent{	
 	/*height: 40px;*/
@@ -60,28 +131,33 @@
 	overflow: hidden;
 	position: relative;
 }
-.content1 .headinfo{
-	height: 100%;
-	line-height: 220px;
-}
 .content1 .header-content strong{
 	color: red;
 }
-.content1 .content-table table,.content2 .content-table table{
+.content1 .content-table table,.content2 .content-table table,.content4 .content-table table{
 	width: 94%;
 	text-align: center;
 }
-.content1 .content-table table th,.content2 .content-table table th{
+.content1 .content-table table th,.content2 .content-table table th,.content4 .content-table table th{
 	text-align: center;
 	background: #C0C0C0;
 }
-.content1 .content-table table td,.content2 .content-table table td{
+.content1 .content-table table td,.content2 .content-table table td,.content4 .content-table table td{
 	padding: 6px;
 	word-wrap:break-word;
 	word-break:break-all;
 }
-
-#eui-main-body .content2,.content3{
+.content4 .content-table table a{
+	color: #333;
+	text-decoration: underline !important;
+}
+.content4 .content-table table a:hover{
+	color: #0da9f5;
+}
+.content4 .content-table table tr:hover{
+	background: none !important;
+}
+#eui-main-body .content2,.content3,.content4{
 	width: 100%;
 	height: 100%;
 	/*height: 154px;*/
@@ -91,15 +167,8 @@
 	/*display: inline-block;*/
 	/*margin-top: -6px;*/
 }
-.content2 .headinfo{
-	height: 100%;
-	line-height: 1007px;
-}
 .content2 .title{
 	margin-top: 30px;
-}
-.content3 .headinfo{
-	line-height: 42px;
 }
 #eui-main-body table tr:nth-child(odd){
 	background: #f7f5f5;
@@ -112,24 +181,29 @@
 }
 .contentright .result-content{
 	float: left;
-	width: 50%;
+	width: 100%;
 }
 .contentright .result-comment{
 	float: left;
 	width: 50%;
 }
 .contentright .result-content .result-padding{
-	margin-left: 40px;
+	padding-left: 40px;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 50%;
 }
-.result{
-	padding-top: 150px;
+.result_box{
+	width: 100%;
+	display: flex;
+
 }
-#eui-main-footer{
-    height: 100px;
-    width: 100%;
-    padding-top: 45px;
-    text-align: center;
+.result_right{
+	width: 50%;
+	word-wrap: break-word;
+    word-break: break-all;
 }
+
 #eui-main-footer .footer .list .con {
     margin-top: 10px;
     color: #b1b1b1;
@@ -139,4 +213,20 @@
 	background: #2f363e;
     color: #a9acb0;
     margin-top: 30px;
+}
+
+
+@media screen and (max-width:414px){
+    .nav-title{
+        height: 40px;
+	}
+	.contentleft{
+		font-size: 14px;
+	}
+	.result_box{
+		padding-bottom: 10px;
+	}
+	.result_right{
+		padding-left: 10px;
+	}
 }

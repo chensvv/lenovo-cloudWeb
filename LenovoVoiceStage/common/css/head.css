@@ -1,22 +1,37 @@
 /* navbar */
 .navbar-default{
-    background-color: #FFFFFF;
-    /*opacity: 0.4;*/
-    border:none;
-    
+    border: none;
 }
 .navbar{
-	height: 70px;
-	/*position: relative;*/
+	height: 60px;
+    /*position: relative;*/
+    background: rgba(0,0,0,.3);
+    margin-bottom: 0;
+    transition:background-color .5s;
+	transition-timing-function:ease-in-out;
+
 }
 .navbar-icon{
-	margin-top: 13px;
-	margin-right: 20px;
+    width: 135px;
+    text-align: left;
 }
+.navbar-icon img{
+  width: 40px;  
+}
+.logo_text_left{
+    vertical-align: middle;
+    color: #fff;
+    margin-left: 4px;
+}
+
 .navbar-collapse{
-	border: none;
+    border: none;
 }
 /* Title */
+.shu{
+    color: #fff;
+    padding: 0 5px;
+}
 .navbar-default .navbar-brand {
     color: #777;
 }
@@ -26,25 +41,25 @@
 }
 /* Link */
 .navbar-default .navbar-nav > li > a {
-    color: #777;
-    /*background: #FFFFFF;*/
+    color: #fff;
+    display: inline;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #1189f3;
+    color: #b6fffe;
     /*background: #a5e8f7;*/
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #1189f3;
-    background-color:#fff;
+    color: #b6fffe;
+    background-color:transparent;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    color: #555;
-    background-color: #FFFFFF;
+    color: #b6fffe;
+    background-color: transparent;
 }
 /* Caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -59,8 +74,8 @@
 .navbar-default .navbar-nav > .open > a .caret,
 .navbar-default .navbar-nav > .open > a:hover .caret,
 .navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #555;
-    border-bottom-color: #555;
+    border-top-color: #b6fffe;
+    border-bottom-color: #b6fffe;
 }
 /* Mobile version */
 .navbar-default .navbar-toggle {
@@ -70,33 +85,118 @@
 .navbar-default .navbar-toggle:focus {
     background-color: #DDD;
 }
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #CCC;
+.nav-left{
+	width: 65%;
+    display:-webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-justify-content:space-between;
+	justify-content:space-between;
+	-moz-box-pack:space-between;
+	-ms-justify-content: space-between;
+	-o-justify-content: space-between;
+	-webkit--moz-box-pack:space-between;
+    height: 60px;
+    align-items:center;
+    -webkit-align-items:center;
+    box-align:center;
+    -moz-box-align:center;
+    -webkit-box-align:center;
+    text-align: center;
 }
-.navbar-nav{
-	margin:20px -15px 0px -15px;
+.hover-menu li{
+    position: relative;
+    transition: all 200ms ease-in;
+    min-width: 112px;
 }
-@media (max-width: 766px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #8C8C8C;
-    }
-    .navbar-nav{
-		margin:0px -15px 0px -15px;
-		background: #FFFFFF;
-	}
-	 .navbar-nav li{
-	 	border-top: 1px solid #CCCCCC;
-	 }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-          color: #1189f3;
-           /*background: #a5e8f7;*/
-    }
+.hover-menu li:hover .product-menu ,.hover-menu li:hover .user-menu {
+    top: 60px;
+    visibility: visible;
+    opacity: 1;
 }
-.dropdown-menu{
-	padding: 0px;
+.product-menu a, .user-menu a{
+    color: #fff;
 }
-
+a:focus a:hover{
+    color: #fff !important;
+}
+.product-menu{
+    position: fixed;
+    transition: all 200ms ease-in;
+    z-index: 1;
+    visibility: hidden;
+    list-style: none;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    display:-webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    background: rgba(0,0,0,.3);
+    height: 40px;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.product-menu li{
+    padding-right: 35px;
+    text-align: center;
+}
+.user-menu{
+    position: fixed;
+    transition: all 200ms ease-in;
+    z-index: 1;
+    visibility: hidden;
+    list-style: none;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    display:-webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-box-pack: end;
+    -moz-justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    background: rgba(0,0,0,.3);
+    height: 40px;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+.user-menu li{
+    padding-right: 35px;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+    background-color: transparent;
+}
 .navbar-toggle{
 	margin-top: 22px;
 }
@@ -105,41 +205,63 @@
 	padding-top: 10px;
 }
 .container{
-	width: 100%;
+    width: 100%;
+    display:-webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items:center;
+    -webkit-align-items:center;
+    box-align:center;
+    -moz-box-align:center;
+    -webkit-box-align:center;
+    height: 60px;
+    line-height: 60px;
 }
-#login{
-	/*position: absolute;
-	right: 110px;
-	top: 25px;*/
+.nav>li>a{
+    padding: 0;
+}
+.nav>li>a .mobile_jt{
+    display: none;
 }
 .navbar-right{
-	/*margin-right: 5px;*/
+    width: 20%;
+    height: 60px;
+    display:-webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items:center;
+    box-align:center;
+    -moz-box-align:center;
+    -ms-align-items:center;
+    -o-align-items:center;
+    -webkit-box-align:center;
+    -webkit-justify-content:center;
+	justify-content:center;
+	-moz-box-pack:center;
+	-ms-justify-content: center;
+	-o-justify-content: center;
+	-webkit--moz-box-pack:center;
 }
-
-
-
-
-
-
-
-
-
+#navbar{
+    width: 100%;
+}
 
 #eui-main-footer{
     height: 40px;
     width: 100%;
-    padding-top: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
     z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 40px;
 }
-
-@media screen and (max-width:414px){
-   #eui-main-footer{
-	    height: 60px;
-
-	}
+.is_mobile_close{
+    display: none;
 }
 
 #eui-main-footer .footer .list .con {
@@ -150,5 +272,393 @@
 .footer-bgcolor{
 	background: #2f363e;
     color: #a9acb0;
-    margin-top: 30px;
+    margin-top: 0px !important;
 }
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
+    color: #fff;
+}
+#lenovo-user-name_m{
+    color: #fff;
+    padding-right: 15px;
+}
+#lenovo-user-name_m:hover,#lenovo-user-name_m:focus{
+    cursor: pointer;
+    color: #b6fffe;
+}
+#lenovo-user-register{
+    padding-left: 15px;
+}
+.mobile_nav_right{
+    display: none;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    border-color: none;
+}
+.dropdown-menu{
+    padding: 0;
+}
+#box{
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+#down{
+    border-radius: 6px;
+    width: 110px;
+    display: none;
+    position: absolute;
+    height: 70px;
+    background: #fff;
+}
+#down ul{
+    padding: 0;
+    margin: 0;
+}
+#down li{
+    list-style: none;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: center;
+}
+.opimg{
+  width: 20px !important;
+  vertical-align: middle;
+}
+#down li:hover{
+    background-color: #eee;
+}
+.optxt{
+    vertical-align: middle;
+    display: inline-block;
+    width: 60px;
+    text-align: left;
+}
+.tri-down{
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #000;
+    display: inline-block;
+    vertical-align: middle;
+}
+.b-m{
+      display: inline-block;
+}
+.b-m .optxt{
+    text-align-last: center;
+}
+.drop-down{
+    position: absolute;
+    top: 16px;
+    right: 50px;
+}
+@media screen and (max-width:766px){
+    .drop-down{
+        display: none;
+    }
+    .navbar-icon{
+        width: auto;
+    }
+    .logo_text_left{
+        display: none;
+    }
+    .navbar{
+        height: 40px;
+        min-height: max-content;
+    }
+    .mobile_nav_right{
+        display: block;
+        background: transparent !important;
+        position: absolute;
+        right: 0;
+        width: auto !important;
+        padding-right: 10px !important;
+    }
+    .mobile_nav_right li{
+        border-bottom: none !important;
+    }
+    .mobile_nav_right #lenovo-user-name{
+        color: #fff;
+        padding-right: 0;
+    }
+    .mobile_nav_right #lenovo-user-name_m{
+        color: #fff;
+        padding-right: 0;
+    }
+    .mobile_nav_right #lenovo-user-register{
+        color: #fff;
+        padding-left: 0;
+    }
+    #eui-main-footer{
+        height: 60px;
+        display: none;
+    }
+    .nav-left>li{
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(160, 215, 143, .4);
+    }
+    .nav>li>a .mobile_jt{
+        display: block;
+        float: right;
+        margin-right: 25px;
+        background: url(../images/jt.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .is_mobile_close{
+        display: block;
+        height: 40px;
+        position: relative;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    }
+    .close_btn{
+        background: url(../images/close.png) no-repeat;
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translate(50%,-50%);
+        width: 15px;
+        height: 15px;
+        background-size: 100%;
+    }
+    .pc_navbar_right{
+        display: none;
+    }
+    .navbar-toggle{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin: 0;
+        transform: translate(50%,-50%);
+        border: none;
+        padding: 0 5px;
+    }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+        background-color: transparent;
+    }
+    #navbar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        bottom: 0;
+        right: 0;
+    }
+    .navbar-nav{
+        margin: 0;
+    }
+    .container{
+        padding-left: 0;
+        padding-right: 0;
+        height: 40px;
+        line-height: 40px;
+    }
+    .container>.navbar-header{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .container>.navbar-collapse{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .navbar-collapse{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .nav-left{
+        width: 100%;
+        flex-direction: column;
+        background: #fff;
+        margin: 0;
+        align-items: baseline;
+        height: auto;
+    }
+    .navbar-right{
+        width: 100%;
+        justify-content: end;
+        background: #fff;
+        height: auto;
+    }
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse{
+        max-height: inherit;
+    }
+
+    .navbar-default .navbar-nav > li > a{
+        color: #333;
+        background-color: transparent;
+    }
+    .nav-left >li > a{
+        display: inline-block !important;
+        padding-left: 30px;
+        width: 100%;
+    }
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #333;
+        /*background: #a5e8f7;*/
+    }
+    .caret{
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        display: block;
+        float: right;
+        margin-right: 25px;
+        background: url(../images/open.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .navbar-default .navbar-nav > .open .caret{
+        background: url(../images/close.png) no-repeat;
+        width: 10px;
+        height: 20px;
+        background-size: 100%;
+        background-position-y: center;
+    }
+    .mobile_border{
+        border-top: 1px solid rgba(160, 215, 143, .4);
+    }
+    .mobile_border2{
+        border-top: 1px solid rgba(160, 215, 143, .4);
+    }
+    .navbar-nav .open .dropdown-menu>li>a{
+        padding: 7px 0px 7px 45px;
+    }
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #333;
+    background-color:transparent;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #333;
+    background-color: transparent;
+}
+    .navbar-header{
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+    }
+    
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
+        color: #333;
+    }
+    .mobile_style{
+        text-align: center !important;
+        /* border: none !important; */
+        width: 100%;
+    }
+    .mobile_style .shu{
+        display: none !important;
+    }
+    .mobile_style #lenovo-user-name_m{
+        padding-right: 0;
+        background:linear-gradient(90deg,rgba(101,209,194,1) 0%,rgba(162,215,142,1) 100%);
+        text-align: center;
+        width: 70%;
+        display: block;
+        margin: 20px auto;
+        height: 38px;
+        line-height: 38px;
+        color: #fff;
+        border-radius: 4px;
+    }
+    .mobile_style .user_name{
+        overflow: unset;
+    }
+    .lenovo-user-name2{
+        background: none !important;
+        text-align: left !important;
+        width: 100% !important;
+        color: #333 !important;
+        margin: 0 !important;
+        padding-left: 30px !important;
+        display: inline-block !important;
+        height: auto !important;
+        line-height: initial !important;
+        
+    }
+    .open_style{
+        position: absolute !important;
+        background: #fff !important;
+        top: 40px !important;
+        right: 0 !important;
+        list-style: none;
+        border-radius: 2px;
+        min-width: 200px;
+        text-align: right;
+    }
+    .open_style li{
+        border-bottom: 1px solid rgba(229, 229, 229, 1) !important;
+    }
+    .open_style a {
+        color: #333;
+        padding-right: 11px;
+    }
+    .mobile_top_username{
+        display: inline-block !important;
+        color: #fff !important;
+    }
+    .mobile_bottom_border{
+        border-bottom: 1px solid rgba(160, 214, 143, .4);
+    }
+    .open_user{
+        background: url(../images/down.png) no-repeat;
+        background-size: 100%;
+        background-position-y: center;
+        display: block;
+        float: right;
+        width: 10px;
+        height: 20px;
+    }
+    .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+        border-color: rgba(160, 214, 143, .4);
+    }
+    .mobile_style #lenovo-user-register{
+        display: none;
+    }
+    
+ }
+ @media screen and (max-width:320px){
+    .user_name{
+        max-width: 50px !important;
+    }
+    .navbar-icon img {
+        width: 30px;
+    }
+    .navbar-icon {
+        width: 80px;
+    }
+ }
+ @media screen and (max-width:1000px){
+    .user_name{
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+    }
+ }
+ .mo{
+     font-size: 12px;
+ }

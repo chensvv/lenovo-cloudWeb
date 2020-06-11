@@ -2,43 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>联想语音开放平台</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"  /> 
+    <title i18n="i18n.title">联想语音开放平台</title>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
     <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/questionnew.css" rel="stylesheet"/>
-    <link href="../common/css/head.css?version=1.1" rel="stylesheet" type="text/css" />		
+    <link href="../common/css/head.css?version=2.0" rel="stylesheet" type="text/css" />	
+    <link rel="stylesheet" href="../common/css/popup.css">	
+    <link href="css/questionnew.css?version=2.0" rel="stylesheet"/>
     <script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../common/js/pagetop.js"></script>
-    <script type="text/javascript" src="js/forumcommon.js"></script>
-    <script type="text/javascript" src="js/new.js"></script>
+    <script src="../common/js/jquery.base64.js"></script>
+    <script src="../common/mixjs/popup.js"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+    <script type="text/javascript" src="mixjs/forumcommon.js?version=2.0"></script>
+    <script src="../common/mixjs/commurl.js?version=2.0"></script>
+    <script type="text/javascript" src="mixjs/new.js?version=2.0"></script>
+    <script src="../product/mixjs/axios.min.js"></script>
+    <script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+    <style>
+     #eui-main-footer{
+			position: fixed;
+			bottom: 0;
+        }
+        .logo_text{
+			width: 56px !important;
+			padding-left:1px; 
+		}
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+        <div class="nav-title">
+            <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation"></nav>
+            <div class="mobile_div">
+                <span class="back_arrows"></span>
+                <div class="logo_div">
+                        <img src="../common/images/logo_img.png" class="top_logo">
+                        <img src="../common/images/logo_text.png" class="logo_text">
+                </div>
+            </div>
+            <p class="recognise_title" i18n="i18n.message">给我留言</p>
+            <div class="bg_div"></div>
+        </div>
+        <div class="eui-main-body">
+                <div class="content-head">
+                    <div class="content-head-header" i18n="i18n.postmsg">我要发帖</div>
+                    <!-- <div class="mylist"><a href="mylist.html">我的留言</a></div> -->
+                </div>
+                <div class="content-body">
+                        <div class="content-body-title">
+                            <div class="body-label" i18n="i18n.msgtitle">标题</div>
+                            <div class="body-context">
+                                <input type="text" class="title" name="title" maxlength="21" autocomplete="off" i18n-only="placeholder" i18n="i18n.inputmsg" placeholder="小伙伴请注意，标题只能输入21个字哦！"/>
+                            </div>
+                        </div>
+                        <div class="content-body-text">
+                            <div class="body-label" i18n="i18n.point">在这里，发表你的观点</div>
+                            <div class="body-context"><textarea class="text" i18n-only="placeholder" i18n="i18n.msgcontent" placeholder="请输入内容"></textarea></div>
+                        </div>
+                        <div class="content-body-button">
+                            <button id="send" i18n="i18n.pubmsg">发表留言</button>
+                        </div>
+                </div>
+            </div>
+            
+            <div id="eui-main-footer" class="footer-bgcolor"></div>
+    
 
-<div id="eui-main-body">
-    <div class="content-head">
-        <div class="content-head-header">新建留言</div>
-        <div class="mylist"><a href="mylist.html">我的留言</a></div>
-    </div>
-    <div class="content-body">
-            <div class="content-body-title">
-                <div class="body-label">标题:</div>
-                <div class="body-context"><input type="text" class="title" maxlength="50" placeholder="最多输入50个字符"/></div>
-            </div>
-            <div class="content-body-text">
-                <div class="body-label">内容:</div>
-                <div class="body-context"><textarea class="text"></textarea></div>
-            </div>
-            <div class="content-body-button">
-                <div class="button-body"><a href="#" id="send">发表</a></div>
-            </div>
-    </div>
-</div>
 
-<div id="eui-main-footer" class="footer-bgcolor"></div>
+
 </body>
 </html>
 
 <script>
-
+    loadTop("information");
+var user = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+	if(!user){
+        $('.navbar').css({"display":"block"})
+        $('.mobile_div').css({"display":"none"})
+    }else{
+        $('.navbar').css({"display":"none"})
+        $('.mobile_div').css({"display":"block"})
+    }
+    $('.back_arrows').click(function(){
+        history.back(-1)
+    })
+    if($(".title").val()==""||$(".text").val()==""){
+                $('#send').attr('disabled','disabled');
+                $('#send').addClass('No_send')
+			}
+    $('.title,.text').on("input propertychange" ,function(){
+        if($(".title").val()!="" && $(".text").val()!=""){
+                $("#send").removeAttr("disabled");
+                $('#send').removeClass('No_send')
+			}else if($(".title").val()=="" || $(".text").val()==""){
+                $('#send').attr('disabled','disabled');
+                $('#send').addClass('No_send')
+            }
+    })
+   
 </script>

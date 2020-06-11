@@ -66,7 +66,7 @@ td, th {
 }
 
 html {
-	font-size: 100%;
+	/* font-size: 100%; */
 	box-sizing: border-box
 }
 
@@ -99,7 +99,7 @@ html {
 body {
 	padding: 0;
 	margin: 0;
-	font-family: Hiragino Sans GB, Microsoft YaHei, 微软雅黑, tahoma, arial, simsun, 宋体, \5fae\8f6f\96c5\9ed1, \5b8b\4f53;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-weight: 400;
 	line-height: 1.5;
 	color: #0a0a0a;
@@ -124,7 +124,7 @@ textarea {
 
 
 .row {
-	width: 85%; 
+	width: 70%; 
 	margin:0 auto;/*  80rem */
 	overflow: hidden;
 	/*margin-left: auto;*/
@@ -232,7 +232,7 @@ element.style {
 
 
 .medium-6 {
-	width: 48%;
+	width: 50%;
 	/*border: 1px solid #e5e5e5;*/
 }
 }
@@ -269,8 +269,8 @@ blockquote, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, li, ol, p, pre, td, t
 p {
 	font-size: inherit;
 	line-height: 1.6;
-	margin-bottom: 1rem;
-	text-rendering: optimizeLegibility
+	text-rendering: optimizeLegibility;
+	user-select: none;
 }
 
 small {
@@ -319,9 +319,6 @@ a {
 	text-decoration: none;
 	line-height: inherit;
 	cursor: pointer
-}
-a:focus, a:hover {
-	color: #1585cf
 }
 a img {
 	border: 0

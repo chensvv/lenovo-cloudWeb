@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">  
+    <title i18n="i18n.title">联想语音开放平台</title>
+    <meta http-equiv="Imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon" />
+    <link href="../framework/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../common/css/head.css?version=2.0" rel="stylesheet"/>
+    <link href="css/eng.css?version=2.0" rel="stylesheet"/>
+	<link rel="stylesheet" href="../welcome/css/all.css">
+	<link rel="stylesheet" href="../common/css/animate.min.css">
+    <script type="text/javascript" src="../common/mixjs/commurl.js?version=2.0"></script>
+    <script type="text/javascript" src="../common/mixjs/pagetop.js?version=2.0"></script>
+	<script type="text/javascript" src="../framework/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../framework/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../common/js/jquery.base64.js"></script>
+    <script src="../common/js/jquery.i18n.js"></script>
+	<script src="../common/js/com.js"></script>
+    <script src="./mixjs/recorder.wav.min.js"></script>
+    <script src="./mixjs/axios.min.js"></script>
+    <script src="./mixjs/assess.js?version=2.0"></script>
+    <style>
+        #eui-main-footer{
+            position: fixed;
+            bottom: 0;
+            min-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+	<div class="dis_flex">
+        <div class="nav-title">
+            <div class="cyclo"></div>
+            <div class="bcy"></div>
+            <div class="halfcy"></div>
+            <div></div>
+            <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+            </nav>
+            <p class="recognise_title" i18n='i18n.assess'>英语评测</p>
+            <div class="nav-f">
+                <div class="nav-f-b">
+                    <div class="nav-f-sp">
+                        <img src="./images/bah.png" alt="">
+                        <span class="t">单词发音</span>
+                    </div>
+                    <div class="nav-f-sp mobile">
+                        <img src="./images/bav.png" alt="">
+                        <span class="t">段落评测</span>
+                    </div>
+                    
+                    <div class="voice-box">
+                        <button class="clpage" id="nextPage" i18n="i18n.changeNext">切换下一张</button>
+                        <div class="voice-header"><span class="header-title" id="indexV">1</span>/5</div>
+                        <div class="voice-main" id="text"></div>
+                        <div class="voice-footer" onclick="record(this)"></div>
+                    </div>
+                    <div class="nav-f-sp">
+                        <img src="./images/bab.png" alt="">
+                        <span>情景问答</span>
+                    </div>
+                    <div class="nav-f-ls mobile">
+                        <img src="./images/bat.png" alt="">
+                        <span class="t4">口语作文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="eui-main-body">
+                <div class="clickr">
+                    <p class="btn-t" id="ret" i18n="i18n.clickRecod">点击录音</p>
+                    <p class="btn-t" id="recing" i18n="i18n.recing">录音中...</p>
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                </div>
+            <div class="z-g-b">
+                <span i18n="i18n.overall">综合得分</span>
+                <p class="z-g" id="score"></p>
+                </div>
+            <div class="grade">
+                <div>
+                    <span i18n="i18n.fluency">流利度</span>
+                    <p id="fluency"></p>
+                </div>
+                <div>
+                    <span i18n="i18n.integrity">完整度</span>
+                    <p id="integrity"></p>
+                </div>
+                <div>
+                    <span i18n="i18n.accuracy">准确度</span>
+                    <p id="degree"></p>
+                </div>
+            </div>
+		</div>
+        <div class="loading-box"></div>
+    </div>
+    <div id="eui-main-footer" class="footer-bgcolor">
+        </div> 
+
+  
+
+</body>
+<script>
+    loadTop("product");
+    var n = 0
+    var arrList = ["They often create amazing things from simple ideas.",
+                    "Welcome to the show.",
+                    "China's space technology has advanced quickly in less than sixty years.",
+                    "Two films have also been made of the story.",
+                    'Without the hard work of all the great scientists in the programme, we would never have succeeded.']
+    var nextPage = document.getElementById('nextPage')
+    var valueText = document.getElementById('text')
+    var indexV = document.getElementById('indexV')
+    valueText.innerHTML="They often create amazing things from simple ideas."
+    nextPage.addEventListener('click',function(){
+        n = n + 1;
+        if(n == arrList.length){
+            n = 0;
+        }
+        indexV.innerHTML = n+1
+        valueText.innerHTML = arrList[n];
+    })
+
+
+</script> 
+</html>
+                                      

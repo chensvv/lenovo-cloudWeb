@@ -1,13 +1,13 @@
 $(function(){
-		loadTop("information");
-		var accountid = window.localStorage.getItem('accountid');
-		if (accountid=="" || accountid==null||accountid.length == 0) {
-	        if(confirm("登陆后才能查看！")){
-				window.location.href = "https://passport.lenovo.com/wauthen2/gateway?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%2FvoicePlatform%2Fwelcome%2Findex.html";
-			    return;
+		var accountidd = window.localStorage.getItem('accountid');
+		if (accountidd=="" || accountidd==null||accountidd.length == 0) {
+	        if(confirm("登录后才能查看！")){
+						window.location.href = "../login/login.html";
+			    	return;
 	        }else{
-				return;
-			}
+						localStorage.clear();
+						return;
+					}
 
 	    }
  
@@ -27,31 +27,28 @@ $(function(){
 		    second = second < 10 ? ('0' + second) : second;     
 		    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;      
 		};   
-		var Username = window.localStorage.getItem('Username');
-		var lenkey = window.localStorage.getItem('lenkey');
-		var secrkey = window.localStorage.getItem('secrkey');
-		function unhtml(str) {
-          return str ? str.replace(/[<">']/g, (a) => {
-              return {
-                  '<': '&lt;',
-                  '"': '&quot;',
-                 '>': '&gt;',
-                 "'": '&#39;'
-             }[a]
-         }) : '';
-     }
+		var Username = window.localStorage.getItem('un');
+		function unhtml(sHtml) {
+		  return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+		}
 	    
         $.ajax({
 		  type:"POST",
-		  url:"/lasf/forum/list",
+		  url:urlhead+"/lasf/forum/list",
 		  dataType:"json",
      	  data:{"pagecount":2000},
+     	  headers: {
+				"channel" : "cloudasr"
+            },
 		  success:function(res){
 		  	
 		  	var num=res.datalist;
 			var sortime=num.sort(function (a, b) { return new Date(b.createTime).getTime() - new Date(a.createTime).getTime() });
-		   var str = "";
+			 var str = "";
+			 console.log(res)
 		   $.each(res.datalist, function(idx,val) {
+
+				 
 			   	var nowtime = formatDateTime(val.createTime);
 			   	var replytime = formatDateTime(val.lastUpdateTime);
 			   	if(val.accountName==Username){
@@ -79,11 +76,10 @@ $(function(){
 					if(confirm("确认删除吗?")){
 						$.ajax({
 							type:"POST",
-							url:"/lasf/forum/delete",
+							url:urlhead+"/lasf/forum/delete",
 							data:{"dataid":hid,"accountname":Username},
 							headers: {
-								"lenovokey" : lenkey,
-								"secretkey" : secrkey
+								"channel" : "cloudasr"
 				            },
 							success:function(data){
 								 history.go(0);

@@ -1,61 +1,57 @@
-//function LenovoIdSyncLoginState(lenovoid_wust) {
-//      _club_login_status = true;
-//      take_st_login = true;
-//      jQuery.get('/lasf/logininfo', {
-//          'securekey': lenovoid_wust
-//      }, function(data) {
-//          if (typeof(data) == 'undefined')
-//              var data = {
-//                  'status': 'error'
-//              };
-//          if (data.status == 'success') {
-//              document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
-//              window.localStorage.setItem('secretkey',data.secretkey);
-//              window.localStorage.setItem('accountid',data.AccountID);
-//              window.localStorage.setItem('lenovoname',data.name);
-//              window.localStorage.setItem('Username',data.Username);
-//              //window.location.reload();
-//          } else if (data.status == 'failed') {
-//              window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
-//          } else if (data.status == 'error') {
-//
-//          }
-//      }, 'json');
-//  }	
-
-
-function LenovoIdSyncLoginState(lenovoid_wust) {
-        _club_login_status = true;
-        take_st_login = true;
-        $.ajax({
-	   	 	type:"get",
-	   	 	url:"/lasf/logininfo",
-	   	 	headers:{
-	   	 		'channel':'cloudasr'
-	   	 	},
-	   	 	data:"securekey="+lenovoid_wust,
-	   	 	dataType:'json',
-	   	 	success:function(data){
-	   	 		if (typeof(data) == 'undefined')
-                var data = {
-                    'status': 'error'
-                };
-	            if (data.status == 'success') {
-	                document.getElementById("lenovo-user-name").innerHTML = data.Username + '<span class=\"caret\"></span>';
-	                window.localStorage.setItem('secretkey',data.secretkey);
-	                window.localStorage.setItem('accountid',data.AccountID);
-	                window.localStorage.setItem('lenovoname',data.name);
-	                window.localStorage.setItem('Username',data.Username);
-	                //window.location.reload();
-	            } else if (data.status == 'failed') {
-	                window.location = 'https://passport.lenovo.com/wauthen/login?lenovoid.action=uilogin&lenovoid.realm=voice.lenovomm.com&lenovoid.cb=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html&lenovoid.lang=zh_CN&lenovoid.ctx=https%3A%2F%2Fvoice.lenovomm.com%3A8443%2FvoicePlatform%2Fwelcome%2Findex.html';
-	            } else if (data.status == 'error') {
-	
-	            }
-	   	 	}
-	   	});
+$(function(){
+	function fn() {
+        
     }
+	var Username = window.localStorage.getItem('un');
+	var accountid = $.base64.decode(window.localStorage.getItem('acd'));
+	var token = window.localStorage.getItem('token')
+	if(token =='' || token == null || token == undefined){
+		if(getCookie('grycan.cn.bLang') =='english'){
+			Popup.confirm("Please log in first！", fn)
+		}else{
+			Popup.confirm("请登录后继续操作！", fn)
+		}
+	}else{
+		$.ajax({
+			type:"POST",
+			url:urlhead+"/lasf/userinfo",
+			headers: {  
+				"channel" : "cloudasr"
+			},  
+			data:{"username":Username,"lenovoid":accountid,t:token},
+			success:function(data){
+				if(data.errorcode ==1024){
+					localStorage.clear();
+					if(getCookie('grycan.cn.bLang') =='english'){
+						Popup.confirm("Login timeout！", fn)
+					}else{
+						Popup.confirm("登录超时，请重新登录", fn)
+					}
+					
+				}else{
+					$("#entry,#entry1,#detail").css("pointer-events","auto");
+				}
+				
+			},error:function(err){
+				
+			}
+		});
+	}
+	
+})
 
+function getCookie(name){
+	var strcookie = document.cookie;//获取cookie字符串
+	var arrcookie = strcookie.split("; ");//分割
+	//遍历匹配
+	for ( var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == name){
+			return arr[1];
+		}
+	}
+	return "";
+}
 
 
 
