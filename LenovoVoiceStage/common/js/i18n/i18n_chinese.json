@@ -185,5 +185,19 @@
 		"i18n.respass": "重置密码",
 		"i18n.newpass": "请输入新密码",
 		"i18n.enteragain": "再次输入",
-		"i18n.twopass": "两次密码输入不一致"
+		"i18n.twopass": "两次密码输入不一致",
+		"i18n.sfrec": "语音文件识别",
+		"i18n.scene": "short:短语音，long:长语音",
+		"i18n.language": "语言:英文识别english,不传或其它值默认中文",
+		"i18n.sample": "通道数:八通道值为8,不传或其他值默认1",
+		"i18n.audioFormat": "语音格式",
+		"i18n.16kpcm": "16k 16bit 单声道  pcm",
+		"i18n.8kpcm": "8k 16bit 单声道  pcm",
+		"i18n.8kalaw": "8k 16bit 单声道  alaw",
+		"i18n.8kulaw": "8k 16bit 单声道  ulaw",
+		"i18n.sts": "系统时间戳",
+		"i18n.paid": "每个会话数字从1开始迭代",
+		"i18n.over": "结束标识:0未结束,1结束",
+		"i18n.choosefile": "选择一个文件&hellip;",
+		"i18n.uploadbtn": "上传"
 	 }

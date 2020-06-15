@@ -47,7 +47,7 @@
 		<div class="conent-header">
 			<div class="urlheader">
 				<div class="urleft contentleft">URL</div>
-				<div class="urlcontent contentright">https://voice.lenovomm.com/lasf/asr</div>
+				<div class="urlcontent contentright">https://voice.lenovomm.com/lasf/cloudasr</div>
 			</div>
 			<div class="pathheader">
 				<div class="urleft contentleft" i18n="i18n.method">方法</div>
@@ -77,25 +77,6 @@
 							<th i18n="i18n.describe">描述</th>
 						</tr>
 						<tr>
-							<td>platform</td>
-							<td>String</td>
-							<td>android 4.2.x</td>
-							<td i18n="i18n.desc1">发起请求的平台信息</td>
-						</tr>
-						<tr>
-							<td>name</td>
-							<td>String</td>
-							<td>com.test.test</td>
-							<td i18n="i18n.desc2">发起请求的应用程序的名称</td>
-						</tr>
-						<tr>
-							<td>version</td>
-							<td>String</td>
-							<td>1.0.1.130101_xxx</td>
-							<td i18n="i18n.desc3">发起请求的应用程序的版本</td>
-						</tr>
-
-						<tr>
 							<td>lenovoKey</td>
 							<td>String</td>
 							<td>LENOVO-VOICE-aaabbbccc</td>
@@ -124,30 +105,6 @@
 			<div class="contentright">
 				<h4 class="header-param-title"><b i18n="i18n.paramdes">参数说明:</b></h4>
 				<div class="content-table">
-					<table border="1" cellspacing="" cellpadding="">
-						<tr>
-							<th i18n="i18n.name">名称</th>
-							<th i18n="i18n.conformat">格式</th>
-							<th i18n="i18n.contype">内容类型</th>
-							<th i18n="i18n.describe">描述</th>
-						</tr>
-						<tr>
-							<td>param-data</td>
-							<td>String</td>
-							<td>text/plain</td>
-							<td i18n="i18n.desc7">将下表中所有的参数以URL的格式拼接</td>
-						</tr>
-						<tr>
-							<td>voice-data</td>
-							<td>ByteArray</td>
-							<td>application/i7-voice</td>
-							<td i18n="i18n.desc8">语音数据</td>
-						</tr>
-					</table>
-				</div>
-
-				<h4 class="header-param-title title"><b i18n="i18n.paramdes">参数说明:</b>&nbsp;param-data</h4>
-				<div class="content-table">
 					<table style="table-layout: fixed;" border="1" cellspacing="" cellpadding="">
 						<tr>
 							<th i18n="i18n.name">名称</th>
@@ -156,125 +113,58 @@
 							<th i18n="i18n.describe">描述</th>
 						</tr>
 						<tr>
-							<td>cpf</td>
+							<td>scene</td>
 							<td i18n="i18n.string">字符串</td>
-							<td>android</td>
-							<td i18n="i18n.client">客户端平台</td>
+							<td>short</td>
+							<td i18n="i18n.scene">场景:长语音long,短语音short,不传默认short</td>
 						</tr>
 						<tr>
-							<td>dtp</td>
+							<td>language</td>
 							<td i18n="i18n.string">字符串</td>
-							<td>lenovo</td>
-							<td i18n="i18n.eqtype">设备类型</td>
+							<td>chinese</td>
+							<td i18n="i18n.language">语言:英文识别english,不传或其它值默认中文</td>
 						</tr>
 						<tr>
-							<td>ver</td>
+							<td>sample</td>
+							<td i18n="i18n.string">数字</td>
+							<td>1</td>
+							<td i18n="i18n.sample">通道数:八通道值为8,不传或其他值默认1</td>
+						</tr>
+						<tr>
+							<td>audioFormat</td>
 							<td i18n="i18n.string">字符串</td>
-							<td>1.0.0</td>
-							<td i18n="i18n.cpver">客户端协议版本</td>
-						</tr>
-						<tr>
-							<td>did</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>90:a4:de:ba:41:a5</td>
-							<td i18n="i18n.eqNo">设备编号</td>
-						</tr>
-						<tr>
-							<td>uid</td>
-							<td i18n="i18n.number">数字</td>
-							<td>526</td>
-							<td i18n="i18n.uui">用户唯一标识</td>
-
-						</tr>
-						<tr>
-							<td>dev</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>com.lenovo.rt.urc</td>
-							<td i18n="i18n.devid">开发者标识</td>
-						</tr>
-						<tr>
-							<td>app</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>com.lenovo.leos.lestore</td>
-							<td i18n="i18n.appname">应用名称</td>
-						</tr>
-						<tr>
-							<td>stm</td>
-							<td i18n="i18n.number">数字</td>
-							<td>1356663021692</td>
-							<td i18n="i18n.starttime">开始时间</td>
-						</tr>
-						<tr>
-							<td>ssm</td>
-							<td i18n="i18n.boolean">布尔型</td>
-							<td>false</td>
-							<td i18n="i18n.smode">会话模式</td>
-						</tr>
-						<tr>
-							<td>vdm</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>all</td>
+							<td>pcm_16000_16bit_sample</td>
 							<td>
-								<span i18n="i18n.vdm">垂直领域</span> <br>
-								all: <span i18n="i18n.dmw">全领域识别</span> <br>
-								ctc: <span i18n="i18n.cona">联系人领域</span> <br>
-								vod: <span i18n="i18n.vf">视频领域</span> <br>
-								app: <span i18n="i18n.appa">应用领域</span> <br>
-								was: <span i18n="i18n.websa">网址查询领域</span> 
+								<span i18n="i18n.audioFormat">语音格式：</span><br>
+								pcm_16000_16bit_sample ：<span i18n="i18n.16kpcm">16k 16bit 单声道  pcm</span> </br>
+								pcm_8000_16bit_sample ：<span i18n="i18n.8kpcm">8k 16bit 单声道  pcm</span> <br />
+								alaw_8000_16bit_sample ：<span i18n="i18n.8kalaw">8k 16bit 单声道  alaw</span> <br />
+								ulaw_8000_16bit_sample ：<span i18n="i18n.8kulaw">8k 16bit 单声道  ulaw</span>
 							</td>
 						</tr>
 						<tr>
-							<td>rvr</td>
-							<td i18n="i18n.string">字符串</td>
-							<td i18n="i18n.kstr">空字符串</td>
-							<td i18n="i18n.lv">限定取值：取值:确定/取消</td>
-						</tr>
-						<tr>
-							<td>sce</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>cmd</td>
-							<td i18n="i18n.us">使用场景：cmd:命令模式;iat:听写模式</td>
-						</tr>
-						<tr>
-							<td>ntt</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>wifi</td>
-							<td i18n="i18n.nettype">网络类型</td>
-						</tr>
-						<tr>
-							<td>aue</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>speex-wb;7</td>
-							<td i18n="i18n.ac">音频编码</td>
-						</tr>
-						<tr>
-							<td>auf</td>
-							<td i18n="i18n.string">字符串</td>
-							<td>audio/L16;source=outer;rate=16000</td>
-							<td i18n="i18n.at">音频格式</td>
-						</tr>
-						<tr>
-							<td>ixid</td>
+							<td>sessionid</td>
 							<td i18n="i18n.number">数字</td>
 							<td>1356663021692</td>
-							<td i18n="i18n.suid">会话唯一标识</td>
+							<td i18n="i18n.sts">系统时间戳</td>
 						</tr>
 						<tr>
-							<td>pidx</td>
+							<td>packageid</td>
 							<td i18n="i18n.number">数字</td>
 							<td>1</td>
-							<td i18n="i18n.cesn">会话交互内的包的序列号</td>
+							<td i18n="i18n.paid">每个会话数字从1开始迭代</td>
 						</tr>
 						<tr>
 							<td>over</td>
 							<td i18n="i18n.number">数字</td>
 							<td>1</td>
-							<td>
-								<span i18n="i18n.tb">是否尾包</span><br />
-								0: <span i18n="i18n.ntb">不是尾包</span> <br />
-								1: <span i18n="i18n.tpe">尾包且正常结束</span><br />
-								2: <span i18n="i18n.ep">尾包,原因客户端主动结束</span>
-							</td>
+							<td i18n="i18n.over">结束标识:0未结束,1结束</td>
+						</tr>
+						<tr>
+							<td>voice-data</td>
+							<td>ByteArray</td>
+							<td>application/i7-voice</td>
+							<td i18n="i18n.desc8">语音数据</td>
 						</tr>
 					</table>
 				</div>

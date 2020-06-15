@@ -187,9 +187,9 @@ function recStop(){
             //     "&stm=0&key=a&ssm=true&vdm=music&rvr=&sce=cmd&ntt=wifi&aue=speex-wb%3B7&auf=audio%2FL16%3Brate%3D16000" +
             //     "&dev=lenovo.rt.urc.lv.develop&ixid="+ixid+"&pidx=1&over=1&rsts=0" +
             //     "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
-            formData.append("scene ", 'short');
-            formData.append("language ", lang);
-            formData.append("sample ", '1');
+            formData.append("scene", 'short');
+            formData.append("language", lang);
+            formData.append("sample", '1');
             formData.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
             formData.append("sessionid", ixid);
             formData.append("packageid", "1");

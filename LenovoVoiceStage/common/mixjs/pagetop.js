@@ -150,7 +150,7 @@ function loadTop(data) {
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_longrecognise()\'  id=\'\' i18n='i18n.realtime'>长语音识别</a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_tts()\'  id=\'\' i18n='i18n.synthesis'>语音合成 </a></li>";
     params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_assess()\'  id=\'\' i18n='i18n.assess'>英语评测 </a></li>";
-    // params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_file()\'  id=\'\'>语音文件识别 </a></li>";
+    params +="								<li class=\'mobile_border\'><a href=\'#\' onclick=\'menu_voice_file()\'  id=\'\' i18n='i18n.sfrec'>语音文件识别 </a></li>";
 
     params += "                        </ul>";
     params += "                    </li>";

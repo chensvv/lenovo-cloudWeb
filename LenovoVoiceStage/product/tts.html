@@ -111,7 +111,11 @@ var arrList
     $('.play-box').click(function(){
 		textv = $('#textarea').val()
 		if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-			document.getElementById('textarea_box').innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+			if(getCookie('grycan.cn.bLang') =='english'){
+                Popup.Nalert("Please login first！")
+            }else{
+                Popup.Nalert("请先登录！")
+            }
 		}else if(textv == ''){
             // Popup.Nalert('识别内容不能为空')
             $('.hint').addClass('animate__animated animate__shakeX')

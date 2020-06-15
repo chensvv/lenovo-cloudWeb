@@ -19,8 +19,8 @@ function toggleRecording(e) {
     $('#record').attr('src', './images/Mic-act.png')
     var con = document.getElementsByClassName('content_box')[0]
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
-        var statusP = document.getElementById("status");
-        statusP.innerHTML = "<a onclick=\'user_login()\' target=\"_self\" id='lenovo-user-name'>请先登录</a>";
+        $('#status').css('display','none')
+        $('#statusU').css('display','block')
         return;
     }
     var img_btn = document.getElementById('record');
@@ -91,6 +91,7 @@ function recd() {
         bufferSize: 4096,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
+            console.log(chunkInfo)
             var buf = chunkInfo.data
             if (pidx == 1) {
                 var buf2 = [];
