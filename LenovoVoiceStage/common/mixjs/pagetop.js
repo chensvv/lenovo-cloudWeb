@@ -80,6 +80,9 @@ function menu_forum_list(){
 function menu_new_data(){
 	window.location.href = "../new/newlist.html";
 }
+function contact(){
+    window.location.href = "../product/contact.html";
+}
 function open_nav(){
     $('#navbar').css({"display":"block"})
     $('#navbar').removeClass("fadeOutRight")
@@ -216,9 +219,9 @@ function loadTop(data) {
 
 
   if(getCookie('grycan.cn.bLang') =='english'){
-    $('#eui-main-footer').html("Lenovo Voice&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;copyright&nbsp;&nbsp;1998－2015&nbsp;&nbsp;Artificial Intelligence Laboratory of Lenovo Group Co., Ltd&nbsp;&nbsp;京ICP备05000462");
+    $('#eui-main-footer').html("Lenovo Voice&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;copyright&nbsp;&nbsp;1998－2015&nbsp;&nbsp;Artificial Intelligence Laboratory of Lenovo Group Co., Ltd&nbsp;&nbsp;京ICP备05000462 <a class='about' onclick='contact()'>Contact Us</a>");
   }else{
-    $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462");
+    $('#eui-main-footer').html("联想语音&nbsp;&nbsp;&nbsp;©&nbsp;&nbsp;版权所有&nbsp;&nbsp;1998－2015&nbsp;&nbsp;联想集团有限公司人工智能实验室&nbsp;&nbsp;京ICP备05000462 <a class='about' onclick='contact()'>联系我们</a>");
   }
   
 if(Username=="" || Username==null||Username.length == 0){

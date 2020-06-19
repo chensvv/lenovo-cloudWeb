@@ -199,5 +199,9 @@
 		"i18n.paid": "每个会话数字从1开始迭代",
 		"i18n.over": "结束标识:0未结束,1结束",
 		"i18n.choosefile": "选择一个文件&hellip;",
-		"i18n.uploadbtn": "上传"
+		"i18n.uploadbtn": "上传",
+		"i18n.contact": "联系我们",
+		"i18n.address": "地址：北京市海淀区西二旗联想全球总部",
+		"i18n.weixin": "微信：sunpiggy0928",
+		"i18n.mail": "邮箱：liuyang83@lenovo.com"
 	 }

@@ -11,6 +11,14 @@
 	transition-timing-function:ease-in-out;
 
 }
+.about{
+    padding-left: 50px;
+    color: #a9acb0;
+}
+.about:focus, .about:hover{
+    color: #a9acb0;
+    text-decoration: underline;
+}
 .navbar-icon{
     width: 135px;
     text-align: left;

@@ -199,5 +199,9 @@
 		"i18n.paid": "Each session number iterates from 1",
 		"i18n.over": "End identity: 0 not ended, 1 ended",
 		"i18n.choosefile": "Choose a file&hellip;",
-		"i18n.uploadbtn": "upload"
+		"i18n.uploadbtn": "upload",
+		"i18n.contact": "CONTACT US",
+		"i18n.address": "Address:East District, Lenovo global headquarters, Xierqi, Haidian District, Beijing",
+		"i18n.weixin": "WeChat:sunpiggy0928",
+		"i18n.mail": "Email:liuyang83@lenovo.com"
 	}
