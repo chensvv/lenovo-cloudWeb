@@ -203,5 +203,7 @@
 		"i18n.contact": "联系我们",
 		"i18n.address": "地址：北京市海淀区西二旗联想全球总部",
 		"i18n.weixin": "微信：sunpiggy0928",
-		"i18n.mail": "邮箱：liuyang83@lenovo.com"
+		"i18n.mail": "邮箱：liuyang83@lenovo.com",
+		"i18n.using": "上传成功，识别结果返回中，请稍等",
+		"i18n.usok": "识别结果人间已返回"
 	 }

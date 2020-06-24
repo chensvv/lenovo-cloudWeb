@@ -40,6 +40,30 @@
 		.no-js .inputfile + label {
 			display: none;
 		}  
+		button[disabled], html input[disabled] {
+			cursor: default;
+			background: rgba(125,214,253,.8);
+		}
+		dot {
+			display: none; 
+			height: 1em; line-height: 1;
+			text-align: left;
+			vertical-align: -.25em;
+			overflow: hidden;
+		}
+		dot::before {
+			display: block;
+			content: '...\A..\A.';
+			white-space: pre-wrap;   /* 也可以是white-space: pre */
+			animation: dot 3s infinite step-start both;
+		}
+		@keyframes dot {
+			33% { transform: translateY(-2em); }
+			66% { transform: translateY(-1em); }
+		}
+		.pro-ok{
+			display: none;
+		}
 	</style>
 </head>
 
@@ -56,11 +80,16 @@
 				<div class="content-title product-title" i18n="i18n.proEx">产品体验</div>
 					<div class="product-picture">
 							<div class="upload-box">
-								<input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4" />
+								<input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple/>
 								<label for="file-5"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span class="file-name" i18n="i18n.choosefile">选择一个文件&hellip;</span></label>
 								<div class="btn-box"><button class="upload-btn" id="btn" i18n="i18n.uploadbtn">上传</button></div>
 								<div class="pro-bar">
-									<div><span class="progress-pro" id="progress-pro"></span><span class="pro-text">上传成功，识别结果返回中...</span></div>
+									<div>
+										<span class="progress-pro" id="progress-pro"></span>
+										<span class="pro-text" i18n="i18n.using">上传成功，识别结果返回中，请稍等</span>
+										<span class="pro-ok" i18n="i18n.usok">识别结果文件已返回</span>
+										<dot>...</dot>
+									</div>
 									<div class="progress-bar"></div>
 								</div>
 								
@@ -85,49 +114,104 @@ var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var accountidd = window.localStorage.getItem('acd')
 var asrid
-  inputs.addEventListener( 'change', function( e ){
-	var fileName=document.getElementById("file-5").value;
-	var index=fileName.lastIndexOf(".");
-	var extension=fileName.substring(index).toLowerCase();
-	var allowedType =[".wav"];
-	for(var i=0;i<allowedType.length;i++){
-		if(allowedType[i]==extension){
-			$(".file-name").html($("#file-5")[0].files[0].name)
-			return true;
-		}
-	}
-	if(getCookie('grycan.cn.bLang') =='english'){
-		Popup.Nalert("File limit.wav")
-	}else{
-		Popup.Nalert("只能上传.wav格式音频文件")
-	}
-	return false;
-  });
+var filerr = 0
+var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input ){
+		input.addEventListener( 'change', function( e ){
+			var fileName = '';
+			var allowedType = '.wav'
+			if( this.files && this.files.length > 1 ){
+				for(var i = 0; i<this.files.length; i++){
+					var index=this.files[i].name.lastIndexOf(".");
+					var extension=this.files[i].name.substring(index).toLowerCase();
+					if(extension == allowedType){
+						filerr = 0
+						if(getCookie('grycan.cn.bLang') =='english'){
+							fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+						}else{
+							fileName = '已选择'+ this.files.length+'个文件'
+						}
+						
+						// return true
+					}else{
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.Nalert("File limit.wav")
+						}else{
+							Popup.Nalert("只能上传.wav格式音频文件")
+						}
+						filerr = 1
+						return false;
+					}
+				}
+				
+			}else{
+				fileName = e.target.value.split( '\\' ).pop();
+			}
+			if( fileName ){
+				var fileName2=document.getElementById("file-5").value;
+				var index=fileName2.lastIndexOf(".");
+				var extension=fileName2.substring(index).toLowerCase();
+				var allowedType =[".wav"];
+				for(var i=0;i<allowedType.length;i++){
+					if(allowedType[i]==extension){
+						filerr = 0
+						$(".file-name").html(fileName);
+						return true;
+					}else{
+						console.log(444)
+						if(getCookie('grycan.cn.bLang') =='english'){
+							Popup.Nalert("File limit.wav")
+						}else{
+							Popup.Nalert("只能上传.wav格式音频文件")
+						}
+						filerr = 1
+						return false;
+					}
+				}
+				
+			}else{
+				$(".file-name").html(fileName);
+			}
+			
+		});
+		// Firefox bug fix
+		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+	});
 
 $('#btn').click(function(){
+	$('.inputfile').attr('disabled',true)
+	$('.upload-btn').attr('disabled',true)
 	document.getElementById('progress-pro').innerHTML = ''
 	$('.pro-text').css('display','none')
-	var file = document.querySelector("#file-5").files[0];
-	console.log(file)
+	$('.pro-ok').css('display','none')
+	$('dot').css('display','none')
+	var file = document.querySelector("#file-5").files;
 	if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
         if(getCookie('grycan.cn.bLang') =='english'){
             Popup.Nalert("Please login first！")
         }else{
             Popup.Nalert("请先登录！")
-        }
+		}
+		$('.inputfile').attr('disabled',false)
+		$('.upload-btn').attr('disabled',false)
         return;
     }
-	if(file == undefined){
+	if(file == undefined || file.length == 0 || filerr != 0){
 		if(getCookie('grycan.cn.bLang') =='english'){
 			Popup.Nalert("Please select file upload")
 		}else{
 			Popup.Nalert("请选择文件上传")
 		}
+		$('.inputfile').attr('disabled',false)
+		$('.upload-btn').attr('disabled',false)
 	}else{
         //创建formdata对象
-        var formdata = new FormData();
-		formdata.append("file",file);
+		var formdata = new FormData();
+		for(i=0;i<file.length;i++){  
+			formdata.append("file", file[i]);
+		}
 		formdata.append('dateType', '1')
         //创建xhr，使用ajax进行文件上传
         var xhr = new XMLHttpRequest();
@@ -139,26 +223,33 @@ $('#btn').click(function(){
 					asrid = result.asrid
 					setTimer()
 				}else{
+					$('.inputfile').attr('disabled',true)
+					$('.upload-btn').attr('disabled',true)
 					document.getElementById('progress-pro').innerHTML = result.desc
+					$('.pro-text').css('display','none')
+					$('dot').css('display','none')
 				}
-            }
+            }else{
+				$('.inputfile').attr('disabled',true)
+				$('.upload-btn').attr('disabled',false)
+			}
 		}
-		xhr.onerror = function(e) {
-			document.getElementById('progress-pro').innerHTML = '服务器错误'
-		};
-        xhr.upload.onprogress = function (event) {
-            if(event.lengthComputable){
+		xhr.upload.onprogress = function (event) {
+			if(event.lengthComputable){
 				var percent = event.loaded/event.total *100;
 				console.log(parseInt(percent))
 				document.getElementById('progress-pro').innerHTML = parseInt(percent)+"%"
 				document.querySelector(".progress-bar").style.width = parseInt(percent)+"%";
 				if(percent == 100){
-					$('.pro-text').text('上传成功，识别结果返回中...')
 					$('.pro-text').css('display','inline-block')
+					$('dot').css('display','inline-block')
 					document.getElementById('progress-pro').innerHTML = '<svg t="1591928500578" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7192" width="200" height="200"><path d="M512 68.191078c-245.204631 0-443.808922 198.60429-443.808922 443.808922 0 244.982574 198.60429 443.808922 443.808922 443.808922 244.982574 0 443.808922-198.826348 443.808922-443.808922C955.808922 266.795369 756.982574 68.191078 512 68.191078zM423.23842 733.903949l-221.903949-221.903949 62.799278-62.799278 159.105694 159.105694 336.628854-336.628854 62.799278 62.799278L423.23842 733.903949z" p-id="7193" fill="#1afa29"></path></svg>'
 				}
-            }
+			}
 		}
+		xhr.onerror = function(e) {
+			document.getElementById('progress-pro').innerHTML = '服务器错误'
+		};
 		xhr.setRequestHeader('channel', 'cloudasr');
         xhr.setRequestHeader('lenovokey', lenkey);
         xhr.setRequestHeader('secretkey', secrkey);
@@ -180,12 +271,16 @@ function setTimer () {
 		},
 		xhrFields: { responseType: "arraybuffer" },
 		success:function(res,textStatus,request){
+			$('.inputfile').attr('disabled',true)
+			$('.upload-btn').attr('disabled',true)
 			console.log(request.getResponseHeader('status'))
 			if(request.getResponseHeader('status') == 0){
 				timer = setTimeout(() => {
 					setTimer()
 				}, 5000)
 			}else if(request.getResponseHeader('status') == 1){
+				$('.inputfile').attr('disabled',false)
+				$('.upload-btn').attr('disabled',false)
 				clearTimeout(timer)
 				var blobUrl = new Blob([res],{type: "application/octet-stream"})
 				var a = document.createElement('a');
@@ -194,8 +289,12 @@ function setTimer () {
 				a.download = asrid+'.zip';
 				a.click();
 				window.URL.revokeObjectURL(url);
-				$('.pro-text').text('识别结果文件已返回')
+				$('.pro-text').css('display','none')
+				$('.pro-ok').css('display','inline-block')
+				$('dot').css('display','none')
 			}else{
+				$('.inputfile').attr('disabled',false)
+				$('.upload-btn').attr('disabled',false)
 				clearTimeout(timer)
 				document.getElementById('progress-pro').innerHTML = request.getResponseHeader('error')
 				document.querySelector(".progress-bar").style.width = 0

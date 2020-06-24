@@ -203,5 +203,7 @@
 		"i18n.contact": "CONTACT US",
 		"i18n.address": "Address:East District, Lenovo global headquarters, Xierqi, Haidian District, Beijing",
 		"i18n.weixin": "WeChat:sunpiggy0928",
-		"i18n.mail": "Email:liuyang83@lenovo.com"
+		"i18n.mail": "Email:liuyang83@lenovo.com",
+		"i18n.using": "Upload succeeded, result returned",
+		"i18n.usok": "Recognition result file returned"
 	}

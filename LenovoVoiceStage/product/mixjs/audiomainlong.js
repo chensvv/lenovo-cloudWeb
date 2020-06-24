@@ -1,6 +1,6 @@
 var chunkInfo;
 var rec;
-var urlInfo = 'https://voice.lenovo.com/lasf/cloudasr'
+var urlInfo = urlhead +'/lasf/cloudasr';
 var ixid
 var pidx = 1
 var over = 0
@@ -14,6 +14,9 @@ var millisecond = 0; //毫秒
 var int;
 var lang;
 var samp;
+var rt = '';
+var firstup = true;
+var liid = 0;
 
 function toggleRecording(e) {
     $('#record').attr('src', './images/Mic-act.png')
@@ -91,7 +94,6 @@ function recd() {
         bufferSize: 4096,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
-            console.log(chunkInfo)
             var buf = chunkInfo.data
             if (pidx == 1) {
                 var buf2 = [];
@@ -130,7 +132,19 @@ function recd() {
                         rec.close()
                         window.clearInterval(int)
                     }else{
-                        document.getElementById('txt-f').innerHTML = res.data.rawText
+                        rt = res.data.rawText
+                        if(firstup){
+                            $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'>" + rt + "</span>");
+                            firstup = false;
+                        }
+                        if (rt.length > 0) {
+                            $("#liid_" + liid).text(rt);
+                            if (res.data.rawType == 'final') {
+                                $("#liid_" + liid).css("color","#000000");
+                                liid++;
+                                $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'></span>");
+                            }
+                        }
                     }
                     
             }).catch(function (error) {
