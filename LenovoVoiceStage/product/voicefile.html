@@ -148,9 +148,9 @@ var inputs = document.querySelectorAll( '.inputfile' );
 				fileName = e.target.value.split( '\\' ).pop();
 			}
 			if( fileName ){
-				var fileName2=document.getElementById("file-5").value;
-				var index=fileName2.lastIndexOf(".");
-				var extension=fileName2.substring(index).toLowerCase();
+				var fileVal=document.getElementById("file-5").value;
+				var index=fileVal.lastIndexOf(".");
+				var extension=fileVal.substring(index).toLowerCase();
 				var allowedType =[".wav"];
 				for(var i=0;i<allowedType.length;i++){
 					if(allowedType[i]==extension){
@@ -158,7 +158,6 @@ var inputs = document.querySelectorAll( '.inputfile' );
 						$(".file-name").html(fileName);
 						return true;
 					}else{
-						console.log(444)
 						if(getCookie('grycan.cn.bLang') =='english'){
 							Popup.Nalert("File limit.wav")
 						}else{
