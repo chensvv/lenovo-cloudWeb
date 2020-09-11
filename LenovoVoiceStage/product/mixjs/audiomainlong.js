@@ -9,7 +9,7 @@ var accountidd = window.localStorage.getItem('acd')
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var hour, minute, second; //时 分 秒
-hour = minute = second = 0; //初始化
+    hour = minute = second = 0; //初始化
 var millisecond = 0; //毫秒
 var int;
 var lang;
