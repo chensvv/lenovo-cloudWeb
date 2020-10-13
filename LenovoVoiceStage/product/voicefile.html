@@ -211,6 +211,7 @@ $('#btn').click(function(){
 		for(i=0;i<file.length;i++){  
 			formdata.append("file", file[i]);
 		}
+		console.log(formdata)
 		formdata.append('dateType', '1')
         //创建xhr，使用ajax进行文件上传
         var xhr = new XMLHttpRequest();
@@ -236,7 +237,6 @@ $('#btn').click(function(){
 		xhr.upload.onprogress = function (event) {
 			if(event.lengthComputable){
 				var percent = event.loaded/event.total *100;
-				console.log(parseInt(percent))
 				document.getElementById('progress-pro').innerHTML = parseInt(percent)+"%"
 				document.querySelector(".progress-bar").style.width = parseInt(percent)+"%";
 				if(percent == 100){

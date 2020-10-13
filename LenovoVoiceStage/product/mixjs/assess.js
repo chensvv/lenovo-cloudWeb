@@ -4,8 +4,7 @@ var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var accountidd = window.localStorage.getItem('acd')
 var chunkInfo;
 var rec;
-var urlInfo = 'https://voice.lenovomm.com/xxzz/evaluate_read'
-// var urlInfo = 'http://10.110.148.57:8080/lasf/evaluate_read'
+var urlInfo = urlhead+'/xxzz/evaluate_read'
 function record(e){
     if (accountidd == "" || accountidd == null || accountidd.length == 0) {
         var statusP = document.getElementById("text");
