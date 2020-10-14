@@ -15,7 +15,7 @@
 		"i18n.regTion": "enter Department name",
 		"i18n.loginP": "Please enter user name or mobile number",
 		"i18n.loginW": "Please enter password",
-		"i18n.errUserNull": "Please enter email or password",
+		"i18n.errUserNull": "Please enter email or mobile number",
 		"i18n.errUserNo": "Please enter the correct email or mobile number",
 		"i18n.errPhoneNull": "Please enter mobile number",
 		"i18n.errPhoneNo": "Please input the correct mobile number",

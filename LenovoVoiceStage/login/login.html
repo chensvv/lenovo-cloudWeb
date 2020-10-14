@@ -466,7 +466,7 @@ $('#loginBtn').click(function(){
         // $('#errloginW').text('请输入密码')
     }else{
         $.ajax({
-            url:urlhead+'/lasf/web/login',
+            url:urlhead+'/web/login',
             type:'post',
             dataType:'json',
             data:{u:username,p:password,language:getCookie('grycan.cn.bLang')},
@@ -505,7 +505,7 @@ $('#regBtn').click(function(){
     var regUserTion = $("#regTion").val()
     if(resPassword && resConpass){
         $.ajax({
-            url:urlhead+'/lasf/web/register',
+            url:urlhead+'/web/register',
             type:'post',
             dataType:'json',
             data:{

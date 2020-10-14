@@ -14,7 +14,7 @@ $(function(){
 	}else{
 		$.ajax({
 			type:"POST",
-			url:urlhead+"/lasf/userinfo",
+			url:urlhead+"/userinfo",
 			headers: {  
 				"channel" : "cloudasr"
 			},  

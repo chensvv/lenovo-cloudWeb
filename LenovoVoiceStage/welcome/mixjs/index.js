@@ -47,7 +47,7 @@
 	var token = window.localStorage.getItem('token')
 	$.ajax({
 		type:"POST",
-		url:urlhead+"/lasf/userinfo",
+		url:urlhead+"/userinfo",
 		headers: {  
 			"channel" : "cloudasr"
 		},  

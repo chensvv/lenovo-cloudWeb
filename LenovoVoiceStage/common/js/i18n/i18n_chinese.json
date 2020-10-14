@@ -15,7 +15,7 @@
 		"i18n.regTion": "请输入部门名称",
 		"i18n.loginP": "请输入用户名或手机号",
 		"i18n.loginW":"请输入密码",
-		"i18n.errUserNull": "请输入邮箱或密码",
+		"i18n.errUserNull": "请输入邮箱或手机号",
 		"i18n.errUserNo": "请输入正确格式的邮箱或手机号",
 		"i18n.errPhoneNull": "请输入手机号",
 		"i18n.errPhoneNo": "请输入正确的手机号",

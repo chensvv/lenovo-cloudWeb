@@ -34,7 +34,7 @@ $(function(){
 	    
         $.ajax({
 		  type:"POST",
-		  url:urlhead+"/lasf/forum/list",
+		  url:urlhead+"/forum/list",
 		  dataType:"json",
      	  data:{"pagecount":2000},
      	  headers: {
@@ -76,7 +76,7 @@ $(function(){
 					if(confirm("确认删除吗?")){
 						$.ajax({
 							type:"POST",
-							url:urlhead+"/lasf/forum/delete",
+							url:urlhead+"/forum/delete",
 							data:{"dataid":hid,"accountname":Username},
 							headers: {
 								"channel" : "cloudasr"

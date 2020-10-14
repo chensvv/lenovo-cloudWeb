@@ -244,7 +244,7 @@ var addWavHeader = function(samples,sampleRateTmp,sampleBits,channelCount){
 function XMLhttp(){
     var req = new XMLHttpRequest();
     var formData = 'text='+textv+'&user='+accountid
-    req.open("POST", urlhead+'/lasf/cloudtts', true); // grab our audio file
+    req.open("POST", urlhead+'/cloudtts', true); // grab our audio file
     req.setRequestHeader('channel','cloudasr')
     req.setRequestHeader('lenovokey',lenkey)
     req.setRequestHeader('secretkey',secrkey)

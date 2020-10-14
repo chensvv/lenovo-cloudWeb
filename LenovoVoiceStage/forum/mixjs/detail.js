@@ -84,7 +84,7 @@ function fn(){}
 		function content(){
         $.ajax({
 				  type:"POST",
-				  url:urlhead+"/lasf/forum/detail",
+				  url:urlhead+"/forum/detail",
 				  dataType:"json",
 				  headers: {
 						"channel" : "cloudasr"
@@ -146,7 +146,7 @@ function fn(){}
 								function del(){
 									$.ajax({
 										type: "POST",
-										url: urlhead + '/lasf/forum/delete',
+										url: urlhead + '/forum/delete',
 										data: {
 											"dataid": valid,
 											"accountname": Username,
@@ -180,7 +180,7 @@ function fn(){}
 								// if (confirm("确认删除吗?")) {
 								// 	$.ajax({
 								// 		type: "POST",
-								// 		url: urlhead + '/lasf/forum/delete',
+								// 		url: urlhead + '/forum/delete',
 								// 		data: {
 								// 			"dataid": valid,
 								// 			"accountname": Username,
@@ -208,7 +208,7 @@ function fn(){}
 								function delChild(){
 									$.ajax({
 										type: "POST",
-										url: urlhead + "/lasf/forum/delete",
+										url: urlhead + "/forum/delete",
 										data: {
 											"dataid": keyid,
 											"accountname": Username,
@@ -242,7 +242,7 @@ function fn(){}
 								// if (confirm("确认删除吗?")) {
 								// 	$.ajax({
 								// 		type: "POST",
-								// 		url: urlhead + "/lasf/forum/delete",
+								// 		url: urlhead + "/forum/delete",
 								// 		data: {
 								// 			"dataid": keyid,
 								// 			"accountname": Username,
@@ -302,7 +302,7 @@ function fn(){}
 						var pid = parentEl.find(".pid").html();
 						$.ajax({
 							type: "POST",
-							url: urlhead + '/lasf/forum/add?datatype=1',
+							url: urlhead + '/forum/add?datatype=1',
 							dataType: 'json',
 							data: {
 								"title": tit,
@@ -401,7 +401,7 @@ function fn(){}
 		//文章展示
 		$.ajax({
 			type: 'POST',
-			url: urlhead + '/lasf/forum/detail',
+			url: urlhead + '/forum/detail',
 			dataType: 'json',
 			data: {
 				"articleid": id,
@@ -461,7 +461,7 @@ function fn(){}
 			var $content = $("#content").val();
 			$.ajax({
 				type: 'POST',
-				url: urlhead + '/lasf/forum/add?datatype=1&content=' + $content + '&accountname=' + Username + '&articleid=' + id + '&parentid=0&title=' + tit || tit2,
+				url: urlhead + '/forum/add?datatype=1&content=' + $content + '&accountname=' + Username + '&articleid=' + id + '&parentid=0&title=' + tit || tit2,
 				data: {
 					lid: accountid,
 					t: token

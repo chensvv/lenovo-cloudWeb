@@ -113,7 +113,7 @@ $('#conBtn').click(function(){
     var updPassWord = $.base64.encode($("#password").val())
     if(updPass && updConpass){
         $.ajax({
-            url:urlhead+'/lasf/web/setpwd',
+            url:urlhead+'/web/setpwd',
             type:'post',
             dataType:'json',
             data:{

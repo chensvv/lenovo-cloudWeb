@@ -215,7 +215,7 @@ $('#btn').click(function(){
 		formdata.append('dateType', '1')
         //创建xhr，使用ajax进行文件上传
         var xhr = new XMLHttpRequest();
-        xhr.open("post",urlhead+'/lasf/file/asr');
+        xhr.open("post",urlhead+'/file/asr');
         xhr.onreadystatechange = function () {
             if (xhr.readyState==4 && xhr.status==200){
 				var result = JSON.parse(xhr.responseText)
@@ -259,7 +259,7 @@ $('#btn').click(function(){
 function setTimer () {
 	$.ajax({
 		method:'post',
-		url:urlhead+'/lasf/file/result',
+		url:urlhead+'/file/result',
 		data:{
 			"asrid":asrid
 		},

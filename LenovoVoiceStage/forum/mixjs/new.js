@@ -6,7 +6,7 @@
 			var text=$(".text").val();
 			$.ajax({
 			  type:"POST",
-				url:urlhead+'/lasf/forum/add?datatype=0&title='+title+'&content='+text+'&accountname='+Username,
+				url:urlhead+'/forum/add?datatype=0&title='+title+'&content='+text+'&accountname='+Username,
 				data:{
 					t:window.localStorage.getItem('token'),
 					lid:$.base64.decode(window.localStorage.getItem('acd'))

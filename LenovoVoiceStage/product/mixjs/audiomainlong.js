@@ -1,6 +1,6 @@
 var chunkInfo;
 var rec;
-var urlInfo = urlhead +'/lasf/cloudasr';
+var urlInfo = urlhead +'/cloudasr';
 var ixid
 var pidx = 1
 var over = 0
