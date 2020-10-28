@@ -1,6 +1,7 @@
 var chunkInfo;
 var rec;
-var urlInfo = urlhead +'/cloudasr';
+// var urlInfo = urlhead +'/cloudasr';
+var urlInfo = urlhead +'/webasr';
 var ixid
 var pidx = 1
 var over = 0
@@ -91,10 +92,11 @@ function recd() {
         type: "wav",
         bitRate: 16,
         sampleRate: samp,
-        bufferSize: 4096,
+        bufferSize: 1024,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
             var buf = chunkInfo.data
+            console.log(chunkInfo)
             if (pidx == 1) {
                 var buf2 = [];
                 if(samp == '8000'){
@@ -111,16 +113,49 @@ function recd() {
             //     "&dev=lenovo.rt.urc.lv.develop&ixid=" + ixid + "&pidx=" + pidx++ + "&over=" + over +
             //     "&rsts=0" +
             //     "&spts=0&fpts=0&cpts=0&lrts=0&n2lang="+lang;
-            var data = new FormData()
-            data.append("scene ", 'long');
-            data.append("language ", lang);
-            data.append("sample ", '1');
-            data.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
-            data.append("sessionid", ixid);
-            data.append("packageid", pidx++);
-            data.append("over", over);
-            data.append("voice-data", new Blob([buf4]));
-            axios.post(urlInfo, data,{
+            var fd = new FormData()
+            fd.append("scene ", 'long');
+            fd.append("language ", lang);
+            fd.append("sample ", '1');
+            fd.append("audioFormat", 'pcm_'+samp+'_16bit_sample');
+            fd.append("sessionid", ixid);
+            fd.append("packageid", pidx++);
+            fd.append("over", over);
+            fd.append("voice-data", new Blob([buf4]));
+            // $.ajax({
+            //     type:"POST",
+            //     url:urlInfo,
+            //     headers:{
+            //         'channel': 'cloudasr',
+            //         'lenovokey':lenkey,
+            //         'secretkey': secrkey
+            //     },
+            //     data:fd,
+            //     processData: false,
+            //     contentType: false,
+            //     success:function(res){
+            //         if(typeof(res.errormessage) == "string"){
+            //             document.getElementById('txt-f').innerHTML = res.errormessage
+            //             rec.close()
+            //             window.clearInterval(int)
+            //         }else{
+            //             rt = res.rawText
+            //             if(firstup){
+            //                 $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'>" + rt + "</span>");
+            //                 firstup = false;
+            //             }
+            //             if (rt.length > 0) {
+            //                 $("#liid_" + liid).text(rt);
+            //                 if (res.rawType == 'final') {
+            //                     $("#liid_" + liid).css("color","#000000");
+            //                     liid++;
+            //                     $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'></span>");
+            //                 }
+            //             }
+            //         }
+            //     }
+            // })
+            axios.post(urlInfo, fd,{
                 headers:{
                     'channel': 'cloudasr',
                     'lenovokey':lenkey,
