@@ -105,7 +105,6 @@ function recStop(){
             data.append("voicedata",new Blob([buf4]))
             axios.post(urlInfo,data,{
                 headers:{
-                    // 'content-type': 'multipart/form-data',
                     'lenovokey':lenkey,
                     'secretkey': secrkey
                 }

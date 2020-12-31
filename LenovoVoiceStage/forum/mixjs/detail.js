@@ -138,6 +138,7 @@ function fn(){}
 									$(".replybox").remove();
 								} else {
 									replyClick($(this));
+									console.log($(this))
 								}
 							});
 							

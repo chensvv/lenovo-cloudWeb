@@ -56,8 +56,8 @@
                                    <div class="context">
                                         <div class="con login-input" id="loginInput">
                                             <div class="username login-input-box">
-                                                <input type="text" id="loginPhone" placeholder="用户名" i18n-only="placeholder" i18n="i18n.loginUser" oninput="isLoginP()">
-                                                <span id="errloginP" class="login-err-text" i18n="i18n.loginP">请输入用户名或手机号</span>
+                                                <input type="text" id="loginPhone" placeholder="用户名" i18n-only="placeholder" i18n="i18n.errUserNull" oninput="isLoginP()">
+                                                <span id="errloginP" class="login-err-text" i18n="i18n.loginP">请输入邮箱或手机号</span>
                                             </div>
                                             <div class="password login-input-box">
                                                 <input type="password" id="loginPassword" placeholder="密码" i18n-only="placeholder" i18n="i18n.loginPass" oninput="isLoginW()">
@@ -74,11 +74,11 @@
                                                     <div class="pageCont">
                                                         <div id="page1" class="stepPage">
                                                             <div class="reg-input-box">
-                                                                <input type="text" id="regUser" placeholder="请输入用户名" i18n-only="placeholder" i18n="i18n.regUser" autocomplete="off" onblur="isUser()" oninput="userInput()">
+                                                                <input type="text" id="regUser" placeholder="请输入邮箱或手机号" i18n-only="placeholder" i18n="i18n.errUserNull" autocomplete="off" onblur="isUser()" oninput="userInput()">
                                                                 <span id="errUserNull" class="err-text" i18n="i18n.errUserNull">请输入邮箱或手机号</span>
                                                                 <span id="errUserNo" class="err-text" i18n="i18n.errUserNo">请输入正确格式的邮箱或手机号</span>
                                                             </div>
-                                                            <div class="reg-input-box">
+                                                            <div class="reg-input-box" id="phoneShow">
                                                                 <input type="phone" id="regPhone" placeholder="请输入手机号" i18n-only="placeholder" i18n="i18n.regPhone" autocomplete="off" onblur="isPhoneNum()" oninput="userPhone()">
                                                                 <span id="errPhoneNull" class="err-text" i18n="i18n.errPhoneNull">请输入手机号</span>
                                                                 <span id="errPhoneNo" class="err-text" i18n="i18n.errPhoneNo">请输入正确的手机号</span>
@@ -291,6 +291,12 @@ function userInput(){
     if($('#regUser').val() !=''){
         $('#errUserNull').css('display','none')
     }
+    var phoneReg = /^1[0-9]{10}$/
+    if(phoneReg.test($('#regUser').val())){
+        $('#phoneShow').css('display','none')
+    }else{
+        $('#phoneShow').css('display','block')
+    }
 }
 function isUser(){
     var userVal = $('#regUser').val()
@@ -308,6 +314,7 @@ function isUser(){
         $('#errUserNo').css('display','block')
         return false
     }
+    
 }
 
 function nameInput(){

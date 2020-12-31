@@ -96,7 +96,6 @@ function recd() {
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
             var buf = chunkInfo.data
-            console.log(chunkInfo)
             if (pidx == 1) {
                 var buf2 = [];
                 if(samp == '8000'){
@@ -183,7 +182,7 @@ function recd() {
                     }
                     
             }).catch(function (error) {
-                document.getElementById('txt-f').innerHTML = '服务器错误，请稍后重试'
+                
             })
             
         }
