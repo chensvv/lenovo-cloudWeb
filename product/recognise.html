@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" name="viewport">
+
+  <title i18n="nav_title"></title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.ico" rel="icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
+  <link href="../assets/vendor/htools.select/css/htools.select.css" rel="stylesheet" >
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/only.css" rel="stylesheet" >
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+      <div class="container display-flex">
+        <div class="logo">
+          <a href="../welcome/index.html">
+            <img src="../assets/img/favicon.ico" alt="">
+          <span i18n="nav_logo">
+            
+          </span></a>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <div class="select-box">
+            <label>
+                <select id="selectSamp">
+                    <option value="16000">16k</option>
+                    <option value="8000">8k</option>
+                    
+                </select>
+            </label>  
+            <label>
+                <select id="selectLang">
+                    <option value="chinese">中文</option>
+                    <option value="english">English</option>
+                  </select>
+            </label>
+          </div>
+        </div>
+  
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
+            <li class="drop-down active"><a href="" i18n="nav_product"></a>
+              <ul id="drop-ul">
+                <li class="active"><a href="./recognise.html" i18n="nav_audiomain"></a></li>
+                <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
+                <li><a href="./tts.html" i18n="nav_tts"></a></li>
+                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+              </ul>
+            </li>
+            <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
+            <li><a href="../new/newlist.html" i18n="nav_news"></a></li>
+            <li><a href="../forum/questionlist.html" i18n="nav_forum"></a></li>
+            <li class="mobile-contact"><a href="../user/contact.html" i18n="nav_forum"></a></li>
+            
+          </ul>
+          <li class="login-reg" style="display:none;">
+              <a href="../login/login.html" onclick="gologin()" i18n="signIn"></a>
+              |
+              <a href="../login/login.html" onclick="gologin()" i18n="signUp"></a>
+          </li>
+          <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+            <ul id="drop-ul">
+              <li><a href="../user/uservice.html" i18n="nav_service"></a></li>
+              <li><a href="../login/resetpass.html" i18n="nav_checkpass"></a></li>
+              <li><a id="logout" onclick="logout()" i18n="nav_logout"></a></li>
+            </ul>
+          </li>
+        </nav><!-- .nav-menu -->
+        
+      </div>
+      <img src="../assets/img/trans.png" class="trans" onclick="isLang()">
+    </header><!-- End Header -->
+    <section class="audiomain" id="head">
+      <div class="head-bg d-flex justify-content-center align-items-center">
+        <h2 i18n="nav_audiomain"></h2>
+      </div>
+      <div class="bight"></div>
+    </section><!-- End header Section -->
+  <main id="main" class="audiomain-main">
+
+    <!-- ======= document Section ======= -->
+    <section class="audiomain-main-section">
+      <div class="container">
+          <h2 class="audiomain-title" i18n="proEx">
+            
+          </h2>
+        <div class="audiomain-bg">
+            <div class="bgbox-main">
+                <span class="hint-sp-left" i18n="Miclick"></span>
+                <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' i18n="firstLogin">请先登录</a></span>
+                <span id="statusP" class="please-ask" i18n="speak"></span>
+                <span id="statusD" class="please-ask" i18n="recogVoice"></span>
+                <div id="viz" class="viz"></div>
+                <div class="result-box">
+                  <input type="text" class="form-control result-input" />
+                  <button class="btn update">修改</button>
+                  <div class="pre">
+                    <p><span>总耗时：</span><span id="allDur"></span>ms</p>
+                    <p><span>语音识别引擎耗费时间：</span><span id="asrDur"></span>ms</p>
+                    <p><span>语音识别引擎版本：</span><span id="asrVersion"></span></p>
+                    <p><span>语音识别置信度：</span><span id="confidence"></span></p>
+                    <p><span>结果描述：</span><span id="desc"></span></p>
+                    <p><span>多备选置信度：</span><span id="nConf"></span></p>
+                    <p><span>最终解析结果：</span><span id="nText"></span></p>
+                    <p><span>语义引擎版本：</span><span id="nlpVersion"></span></p>
+                    <p><span>语音识别引擎解析结果：</span><span id="rawText"></span></p>
+                    <p><span>语音处理结果：</span><span id="result"></span></p>
+                    <p><span>结果状态：</span><span id="status"></span></p>
+                    <p><span>服务器时间：</span><span id="time"></span></p>
+                  </div>
+                </div>
+                <div class="record-btn" id="record" onclick="toggleRecording(this)"></div>
+            </div>
+        </div>
+      </div>
+    </section><!-- End main Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+            <span i18n="footerFAQ"></span> 
+            <a href="../user/contact.html" i18n="nav_contact"></a>
+        </div>
+      </div>
+    </footer><!-- End Footer -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
+  <script src="../assets/vendor/recorder-core/recorder.wav.min.js"></script>
+  <script src="../assets/vendor/recorder-core/waveview.js"></script>
+  <script src="../assets/vendor/htools.select/js/htools.select.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/common/url.js"></script>
+  <script src="../assets/js/common/main.js"></script>
+  <script src="../assets/js/product/audiomain.js"></script>
+  
+
+</body>
+
+</html>

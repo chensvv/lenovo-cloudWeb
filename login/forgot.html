@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+
+  <title i18n="nav_title"></title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.ico" rel="icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/only.css">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <img src="../assets/img/trans.png" class="trans login-trans" onclick="isLang()">
+    <div class="login-logo" >
+        <a href="">
+            <img src="../assets/img/favicon.ico" alt="">
+        <span id="text" i18n="nav_logo">
+            
+        </span></a>
+        
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+
+  <main id="forgot">
+    <div class="forgot-main">
+        <div class="processbar">
+            <div class="steps active">
+                <div class="one-steps"><div class="bi stepnum">1</div></div>
+                <div class="bi bit" i18n="account"></div>
+            </div>
+            <div class="steps ac">
+                <div class="lines"></div>
+                <div class="two-steps"><div class="bi stepnum">2</div></div>
+                <div class="bi bit" i18n="set_new_pass"></div>
+            </div>
+            <div class="steps tc">
+                <div class="lines"></div>
+                <div class="three-steps"><div class="bi stepnum">3</div></div>
+                <div class="bi bit" i18n="pass_finish"></div>
+            </div>
+        </div>
+        <div class="processmain">
+            <div class="content active">
+                <div class="form-group">
+                        <label for="forgot-username" i18n="login_username"></label>
+                    <input type="text" class="form-control" id="forgot-username" i18n="[placeholder]pass_email">
+                    <div class="error-tooltip forgot-username-empty" data-aos="fade-down"></div>
+                </div>
+                <div class="form-group code">
+                    <div class="code-input">
+                        <label for="code" i18n="pass_code"></label>
+                        <input type="email" class="form-control" id="code" i18n="[placeholder]pass_code">
+                    </div>
+                    <span class="code-btn" onclick="getCode()" i18n="pass_get_code"></span>
+                    <div class="error-tooltip forgot-code-empty" data-aos="fade-down"></div>
+                </div>
+                <div class="form-group form-group-btn">
+                    <button class="btn btn-primary steps-btn common-btn-loading" id="stepone" onclick="oneSteps()">
+                        <span class="spinner-border spinner-border-sm" id="stepone-loading" role="status" aria-hidden="true"></span>
+                        <span i18n="next_btn"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="content ac">
+                <div class="form-group">
+                    <label for="forgot-password" i18n="pass_new"></label>
+                    <input type="password" class="form-control" id="forgot-passowrd" i18n="[placeholder]password_empty">
+                    <div class="error-tooltip forgot-password-error" data-aos="fade-down"></div>
+                </div>
+                <div class="form-group">
+                    <div class="code-input">
+                        <label for="checkpass" i18n="check_password"></label>
+                        <input type="password" class="form-control" id="checkpass" i18n="[placeholder]check_password">
+                        <div class="error-tooltip forgot-password-check" data-aos="fade-down"></div>
+                    </div>
+                </div>
+                <div class="form-group form-group-btn">
+                    <button class="btn btn-primary steps-btn common-btn-loading" id="steptwo" onclick="twoSteps()">
+                        <span class="spinner-border spinner-border-sm" id="steptwo-loading" role="status" aria-hidden="true"></span>
+                        <span i18n="next_btn"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="content tc">
+                <i class="bi bi-check-circle-fill" style="font-size: 5rem; color:#3ab8e6"></i>
+                <span i18n="reset_pass"></span>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/common/url.js"></script>
+  <!-- <script src="../assets/js/common/main.js"></script> -->
+  <script src="../assets/js/login/forgot.js"></script>
+<script>
+    
+</script>
+</body>
+
+</html>

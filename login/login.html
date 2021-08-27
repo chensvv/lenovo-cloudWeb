@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+
+  <title i18n="nav_title"></title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.ico" rel="icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/only.css">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <img src="../assets/img/trans.png" class="trans login-trans" onclick="isLang()">
+    <div class="login-logo" >
+        <a href="">
+            <img src="../assets/img/favicon.ico" alt="">
+        <span id="text" i18n="nav_logo">
+            
+        </span></a>
+        
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+
+  <main id="login">
+    <div class="login-tabs">
+        <nav>
+            <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" i18n="signIn"></a>
+                <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <!-- <form id="defaultForm" class="form-horizontal" novalidate> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="login-username" i18n="[placeholder]login_username">
+                        <div class="error-tooltip login-username-empty" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="login-password" i18n="[placeholder]login_password">
+                        <div class="error-tooltip login-password-empty" data-aos="fade-down">
+
+                        </div>
+                    </div>
+                    <div class="form-group form-btn">
+                            <button type="submit" name="submit" class="btn btn-primary login-btn common-btn-loading" id="loginBtn">
+                                    <span class="spinner-border spinner-border-sm" id="login-loading" role="status" aria-hidden="true"></span>
+                                    <span i18n="signIn"></span>
+                            </button>
+                    </div>
+                <!-- </form> -->
+                <a href="./forgot.html" class="forgot" target="_blank" i18n="login_forgot"></a>
+                
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div id="mustInfo">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="reg-email" i18n="[placeholder]email_empty" autocomplete="off" onblur="regEmail()">
+                        <div class="error-tooltip reg-email-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="reg-phone" i18n="[placeholder]phone_empty" autocomplete="off" onblur="regPhone()">
+                        <div class="error-tooltip reg-phone-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control pass-word" id="reg-password" i18n="[placeholder]password_empty" autocomplete="off" onblur="regPwd()">
+                        <div class="error-tooltip reg-password-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control pass-word" id="reg-checkpwd" i18n="[placeholder]check_password" autocomplete="off" onblur="regCheckpwd()">
+                        <div class="error-tooltip reg-checkpwd-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group form-btn">
+                            <button class="btn btn-primary login-btn" id="nextbtn" i18n="next_btn"></button>
+                    </div>
+                </div>
+                <div id="basicInfo">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="reg-name" i18n="[placeholder]name_error" autocomplete="off" onblur="regName()">
+                        <div class="error-tooltip reg-name-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="reg-company" i18n="[placeholder]company_error" autocomplete="off" onkeyup="isShowdep()" onblur="regCompany()">
+                        <div class="error-tooltip reg-company-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group" id="dep">
+                        <input type="text" class="form-control" id="reg-dep" i18n="[placeholder]dep_error" autocomplete="off" onblur="regDep()">
+                        <div class="error-tooltip reg-dep-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group form-btn flex-btn">
+                            <button class="btn btn-primary login-btn" id="prevbtn" i18n="prev_btn"></button>
+                            <button class="btn btn-primary login-btn float-right" id="nextbtnm" i18n="next_btn"></button>
+                    </div>
+                </div>
+                <div id="serviceInfo">
+                    <li class="li-title" i18n="selectService"></li>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" value="1" id="asrcheck">
+                        <label class="custom-control-label" for="asrcheck">
+                            ASR  （语音识别ASR）
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" value="2" id="ttscheck">
+                        <label class="custom-control-label" for="ttscheck">
+                            TTS   （语音合成TTS）
+                        </label>
+                    </div>
+                    <div class="form-group form-btn flex-btn">
+                            <button class="btn btn-primary login-btn" id="prevbtnm" i18n="prev_btn"></button>
+                            <button class="btn btn-primary login-btn common-btn-loading" id="regbtn">
+                                    <span class="spinner-border spinner-border-sm" id="reg-loading" role="status" aria-hidden="true"></span>
+                                    <span i18n="signUp"></span>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../i18n/ehi-i18n.js"></script>
+  <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/common/url.js"></script>
+  <!-- <script src="../assets/js/common/main.js"></script> -->
+  <script src="../assets/js/login/login.js"></script>
+<script>
+    // console.log(i18n.get('signIn'))
+</script>
+</body>
+
+</html>
