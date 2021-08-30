@@ -1,6 +1,6 @@
 let i18n = new EhiI18n('../lan/',()=>{
   //获取当前语言
-  console.log(`当前语言${i18n.getLanguage()}`)
+  // console.log(`当前语言${i18n.getLanguage()}`)
   //从语言中获取值,可在Js获取的时候使用
   // console.log(i18n.get('login_username'))
 });
@@ -237,23 +237,4 @@ function isLang(){
     $('.trans').attr('src','../assets/img/trans2.png')
     // console.log("中文===============")
   }
-  // if (e.classList.contains("islang")) {
-  //   e.classList.remove("islang")
-  //   i18n("[i18n]", {
-  //     lang: "chinese",// 变更语言
-  //     filePath: "../i18n/",
-  //     get: true
-  //   });
-  //   console.log("中文===============")
-  //   console.log(i18n.get("footer.about"));
-  // } else {
-  //   e.classList.add("islang")
-  //   i18n("[i18n]", {
-  //     lang: "english",
-  //     filePath: "../i18n/",
-  //     get: true
-  //   })
-  //   console.log("en===============")
-  //   console.log(i18n.get("footer.about"));
-  // }
 }

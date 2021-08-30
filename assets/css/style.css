@@ -557,7 +557,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   top: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6)), url("../img/hero-bg.jpg") center top no-repeat;
+  background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6));
 }
 
 #hero-no-slider h2 {
@@ -2166,7 +2166,7 @@ section {
 }
 
 .assess .voice-box .voice-footer{
-  background: url(../img/audiomain/tube.png) no-repeat;
+  background: url('../img/audiomain/tube.png') no-repeat;
   width: 70px;
   height: 70px;
   background-size: 100%;

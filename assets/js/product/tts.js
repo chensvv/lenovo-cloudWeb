@@ -85,7 +85,6 @@ bgm.addEventListener('playing', function () {
     $('.voice-pause').css('display','block')
 }, false);
 bgm.addEventListener('pause', function () {
-    console.log('pause')
     $('.voice-play').css('display','none')
     $('.voice-pause').css('display','none')
     $('.voice-keep').css('display','block')

@@ -71,14 +71,19 @@ function toggleRecording(e){
 function socket () {
     ws = new WebSocket(path)
     ws.onopen = function(){
-        console.log('ws已连接')
+        // console.log('ws已连接')
         over = 0
         recOpen()
     }
     ws.onerror = function(error){
-        console.log(error)
+        // console.log(error)
         timerReset()
         recStop()
+        Swal.fire({
+            text:i18n.get('server_error'),
+            confirmButtonText: i18n.get('confirm'),
+            confirmButtonColor: '#94cb82'
+        })
     }
     ws.onmessage = function(data){
         let res = JSON.parse(data.data)
@@ -104,7 +109,7 @@ function socket () {
         }
     },
     ws.onclose = function(){
-        console.log('closed')
+        // console.log('closed')
         timerReset()
     }
 }

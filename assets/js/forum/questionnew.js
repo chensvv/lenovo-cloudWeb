@@ -103,7 +103,6 @@ function setShowLength(obj, maxlength, id) {
 	if (rem < 0){ 
 		rem = 0; 
   } 
-  console.log(rem)
   if(rem<10){
     $('.hint-label').css('display','block')
   }else{

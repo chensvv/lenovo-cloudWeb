@@ -6,10 +6,10 @@
  * 兼容IE等游览器的事件绑定插件
  */
 if(typeof jQuery ==='undefined'){
-	console.warn('[警告]缺少插件jQuery,部分功能使用受到影响！请导入jQuery插件！');
+	// console.warn('[警告]缺少插件jQuery,部分功能使用受到影响！请导入jQuery插件！');
 }
 if(typeof layui ==='undefined' && typeof layer ==='undefined'){
-	console.warn('[警告]缺少插件layui，所以有部分功能使用会受到影响，建议导入layui.all.js和css。')
+	// console.warn('[警告]缺少插件layui，所以有部分功能使用会受到影响，建议导入layui.all.js和css。')
 }
 (function(window,undefined){
 	/*
