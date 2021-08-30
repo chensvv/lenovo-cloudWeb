@@ -2011,9 +2011,9 @@ section {
 .tts-main-box .tts-btn-box .voice-pause, .tts-main-box .tts-btn-box .voice-keep{
   display: none;
 }
-.align-center{
+.asr-doc-main .align-center{
   text-align: center;
-  width: 50%;
+  /* width: 50%; */
 }
 
 

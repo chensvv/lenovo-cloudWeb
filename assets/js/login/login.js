@@ -220,6 +220,7 @@ $('#prevbtnm').on('click',function(){
 
 $('#nextbtnm').on('click',function(){
     if(getStyle(document.getElementById('dep'), 'display') == 'none'){
+        console.log(123)
         if(regName() && regCompany()){
             $('#basicInfo').css('display','none')
             $('#serviceInfo').css('display','block')
@@ -227,6 +228,7 @@ $('#nextbtnm').on('click',function(){
             return false
         }
     }else{
+        console.log(456)
         if(regName() && regCompany() && regDep()){
             $('#basicInfo').css('display','none')
             $('#serviceInfo').css('display','block')
@@ -327,7 +329,7 @@ function regDep(){
         $('.reg-dep-error').html(i18n.get('be_error'))
         return false
     }else{
-        true
+        return true
     }
 }
 

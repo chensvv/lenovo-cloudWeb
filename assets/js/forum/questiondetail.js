@@ -109,8 +109,7 @@ $(function () {
                                             <div class='bl${idx}'>
                                                 <p class='keyid' hidden>${rep.id}</p>
                                                 <div class='repinfo'>
-                                                    <div class='replyname'>${unhtml(rep.accountName).replace(/(\w{3})\w{4}/, '$1****')}<span class='reply-con'>${unhtml(rep.content)}</span></div>
-                                                    
+                                                    <div class='replyname'>${unhtml(rep.accountName).replace(/(\w{3})\w{4}/, '$1****')+':'}<span class='reply-con'>${unhtml(rep.content)}</span></div>
                                                 </div>
                                                  <p>`
                                             if(hideStar(Username) == rep.accountName){

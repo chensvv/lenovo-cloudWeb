@@ -86,7 +86,7 @@ $('.pushbtn').click(function(){
 })
 
 function titleInput(){
-  var reg = new RegExp("[`~@#$^()=|{}\\[\\]<>@#￥（）——|{}【】]")
+  var reg = new RegExp("[`~@#$^()|{}\\[\\]<>@#￥（）——|{}【】]")
   if(reg.test($('#exampleInput').val())){
     Swal.fire({
       text: '标题禁止输入特殊字符',

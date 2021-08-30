@@ -19,7 +19,7 @@ $(function () {
                 var vhtml = ''
                 $.each(res.datalist, (idx, val) => {
                     vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
-                                <img src="http://qxyoeao6k.hd-bkt.clouddn.com/head.png" class="align-self-center mr-3 list-img" alt="">
+                                <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
                                     <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
