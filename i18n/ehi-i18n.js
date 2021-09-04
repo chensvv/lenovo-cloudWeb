@@ -100,7 +100,6 @@ class EhiI18n {
             urltype = `${this.basePath}`
         }
         let url = `${urltype}${this.language}.json`
-        console.log(`${this.basePath}`)
         let request = new XMLHttpRequest()
         request.open("get", url ,true)
         request.send(null)

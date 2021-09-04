@@ -1,6 +1,6 @@
 let i18n = new EhiI18n('../lan/',()=>{
   //获取当前语言
-  // console.log(`当前语言${i18n.getLanguage()}`)
+  console.log(`language:${i18n.getLanguage()}`)
   //从语言中获取值,可在Js获取的时候使用
   // console.log(i18n.get('login_username'))
 });
