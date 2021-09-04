@@ -93,7 +93,14 @@ class EhiI18n {
      * 加载语言文件
      */
     loadLanguage() {
-        let url = `${this.basePath}${this.language}.json`
+        let urltype
+        if(window.location.host == 'voice.lenovomm.com'){
+            urltype = `https://voice.lenovomm.com/voicePlatform/lan/`
+        }else{
+            urltype = `${this.basePath}`
+        }
+        let url = `${urltype}${this.language}.json`
+        console.log(`${this.basePath}`)
         let request = new XMLHttpRequest()
         request.open("get", url ,true)
         request.send(null)

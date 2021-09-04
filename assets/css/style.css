@@ -1644,7 +1644,9 @@ section {
   background: url('../img/audiomain/short-rec.png') no-repeat;
   background-size: 100% 100%;
   padding: 3.5rem 2rem 0;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  max-height: 450px;
 }
 .bgbox-main .record-btn{
   background: url('../img/audiomain/Mic-nor.png') no-repeat;
