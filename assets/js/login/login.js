@@ -4,7 +4,7 @@ let i18n = new EhiI18n('../lan/',()=>{
     //从语言中获取值,可在Js获取的时候使用
     // console.log(i18n.get('login_username'))
   })
-
+  var c = 60
 !(function($){
     function aos_init() {
         AOS.init({
@@ -23,9 +23,19 @@ let i18n = new EhiI18n('../lan/',()=>{
         $('.trans').attr('src','../assets/img/trans.png')
       }
 })(jQuery)
+$('a[data-toggle="tab"]').on('hidden.bs.tab', function (event) {
+    // event.target // newly activated tab
+    // event.relatedTarget // previous active tab
+    console.log(event.target.id)
+    if(event.target.id = 'nav-profile-tab'){
+        $('#nav-profile input').val('')
+        $('.error-tooltip').html('')
+        $('.error-tooltip').siblings().css('border-color','')
+        $('.reg-code-btn').siblings().css('border-color','')
+    }
+  })
 $('#loginBtn').click(function(){
     
-    var ferrer = document.referrer
     var username = $("#login-username").val()
     var password = $.base64.encode($('#login-password').val())
 
@@ -123,6 +133,7 @@ $('#regbtn').click(function(){
             dept:$('#reg-dep').val(),
             userService:checkVal,
             p:$.base64.encode($('#reg-password').val()),
+            code:$('#reg-code').val(),
             language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
         },
         success:function(res){
@@ -200,9 +211,9 @@ $('#login-password').on('input',function(){
 })
 
 $('#nextbtn').on('click',function(){
-    if(regEmail() && regPhone() && regPwd() && regCheckpwd()){
-        $('#mustInfo').css('display','none')
-        $('#basicInfo').css('display','block')
+    if(regEmail() && regCode() && regPhone() && regPwd() && regCheckpwd()){
+            $('#mustInfo').css('display','none')
+            $('#basicInfo').css('display','block')
     }else{
         return false
     }
@@ -242,13 +253,59 @@ function regEmail(){
     var emailVal = $('#reg-email').val()
     if(emailVal == ''){
         $('.reg-email-error').html(i18n.get('email_empty'))
+        $('.reg-email-error').siblings().css('border-color','#dc3545')
         return false
-    }else if(!emailReg.test(emailVal)){
-        $('.reg-email-error').html(i18n.get('email_error'))
-        return false
-    }else{
+    }else if(emailReg.test(emailVal)){
         $('.reg-email-error').html('')
+        $('.reg-email-error').siblings().css('border-color','')
         return true
+    }else{
+        $('.reg-email-error').html(i18n.get('email_error'))
+        $('.reg-email-error').siblings().css('border-color','#dc3545')
+        return false
+    }
+}
+var flag
+function regCode(){
+    flag = false
+    var codeVal = $('#reg-code').val()
+    if(codeVal == ''){
+        $('.reg-code-error').html(i18n.get('code_empty'))
+        $('.reg-code-btn').siblings().css('border-color','#dc3545')
+        flag = false
+    }else{
+        $.ajax({
+            async:false,
+            url:proURL+'/web/checkingcode',
+            type:'post',
+            dataType:'json',
+            data:{
+                u:$('#reg-email').val(),
+                code:$('#reg-code').val(),
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+            },
+            success:function(res){
+                if(res.status == 0){
+                    $('.reg-code-error').html('')
+                    $('.reg-code-btn').siblings().css('border-color','')
+                    flag = true
+                }else{
+                    $('.reg-code-error').html(res.error)
+                    $('.reg-code-btn').siblings().css('border-color','#dc3545')
+                    flag = false
+                }
+                
+            },
+            error:function(){
+                Swal.fire({
+                    text:i18n.get('server_error'),
+                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonColor: '#94cb82'
+                })
+                flag = false
+            }
+        })
+        return flag
     }
 }
 
@@ -257,13 +314,17 @@ function regPhone(){
     var phoneVal = $('#reg-phone').val()
     if(phoneVal == ''){
         $('.reg-phone-error').html(i18n.get('phone_empty'))
+        $('.reg-phone-error').siblings().css('border-color','#dc3545')
         return false
-    }else if(!phoneReg.test(phoneVal)){
-        $('.reg-phone-error').html(i18n.get('phone_error'))
-        return false
-    }else{
+    }else if(phoneReg.test(phoneVal)){
         $('.reg-phone-error').html('')
+        $('.reg-phone-error').siblings().css('border-color','')
         return true
+    }else{
+        $('.reg-phone-error').html(i18n.get('phone_error'))
+        $('.reg-phone-error').siblings().css('border-color','#dc3545')
+        
+        return false
     }
 }
 
@@ -272,13 +333,17 @@ function regPwd(){
     var pwdVal = $('#reg-password').val()
     if(pwdVal == ''){
         $('.reg-password-error').html(i18n.get('password_empty'))
+        $('.reg-password-error').siblings().css('border-color','#dc3545')
         return false
-    }else if(!passwordReg.test(pwdVal)){
-        $('.reg-password-error').html(i18n.get('password_error'))
-        return false
-    }else{
+    }else if(passwordReg.test(pwdVal)){
         $('.reg-password-error').html('')
+        $('.reg-password-error').siblings().css('border-color','')
         return true
+    }else{
+        $('.reg-password-error').html(i18n.get('password_error'))
+        $('.reg-password-error').siblings().css('border-color','#dc3545')
+        
+        return false
     }
 }
 
@@ -287,19 +352,31 @@ function regCheckpwd(){
         return true
     }else{
         $('.reg-checkpwd-error').html(i18n.get('checkpwd_error'))
+        $('.reg-checkpwd-error').siblings().css('border-color','#dc3545')
         return false
     }
 }
+
+$('#reg-checkpwd').on('input',function(){
+    if($('#reg-checkpwd').val() === $('#reg-password').val()){
+        $('.reg-checkpwd-error').html('')
+        $('.reg-checkpwd-error').siblings().css('border-color','')
+    }
+})
 
 function regName(){
     var beReg = /^\S+$/;
     if($('#reg-name').val() == ''){
         $('.reg-name-error').html(i18n.get('name_error'))
+        $('.reg-name-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-name').val())){
         $('.reg-name-error').html(i18n.get('be_error'))
+        $('.reg-name-error').siblings().css('border-color','#dc3545')
         return false
     }else{
+        $('.reg-name-error').html('')
+        $('.reg-name-error').siblings().css('border-color','')
         return true
     }
 }
@@ -308,11 +385,15 @@ function regCompany(){
     var beReg = /^\S+$/;
     if($('#reg-company').val() == ''){
         $('.reg-company-error').html(i18n.get('company_error'))
+        $('.reg-company-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-company').val())){
         $('.reg-company-error').html(i18n.get('be_error'))
+        $('.reg-company-error').siblings().css('border-color','#dc3545')
         return false
     }else{
+        $('.reg-company-error').html('')
+        $('.reg-company-error').siblings().css('border-color','')
         return true
     }
 }
@@ -321,11 +402,15 @@ function regDep(){
     var beReg = /^\S+$/;
     if($('#reg-dep').val() == ''){
         $('.reg-dep-error').html(i18n.get('dep_error'))
+        $('.reg-dep-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-dep').val())){
         $('.reg-dep-error').html(i18n.get('be_error'))
+        $('.reg-dep-error').siblings().css('border-color','#dc3545')
         return false
     }else{
+        $('.reg-dep-error').html('')
+        $('.reg-dep-error').siblings().css('border-color','')
         return true
     }
 }
@@ -336,6 +421,81 @@ function isShowdep(){
         $('#dep').css('display','block')
     }else{
         $('#dep').css('display','none')
+    }
+}
+
+function getCode(){
+    if(!regEmail()){
+        return false
+    }
+    $('.reg-code-btn').css('pointer-events','none')
+    $.ajax({
+        url:proURL+'/web/registercode',
+        type:'post',
+        dataType:'json',
+        data:{
+            u:$('#reg-email').val(),
+            language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+        },
+        success:function(res){
+            if(res.status == 0){
+                timer()
+            // Swal.fire({
+            //     text:i18n.get('code_sent'),
+            //     icon:'success',
+            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonColor: '#94cb82'
+            // })
+                Swal.fire({
+                    toast: true,
+                    icon:'success',
+                    position: 'top-end',
+                    background:'#a6f1b8',
+                    text: res.message,
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }else{
+                $('.reg-code-btn').css('pointer-events','auto')
+                // Swal.fire({
+                //     text:res.error,
+                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonColor: '#94cb82'
+                // })
+                Swal.fire({
+                    toast: true,
+                    icon:'warning',
+                    position: 'top-end',
+                    background:'#fff3cd',
+                    text: res.error,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
+        },
+        error:function(){
+            $('.reg-code-btn').css('pointer-events','auto')
+            Swal.fire({
+                text:i18n.get('server_error'),
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
+        }
+    })
+}
+
+function timer() {
+    if (c == 0) {    
+        $('.reg-code-btn').css('pointer-events','auto')        
+        $('.reg-code-btn').html(i18n.get('reg_code_btn'))
+        c = 60;
+    } else {
+        $('.reg-code-btn').html(` ${c} s`)
+        c--;
+        setTimeout(function() {
+    	  timer()
+        }, 1000)
     }
 }
 

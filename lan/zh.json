@@ -23,10 +23,13 @@
   "queren_btn": "确认",
   "cancel": "取消",
   "selectService": "选择开通的服务",
+  "reg_code_btn":"验证邮箱",
+  "code_empty":"请输入验证码",
 
   "nav_title": "联想语音开放平台",
   "nav_index": "首页",
   "nav_product": "产品服务",
+  "control": "会议服务监控",
   "nav_document": "开发资源",
   "nav_news": "新闻资讯",
   "nav_forum": "给我留言",

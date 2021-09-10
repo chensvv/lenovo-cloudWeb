@@ -83,6 +83,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div class="reg-code-box dis-flex">
+                            <input type="text" class="form-control" id="reg-code" i18n="[placeholder]pass_code" autocomplete="off" onblur="regCode()">
+                            <span class="reg-code-btn" onclick="getCode()">验证邮箱</span>
+                        </div>
+                        <div class="error-tooltip reg-code-error" data-aos="fade-down">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <input type="text" class="form-control" id="reg-phone" i18n="[placeholder]phone_empty" autocomplete="off" onblur="regPhone()">
                         <div class="error-tooltip reg-phone-error" data-aos="fade-down">
                             

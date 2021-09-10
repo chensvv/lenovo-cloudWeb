@@ -158,11 +158,12 @@ function getCode(){
         success:function(res){
             if(res.status == 0){
                 timer()
-            Swal.fire({
-                text:i18n.get('code_sent'),
-                confirmButtonText: i18n.get('confirm'),
-                confirmButtonColor: '#94cb82'
-            })
+                Swal.fire({
+                    text:res.message,
+                    icon:'success',
+                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonColor: '#94cb82'
+                })
             }else{
                 $('.code-btn').css('pointer-events','auto')
                 Swal.fire({
@@ -174,6 +175,7 @@ function getCode(){
             
         },
         error:function(){
+            $('.code-btn').css('pointer-events','auto')
             Swal.fire({
                 text:i18n.get('server_error'),
                 confirmButtonText: i18n.get('confirm'),

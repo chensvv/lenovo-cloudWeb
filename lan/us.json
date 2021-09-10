@@ -21,11 +21,13 @@
   "prev_btn": "Prev",
   "cancel": "Cancel",
   "selectService": "Select a service",
-  
+  "reg_code_btn":"get code",
+  "code_empty":"Please enter code",
   
   "nav_title": "LeVoice Tech Open Platform",
   "nav_index": "Homepage",
   "nav_product": "Product",
+  "control": "Conference Monitoring",
   "nav_document": "Document",
   "nav_news": "Information",
   "nav_forum": "Message",
@@ -118,7 +120,7 @@
   "post_success": "Post successfully",
   "post_no": "Failed to post, try again later",
 
-  "noComment": "No comments",
+  "noComment": "No comment,let me make my first comment!",
   "send": "send",
   "noempty": "Comment cannot be empty!",
   "confirm": "Confirm",

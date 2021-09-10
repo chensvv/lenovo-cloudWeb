@@ -19,6 +19,7 @@
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="../assets/css/only.css">
@@ -62,14 +63,14 @@
         <div class="processmain">
             <div class="content active">
                 <div class="form-group">
-                        <label for="forgot-username" i18n="login_username"></label>
-                    <input type="text" class="form-control" id="forgot-username" i18n="[placeholder]pass_email">
+                    <label for="forgot-username" i18n="login_username"></label>
+                    <input type="text" class="form-control" id="forgot-username" autocomplete="off" i18n="[placeholder]pass_email">
                     <div class="error-tooltip forgot-username-empty" data-aos="fade-down"></div>
                 </div>
                 <div class="form-group code">
                     <div class="code-input">
                         <label for="code" i18n="pass_code"></label>
-                        <input type="email" class="form-control" id="code" i18n="[placeholder]pass_code">
+                        <input type="text" class="form-control" id="code" i18n="[placeholder]pass_code">
                     </div>
                     <span class="code-btn" onclick="getCode()" i18n="pass_get_code"></span>
                     <div class="error-tooltip forgot-code-empty" data-aos="fade-down"></div>
@@ -84,13 +85,13 @@
             <div class="content ac">
                 <div class="form-group">
                     <label for="forgot-password" i18n="pass_new"></label>
-                    <input type="password" class="form-control" id="forgot-passowrd" i18n="[placeholder]password_empty">
+                    <input type="text" class="form-control pass-word" id="forgot-password" i18n="[placeholder]password_empty">
                     <div class="error-tooltip forgot-password-error" data-aos="fade-down"></div>
                 </div>
                 <div class="form-group">
                     <div class="code-input">
                         <label for="checkpass" i18n="check_password"></label>
-                        <input type="password" class="form-control" id="checkpass" i18n="[placeholder]check_password">
+                        <input type="text" class="form-control pass-word" id="checkpass" i18n="[placeholder]check_password">
                         <div class="error-tooltip forgot-password-check" data-aos="fade-down"></div>
                     </div>
                 </div>

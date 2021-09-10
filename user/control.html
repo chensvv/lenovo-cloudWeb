@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
-
   <title i18n="nav_title"></title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
@@ -42,19 +41,19 @@
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-            <li class="drop-down active"><a href="" i18n="nav_product"></a>
+            <li class="drop-down"><a href="" i18n="nav_product"></a>
               <ul id="drop-ul">
-                <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
-                <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
-                <li class="active"><a href="./tts.html" i18n="nav_tts"></a></li>
-                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+                <li><a href="../recognise.html" i18n="nav_audiomain"></a></li>
+                <li><a href="../long_recognise.html" i18n="nav_audiomain_long"></a></li>
+                <li><a href="../tts.html" i18n="nav_tts"></a></li>
+                <li><a href="../assess.html" i18n="nav_assess"></a></li>
               </ul>
             </li>
-            <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
+            <li class="ifshow active"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
             <li><a href="../new/newlist.html" i18n="nav_news"></a></li>
             <li><a href="../forum/questionlist.html" i18n="nav_forum"></a></li>
-            <li class="mobile-contact"><a href="../user/contact.html" i18n="nav_forum"></a></li>
+            <li class="mobile-contact"><a href="contact.html" i18n="nav_forum"></a></li>
             
           </ul>
           <li class="login-reg" style="display:none;">
@@ -64,7 +63,7 @@
           </li>
           <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
             <ul id="drop-ul">
-              <li><a href="../user/uservice.html" i18n="nav_service"></a></li>
+              <li><a href="uservice.html" i18n="nav_service"></a></li>
               <li><a href="../login/resetpass.html" i18n="nav_checkpass"></a></li>
               <li><a id="logout" onclick="logout()" i18n="nav_logout"></a></li>
             </ul>
@@ -74,41 +73,24 @@
       </div>
       <img src="../assets/img/trans.png" class="trans" onclick="isLang()">
     </header><!-- End Header -->
-    <section class="tts" id="head">
+    <section class="control" id="head">
       <div class="head-bg d-flex justify-content-center align-items-center">
-        <h2 i18n="nav_tts"></h2>
+        <h2 i18n="control"></h2>
       </div>
       <div class="bight"></div>
     </section><!-- End header Section -->
-  <main id="main" class="tts-main">
+  <main id="main" class="control-main">
 
     <!-- ======= document Section ======= -->
-    <section class="tts-section">
+    <section class="control-main-section">
       <div class="container">
-          <h2 class="tts-title" i18n="proEx">
-            
-          </h2>
-        <div class="tts-main-box">
-                <div class="tts-hint">
-                    <span id="tts-hint-left" i18n="inputText"></span>
-                    <span class="tts-hint-right" onclick="random()" i18n="random"></span>
-                </div>
-                <div class="textarea-box">
-                    <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" i18n="[placeholder]ttsText"></textarea>
-                    <div class="hint-num">
-                        <span i18n="enterword"></span>
-                        <span id="number">150</span>
-                        <span i18n="ttsWords"></span>
-                    </div>
-                </div>
-            <div class="tts-btn-box">
-                <span class="tts-btn voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
-                <span class="tts-btn voice-pause" onclick="voicePause()" i18n="ttspause"></span>
-                <span class="tts-btn voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
+        <div class="control-bg">
+            <div class="con-title">
+              <span style="font-size:20px;">服务整体可用状态</span>
+              <span class="success">正常</span>
             </div>
-            <audio id="bgMusic">
-                    
-            </audio>
+            <div class="main_m">
+            </div>
         </div>
       </div>
     </section><!-- End main Section -->
@@ -119,14 +101,14 @@
       <div class="container">
         <div class="copyright">
             <span i18n="footerFAQ"></span> 
-            <a href="../user/contact.html" i18n="nav_contact"></a>
+            <a href="./contact.html"></a>
         </div>
       </div>
     </footer><!-- End Footer -->
-
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
@@ -136,9 +118,82 @@
   <!-- Template Main JS File -->
   <script src="../assets/js/common/url.js"></script>
   <script src="../assets/js/common/main.js"></script>
-  <script src="../assets/js/product/tts.js"></script>
   
 
 </body>
-
+<script>
+  var serverList = []
+  setTimeout(()=>{
+    getServerStatus()
+  },2000)
+  function getServerStatus(){
+    $.ajax({
+      url:'https://voice.lenovomm.com/task/smb/status',
+      type:'post',
+      success:(res)=>{
+        if(res.errorcode != 1024){
+          var vhtml = ''
+          for(let prop in res) {
+            serverList.push({
+                  name: prop,
+                  status: res[prop]
+              })
+          }
+          $.each(serverList,(idx,val)=>{
+            vhtml +=`<div class="main_map">
+                        <div class="${classVal(val.status)}">
+                            <span class="m_ser">${val.name}</span>
+                            <span class="m_state">${statusVal(val.status)}</span>
+                        </div>
+                    </div>`
+          })
+          $('.main_m').append(vhtml)
+        }else{
+          localStorage.removeItem('token')
+          Swal.fire({
+            text: i18n.get('logTimeOut'),
+            showCancelButton: true,
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            reverseButtons:true,
+            width:'16em',
+            confirmButtonColor: '#94cb82',
+            cancelButtonColor: '#d33',
+            confirmButtonText: i18n.get('confirm'),
+            cancelButtonText:i18n.get('cancel')
+          }).then((result) => {
+            if (result.isConfirmed) {
+              var url = window.location.href
+              window.localStorage.setItem('returnurl',url)
+              window.location.href = '../login/login.html'
+            }
+          })
+        }
+        
+      },
+      error:function(){
+        Swal.fire({
+            text:i18n.get('server_error'),
+            confirmButtonText: i18n.get('confirm'),
+            confirmButtonColor: '#94cb82'
+        })
+      }
+    })
+  }
+  function statusVal(v){
+    if(v == 0){
+      return '正常'
+    }
+    if(v == 1){
+      return '异常'
+    }
+  }
+  function classVal(v){
+    if(v == 0){
+      return 'normal_line'
+    }else{
+      return 'abnormal_line'
+    }
+  }
+</script>
 </html>

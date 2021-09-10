@@ -4,6 +4,8 @@ let i18n = new EhiI18n('../lan/',()=>{
   //从语言中获取值,可在Js获取的时候使用
   // console.log(i18n.get('login_username'))
 });
+// console.log(i18n)
+
 !(function($) {
   "use strict";
 
@@ -206,6 +208,12 @@ let i18n = new EhiI18n('../lan/',()=>{
     }else{
         return str.substring(0,3) + "****" + str.substring(str.length - 4)
     }
+}
+
+if(localStorage.getItem('ms') == 1){
+  $('.ifshow').css('display','block')
+}else{
+  $('.ifshow').css('display','none')
 }
 
   
