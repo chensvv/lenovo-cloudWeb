@@ -54,7 +54,7 @@
             </li>
             <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
-            <li class="active"><a href="./newlist.html" i18n="nav_news"></a></li>
+            <li class="active"><a href="javascript:void(0);" i18n="nav_news"></a></li>
             <li><a href="../forum/questionlist.html" i18n="nav_forum"></a></li>
             <li class="mobile-contact"><a href="../user/contact.html" i18n="nav_forum"></a></li>
             
@@ -108,6 +108,7 @@
     </footer><!-- End Footer -->
 
   <!-- Vendor JS Files -->
+  <script src="../assets/js/common/isIE.js"></script>
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../i18n/ehi-i18n.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
@@ -130,10 +131,10 @@
       dataType:"json",
       data:JSON.stringify(listParams),
       contentType:'application/json;charset=UTF-8',
-      success:(res)=>{
+      success:function(res){
         if(res.errorcode != 1024){
           var vhtml = ''
-          $.each(res.dataLists.reverse(),(idx,val)=>{
+          $.each(res.dataLists.reverse(),function(idx,val){
             vhtml +=`<div class="col-md-6 col-lg-6 d-flex align-items-stretch justify-content-center card-row">
                   <div class="card">
                     <a href="${val.detailsUrl}">
@@ -161,7 +162,7 @@
             cancelButtonColor: '#d33',
             confirmButtonText: i18n.get('confirm'),
             cancelButtonText:i18n.get('cancel')
-          }).then((result) => {
+          }).then((result)=>{
             if (result.isConfirmed) {
               var url = window.location.href
               window.localStorage.setItem('returnurl',url)

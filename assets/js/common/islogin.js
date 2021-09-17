@@ -19,7 +19,7 @@ $.ajax({
             width:'16em', 
             confirmButtonColor: '#94cb82',
             confirmButtonText: i18n.get('confirm'),
-        }).then((result) => {
+        }).then((result)=>{
             if (result.isConfirmed) {
               var url = window.location.href
               window.localStorage.setItem('returnurl',url)

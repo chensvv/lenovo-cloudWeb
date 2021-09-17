@@ -1,6 +1,6 @@
 let i18n = new EhiI18n('../lan/',()=>{
   //获取当前语言
-  console.log(`language:${i18n.getLanguage()}`)
+  // console.log(`language:${i18n.getLanguage()}`)
   //从语言中获取值,可在Js获取的时候使用
   // console.log(i18n.get('login_username'))
 });
@@ -215,7 +215,6 @@ if(localStorage.getItem('ms') == 1){
 }else{
   $('.ifshow').css('display','none')
 }
-
   
 
   
@@ -235,7 +234,6 @@ function gologin(){
 }
 
 function isLang(){
-  
   if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
     i18n.setLanguage('us')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')

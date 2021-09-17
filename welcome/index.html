@@ -22,7 +22,6 @@
 
   <!-- Template Main CSS File -->
   <link href="https://voice.lenovomm.com/voicePlatform/assets/css/style.css" rel="stylesheet">
-  
 </head>
 
 <body>
@@ -43,7 +42,7 @@
 
       <nav class="nav-menu d-none d-lg-block dis-flex">
         <ul>
-          <li class="active"><a href="index.html" i18n="nav_index"></a></li>
+          <li class="active"><a href="javascript:void(0);" i18n="nav_index"></a></li>
           <li class="drop-down"><a href="" i18n="nav_product"></a>
             <ul id="drop-ul">
               <li><a href="https://voice.lenovomm.com/voicePlatform/product/recognise.html" i18n="nav_audiomain"></a></li>
@@ -262,6 +261,7 @@
 
 
   <!-- Vendor JS Files -->
+  <script src="https://voice.lenovomm.com/voicePlatform/assets/js/common/isIE.js"></script>
   <script src="https://voice.lenovomm.com/voicePlatform/assets/vendor/jquery/jquery.min.js"></script>
   <script src="https://voice.lenovomm.com/voicePlatform/i18n/ehi-i18n.js"></script>
   <script src="https://voice.lenovomm.com/voicePlatform/assets/vendor/jquery.Base64/jquery.base64.js"></script>
@@ -283,7 +283,7 @@
     $(this).find('p, .btn-get-started').addClass('animate__animated animate__fadeInUp');
   });
   $('.carousel').carousel({
-    interval: 3000
+    interval: 5000
   })
 </script>
 </body>
