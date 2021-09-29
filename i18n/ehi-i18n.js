@@ -1,3 +1,5 @@
+
+
 class EhiI18n {
     languageKey = 'ehiI18n.Language'
     language = 'zh'

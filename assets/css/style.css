@@ -1125,6 +1125,9 @@ section {
   left: 50%;
   transform: translateX(-50%);
 }
+.new-main .card{
+  width: 100%;
+}
 .newp-main{
   padding-top: 110px;
 }
@@ -3100,6 +3103,7 @@ body.swal2-toast-shown .swal2-container{
 @media (max-width: 575px) {
   .mobile-nav-toggle{
     top: 7px;
+    right: 0;
   }
   #header{
     height: 40px;
@@ -3214,10 +3218,13 @@ body.swal2-toast-shown .swal2-container{
     line-height: 0;
     display: flex;
     flex-direction: column;
+    right: 20px;
   }
   .audiomain-main .bgbox-main{
     background: none;
     padding: 0;
+    width: auto;
+    position: unset;
   }
   .audiomain-main .audiomain-bg{
     position: unset;

@@ -1,4 +1,4 @@
-let i18n = new EhiI18n('../lan/',()=>{
+var i18n = new EhiI18n('../lan/', function(){
   //获取当前语言
   // console.log(`language:${i18n.getLanguage()}`)
   //从语言中获取值,可在Js获取的时候使用
