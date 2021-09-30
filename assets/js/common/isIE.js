@@ -1,7 +1,7 @@
 IEVersion()
 function IEVersion() {
     var userAgent = navigator.userAgent.toLowerCase();
-    alert(userAgent)
+    // alert(userAgent)
     var isIE = userAgent.indexOf("trident") > -1 
     var isEdge =  userAgent.indexOf("edge") > -1
     // var chromeVer = userAgent.substr(userAgent.lastIndexOf("e/")+2).substring(0,2)
