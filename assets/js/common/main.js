@@ -177,7 +177,7 @@ var i18n = new EhiI18n('../lan/', function(){
   $.ajax({
     type:"POST",
     url:proURL+"/userinfo",
-    headers: {  
+    headers: {
       "channel" : "cloudasr"
     },
     data:{"username":localStorage.getItem('un'),"lenovoid":$.base64.decode(localStorage.getItem('acd')),t:localStorage.getItem('token')},

@@ -44,14 +44,15 @@
 
   <main id="login">
     <div class="login-tabs">
-        <nav>
-            <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" i18n="signIn"></a>
-                <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a>
+        <!-- <nav> -->
+            <div class="head-tabs dis-flex justify-content-center">
+                <!-- <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" i18n="signIn"></a> -->
+                <span class="nav-link" i18n="signIn"></span>
+                <!-- <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a> -->
             </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <!-- </nav> -->
+        <!-- <div class="tab-content" id="nav-tabContent"> -->
+            <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> -->
                 <!-- <form id="defaultForm" class="form-horizontal" novalidate> -->
                     <div class="form-group">
                         <input type="text" class="form-control" id="login-username" i18n="[placeholder]login_username">
@@ -65,103 +66,36 @@
 
                         </div>
                     </div>
-                    <div class="form-group form-btn">
-                            <button type="submit" name="submit" class="btn btn-primary login-btn common-btn-loading" id="loginBtn">
-                                    <span class="spinner-border spinner-border-sm" id="login-loading" role="status" aria-hidden="true"></span>
-                                    <span i18n="signIn"></span>
-                            </button>
+                    <div class="form-group">
+                    <div class="reg-code-box dis-flex">
+                        <input type="text" class="form-control img-code-input" id="login-img-code" i18n="[placeholder]img_code" autocomplete="off" onblur="loginImgCode()">
+                        <img id="img-code-login" class="img-code" onclick="getLoginImgCode()" /> 
                     </div>
+                    <div class="error-tooltip reg-img-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group form-btn">
+                        <button type="submit" name="submit" class="btn btn-primary login-btn common-btn-loading" id="loginBtn">
+                                <span class="spinner-border spinner-border-sm" id="login-loading" role="status" aria-hidden="true"></span>
+                                <span i18n="signIn"></span>
+                        </button>
+                        <div class="forgot-reg">
+                            <a href="./forgot.html" class="forgot" target="_blank" i18n="login_forgot"></a>
+                            <a href="./register.html" class="register" target="_blank" i18n="login_reg"></a>
+                        </div>
+                </div>
                 <!-- </form> -->
-                <a href="./forgot.html" class="forgot" target="_blank" i18n="login_forgot"></a>
+                
+                
                 
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div id="mustInfo">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="reg-email" i18n="[placeholder]email_empty" autocomplete="off" onblur="regEmail()">
-                        <div class="error-tooltip reg-email-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="reg-code-box dis-flex">
-                            <input type="text" class="form-control" id="reg-code" i18n="[placeholder]pass_code" autocomplete="off" onblur="regCode()">
-                            <span class="reg-code-btn" onclick="getCode()">验证邮箱</span>
-                        </div>
-                        <div class="error-tooltip reg-code-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="reg-phone" i18n="[placeholder]phone_empty" autocomplete="off" onblur="regPhone()">
-                        <div class="error-tooltip reg-phone-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control pass-word" id="reg-password" i18n="[placeholder]password_empty" autocomplete="off" onblur="regPwd()">
-                        <div class="error-tooltip reg-password-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control pass-word" id="reg-checkpwd" i18n="[placeholder]check_password" autocomplete="off" onblur="regCheckpwd()">
-                        <div class="error-tooltip reg-checkpwd-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group form-btn">
-                            <button class="btn btn-primary login-btn" id="nextbtn" i18n="next_btn"></button>
-                    </div>
-                </div>
-                <div id="basicInfo">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="reg-name" i18n="[placeholder]name_error" autocomplete="off" onblur="regName()">
-                        <div class="error-tooltip reg-name-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="reg-company" i18n="[placeholder]company_error" autocomplete="off" onkeyup="isShowdep()" onblur="regCompany()">
-                        <div class="error-tooltip reg-company-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group" id="dep">
-                        <input type="text" class="form-control" id="reg-dep" i18n="[placeholder]dep_error" autocomplete="off" onblur="regDep()">
-                        <div class="error-tooltip reg-dep-error" data-aos="fade-down">
-                            
-                        </div>
-                    </div>
-                    <div class="form-group form-btn flex-btn">
-                            <button class="btn btn-primary login-btn" id="prevbtn" i18n="prev_btn"></button>
-                            <button class="btn btn-primary login-btn float-right" id="nextbtnm" i18n="next_btn"></button>
-                    </div>
-                </div>
-                <div id="serviceInfo">
-                    <li class="li-title" i18n="selectService"></li>
-                    <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" value="1" id="asrcheck">
-                        <label class="custom-control-label" for="asrcheck">
-                            ASR  （语音识别ASR）
-                        </label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" value="2" id="ttscheck">
-                        <label class="custom-control-label" for="ttscheck">
-                            TTS   （语音合成TTS）
-                        </label>
-                    </div>
-                    <div class="form-group form-btn flex-btn">
-                            <button class="btn btn-primary login-btn" id="prevbtnm" i18n="prev_btn"></button>
-                            <button class="btn btn-primary login-btn common-btn-loading" id="regbtn">
-                                    <span class="spinner-border spinner-border-sm" id="reg-loading" role="status" aria-hidden="true"></span>
-                                    <span i18n="signUp"></span>
-                            </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> -->
+                <!-- <div id="mustInfo"> -->
+                    
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
     </div>
   </main>
 

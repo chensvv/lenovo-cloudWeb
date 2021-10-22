@@ -5,6 +5,8 @@ let i18n = new EhiI18n('../lan/',()=>{
     // console.log(i18n.get('login_username'))
   })
   var c = 60
+  var reguuid
+  var loginuuid
 !(function($){
     function aos_init() {
         AOS.init({
@@ -41,8 +43,10 @@ $('#loginBtn').click(function(){
 
     if(username == ''){
         $('.login-username-empty').html(i18n.get('username_empty'))
+        $('.login-username-empty').siblings().css('border-color','#dc3545')
     }else if(password == ''){
         $('.login-password-empty').html(i18n.get('password_empty'))
+        $('.login-password-empty').siblings().css('border-color','#dc3545')
     }else{
         $('#login-loading').show()
         $('#loginBtn').attr('disabled','ture')
@@ -50,7 +54,13 @@ $('#loginBtn').click(function(){
             url:proURL+'/web/login',
             type:'post',
             dataType:'json',
-            data:{u:username,p:password,language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'},
+            data:{
+                u:username,
+                p:password,
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+                imgCode:$('#login-img-code').val(),
+                ucode:loginuuid
+            },
             success:function(res){
                 $('#login-loading').hide()
                 $('#loginBtn').removeAttr('disabled','disabled')
@@ -81,6 +91,7 @@ $('#loginBtn').click(function(){
                     }
                     window.localStorage.removeItem('returnurl')
                 }else{
+                    getLoginImgCode()
                     Swal.fire({
                         toast: true,
                         icon:'warning',
@@ -93,6 +104,7 @@ $('#loginBtn').click(function(){
                 }
             },
             error:function(err){
+                getLoginImgCode()
                 $('#login-loading').hide()
                 $('#loginBtn').removeAttr('disabled','disabled')
                 Swal.fire({
@@ -106,116 +118,137 @@ $('#loginBtn').click(function(){
 })
 
 $('#regbtn').click(function(){
-    var checkVal
-    if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == true){
-        checkVal = 3
-    }else if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == false){
-        checkVal = 0
-    }else{
-        if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == false){
-            checkVal = 1
+        var checkVal
+        if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == true){
+            checkVal = 3
+        }else if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == false){
+            checkVal = 0
+        }else{
+            if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == false){
+                checkVal = 1
+            }
+            if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == true){
+                checkVal = 2
+            }
         }
-        if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == true){
-            checkVal = 2
-        }
-    }
-    $('#reg-loading').show()
-    $('#regbtn').attr('disabled','true')
-    $.ajax({
-        url:proURL+'/web/register',
-        type:'post',
-        dataType:'json',
-        data:{
-            u:$('#reg-email').val(),
-            phone:$('#reg-phone').val(),
-            username:$('#reg-name').val(),
-            company:$('#reg-company').val(),
-            dept:$('#reg-dep').val(),
-            userService:checkVal,
-            p:$.base64.encode($('#reg-password').val()),
-            code:$('#reg-code').val(),
-            language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
-        },
-        success:function(res){
-            $('#reg-loading').hide()
-            $('#regbtn').removeAttr('disabled','disabled')
-            if(res.status == 0){
-                Swal.fire({
-                    toast: true,
-                    icon:'success',
-                    position: 'top-end',
-                    background:'#d4edda',
-                    text: res.message,
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-                // var param = {
-                //     'acd':$.base64.encode(res.lenovoId),
-                //     'lk':$.base64.encode(res.lenovoKey),
-                //     'sk':$.base64.encode(res.secretKey),
-                //     'p':$.base64.encode($('#reg-password').val()),
-                //     'un':res.userName,
-                //     'token':res.token,
-                //     'us':res.userService,
-                //     'ms':res.meetingService
-                // }
-                // window.localStorage.setItem('data',JSON.stringify(param))
+        $('#reg-loading').show()
+        $('#regbtn').attr('disabled','true')
+        $.ajax({
+            url:proURL+'/web/register',
+            type:'post',
+            dataType:'json',
+            data:{
+                u:$('#reg-email').val(),
+                phone:$('#reg-phone').val(),
+                username:$('#reg-name').val(),
+                company:$('#reg-company').val(),
+                dept:$('#reg-dep').val(),
+                userService:checkVal,
+                p:$.base64.encode($('#reg-password').val()),
+                code:$('#reg-code').val(),
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+                imgCode:$('#reg-img-code').val(),
+                ucode:reguuid
+            },
+            success:function(res){
+                $('#reg-loading').hide()
+                $('#regbtn').removeAttr('disabled','disabled')
+                if(res.status == 0){
+                    Swal.fire({
+                        toast: true,
+                        icon:'success',
+                        position: 'top-end',
+                        background:'#d4edda',
+                        text: res.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    // var param = {
+                    //     'acd':$.base64.encode(res.lenovoId),
+                    //     'lk':$.base64.encode(res.lenovoKey),
+                    //     'sk':$.base64.encode(res.secretKey),
+                    //     'p':$.base64.encode($('#reg-password').val()),
+                    //     'un':res.userName,
+                    //     'token':res.token,
+                    //     'us':res.userService,
+                    //     'ms':res.meetingService
+                    // }
+                    // window.localStorage.setItem('data',JSON.stringify(param))
 
-                window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
-                window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
-                window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
-                window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#reg-password').val())))
-                window.localStorage.setItem('un',res.userName)
-                window.localStorage.setItem('token',res.token)
-                window.localStorage.setItem('us',res.userService)
-                window.localStorage.setItem('ms',res.meetingService)
-                if(window.localStorage.getItem('returnurl') != null){
-                    window.location.href = window.localStorage.getItem('returnurl')
+                    setTimeout(()=>{
+                        window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
+                        window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
+                        window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
+                        window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#reg-password').val())))
+                        window.localStorage.setItem('un',res.userName)
+                        window.localStorage.setItem('token',res.token)
+                        window.localStorage.setItem('us',res.userService)
+                        window.localStorage.setItem('ms',res.meetingService)
+                        if(window.localStorage.getItem('returnurl') != null){
+                            window.location.href = window.localStorage.getItem('returnurl')
+                        }else{
+                            window.location.href = '../welcome/index.html'
+                        }
+                        window.localStorage.removeItem('returnurl')
+                    },1000)
                 }else{
-                    window.location.href = '../welcome/index.html'
+                    getRegImgCode()
+                    Swal.fire({
+                        toast: true,
+                        icon:'warning',
+                        position: 'top-end',
+                        background:'#fff3cd',
+                        text: res.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
-                window.localStorage.removeItem('returnurl')
-            }else{
+            },
+            error:function(err){
+                getRegImgCode()
+                $('#reg-loading').hide()
+                $('#regbtn').removeAttr('disabled','disabled')
                 Swal.fire({
-                    toast: true,
-                    icon:'warning',
-                    position: 'top-end',
-                    background:'#fff3cd',
-                    text: res.error,
-                    showConfirmButton: false,
-                    timer: 1500
+                    text:i18n.get('server_error'),
+                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonColor: '#94cb82'
                 })
             }
-        },
-        error:function(err){
-            $('#reg-loading').hide()
-            $('#regbtn').removeAttr('disabled','disabled')
-            Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
-                confirmButtonColor: '#94cb82'
-            })
-        }
-    })
+        })
 })
 
 $('#login-username').on('input',function(){
     if($("#login-username").val() != ''){
         $('.login-username-empty').html('')
+        $('.login-username-empty').siblings().css('border-color','')
     }
 })
 $('#login-password').on('input',function(){
     if($("#login-password").val() != ''){
         $('.login-password-empty').html('')
+        $('.login-password-empty').siblings().css('border-color','')
     }
 })
 
 $('#nextbtn').on('click',function(){
-    if(regEmail() && regCode() && regPhone() && regPwd() && regCheckpwd()){
+    if(getStyle(document.getElementById('dep'), 'display') == 'none'){
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany()){
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
+            $('#val-email').val($('#reg-email').val())
+            getRegImgCode()
+        }else{
+            return false
+        }
     }else{
-        return false
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && regDep()){
+            $('#mustInfo').css('display','none')
+            $('#basicInfo').css('display','block')
+            $('#val-email').val($('#reg-email').val())
+            getRegImgCode()
+        }else{
+            return false
+        }
     }
 })
 
@@ -230,21 +263,7 @@ $('#prevbtnm').on('click',function(){
 })
 
 $('#nextbtnm').on('click',function(){
-    if(getStyle(document.getElementById('dep'), 'display') == 'none'){
-        if(regName() && regCompany()){
-            $('#basicInfo').css('display','none')
-            $('#serviceInfo').css('display','block')
-        }else{
-            return false
-        }
-    }else{
-        if(regName() && regCompany() && regDep()){
-            $('#basicInfo').css('display','none')
-            $('#serviceInfo').css('display','block')
-        }else{
-            return false
-        }
-    }
+    
 })
     
     
@@ -308,6 +327,84 @@ function regCode(){
         return flag
     }
 }
+function regImgCode(){
+    var imgCodeVal = $('#reg-img-code').val()
+    if(imgCodeVal == ''){
+        $('.reg-img-error').html(i18n.get('img_code'))
+        $('.reg-img-code').siblings().css('border-color','#dc3545')
+    }else{
+        $.ajax({
+            url:proURL+'/web/checkImgCode',
+            type:'post',
+            dataType:'json',
+            data:{
+                imgCode:$('#reg-img-code').val(),
+                ucode:reguuid,
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+            },
+            success:function(res){
+                if(res.status == 0){
+                    $('.reg-img-error').html('')
+                    $('.reg-img-code').siblings().css('border-color','')
+                    flag = true
+                }else{
+                    $('.reg-img-error').html(res.error)
+                    $('.reg-img-code').siblings().css('border-color','#dc3545')
+                    flag = false
+                }
+                
+            },
+            error:function(){
+                Swal.fire({
+                    text:i18n.get('server_error'),
+                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonColor: '#94cb82'
+                })
+                flag = false
+            }
+        })
+        return flag
+    }
+}
+function loginImgCode(){
+    var imgCodeVal = $('#login-img-code').val()
+    if(imgCodeVal == ''){
+        $('.login-img-error').html(i18n.get('img_code'))
+        $('.login-img-code').siblings().css('border-color','#dc3545')
+    }else{
+        $.ajax({
+            url:proURL+'/web/checkImgCode',
+            type:'post',
+            dataType:'json',
+            data:{
+                imgCode:$('#login-img-code').val(),
+                ucode:loginuuid,
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+            },
+            success:function(res){
+                if(res.status == 0){
+                    $('.login-img-error').html('')
+                    $('.login-img-code').siblings().css('border-color','')
+                    flag = true
+                }else{
+                    $('.login-img-error').html(res.error)
+                    $('.login-img-code').siblings().css('border-color','#dc3545')
+                    flag = false
+                }
+                
+            },
+            error:function(){
+                Swal.fire({
+                    text:i18n.get('server_error'),
+                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonColor: '#94cb82'
+                })
+                flag = false
+            }
+        })
+        return flag
+    }
+}
 
 function regPhone(){
     var phoneReg = /^1[0-9]{10}$/
@@ -328,8 +425,9 @@ function regPhone(){
     }
 }
 
+
 function regPwd(){
-    var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z~.'!@#￥$%^&*()+-_=:]{8,}$/
+    var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#reg-password').val()
     if(pwdVal == ''){
         $('.reg-password-error').html(i18n.get('password_empty'))
@@ -476,6 +574,91 @@ function getCode(){
         },
         error:function(){
             $('.reg-code-btn').css('pointer-events','auto')
+            Swal.fire({
+                text:i18n.get('server_error'),
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
+        }
+    })
+}
+function getRegImgCode(){
+    $.ajax({
+        url:proURL+'/web/getSecurityCode',
+        type:'post',
+        dataType:'json',
+        success:function(res){
+            if(res.status == 0){
+                $('#img-code-reg').attr('src','data:image/png;base64,'+res.imgage)
+                reguuid=res.uuid
+            // Swal.fire({
+            //     text:i18n.get('code_sent'),
+            //     icon:'success',
+            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonColor: '#94cb82'
+            // })
+            }else{
+                // Swal.fire({
+                //     text:res.error,
+                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonColor: '#94cb82'
+                // })
+                Swal.fire({
+                    toast: true,
+                    icon:'warning',
+                    position: 'top-end',
+                    background:'#fff3cd',
+                    text: res.error,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
+        },
+        error:function(){
+            Swal.fire({
+                text:i18n.get('server_error'),
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
+        }
+    })
+}
+getLoginImgCode()
+function getLoginImgCode(){
+    $.ajax({
+        url:proURL+'/web/getSecurityCode',
+        type:'post',
+        dataType:'json',
+        success:function(res){
+            if(res.status == 0){
+                $('#img-code-login').attr('src','data:image/png;base64,'+res.imgage)
+                loginuuid=res.uuid
+            // Swal.fire({
+            //     text:i18n.get('code_sent'),
+            //     icon:'success',
+            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonColor: '#94cb82'
+            // })
+            }else{
+                // Swal.fire({
+                //     text:res.error,
+                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonColor: '#94cb82'
+                // })
+                Swal.fire({
+                    toast: true,
+                    icon:'warning',
+                    position: 'top-end',
+                    background:'#fff3cd',
+                    text: res.error,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
+        },
+        error:function(){
             Swal.fire({
                 text:i18n.get('server_error'),
                 confirmButtonText: i18n.get('confirm'),

@@ -113,7 +113,7 @@ function finishSteps(){
 }
 
 function newPass(){
-    var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z~.'!@#￥$%^&*()+-_=:]{8,}$/
+    var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#forgot-password').val()
     if(pwdVal == ''){
         $('.forgot-password-error').html(i18n.get('password_empty'))

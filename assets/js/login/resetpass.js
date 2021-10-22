@@ -1,6 +1,6 @@
 $('#reset-loading').hide()
 function regPwd(){
-    var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z~.'!@#￥$%^&*()+-_=:]{8,}$/
+    var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#reg-password').val()
     if(pwdVal == ''){
         $('.reg-password-error').html(i18n.get('password_empty'))

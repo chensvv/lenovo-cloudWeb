@@ -1281,23 +1281,31 @@ section {
   transform: translate(0, -50%);
   background: #fff;
   border-radius: 3px;
-  padding: 20px 0 0;
+  padding: 20px 0;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 0 6px 0 rgb(0 0 0 / 4%);
 }
-.login-tabs .nav-tabs .nav-item.show .nav-link, .login-tabs .nav-tabs .nav-link.active{
+/* .login-tabs .nav-tabs .nav-item.show .nav-link, .login-tabs .nav-tabs .nav-link.active{
   border-color: #fff;
 }
 .login-tabs .nav-tabs .nav-link:focus, .login-tabs .nav-tabs .nav-link:hover{
   border-color: #fff;
-}
-.login-tabs .nav-link.active:after{
+} */
+/* .login-tabs .nav-link.active:after{
   position: absolute;
   height: 3px;
   background: #333;
   bottom: 0;
   width: 20px;
   content: '';
+} */
+.login-tabs .nav-link{
+  width: 80%;
+  border-bottom: 1px solid #d5d5d5;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  text-align: center;
 }
+
 .login-tabs .nav-tabs{
   border-bottom: none;
 }
@@ -1314,8 +1322,8 @@ section {
 }
 
 .login-tabs .form-group{
-  width: 80%;
-  margin: 0rem auto 1.3rem auto;
+  width: 75%;
+  margin: 0rem auto 1.2rem auto;
   position: relative;
 }
 
@@ -1324,10 +1332,6 @@ section {
 }
 .pass-word{
   -webkit-text-security: disc;
-}
-
-.form-group.form-btn{
-  margin: 0rem auto .5rem auto !important;
 }
 
 .login-tabs .form-control:focus{
@@ -1367,16 +1371,17 @@ section {
   padding-left: 20px;
 }
 
-.flex-btn .login-btn{
+/* .flex-btn .login-btn{
   width: 45%;
-}
+} */
 
 .custom-control-input:focus~.custom-control-label::before{
   box-shadow: none;
 }
 
 .li-title{
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
+  list-style: none;
 }
 
 #serviceInfo .custom-control{
@@ -1403,15 +1408,20 @@ section {
   display: none;
 }
 
-#login .forgot{
+.forgot-reg{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 4px 0;
+}
+
+#login .forgot, #login .register{
   font-size: 12px !important;
   cursor: pointer;
   text-decoration: none;
   color: #333;
-  margin-left: 3em;
-  display: block;
 }
-#login .forgot:hover{
+#login .forgot:hover,#login .register:hover{
   text-decoration: underline;
 }
 
@@ -1419,13 +1429,26 @@ section {
   width: 60%;
 }
 .reg-code-box .reg-code-btn{
-  width: 40%;
-  text-align: center;
-  line-height: 38px;
-  font-size: 1.1rem;
-  text-decoration: underline;
-  color: #495057;
+  width: 30%;
+  font-size: 14px;
+  color: #fff;
   cursor: pointer;
+  background: #4fc3e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(1.5em + .75rem + 2px);
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+#login .img-code{
+  height: calc(1.5em + .75rem + 2px) !important;
+  width: 40% !important;
+}
+#login .img-code-input{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 60%;
 }
 
 /*--------------------------------------------------------------
@@ -1467,6 +1490,56 @@ section {
 }
 
 
+/*--------------------------------------------------------------
+# register
+--------------------------------------------------------------*/
+#register{
+  width: 100%;
+  height: 100%;
+  background: url('../img/pwd.jpg') no-repeat;
+  background-size: cover;
+  position: relative;
+}
+#register .login-tabs{
+  width: 500px;
+  right: 50%;
+  transform: translate(50%, -50%);
+  padding: 10px 0;
+}
+#register .custom-control{
+  display: inline;
+  font-size: 14px;
+}
+#register .form-control{
+  font-size: 14px;
+}
+#register .reg-code-box .form-control{
+  width: 70%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#register .form-control:disabled,#register  .form-control[readonly]{
+  color: #999;
+}
+#register .img-code, #login .img-code{
+  border: 1px solid #ced4da;
+  height: calc(1.5em + .75rem - 1px);
+  width: 30%;
+  cursor: pointer;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  border-left: 0;
+}
+#register .flex-btn{
+  display: flex;
+  justify-content: space-between;
+}
+#register .reg-btn{
+  width: 43%;
+  background: #4fc3e8 !important;
+  border: none;
+  border-radius: 2px;
+}
 
 
 /*--------------------------------------------------------------
@@ -3387,7 +3460,7 @@ body.swal2-toast-shown .swal2-container{
     background: url('../img/mbg.jpg') no-repeat;
     background-size: 100% 100%;
   }
-  .login-tabs{
+  #login .login-tabs{
     left: 50%;
     right: auto;
     transform: translate(-50%, -50%);
@@ -3420,5 +3493,8 @@ body.swal2-toast-shown .swal2-container{
   .login-trans{
     right: 30px;
     left: auto;
+  }
+  #register .login-tabs{
+    width: 90%;
   }
 }

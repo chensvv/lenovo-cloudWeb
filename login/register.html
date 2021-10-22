@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
+
+  <title i18n="nav_title"></title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.ico" rel="icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <!-- <link href="../assets/vendor/aos/aos.css" rel="stylesheet"> -->
+  <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/only.css">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <img src="../assets/img/trans.png" class="trans login-trans" onclick="isLang()">
+    <div class="login-logo" >
+        <a href="">
+            <img src="../assets/img/favicon.ico" alt="">
+        <span id="text" i18n="nav_logo">
+            
+        </span></a>
+        
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+
+  <main id="register">
+    <div class="login-tabs">
+        <!-- <nav> -->
+            <div class="head-tabs dis-flex justify-content-center">
+                <span class="nav-link" i18n="signUp"></span>
+            </div>
+            <!-- <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a> -->
+            <div id="mustInfo">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="reg-email" name="email" i18n="[placeholder]email_empty" autocomplete="off" onblur="regEmail()">
+                    <div class="error-tooltip reg-email-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="reg-phone" name="phone" i18n="[placeholder]phone_empty" autocomplete="off" onblur="regPhone()">
+                    <div class="error-tooltip reg-phone-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" value class="form-control" id="reg-password" name="password" i18n="[placeholder]password_empty" autocomplete="new-password" onblur="regPwd()">
+                    <div class="error-tooltip reg-password-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="reg-checkpwd" i18n="[placeholder]check_password" autocomplete="new-password" onblur="regCheckpwd()">
+                    <div class="error-tooltip reg-checkpwd-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="reg-name" i18n="[placeholder]name_error" autocomplete="off" onblur="regName()">
+                    <div class="error-tooltip reg-name-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="reg-company" i18n="[placeholder]company_error" autocomplete="off" onkeyup="isShowdep()" onblur="regCompany()">
+                    <div class="error-tooltip reg-company-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group" id="dep">
+                    <input type="text" class="form-control" id="reg-dep" i18n="[placeholder]dep_error" autocomplete="off" onblur="regDep()">
+                    <div class="error-tooltip reg-dep-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group form-btn">
+                    <button class="btn btn-primary login-btn" id="nextbtn" i18n="next_btn"></button>
+                </div> 
+            </div>
+            <div id="basicInfo">
+                <div class="form-group">
+                    <input type="text" class="form-control check-code-input" id="val-email" autocomplete="off" disabled>
+                </div>
+                <div class="form-group">
+                    <div class="reg-code-box dis-flex">
+                        <input type="text" class="form-control" id="reg-code" i18n="[placeholder]pass_code" autocomplete="off" onblur="regCode()">
+                        <span class="reg-code-btn" onclick="getCode()">验证邮箱</span>
+                    </div>
+                    <div class="error-tooltip reg-code-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="reg-code-box dis-flex">
+                        <input type="text" class="form-control img-code-input" id="reg-img-code" i18n="[placeholder]img_code" autocomplete="off" onblur="regImgCode()">
+                        <img id="img-code-reg" class="img-code" onclick="getRegImgCode()" /> 
+                    </div>
+                    <div class="error-tooltip reg-img-error" data-aos="fade-down">
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <li class="li-title" i18n="selectService"></li>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" value="1" id="asrcheck">
+                        <label class="custom-control-label" for="asrcheck">
+                            ASR  （语音识别ASR）
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" value="2" id="ttscheck">
+                        <label class="custom-control-label" for="ttscheck">
+                            TTS   （语音合成TTS）
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="form-group form-btn flex-btn">
+                        <button class="btn btn-primary login-btn" id="prevbtn" i18n="prev_btn"></button>
+                        <button class="btn btn-primary login-btn float-right" id="nextbtnm" i18n="next_btn"></button>
+                </div> -->
+                <div class="form-group form-btn flex-btn">
+                    <button class="btn btn-primary reg-btn" id="prevbtn" i18n="prev_btn"></button>
+                    <!-- <button class="btn btn-primary login-btn" id="prevbtnm" i18n="prev_btn"></button> -->
+                    <button class="btn btn-primary reg-btn common-btn-loading" id="regbtn">
+                            <span class="spinner-border spinner-border-sm" id="reg-loading" role="status" aria-hidden="true"></span>
+                            <span i18n="signUp"></span>
+                    </button>
+                    
+                </div>
+            </div>
+    </div>
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/js/common/isIE.js"></script>
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/common/url.js"></script>
+  <!-- <script src="../assets/js/common/main.js"></script> -->
+  <script src="../assets/js/login/login.js"></script>
+<script>
+    // console.log(i18n.get('signIn'))
+</script>
+</body>
+
+</html>
