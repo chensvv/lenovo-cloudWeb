@@ -5,6 +5,14 @@ var urlInfo = proURL +'/cloudasr';
 var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
+var path = ''
+// var uri = 'ws://10.110.148.59:8082/lasf/wscloudasr/'
+var uri = 'wss://voice.lenovomm.com/website/wscloudasr/'
+var rt = ''
+var firstup = true
+var rec
+var chunkInfo
+var pidx = 1
 $selectSamp.goSelectInput({
     height: 25,
     width: 70
@@ -21,12 +29,13 @@ function toggleRecording(e){
     }
     if (e.classList.contains("recording")) {
         e.classList.remove("recording");
+        ws.send(new Blob([ ]))
         recStop()
     }else{
-        
         if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
             e.classList.add("recording");
-            recOpen()
+            // $('.result-box').css('display','none')
+            getIxid()
         }else{
             Swal.fire({
                 text: i18n.get('service_not_open'),
@@ -49,19 +58,119 @@ function toggleRecording(e){
     }
 }
 
+function socket () {
+    ws = new WebSocket(path)
+    ws.onopen = function(){
+        console.log('ws已连接')
+        recOpen()
+    }
+    ws.onerror = function(error){
+        recStop()
+        Swal.fire({
+            text:i18n.get('server_error'),
+            confirmButtonText: i18n.get('confirm'),
+            confirmButtonColor: '#94cb82'
+        })
+    }
+    ws.onmessage = function(data){
+        let res = JSON.parse(data.data)
+        // console.log(res.rawType+':'+res.rawText)
+        if(typeof(res.errormessage) == "string"){
+            ws.close()
+            Swal.fire({
+                text:res.errormessage,
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
+        }else{
+            // rt = res.rawText
+            if(firstup){
+                firstup = false;
+            }
+            // if (rt.length > 0) {
+                if (res.rawType == 'final') {
+                    ws.close()
+                    $('#statusD').css('display','none')
+                    $('.result-box').css('display','block')
+                    $('#allDur').html(res.allDur)
+                    $('#asrDur').html(res.asrDur)
+                    $('#asrVersion').html(res.asrVersion)
+                    $('#confidence').html(res.confidence)
+                    $('#desc').html(res.desc)
+                    $('#nConf').html(res.nConf)
+                    $('#nText').html(res.nText)
+                    $('#nlpVersion').html(res.nlpVersion)
+                    $('#rawText').html(res.rawText)
+                    $('#result').html(res.result)
+                    $('#status').html(res.status)
+                    $('#time').html(res.time)
+                    $('.result-input').val(res.rawText)
+                    
+                }
+            // }
+            
+        }
+    },
+    ws.onclose = function(){
+        console.log('closed')
+    }
+}
+
+function getIxid(){
+    $.ajax({
+        url:proURL+'/gensessionid',
+        type:'post',
+        success:function(res){
+            var params = {
+                username:$.base64.encode(localStorage.getItem('un')),
+                lenovokey:localStorage.getItem('lk'),
+                secretkey:localStorage.getItem('sk'),
+                sessionid:res,
+                language:$selectLang.val(),
+                scene:'short',
+                over:'0',
+                packageid:"1",
+                sample:"1",
+                audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
+            }
+            // path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample`
+            path = `${uri}${$.base64.encode(JSON.stringify(params))}`
+            socket()
+        }
+    })
+    
+}
 
 function recOpen(success){
-    console.log()
     rec=Recorder({
-        type:"wav",sampleRate:$selectSamp.val(),bitRate:16 ,
+        type: "wav",
+        bitRate: 16,
+        sampleRate: $selectSamp.val(),
+        bufferSize: 4096,
         onProcess:function(buffers,powerLevel,bufferDuration,bufferSampleRate){
             wave.input(buffers[buffers.length-1],powerLevel,bufferSampleRate);//输入音频数据，更新显示波形
+            chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
+            let buf = chunkInfo.data
+            if (pidx == 1) {
+                let buf2 = [];
+                if($selectSamp.val() == '8000'){
+                    buf2.unshift(1, 0, 0, 0);
+                }else{
+                    buf2.unshift(5, 0, 0, 0);
+                }
+                var buf4 = new Int16Array(buf2);
+                pidx++
+            } else {
+                var buf4 = buf;
+            }
+            ws.send(new Blob([buf4]))
         }
     });
 
     //var dialog=createDelayDialog(); 我们可以选择性的弹一个对话框：为了防止移动端浏览器存在第三种情况：用户忽略，并且（或者国产系统UC系）浏览器没有任何回调，此处demo省略了弹窗的代码
     rec.open(function(){//打开麦克风授权获得相关资源
         //dialog&&dialog.Cancel(); 如果开启了弹框，此处需要取消
+        chunkInfo = null
         $('.result-box').css('display','none')
         $('.viz').css('display','block');
         $('#statusP').css('display','block')
@@ -109,69 +218,74 @@ function recStop(){
         $('.viz').css('display','none');
         img_btn.src = '../../img/audiomain/Mic-nor.png'
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
+        // ws.close()
         rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
         rec=null;
-        var reader = new FileReader();
-        reader.readAsArrayBuffer(blob, 'utf-8');
-        reader.onload = function (e) {
-            var buf = new Uint16Array(reader.result);
-            var buf2=[];
-            Object.assign(buf2,buf);
-            if($selectSamp.val() == '8000'){
-                buf2.unshift(1, 0, 0, 0);
-            }else{
-                buf2.unshift(5, 0, 0, 0);
-            }
-            // buf2.unshift(5,0,0,0);
-            var buf4=new Uint16Array(buf2);
-            var formData = new FormData();
-            var ixid  = new Date().getTime();
-            formData.append("scene", 'short');
-            formData.append("language", $selectLang.val());
-            formData.append("sample", '1');
-            formData.append("audioFormat", 'pcm_'+$selectSamp.val()+'_16bit_sample');
-            formData.append("sessionid", ixid);
-            formData.append("packageid", "1");
-            formData.append("over", "1");
-            formData.append("voice-data", new Blob([buf4]));
-            $.ajax({
-                url:urlInfo,
-                type:'post',
-                data:formData,
-                headers:{
-                    'channel':'cloudasr',
-                    'lenovokey':lenkey,
-                    'secretkey': secrkey
-                },
-                processData: false,
-                contentType: false,
-                success:(res)=>{
-                    $('#statusD').css('display','none')
-                    $('.result-box').css('display','block')
-                    $('#allDur').html(res.allDur)
-                    $('#asrDur').html(res.asrDur)
-                    $('#asrVersion').html(res.asrVersion)
-                    $('#confidence').html(res.confidence)
-                    $('#desc').html(res.desc)
-                    $('#nConf').html(res.nConf)
-                    $('#nText').html(res.nText)
-                    $('#nlpVersion').html(res.nlpVersion)
-                    $('#rawText').html(res.rawText)
-                    $('#result').html(res.result)
-                    $('#status').html(res.status)
-                    $('#time').html(res.time)
-                    $('.result-input').val(res.rawText)
-                },
-                error:function(){
-                    Swal.fire({
-                        text:i18n.get('server_error'),
-                        confirmButtonText: i18n.get('confirm'),
-                        confirmButtonColor: '#94cb82'
-                    })
-                }
-            })
-        }
+        // var reader = new FileReader();
+        // reader.readAsArrayBuffer(blob, 'utf-8');
+        // reader.onload = function (e) {
+        //     var buf = new Uint16Array(reader.result);
+        //     var buf2=[];
+        //     Object.assign(buf2,buf);
+        //     if($selectSamp.val() == '8000'){
+        //         buf2.unshift(1, 0, 0, 0);
+        //     }else{
+        //         buf2.unshift(5, 0, 0, 0);
+        //     }
+        //     // buf2.unshift(5,0,0,0);
+        //     var buf4=new Uint16Array(buf2);
+        //     console.log(buf4)
+        //     ws.send(new Blob([buf4]))
+            // ws.close()
+            // var formData = new FormData();
+            // var ixid  = new Date().getTime();
+            // formData.append("scene", 'short');
+            // formData.append("language", $selectLang.val());
+            // formData.append("sample", '1');
+            // formData.append("audioFormat", 'pcm_'+$selectSamp.val()+'_16bit_sample');
+            // formData.append("sessionid", ixid);
+            // formData.append("packageid", "1");
+            // formData.append("over", "1");
+            // formData.append("voice-data", new Blob([buf4]));
+            // $.ajax({
+            //     url:urlInfo,
+            //     type:'post',
+            //     data:formData,
+            //     headers:{
+            //         'channel':'cloudasr',
+            //         'lenovokey':lenkey,
+            //         'secretkey': secrkey
+            //     },
+            //     processData: false,
+            //     contentType: false,
+            //     success:(res)=>{
+            //         $('#statusD').css('display','none')
+            //         $('.result-box').css('display','block')
+            //         $('#allDur').html(res.allDur)
+            //         $('#asrDur').html(res.asrDur)
+            //         $('#asrVersion').html(res.asrVersion)
+            //         $('#confidence').html(res.confidence)
+            //         $('#desc').html(res.desc)
+            //         $('#nConf').html(res.nConf)
+            //         $('#nText').html(res.nText)
+            //         $('#nlpVersion').html(res.nlpVersion)
+            //         $('#rawText').html(res.rawText)
+            //         $('#result').html(res.result)
+            //         $('#status').html(res.status)
+            //         $('#time').html(res.time)
+            //         $('.result-input').val(res.rawText)
+            //     },
+            //     error:function(){
+            //         Swal.fire({
+            //             text:i18n.get('server_error'),
+            //             confirmButtonText: i18n.get('confirm'),
+            //             confirmButtonColor: '#94cb82'
+            //         })
+            //     }
+            // })
+        // }
     },function(msg){
+        ws.close()
         rec.close();//可以通过stop方法的第3个参数来自动调用close
         rec=null;
         Swal.fire({
@@ -196,7 +310,3 @@ $(".result-input").bind("keypress",function(event){
         });
     }
 })
-getselect()
-function getselect(){
-    
-}

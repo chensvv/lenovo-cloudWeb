@@ -1,7 +1,8 @@
 var chunkInfo;
 var rec;
 var path = ''
-var uri = 'wss://voice.lenovomm.com/website/webSocket/'
+var uri = 'wss://voice.lenovomm.com/website/wscloudasr/'
+// var uri = 'ws://10.110.148.59:8082/lasf/wscloudasr/'
 var ws
 var ixid
 var pidx = 1
@@ -77,13 +78,15 @@ function socket () {
     }
     ws.onerror = function(error){
         // console.log(error)
+        // console.log(recOpen())
         timerReset()
-        recStop()
+        
         Swal.fire({
             text:i18n.get('server_error'),
             confirmButtonText: i18n.get('confirm'),
             confirmButtonColor: '#94cb82'
         })
+        recStop()
     }
     ws.onmessage = function(data){
         let res = JSON.parse(data.data)
@@ -119,7 +122,15 @@ function getIxid(){
         url:proURL+'/gensessionid',
         type:'post',
         success:function(res){
-            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample`
+            var params = {
+                username:$.base64.encode(localStorage.getItem('un')),
+                lenovokey:localStorage.getItem('lk'),
+                secretkey:localStorage.getItem('sk'),
+                sessionid:res,
+                language:$selectLang.val(),
+                audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
+            }
+            path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             socket()
         }
     })
