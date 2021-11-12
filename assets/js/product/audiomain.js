@@ -6,8 +6,8 @@ var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
 var path = ''
-// var uri = 'ws://10.110.148.59:8082/lasf/wscloudasr/'
-var uri = 'wss://voice.lenovomm.com/website/wscloudasr/'
+// var uri = 'ws://10.110.148.59:8084/lasf/wscloudasr/'
+var uri = 'wss://voice.lenovomm.com/website/webSocket/'
 var rt = ''
 var firstup = true
 var rec
@@ -65,12 +65,13 @@ function socket () {
         recOpen()
     }
     ws.onerror = function(error){
-        recStop()
+        
         Swal.fire({
             text:i18n.get('server_error'),
             confirmButtonText: i18n.get('confirm'),
             confirmButtonColor: '#94cb82'
         })
+        recStop()
     }
     ws.onmessage = function(data){
         let res = JSON.parse(data.data)
@@ -133,8 +134,8 @@ function getIxid(){
                 sample:"1",
                 audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
             }
-            // path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample`
-            path = `${uri}${$.base64.encode(JSON.stringify(params))}`
+            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/cmd`
+            // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             socket()
         }
     })
