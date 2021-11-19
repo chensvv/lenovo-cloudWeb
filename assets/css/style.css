@@ -2113,7 +2113,7 @@ section {
 --------------------------------------------------------------*/
 .assess {
   padding-top: 75px;
-  height: 21rem;
+  height: 45%;
   background: #a0efe7;
   position: relative;
 }
@@ -2168,19 +2168,19 @@ section {
   bottom: 0;
 }
 .assess .back-boxo{
-  width: 330px;
+  width: 300px;
   background: rgba(255,255,255,.3);
-  height: 270px;
+  height: 110%;
   border-radius: 10px;
   position: absolute;
   left: 50%;
-  top: 0;
+  top: 20%;
   transform: translate(-50%, 0px);
 }
 
 .assess .back-boxt{
-  width: 345px;
-  height: 260px;
+  width: 315px;
+  height: 95%;
   position: absolute;
   bottom: 2px;
   background: rgba(255,255,255,.5);
@@ -2189,8 +2189,8 @@ section {
   border-radius: 10px;
 }
 .assess .voice-box{
-  width: 360px;
-  height: 250px;
+  width: 330px;
+  height: 96%;
   background: #fff;
   position: absolute;
   bottom: 0px;
@@ -2229,11 +2229,11 @@ section {
 }
 .assess .voice-box .clpage{
   position: absolute;
-  top: -50px;
-  right: 20px;
-  border-bottom: 1px solid #fff !important;
-  color: #fff;
-  font-size: 14px;
+  top: 10px;
+  right: 17px;
+  border-bottom: 1px solid #74c7bf !important;
+  color: #74c7bf;
+  font-size: 13px;
   cursor: pointer;
   border: none;
   background: none;
@@ -2258,11 +2258,11 @@ section {
 
 .assess .voice-box .voice-footer{
   background: url('../img/audiomain/tube.png') no-repeat;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background-size: 100%;
   position: absolute;
-  bottom: -35px;
+  bottom: -25px;
   left: 50%;
   transform: translate(-50%, 0px);
   cursor: pointer;
@@ -2271,7 +2271,7 @@ section {
   position: absolute;
   bottom: -19px;
   font-size: 12px;
-  width: 70px;
+  width: 60px;
   text-align: center;
   color: #e83e8c;
 }
@@ -2282,7 +2282,7 @@ section {
 
 .assess-main .assess-section{
   height: 100%;
-  padding: 9rem 0 0;
+  padding: 7rem 0 0;
 }
 
 .assess-main .z-g-b{
