@@ -112,11 +112,13 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 }
 .trans{
   width: 40px;
-  position: absolute;
+  height: 20px;
+  /* position: absolute;
   top: 20px;
-  right: 10px;
+  right: 10px; */
   cursor: pointer;
   z-index: 99;
+  margin-top: 20px;
 }
 .login-trans{
   width: 40px;
@@ -3174,6 +3176,12 @@ body.swal2-toast-shown .swal2-container{
 # meida
 --------------------------------------------------------------*/
 @media (max-width: 575px) {
+  .trans{
+    position: absolute;
+    right: 60px;
+    left: auto;
+    top: 9px !important;
+  }
   .mobile-nav-toggle{
     top: 7px;
     right: 0;
@@ -3466,8 +3474,10 @@ body.swal2-toast-shown .swal2-container{
     transform: translate(-50%, -50%);
   }
   .trans{
-    right: auto;
+    position: absolute;
     left: 10px;
+    top: 20px;
+    margin-top: 0;
   }
   .login-trans{
     right: 30px;
@@ -3486,9 +3496,9 @@ body.swal2-toast-shown .swal2-container{
 
 @media (max-width: 640px){
   .trans{
+    position: absolute;
     right: 60px;
     left: auto;
-    top: 9px;
   }
   .login-trans{
     right: 30px;
@@ -3496,5 +3506,10 @@ body.swal2-toast-shown .swal2-container{
   }
   #register .login-tabs{
     width: 90%;
+  }
+}
+@media (min-width: 1200px){
+  #header .container, #header .container-lg, #header .container-md, #header .container-sm, #header .container-xl {
+    max-width: 1500px;
   }
 }
