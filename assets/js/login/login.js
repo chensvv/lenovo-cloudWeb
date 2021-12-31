@@ -50,6 +50,7 @@ $('#loginBtn').click(function(){
     }else{
         $('#login-loading').show()
         $('#loginBtn').attr('disabled','ture')
+        console.log(localStorage.getItem('ehiI18n.Language'))
         $.ajax({
             url:proURL+'/web/login',
             type:'post',
@@ -57,7 +58,7 @@ $('#loginBtn').click(function(){
             data:{
                 u:username,
                 p:password,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
                 imgCode:$('#login-img-code').val(),
                 ucode:loginuuid
             },
@@ -146,7 +147,7 @@ $('#regbtn').click(function(){
                 userService:checkVal,
                 p:$.base64.encode($('#reg-password').val()),
                 code:$('#reg-code').val(),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
                 imgCode:$('#reg-img-code').val(),
                 ucode:reguuid
             },
@@ -301,7 +302,7 @@ function regCode(){
             data:{
                 u:$('#reg-email').val(),
                 code:$('#reg-code').val(),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
             },
             success:function(res){
                 if(res.status == 0){
@@ -340,7 +341,7 @@ function regImgCode(){
             data:{
                 imgCode:$('#reg-img-code').val(),
                 ucode:reguuid,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
             },
             success:function(res){
                 if(res.status == 0){
@@ -379,7 +380,7 @@ function loginImgCode(){
             data:{
                 imgCode:$('#login-img-code').val(),
                 ucode:loginuuid,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
             },
             success:function(res){
                 if(res.status == 0){
@@ -533,7 +534,7 @@ function getCode(){
         dataType:'json',
         data:{
             u:$('#reg-email').val(),
-            language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
+            language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
         },
         success:function(res){
             if(res.status == 0){
@@ -687,7 +688,7 @@ function getStyle(obj, attr) {
 }
 
 function isLang(){
-    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
+    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
         i18n.setLanguage('us')
         $('.trans').attr('src','../assets/img/trans.png')
         // console.log("en===============")
@@ -697,4 +698,3 @@ function isLang(){
         // console.log("中文===============")
       }
   }
-  

@@ -155,7 +155,7 @@ var i18n = new EhiI18n('../lan/', function(){
   }else{
     $('.nav-menu').removeClass('dis-flex')
   }
-  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
+  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
   }else{
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
@@ -234,7 +234,7 @@ function gologin(){
 }
 
 function isLang(){
-  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
+  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
     i18n.setLanguage('us')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
     // console.log("en===============")

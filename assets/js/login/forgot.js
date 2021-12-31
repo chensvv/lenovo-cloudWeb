@@ -201,7 +201,7 @@ function timer() {
 
 
 function isLang(){
-    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
+    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
         i18n.setLanguage('us')
         $('.trans').attr('src','../assets/img/trans.png')
         // console.log("en===============")

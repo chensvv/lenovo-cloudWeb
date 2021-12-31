@@ -58,7 +58,7 @@ function submit(){
             data:{
                 t:window.localStorage.getItem('token'),
                 lid:$.base64.decode(window.localStorage.getItem('acd')),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
                 userService:checkArr
             },
           dataType:"json",

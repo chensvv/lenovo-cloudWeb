@@ -199,7 +199,7 @@
   "speed": "Speed of speech,0~9(support Float),Default to 5 when not transmitting",
   "spq": "Speech quantity,0~9(Only integer supported),Default to 5 when not transmitting",
   "itt": "tone,0~9(support Float),Default to 5 when not transmitting",
-  "audiotype": "Audio type, optional. If not, it defaults to 3, indicating MP3 format",
+  "audiotype": "Default MP3. When the value is PCM, the PCM format of 8K sampling rate is returned",
   "16kpcms": "PCM format returning 16K sample rate",
   "8kpcm": "PCM format returning 8K sampling rate",
   "16kwav": "WAV format returning 16K sampling rate",
