@@ -100,7 +100,7 @@ $('#loginBtn').click(function(){
                         background:'#fff3cd',
                         text: res.description,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                 }
             },
@@ -162,7 +162,7 @@ $('#regbtn').click(function(){
                         background:'#d4edda',
                         text: res.message,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 3000
                     })
                     // var param = {
                     //     'acd':$.base64.encode(res.lenovoId),
@@ -201,7 +201,7 @@ $('#regbtn').click(function(){
                         background:'#fff3cd',
                         text: res.error,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                 }
             },
@@ -552,7 +552,7 @@ function getCode(){
                     background:'#a6f1b8',
                     text: res.message,
                     showConfirmButton: false,
-                    timer: 2000
+                    timer: 3000
                 })
             }else{
                 $('.reg-code-btn').css('pointer-events','auto')
@@ -568,7 +568,7 @@ function getCode(){
                     background:'#fff3cd',
                     text: res.error,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 })
             }
             
@@ -611,7 +611,7 @@ function getRegImgCode(){
                     background:'#fff3cd',
                     text: res.error,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 })
             }
             
@@ -654,7 +654,7 @@ function getLoginImgCode(){
                     background:'#fff3cd',
                     text: res.error,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 })
             }
             
