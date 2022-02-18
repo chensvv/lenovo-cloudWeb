@@ -236,7 +236,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 
 .user ul{
   justify-content: flex-end !important;
-  padding-right: 10% !important;
+  padding-right: 5% !important;
 }
 
 .user ul li:hover{
@@ -418,7 +418,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   top: 0;
   left: 0;
   right: 0;
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 #hero h2 {
@@ -794,7 +794,7 @@ section {
     width: 50%;
     transform: rotate(15deg);
     left: -25%;
-    top: 35%;
+    top: 30%;
 }
 .item-one-left img, .item-one-right img, .item-two-top img, .item-two-bottom img, .item-three-box img, .item-four-center img{
   width: 100%;
@@ -812,7 +812,7 @@ section {
   width: 26%;
   height: 100%;
   position: absolute;
-  top: -65%;
+  top: -50%;
   right: 5%;
 }
 
@@ -820,7 +820,7 @@ section {
   width: 26%;
   height: 100%;
   position: absolute;
-  bottom: -50%;
+  bottom: -45%;
   left: 5%;
 }
 
@@ -851,7 +851,7 @@ section {
   /* position: absolute; */
   width: 350px;
   height: 100%;
-  margin-top: 40px;
+  margin-top: 30px;
   /* bottom: -67%; */
 }
 
@@ -1198,6 +1198,8 @@ section {
 }
 
 .questionlist-main{
+  max-width: 60%;
+  margin: 0 auto;
   padding-bottom: 60px;
   padding-top: 40px;
 }
@@ -1216,6 +1218,7 @@ section {
   font-size: 14px;
   padding-top: 10px;
   margin-bottom: 0;
+  display: flex;
 }
 
 .questionlist-main .list-detail span{
@@ -1256,6 +1259,17 @@ section {
   white-space:nowrap; 
   overflow:hidden; 
   text-overflow:ellipsis;
+  font-size: 18px;
+}
+.questionlist-main .detail-content{
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.questionlist-main .detail-timer{
+  width: 80%;
+  text-align: right;
 }
 
 
@@ -1542,7 +1556,12 @@ section {
   border: none;
   border-radius: 2px;
 }
-
+#register .register-process{
+  width: 100%;
+  padding: 0;
+  position: unset;
+  transform: unset;
+}
 
 /*--------------------------------------------------------------
 # forgot
@@ -2886,6 +2905,40 @@ section {
   margin-right: 5px;
 }
 
+/*--------------------------------------------------------------
+# userinfo
+--------------------------------------------------------------*/
+.userinfo-bg{
+  width: 100%;
+  padding: 1rem .25rem 0;
+  margin: 0 auto;
+}
+.userinfo-bg .con-title{
+  font-weight: 600;
+  font-size: 20px;
+}
+.userinfo-bg .label-title{
+  width: 100px;
+}
+.userinfo-bg .li{
+  padding-left: 10px;
+}
+.userinfo-bg .li span{
+  display: inline-block;
+}
+.ubtn{
+  width: 100px;
+  height: 30px;
+  background: #4fc3e8;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 2px;
+}
+.ubtn:hover{
+  color: #fff;
+}
 
 /*--------------------------------------------------------------
 # Footer

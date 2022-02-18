@@ -22,33 +22,33 @@ $(function () {
                                 <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                    <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
+                                    <div class="list-detail"><div class="detail-content">${unhtml(val.content)}</div><div class="detail-timer"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></div></div>
                                 </div>
                             </li>`
                 })
                 $('.question-list').append(vhtml)
                 loadPage()
             } else {
-                localStorage.removeItem('token')
-                Swal.fire({
-                    text: i18n.get('logTimeOut'),
-                    showCancelButton: true,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    reverseButtons: true,
-                    width: '16em',
-                    confirmButtonColor: '#94cb82',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: i18n.get('confirm'),
-                    cancelButtonText: i18n.get('cancel')
-                }).then((result) => {
+                localStorage.clear()
+                // Swal.fire({
+                //     text: i18n.get('logTimeOut'),
+                //     showCancelButton: true,
+                //     allowOutsideClick: false,
+                //     allowEscapeKey: false,
+                //     reverseButtons: true,
+                //     width: '16em',
+                //     confirmButtonColor: '#94cb82',
+                //     cancelButtonColor: '#d33',
+                //     confirmButtonText: i18n.get('confirm'),
+                //     cancelButtonText: i18n.get('cancel')
+                // }).then((result) => {
                     
-                    if (result.isConfirmed) {
+                    // if (result.isConfirmed) {
                         var url = window.location.href
                         window.localStorage.setItem('returnurl',url)
                         window.location.href = '../login/login.html'
-                    }
-                })
+                    // }
+                // })
             }
         },
         error: function (err) {
@@ -121,7 +121,7 @@ $(function () {
                             })
                             $('.question-list').append(vhtml)
                         } else {
-                            localStorage.removeItem('token');
+                            localStorage.clear();
                             Swal.fire({
                                 text: i18n.get('logTimeOut'),
                                 showCancelButton: true,

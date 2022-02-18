@@ -51,25 +51,25 @@ $('.pushbtn').click(function(){
                         })
                       }
                   }else{
-                      localStorage.removeItem('token');
-                      Swal.fire({
-                        text: i18n.get('logTimeOut'),
-                        showCancelButton: true,
-                        allowOutsideClick:false,
-                        allowEscapeKey:false,
-                        reverseButtons:true,
-                        width:'16em',
-                        confirmButtonColor: '#94cb82',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: i18n.get('confirm'),
-                        cancelButtonText:i18n.get('cancel')
-                      }).then((result) => {
-                        if (result.isConfirmed) {
+                      localStorage.clear();
+                      // Swal.fire({
+                      //   text: i18n.get('logTimeOut'),
+                      //   showCancelButton: true,
+                      //   allowOutsideClick:false,
+                      //   allowEscapeKey:false,
+                      //   reverseButtons:true,
+                      //   width:'16em',
+                      //   confirmButtonColor: '#94cb82',
+                      //   cancelButtonColor: '#d33',
+                      //   confirmButtonText: i18n.get('confirm'),
+                      //   cancelButtonText:i18n.get('cancel')
+                      // }).then((result) => {
+                      //   if (result.isConfirmed) {
                           var url = window.location.href
                           window.localStorage.setItem('returnurl',url)
                           window.location.href = '../login/login.html'
-                        }
-                      })
+                      //   }
+                      // })
                   }
             },error:function(err){
               $('#pub-loading').hide()

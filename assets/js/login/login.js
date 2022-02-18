@@ -50,7 +50,7 @@ $('#loginBtn').click(function(){
     }else{
         $('#login-loading').show()
         $('#loginBtn').attr('disabled','ture')
-        console.log(localStorage.getItem('ehiI18n.Language'))
+        // console.log(localStorage.getItem('ehiI18n.Language'))
         $.ajax({
             url:proURL+'/web/login',
             type:'post',
@@ -236,6 +236,7 @@ $('#nextbtn').on('click',function(){
         if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany()){
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
+            $('.ac').addClass('active')
             $('#val-email').val($('#reg-email').val())
             getRegImgCode()
         }else{
@@ -256,6 +257,7 @@ $('#nextbtn').on('click',function(){
 $('#prevbtn').on('click',function(){
         $('#mustInfo').css('display','block')
         $('#basicInfo').css('display','none')
+        $('.ac').removeClass('active')
 })
 
 $('#prevbtnm').on('click',function(){

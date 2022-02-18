@@ -64,11 +64,11 @@
           <li class="login-reg" style="display:none;">
               <a href="../login/login.html" onclick="gologin()" i18n="signIn"></a>
               |
-              <a href="../login/login.html" onclick="gologin()" i18n="signUp"></a>
+              <a href="../login/register.html" onclick="gologin()" i18n="signUp"></a>
           </li>
           <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
             <ul id="drop-ul">
-              
+              <li><a href="../user/userinfo.html" i18n="nav_userinfo"></a></li>
               <li><a href="../login/resetpass.html" i18n="nav_checkpass"></a></li>
               <li><a id="logout" onclick="logout()" i18n="nav_logout"></a></li>
             </ul>
@@ -125,6 +125,7 @@
 
 
   <!-- Vendor JS Files -->
+  <script src="../assets/js/common/iflogin.js"></script>
   <script src="../assets/js/common/isIE.js"></script>
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../i18n/ehi-i18n.js"></script>

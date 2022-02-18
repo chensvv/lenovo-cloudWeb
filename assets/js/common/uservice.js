@@ -77,23 +77,23 @@ function submit(){
                         confirmButtonColor: '#94cb82'
                     })
                 }if(res.status == 101){
-                    localStorage.removeItem('token')
-                    Swal.fire({
-                        text: i18n.get('logTimeOut'),
-                        showCancelButton: false,
-                        allowOutsideClick:false,
-                        allowEscapeKey:false,
-                        reverseButtons:true,
-                        width:'16em',
-                        confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
-                    }).then((result) => {
-                        if (result.isConfirmed) {
+                    localStorage.clear();
+                    // Swal.fire({
+                    //     text: i18n.get('logTimeOut'),
+                    //     showCancelButton: false,
+                    //     allowOutsideClick:false,
+                    //     allowEscapeKey:false,
+                    //     reverseButtons:true,
+                    //     width:'16em',
+                    //     confirmButtonColor: '#94cb82',
+                    //     confirmButtonText: i18n.get('confirm'),
+                    // }).then((result) => {
+                    //     if (result.isConfirmed) {
                             var url = window.location.href
                             window.localStorage.setItem('returnurl',url)
                             window.location.href = '../login/login.html'
-                        }
-                    })
+                    //     }
+                    // })
                 }else{
                     Swal.fire({
                         text:res.error,
@@ -102,23 +102,23 @@ function submit(){
                     })
                 }
             }else{
-                localStorage.removeItem('token')
-                Swal.fire({
-                    text: i18n.get('logTimeOut'),
-                    showCancelButton: false,
-                    allowOutsideClick:false,
-                    allowEscapeKey:false,
-                    reverseButtons:true,
-                    width:'16em',
-                    confirmButtonColor: '#94cb82',
-                    confirmButtonText: i18n.get('confirm'),
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                localStorage.clear();
+                // Swal.fire({
+                //     text: i18n.get('logTimeOut'),
+                //     showCancelButton: false,
+                //     allowOutsideClick:false,
+                //     allowEscapeKey:false,
+                //     reverseButtons:true,
+                //     width:'16em',
+                //     confirmButtonColor: '#94cb82',
+                //     confirmButtonText: i18n.get('confirm'),
+                // }).then((result) => {
+                //     if (result.isConfirmed) {
                         var url = window.location.href
                         window.localStorage.setItem('returnurl',url)
                         window.location.href = '../login/login.html'
-                    }
-                })
+                //     }
+                // })
             }
         },error:function(err){
             $('#userver-loading').hide()
@@ -154,21 +154,23 @@ function getUserInfo(){
                 $('#remainASRAmount').html(res.remainASRAmount)
                 $('#remainTTSAmount').html(res.remainTTSAmount)
             }else{
-                localStorage.removeItem('token')
-                Swal.fire({
-                    text: i18n.get('logTimeOut'),
-                    showCancelButton: false,
-                    allowOutsideClick:false,
-                    allowEscapeKey:false,
-                    reverseButtons:true,
-                    width:'16em',
-                    confirmButtonColor: '#94cb82',
-                    confirmButtonText: i18n.get('confirm'),
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                      window.location.href = '../login/login.html'
-                    }
-                })
+                localStorage.clear();
+                // Swal.fire({
+                //     text: i18n.get('logTimeOut'),
+                //     showCancelButton: false,
+                //     allowOutsideClick:false,
+                //     allowEscapeKey:false,
+                //     reverseButtons:true,
+                //     width:'16em',
+                //     confirmButtonColor: '#94cb82',
+                //     confirmButtonText: i18n.get('confirm'),
+                // }).then((result) => {
+                //     if (result.isConfirmed) {
+                    var url = window.location.href
+                    window.localStorage.setItem('returnurl',url)
+                    window.location.href = '../login/login.html'
+                //     }
+                // })
             }
         },error:function(err){
             Swal.fire({

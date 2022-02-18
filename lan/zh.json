@@ -26,6 +26,8 @@
   "selectService": "选择开通的服务",
   "reg_code_btn":"验证邮箱",
   "code_empty":"请输入检验码",
+  "write_info": "填写信息",
+  "email_veri":"邮箱验证",
 
   "nav_title": "联想语音开放平台",
   "nav_index": "首页",
@@ -41,6 +43,7 @@
   "nav_assess" : "英语评测",
   "nav_service": "服务信息",
   "nav_checkpass": "修改密码",
+  "nav_userinfo": "账户信息",
   "nav_logout": "退出",
   "nav_contact": "联系我们",
 
@@ -197,7 +200,7 @@
   "speed": "设置播放的语速，在0~9之间（支持浮点值），不传时默认为5",
   "spq": "设置语音的语量，在0~9之间（只支持整型值），不传时默认为5",
   "itt": "设置语音的音调，在0~9之间（支持浮点值），不传时默认为5中音调",
-  "audiotype": "默认mp3，值为pcm时，返回8k采样率的pcm格式",
+  "audiotype": "wav, mp3, pcm, pcm8；默认mp3",
   "16kpcms": "返回16K采样率的pcm格式",
   "8kpcm": "返回8K采样率的pcm格式",
   "16kwav": "返回16K采样率的wav格式",

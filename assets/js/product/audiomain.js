@@ -104,7 +104,7 @@ function socket () {
                     $('#rawText').html(res.rawText)
                     $('#result').html(res.result)
                     $('#status').html(res.status)
-                    $('#time').html(res.time)
+                    // $('#time').html(res.time)
                     $('.result-input').val(res.rawText)
                     
                 }

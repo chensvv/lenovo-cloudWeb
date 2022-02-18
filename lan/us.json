@@ -24,6 +24,8 @@
   "selectService": "Select a service",
   "reg_code_btn":"get code",
   "code_empty":"Please enter code",
+  "write_info": "Write Information",
+  "email_veri":"Validation email",
   
   "nav_title": "LeVoice Tech Open Platform",
   "nav_index": "Homepage",
@@ -39,6 +41,7 @@
   "nav_assess": "English Assessment",
   "nav_service": "User Service",
   "nav_checkpass": "Change Password",
+  "nav_userinfo": "UserInfo",
   "nav_logout": "Sign Out",
   "nav_contact": "Contact Us",
   
@@ -199,7 +202,7 @@
   "speed": "Speed of speech,0~9(support Float),Default to 5 when not transmitting",
   "spq": "Speech quantity,0~9(Only integer supported),Default to 5 when not transmitting",
   "itt": "tone,0~9(support Float),Default to 5 when not transmitting",
-  "audiotype": "Default MP3. When the value is PCM, the PCM format of 8K sampling rate is returned",
+  "audiotype": "wav, mp3, pcm, pcm8；默认mp3",
   "16kpcms": "PCM format returning 16K sample rate",
   "8kpcm": "PCM format returning 8K sampling rate",
   "16kwav": "WAV format returning 16K sampling rate",
