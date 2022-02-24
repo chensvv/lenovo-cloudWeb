@@ -1034,6 +1034,23 @@ section {
 .document-main .card-body a:hover{
   text-decoration: underline;
 }
+.download-main{
+  padding: 30px 0 0;
+}
+
+.download-container{
+  display: flex;
+  justify-content: space-between;
+}
+.download-container .asr-down-box, .download-container .tts-down-box{
+  width: 45%;
+}
+.download-container .asr-down-box h3, .download-container .tts-down-box h3{
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
 
 @media (max-width: 768px) {
   .document {
@@ -2358,6 +2375,7 @@ section {
   text-align: center;
 }
 
+
 /*--------------------------------------------------------------
 # questionnew
 --------------------------------------------------------------*/
@@ -2721,7 +2739,7 @@ section {
 .service-main .service-bg{
   width: 80%;
   height: 300px;
-  padding: 3.25rem 4.25rem 0;
+  padding: 3.25rem 0 0;
   margin: 0 auto;
 }
 .service-main .service-bg .con-title {

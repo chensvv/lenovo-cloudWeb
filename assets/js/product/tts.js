@@ -109,10 +109,11 @@ function getData(){
         //根据pcm文件 填写 sampleRateTmp【采样率】（16000） 和sampleBits【采样精度】（16） channelCount【声道】（单声道1，双声道2）
         // var fileResult = addWavHeader(req.response,16000,16,1);
         // var blob = new Blob([fileResult], {type:'autio/wav'});
-        var blob = new Blob([req.response]);
+        var blob = new Blob([req.response]);
         var reader = new FileReader();
         reader.readAsText(blob, 'utf-8');
         reader.onload = function (e) {
+          console.log(reader)
           if(reader.result.length < 200){
             Swal.fire({
               text:reader.result.replace(/[^\u4e00-\u9fa5]/gi, ""),
@@ -120,7 +121,7 @@ function getData(){
               confirmButtonColor: '#94cb82'
             })
           }else{
-            bgm.src = URL.createObjectURL(blob);
+            bgm.src = URL.createObjectURL(blob);
           }
         }
     }

@@ -13,6 +13,7 @@ var firstup = true
 var rec
 var chunkInfo
 var pidx = 1
+var statu = 0
 $selectSamp.goSelectInput({
     height: 25,
     width: 70
@@ -22,7 +23,7 @@ $selectLang.goSelectInput({
     width: 70
 });
 function toggleRecording(e){
-    $('.hint-sp-left').css("display","none");
+    
     if (username == "" || username == null) {
         $('#statusU').css('display','block')
         return;
@@ -35,7 +36,7 @@ function toggleRecording(e){
         if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
             e.classList.add("recording");
             // $('.result-box').css('display','none')
-            getIxid()
+            getIxid(e)
         }else{
             Swal.fire({
                 text: i18n.get('service_not_open'),
@@ -58,14 +59,13 @@ function toggleRecording(e){
     }
 }
 
-function socket () {
+function socket (e) {
     ws = new WebSocket(path)
     ws.onopen = function(){
         console.log('ws已连接')
         recOpen()
     }
     ws.onerror = function(error){
-        
         Swal.fire({
             text:i18n.get('server_error'),
             confirmButtonText: i18n.get('confirm'),
@@ -77,6 +77,9 @@ function socket () {
         let res = JSON.parse(data.data)
         // console.log(res.rawType+':'+res.rawText)
         if(typeof(res.errormessage) == "string"){
+            e.classList.remove("recording");
+            statu = 1
+            recStop()
             ws.close()
             Swal.fire({
                 text:res.errormessage,
@@ -84,6 +87,7 @@ function socket () {
                 confirmButtonColor: '#94cb82'
             })
         }else{
+            statu = 0
             // rt = res.rawText
             if(firstup){
                 firstup = false;
@@ -117,26 +121,26 @@ function socket () {
     }
 }
 
-function getIxid(){
+function getIxid(e){
     $.ajax({
         url:proURL+'/gensessionid',
         type:'post',
         success:function(res){
-            var params = {
-                username:$.base64.encode(localStorage.getItem('un')),
-                lenovokey:localStorage.getItem('lk'),
-                secretkey:localStorage.getItem('sk'),
-                sessionid:res,
-                language:$selectLang.val(),
-                scene:'short',
-                over:'0',
-                packageid:"1",
-                sample:"1",
-                audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
-            }
+            // var params = {
+            //     username:$.base64.encode(localStorage.getItem('un')),
+            //     lenovokey:localStorage.getItem('lk'),
+            //     secretkey:localStorage.getItem('sk'),
+            //     sessionid:res,
+            //     language:$selectLang.val(),
+            //     scene:'short',
+            //     over:'0',
+            //     packageid:"1",
+            //     sample:"1",
+            //     audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
+            // }
             path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/cmd`
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
-            socket()
+            socket(e)
         }
     })
     
@@ -172,6 +176,7 @@ function recOpen(success){
     rec.open(function(){//打开麦克风授权获得相关资源
         //dialog&&dialog.Cancel(); 如果开启了弹框，此处需要取消
         chunkInfo = null
+        $('.hint-sp-left').css("display","none");
         $('.result-box').css('display','none')
         $('.viz').css('display','block');
         $('#statusP').css('display','block')
@@ -214,14 +219,27 @@ function recStart(){//打开了录音后才能进行start、stop调用
 };
 function recStop(){
     rec.stop(function(blob,duration){
-        $('#statusP').css('display','none')
-        $('#statusD').css('display','block')
-        $('.viz').css('display','none');
-        img_btn.src = '../../img/audiomain/Mic-nor.png'
-        // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-        // ws.close()
-        rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
-        rec=null;
+        if(statu != 1){
+            $('#statusP').css('display','none')
+            $('#statusD').css('display','block')
+            $('.viz').css('display','none');
+            img_btn.src = '../../img/audiomain/Mic-nor.png'
+            // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
+            // ws.close()
+            rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+            rec=null;
+        }else{
+            $('#statusP').css('display','none')
+            $('#statusD').css('display','none')
+            $('.viz').css('display','none');
+            $('.hint-sp-left').css("display","block");
+            img_btn.src = '../../img/audiomain/Mic-nor.png'
+            // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
+            // ws.close()
+            rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+            rec=null;
+        }
+        
         // var reader = new FileReader();
         // reader.readAsArrayBuffer(blob, 'utf-8');
         // reader.onload = function (e) {

@@ -18,6 +18,7 @@ var times = ''
 var rt = ''
 var firstup = true
 var liid = 0
+var statu = 0
 var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
@@ -48,7 +49,7 @@ function toggleRecording(e){
     }else{
         e.classList.add("recording");
         if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
-            getIxid()
+            getIxid(e)
         }else{
             Swal.fire({
                 text: i18n.get('service_not_open'),
@@ -70,7 +71,7 @@ function toggleRecording(e){
     }
 }
 
-function socket () {
+function socket (e) {
     ws = new WebSocket(path)
     ws.onopen = function(){
         // console.log('ws已连接')
@@ -91,10 +92,18 @@ function socket () {
     ws.onmessage = function(data){
         let res = JSON.parse(data.data)
         if(typeof(res.errormessage) == "string"){
-            $('#txt-f').html(res.errormessage)
+            e.classList.remove("recording");
+            statu = 1
+            recStop()
             ws.close()
             timerReset()
+            Swal.fire({
+                text:res.errormessage,
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
         }else{
+            statu = 0
             rt = res.rawText
             if(firstup){
                 $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'>" + rt + "</span>");
@@ -117,7 +126,7 @@ function socket () {
     }
 }
 
-function getIxid(){
+function getIxid(e){
     $.ajax({
         url:proURL+'/gensessionid',
         type:'post',
@@ -132,7 +141,7 @@ function getIxid(){
             }
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
-            socket()
+            socket(e)
         }
     })
     
@@ -188,6 +197,12 @@ function recStop(){
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
         // rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
         rec=null;
+        if(statu == 1){
+            $('.hint-sp-left').css('display','block')
+            $('.result-box').css('display','none')
+            timerReset()
+            img_btn = '../../img/audiomain/Mic-act.png'
+        }
     },function(msg){
         ws.close()
         rec.close();//可以通过stop方法的第3个参数来自动调用close

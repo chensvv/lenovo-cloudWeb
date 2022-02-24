@@ -161,32 +161,32 @@
             },
             data:{"username":localStorage.getItem('un'),"lenovoid":$.base64.decode(localStorage.getItem('acd')),t:localStorage.getItem('token')},
             success:function(data){
-            if(data.errorcode ==1024){
-                localStorage.clear()
-                // Swal.fire({
-                //     text: i18n.get('firstLogin'),
-                //     showCancelButton: false,
-                //     allowOutsideClick:false,
-                //     allowEscapeKey:false,
-                //     reverseButtons:true,
-                //     width:'16em', 
-                //     confirmButtonColor: '#94cb82',
-                //     confirmButtonText: i18n.get('confirm'),
-                // }).then((result)=>{
-                //     if (result.isConfirmed) {
-                    var url = window.location.href
-                    window.localStorage.setItem('returnurl',url)
-                    window.location.href = '../login/login.html'
-                //     }
-                // })
-            }else{
-                $('#email').html(hideStar(data.email))
-                $('#phone').html(hideStar(data.phone))
-                $('#company').html(data.company)
-                $('#dept').html(data.dept)
-                $('#username').html(data.userName)
-                $('#qx').html(data.userService == 1 ? '短语音' : data.userService == 2 ? '长语音' : '短语音、长语音')
-            }
+                if(data.errorcode ==1024){
+                    localStorage.clear()
+                    // Swal.fire({
+                    //     text: i18n.get('firstLogin'),
+                    //     showCancelButton: false,
+                    //     allowOutsideClick:false,
+                    //     allowEscapeKey:false,
+                    //     reverseButtons:true,
+                    //     width:'16em', 
+                    //     confirmButtonColor: '#94cb82',
+                    //     confirmButtonText: i18n.get('confirm'),
+                    // }).then((result)=>{
+                    //     if (result.isConfirmed) {
+                        var url = window.location.href
+                        window.localStorage.setItem('returnurl',url)
+                        window.location.href = '../login/login.html'
+                    //     }
+                    // })
+                }else{
+                    $('#email').html(hideStar(data.email))
+                    $('#phone').html(hideStar(data.phone))
+                    $('#company').html(data.company)
+                    $('#dept').html(data.dept)
+                    $('#username').html(data.userName)
+                    $('#qx').html(data.userService == 1 ? '短语音' : data.userService == 2 ? '长语音' : data.userService == 3 ? '短语音、长语音' : ' ')
+                }
             },
             error:function(){
                 $('.user').css("display","none")
@@ -195,11 +195,16 @@
         })
       }
       function hideStar(str){
-            if(str.length < 7){
-                return str.substring(0,1).concat("****")
-            }else{
-                return str.substring(0,3) + "****" + str.substring(str.length - 4)
-            }
+          if(str !=null){
+                if(str.length < 7 && str.length != 0){
+                    return str.substring(0,1).concat("****")
+                }else{
+                    return str.substring(0,3) + "****" + str.substring(str.length - 4)
+                }
+          }else{
+              return str
+          }
+            
         }
   </script>
 
