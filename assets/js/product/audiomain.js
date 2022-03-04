@@ -6,8 +6,8 @@ var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
 var path = ''
-// var uri = 'ws://10.110.148.59:8084/lasf/wscloudasr/'
-var uri = 'wss://voice.lenovomm.com/website/webSocket/'
+var uri = 'ws://10.110.148.59:8080/lasf/wsasr/'
+// var uri = 'wss://voice.lenovomm.com/website/webSocket/'
 var rt = ''
 var firstup = true
 var rec
