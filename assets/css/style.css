@@ -1216,6 +1216,7 @@ section {
 
 .questionlist-main{
   max-width: 60%;
+  min-width: 770px;
   margin: 0 auto;
   padding-bottom: 60px;
   padding-top: 40px;

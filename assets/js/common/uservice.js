@@ -149,10 +149,10 @@ function getUserInfo(){
             if(res.errorcode != 1024){
                 $('#ak').html(res.lenovokey)
                 $('#sk').html(res.secretkey)
-                $('#totalASRAmount').html(res.totalASRAmount)
-                $('#totalTTSAmount').html(res.totalTTSAmount)
-                $('#remainASRAmount').html(res.remainASRAmount)
-                $('#remainTTSAmount').html(res.remainTTSAmount)
+                $('#totalASRAmount').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
+                $('#totalTTSAmount').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
+                $('#remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
+                $('#remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
             }else{
                 localStorage.clear();
                 // Swal.fire({
