@@ -665,7 +665,7 @@ section {
 # Our Services
 --------------------------------------------------------------*/
 .services {
-  padding-bottom: 20px;
+  
 }
 
 .services .icon-box {
@@ -677,11 +677,33 @@ section {
   text-align: center;
   width: 100px;
   height: 80px;
+  transform: scale(0.7);
 }
 
-.services .icon-box img{
-  width: 100%;
-  height: 100%;
+.services .icon-box.icon-box-lenovo{
+  background: url('../img/sprites1.png') -300px -0px no-repeat;
+  width: 150px;
+  height:116px;
+}
+.services .icon-box.icon-box-yy{
+  background: url('../img/sprites1.png') -600px -0px no-repeat;
+  width: 150px;
+  height:116px;
+}
+.services .icon-box.icon-box-sp{
+  background: url('../img/sprites1.png') -450px -0px no-repeat;
+  width: 150px;
+  height:116px;
+}
+.services .icon-box.icon-box-cl{
+  background: url('../img/sprites1.png') -0px -0px no-repeat;
+  width: 150px;
+  height:116px;
+}
+.services .icon-box.icon-box-clf{
+  background: url('../img/sprites1.png') -150px -0px no-repeat;
+  width: 150px;
+  height:116px;
 }
 
 .services .title {
@@ -691,8 +713,9 @@ section {
   text-align: center;
 }
 
-.services .justify{
+.services .justify, .services .d-flex{
   justify-content: space-evenly;
+  height: 120px;
 }
 
 /*--------------------------------------------------------------
@@ -751,16 +774,40 @@ section {
 }
 
 .why-us .icon-box {
-  width: 150px;
-  height: 80px;
   margin: 0 auto 30px auto;
+  transform: scale(0.7);
 }
 
-.why-us .icon-box img {
-  width: 100%;
-  height: 100%;
+.why-us .icon-box.icon-box-bl {
+  background: url('../img/sprites2.png') -0px -0px no-repeat;
+  width: 238px;
+ height:116px;
 }
-
+.why-us .icon-box.icon-box-zhjy {
+  background: url('../img/sprites2.png') -1190px -0px no-repeat;
+  width: 240px;
+ height:117px;
+}
+.why-us .icon-box.icon-box-madp {
+  background: url('../img/sprites2.png') -476px -0px no-repeat;
+  width: 238px;
+ height:116px;
+}
+.why-us .icon-box.icon-box-daysr {
+  background: url('../img/sprites2.png') -238px -0px no-repeat;
+  width: 238px;
+ height:116px;
+}
+.why-us .icon-box.icon-box-xcyj {
+  background: url('../img/sprites2.png') -952px -0px no-repeat;
+  width: 238px;
+ height:116px;
+}
+.why-us .icon-box.icon-box-more {
+  background: url('../img/sprites2.png') -714px -0px no-repeat;
+  width: 238px;
+ height:116px;
+}
 
 /*--------------------------------------------------------------
 # Tetstimonials
