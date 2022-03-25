@@ -244,3 +244,6 @@ function isLang(){
     // console.log("中文===============")
   }
 }
+function goback(){
+  window.history.go(-1)
+}

@@ -86,7 +86,7 @@
 
   
   "synthesi": "Speech Synthesis",
-  "inputText": "Please enter the text you want to synthesize",
+  "inputText": "The input text",
   "random": "Random example",
   "enterword": "You can enter ",
   "ttsWords": "Words",
