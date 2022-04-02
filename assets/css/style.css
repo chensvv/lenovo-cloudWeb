@@ -2736,8 +2736,7 @@ section {
   color: #3c3a3a;
 }
 .bk-box{
-  line-height: 44px;
-  padding-left: 10px;
+  display: none;
 }
 .rt_pos {
   content: "";
@@ -2790,7 +2789,7 @@ section {
   padding: 0;
 }
 .service-main .service-bg{
-  width: 80%;
+  width: 300px;
   height: 300px;
   padding: 3.25rem 0 0;
   margin: 0 auto;
@@ -2857,7 +2856,7 @@ section {
   letter-spacing: .1em;
   text-indent: .2em;
   padding: 0;
-  margin: 20px 40px;
+  margin: 20px auto;
   display: block;
 }
 .service-main .service-bg .sub-btn:focus,.modal .conf:focus{
@@ -3589,6 +3588,14 @@ body.swal2-toast-shown .swal2-container{
   .modal .modal-dialog{
     margin: .5rem;
   }
+  .mobile-header .bk-box{
+    display: block;
+    line-height: 44px;
+    padding-left: 10px;
+  }
+  .mobile-header .logo{
+    display: none;
+  }
 }
 @media (max-width: 991.98px) {
   #login{
@@ -3657,7 +3664,7 @@ body.swal2-toast-shown .swal2-container{
   #register .login-tabs{
     width: 90%;
   }
-
+  
 }
 @media (min-width: 1200px){
   #header .container, #header .container-lg, #header .container-md, #header .container-sm, #header .container-xl {
