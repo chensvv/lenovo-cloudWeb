@@ -113,10 +113,16 @@ function getData(){
         var reader = new FileReader();
         reader.readAsText(blob, 'utf-8');
         reader.onload = function (e) {
-          console.log(reader)
-          if(reader.result.length < 200){
+          console.log(reader.result.length)
+          if(reader.result.length < 200 && reader.result.length > 1){
             Swal.fire({
               text:reader.result.replace(/[^\u4e00-\u9fa5]/gi, ""),
+              confirmButtonText: i18n.get('confirm'),
+              confirmButtonColor: '#94cb82'
+            })
+          }else if(reader.result.length == 0 || reader.result == ''){
+            Swal.fire({
+              text:'请稍后重试！',
               confirmButtonText: i18n.get('confirm'),
               confirmButtonColor: '#94cb82'
             })
