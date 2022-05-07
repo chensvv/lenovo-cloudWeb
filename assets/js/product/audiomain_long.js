@@ -131,16 +131,17 @@ function getIxid(e){
         url:proURL+'/gensessionid',
         type:'post',
         success:function(res){
-            var params = {
-                username:$.base64.encode(localStorage.getItem('un')),
-                lenovokey:localStorage.getItem('lk'),
-                secretkey:localStorage.getItem('sk'),
-                sessionid:res,
-                language:$selectLang.val(),
-                audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
-            }
+            var ixids = String(res)
+            // var params = {
+            //     username:$.base64.encode(localStorage.getItem('un')),
+            //     lenovokey:localStorage.getItem('lk'),
+            //     secretkey:localStorage.getItem('sk'),
+            //     sessionid:res,
+            //     language:$selectLang.val(),
+            //     audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
+            // }
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
-            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
+            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${ixids}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
             socket(e)
         }
     })

@@ -296,38 +296,8 @@ function regCode(){
         $('.reg-code-btn').siblings().css('border-color','#dc3545')
         flag = false
     }else{
-        $.ajax({
-            async:false,
-            url:proURL+'/web/checkingcode',
-            type:'post',
-            dataType:'json',
-            data:{
-                u:$('#reg-email').val(),
-                code:$('#reg-code').val(),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
-            },
-            success:function(res){
-                if(res.status == 0){
-                    $('.reg-code-error').html('')
-                    $('.reg-code-btn').siblings().css('border-color','')
-                    flag = true
-                }else{
-                    $('.reg-code-error').html(res.error)
-                    $('.reg-code-btn').siblings().css('border-color','#dc3545')
-                    flag = false
-                }
-                
-            },
-            error:function(){
-                Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
-                    confirmButtonColor: '#94cb82'
-                })
-                flag = false
-            }
-        })
-        return flag
+        $('.reg-code-error').html('')
+        $('.reg-code-btn').siblings().css('border-color','')
     }
 }
 function regImgCode(){
