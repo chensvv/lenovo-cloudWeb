@@ -58,7 +58,7 @@ function voicePlay(){
                 cancelButtonText:i18n.get('cancel')
             }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '../user/uservice.html'
+                  window.location.href = '../product/tts.html'
                 }
             })
         }
