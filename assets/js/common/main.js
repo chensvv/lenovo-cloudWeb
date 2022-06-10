@@ -155,7 +155,7 @@ var i18n = new EhiI18n('../lan/', function(){
   }else{
     $('.nav-menu').removeClass('dis-flex')
   }
-  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
+  if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
   }else{
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
@@ -166,34 +166,54 @@ var i18n = new EhiI18n('../lan/', function(){
   //   $('.user').css("display","none")
   //   $('.login-reg').css("display","block")
   //   }else{
-  if(localStorage.getItem('token') == '' || localStorage.getItem('token') == null || localStorage.getItem('token') == undefined){
+  if($.base64.decode(window.localStorage.getItem('token')) == '' || $.base64.decode(window.localStorage.getItem('token')) == null || $.base64.decode(window.localStorage.getItem('token')) == undefined){
     $('.user').css("display","none")
     $('.login-reg').css("display","block")
   }else{
     $('.user').css("display","block")
     $('.login-reg').css("display","none")
-    $('.username').html(hideStar(localStorage.getItem('un')))
+    $('.username').html(hideStar($.base64.decode(window.localStorage.getItem('un'))))
   }
+  var params = {
+    username:$.base64.decode(window.localStorage.getItem('un')),
+    lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
+    t:$.base64.decode(window.localStorage.getItem('token')),
+    u:"",
+    p:"",
+    language:"",
+    phone:"",
+    company:"",
+    dept:"",
+    lid:"",
+    opwd:"",
+    pwd:"",
+    userService:"",
+    code:"",
+    imgCode:"",
+    ucode:"",
+  }
+  var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+  params.sign = md5(stringParams)
   $.ajax({
     type:"POST",
     url:proURL+"/userinfo",
     headers: {
       "channel" : "cloudasr"
     },
-    data:{"username":localStorage.getItem('un'),"lenovoid":$.base64.decode(localStorage.getItem('acd')),t:localStorage.getItem('token')},
+    data:params,
     success:function(data){
       if(data.errorcode ==1024){
-        localStorage.clear();
+        window.localStorage.clear();
         $('.user').css("display","none")
         $('.login-reg').css("display","block")
       }else{
         $('.user').css("display","block")
         $('.login-reg').css("display","none")
-        $('.username').html(hideStar(localStorage.getItem('un')))
+        $('.username').html(hideStar($.base64.decode(window.localStorage.getItem('un'))))
       }
     },
     error:function(){
-      localStorage.clear();
+      window.localStorage.clear();
       $('.user').css("display","none")
       $('.login-reg').css("display","block")
     }
@@ -210,7 +230,7 @@ var i18n = new EhiI18n('../lan/', function(){
     }
 }
 
-if(localStorage.getItem('ms') == 1){
+if(window.localStorage.getItem('ms') == 1){
   $('.ifshow').css('display','block')
 }else{
   $('.ifshow').css('display','none')
@@ -221,7 +241,7 @@ if(localStorage.getItem('ms') == 1){
 })(jQuery);
 
 function logout(){
-  localStorage.clear();
+  window.localStorage.clear();
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
   window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
@@ -234,11 +254,11 @@ function gologin(){
 }
 
 function isLang(){
-  if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
+  if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
     i18n.setLanguage('us')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
     // console.log("en===============")
-  }else if(localStorage.getItem('ehiI18n.Language') == 'us'){
+  }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
     i18n.setLanguage('zh')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
     // console.log("中文===============")

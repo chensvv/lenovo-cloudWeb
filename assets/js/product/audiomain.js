@@ -1,6 +1,6 @@
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
-var username = window.localStorage.getItem('token');
+var username = $.base64.decode(window.localStorage.getItem('token'));
 var urlInfo = proURL +'/cloudasr';
 var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
@@ -102,12 +102,8 @@ function socket (e) {
                     $('#asrVersion').html(res.asrVersion)
                     $('#confidence').html(res.confidence)
                     $('#desc').html(res.desc)
-                    $('#nConf').html(res.nConf)
-                    $('#nText').html(res.nText)
                     $('#nlpVersion').html(res.nlpVersion)
                     $('#rawText').html(res.rawText)
-                    $('#result').html(res.result)
-                    $('#status').html(res.status)
                     // $('#time').html(res.time)
                     $('.result-input').val(res.rawText)
                     
@@ -138,7 +134,7 @@ function getIxid(e){
             //     sample:"1",
             //     audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
             // }
-            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/cmd`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/cmd`
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             socket(e)
         }

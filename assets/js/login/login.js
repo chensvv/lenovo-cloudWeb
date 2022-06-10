@@ -51,17 +51,31 @@ $('#loginBtn').click(function(){
         $('#login-loading').show()
         $('#loginBtn').attr('disabled','ture')
         // console.log(localStorage.getItem('ehiI18n.Language'))
+        var loginParams = {
+            u:username,
+            p:password,
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            imgCode:$('#login-img-code').val(),
+            ucode:loginuuid,
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            lid:"",
+            t:"",
+            opwd:"",
+            pwd:"",
+            lenovoid:"",
+            userService:"",
+            code:""
+        }
+        var stringParams = JSON.stringify(loginParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        loginParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/login',
             type:'post',
             dataType:'json',
-            data:{
-                u:username,
-                p:password,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
-                imgCode:$('#login-img-code').val(),
-                ucode:loginuuid
-            },
+            data:loginParams,
             success:function(res){
                 $('#login-loading').hide()
                 $('#loginBtn').removeAttr('disabled','disabled')
@@ -70,8 +84,8 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
                     window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                     window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#login-password').val())))
-                    window.localStorage.setItem('un',res.userName)
-                    window.localStorage.setItem('token',res.token)
+                    window.localStorage.setItem('un',$.base64.encode(res.userName))
+                    window.localStorage.setItem('token',$.base64.encode(res.token))
                     window.localStorage.setItem('us',res.userService)
                     window.localStorage.setItem('ms',res.meetingService)
                     // var param = {
@@ -134,23 +148,31 @@ $('#regbtn').click(function(){
         }
         $('#reg-loading').show()
         $('#regbtn').attr('disabled','true')
+        var regParams = {
+            u:$('#reg-email').val(),
+            phone:$('#reg-phone').val(),
+            username:$('#reg-name').val(),
+            company:$('#reg-company').val(),
+            dept:$('#reg-dep').val(),
+            userService:checkVal,
+            p:$.base64.encode($('#reg-password').val()),
+            code:$('#reg-code').val(),
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            imgCode:$('#reg-img-code').val(),
+            ucode:reguuid,
+            lid:"",
+            t:"",
+            opwd:"",
+            pwd:"",
+            lenovoid:""
+        }
+        var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        regParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/register',
             type:'post',
             dataType:'json',
-            data:{
-                u:$('#reg-email').val(),
-                phone:$('#reg-phone').val(),
-                username:$('#reg-name').val(),
-                company:$('#reg-company').val(),
-                dept:$('#reg-dep').val(),
-                userService:checkVal,
-                p:$.base64.encode($('#reg-password').val()),
-                code:$('#reg-code').val(),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
-                imgCode:$('#reg-img-code').val(),
-                ucode:reguuid
-            },
+            data:regParams,
             success:function(res){
                 $('#reg-loading').hide()
                 $('#regbtn').removeAttr('disabled','disabled')
@@ -181,8 +203,8 @@ $('#regbtn').click(function(){
                         window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
                         window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
                         window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#reg-password').val())))
-                        window.localStorage.setItem('un',res.userName)
-                        window.localStorage.setItem('token',res.token)
+                        window.localStorage.setItem('un',$.base64.encode(res.userName))
+                        window.localStorage.setItem('token',$.base64.encode(res.token))
                         window.localStorage.setItem('us',res.userService)
                         window.localStorage.setItem('ms',res.meetingService)
                         if(window.localStorage.getItem('returnurl') != null){
@@ -306,15 +328,31 @@ function regImgCode(){
         $('.reg-img-error').html(i18n.get('img_code'))
         $('.reg-img-code').siblings().css('border-color','#dc3545')
     }else{
+        var codeParams = {
+            imgCode:$('#reg-img-code').val(),
+            ucode:reguuid,
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            u:"",
+            p:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            lid:"",
+            t:"",
+            opwd:"",
+            pwd:"",
+            lenovoid:"",
+            userService:"",
+            code:""
+        }
+        var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        codeParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/checkImgCode',
             type:'post',
             dataType:'json',
-            data:{
-                imgCode:$('#reg-img-code').val(),
-                ucode:reguuid,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
-            },
+            data:codeParams,
             success:function(res){
                 if(res.status == 0){
                     $('.reg-img-error').html('')
@@ -345,15 +383,31 @@ function loginImgCode(){
         $('.login-img-error').html(i18n.get('img_code'))
         $('.login-img-code').siblings().css('border-color','#dc3545')
     }else{
+        var codeParams = {
+            imgCode:$('#login-img-code').val(),
+            ucode:loginuuid,
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            u:"",
+            p:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            lid:"",
+            t:"",
+            opwd:"",
+            pwd:"",
+            lenovoid:"",
+            userService:"",
+            code:""
+        }
+        var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        codeParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/checkImgCode',
             type:'post',
             dataType:'json',
-            data:{
-                imgCode:$('#login-img-code').val(),
-                ucode:loginuuid,
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
-            },
+            data:codeParams,
             success:function(res){
                 if(res.status == 0){
                     $('.login-img-error').html('')
@@ -500,14 +554,31 @@ function getCode(){
         return false
     }
     $('.reg-code-btn').css('pointer-events','none')
+    var regCodeParams = {
+        u:$('#reg-email').val(),
+        language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+        p:"",
+        username:"",
+        phone:"",
+        company:"",
+        dept:"",
+        lid:"",
+        t:"",
+        opwd:"",
+        pwd:"",
+        lenovoid:"",
+        userService:"",
+        code:"",
+        imgCode:"",
+        ucode:""
+    }
+    var stringParams = JSON.stringify(regCodeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+    regCodeParams.sign = md5(stringParams)
     $.ajax({
         url:proURL+'/web/registercode',
         type:'post',
         dataType:'json',
-        data:{
-            u:$('#reg-email').val(),
-            language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english'
-        },
+        data:regCodeParams,
         success:function(res){
             if(res.status == 0){
                 timer()

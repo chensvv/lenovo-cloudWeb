@@ -1,4 +1,4 @@
-._htools-select {
+/* ._htools-select {
     display: inline-block;
     margin: 0;
     background-color: #f6f6f6;
@@ -6,9 +6,7 @@
     vertical-align: middle;
     transition: border 0.5s;
     -moz-transition: border 0.5s;
-    /* Firefox 4 */
     -webkit-transition: border 0.5s;
-    /* Safari 和 Chrome */
     -o-transition: border 0.5s;
 }
 
@@ -22,9 +20,7 @@
     border-top-color: dodgerblue;
     transition: border-top-color 0.5s;
     -moz-transition: border-top-color 0.5s;
-    /* Firefox 4 */
     -webkit-transition: border-top-color 0.5s;
-    /* Safari 和 Chrome */
     -o-transition: border-top-color 0.5s;
 }
 
@@ -51,7 +47,6 @@
 ._htools-select ._select-select-ul {
     background-color: white;
     outline: none;
-    /*border: solid dodgerblue 1px; border-top: none;*/
     position: relative;
     z-index: 10;
     display: none;
@@ -69,9 +64,7 @@
     list-style-type: none;
     transition: color 0.5s, background-color 0.5s;
     -moz-transition: color 0.5s, background-color 0.5s;
-    /* Firefox 4 */
     -webkit-transition: color 0.5s, background-color 0.5s;
-    /* Safari 和 Chrome */
     -o-transition: color 0.5s, background-color 0.5s;
 }
 
@@ -82,4 +75,4 @@
 ._htools-select ._select-select-ul li:hover {
     background-color: dodgerblue;
     color: white;
-}
+} */

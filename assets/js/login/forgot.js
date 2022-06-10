@@ -17,7 +17,7 @@ let i18n = new EhiI18n('../lan/',()=>{
     });
     $('#stepone-loading').hide()
     $('#steptwo-loading').hide()
-    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == null || localStorage.getItem('ehiI18n.Language') == undefined){
+    if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == null || window.localStorage.getItem('ehiI18n.Language') == undefined){
         $('.trans').attr('src','../assets/img/trans2.png')
     }else{
         $('.trans').attr('src','../assets/img/trans.png')
@@ -26,16 +26,33 @@ let i18n = new EhiI18n('../lan/',()=>{
 
 var c = 60
 function oneSteps(){
+    var checkParams = {
+        u:$('#forgot-username').val(),
+        code:$('#code').val(),
+        p:"",
+        language:"",
+        username:"",
+        phone:"",
+        company:"",
+        dept:"",
+        lid:"",
+        t:"",
+        opwd:"",
+        pwd:"",
+        lenovoid:"",
+        userService:"",
+        imgCode:"",
+        ucode:"",
+    }
+    var stringParams = JSON.stringify(checkParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+    checkParams.sign = md5(stringParams)
     $('#stepone-loading').show()
     $('#stepone').attr('disabled','disabled')
     $.ajax({
         url:proURL+'/web/checkingcode',
         type:'post',
         dataType:'json',
-        data:{
-            u:$('#forgot-username').val(),
-            code:$('#code').val()
-        },
+        data:checkParams,
         success:function(res){
             $('#stepone-loading').hide()
             $('#stepone').removeAttr('disabled','disabled')
@@ -68,15 +85,30 @@ function twoSteps(){
     if(newPass() && checkNewpass()){
         $('#steptwo-loading').show()
         $('#steptwo').attr('disabled','disabled')
+        var pwdParams = {
+            u:$('#forgot-username').val(),
+            code:$('#code').val(),
+            pwd:$.base64.encode($('#forgot-password').val()),
+            p:"",
+            language:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            lid:"",
+            t:"",
+            opwd:"",
+            lenovoid:"",
+            userService:"",
+            imgCode:"",
+            ucode:""
+        }
+        
         $.ajax({
             url:proURL+'/web/resetpwd',
             type:'post',
             dataType:'json',
-            data:{
-                u:$('#forgot-username').val(),
-                code:$('#code').val(),
-                pwd:$.base64.encode($('#forgot-password').val())
-            },
+            data:pwdParams,
             success:function(res){
                 $('#steptwo-loading').hide()
                 $('#steptwo').removeAttr('disabled','disabled')
@@ -147,14 +179,31 @@ $('#checkpass').on('input', function(){
 
 function getCode(){
     $('.code-btn').css('pointer-events','none')
+    var emailParams = {
+        u:$('#forgot-username').val(),
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+            code:"",
+            pwd:"",
+            p:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            lid:"",
+            t:"",
+            opwd:"",
+            lenovoid:"",
+            userService:"",
+            imgCode:"",
+            ucode:""
+    }
+    var stringParams = JSON.stringify(emailParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        emailParams.sign = md5(stringParams)
     $.ajax({
         url:proURL+'/web/email',
         type:'post',
         dataType:'json',
-        data:{
-            u:$('#forgot-username').val(),
-            language:localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english'
-        },
+        data:emailParams,
         success:function(res){
             if(res.status == 0){
                 timer()
@@ -201,11 +250,11 @@ function timer() {
 
 
 function isLang(){
-    if(localStorage.getItem('ehiI18n.Language') == 'zh' || localStorage.getItem('ehiI18n.Language') == '' || localStorage.getItem('ehiI18n.Language') == 'null' || localStorage.getItem('ehiI18n.Language') == undefined){
+    if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
         i18n.setLanguage('us')
         $('.trans').attr('src','../assets/img/trans.png')
         // console.log("en===============")
-      }else if(localStorage.getItem('ehiI18n.Language') == 'us'){
+      }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
         i18n.setLanguage('zh')
         $('.trans').attr('src','../assets/img/trans2.png')
         // console.log("中文===============")

@@ -1,20 +1,20 @@
 var checkList=[]
 $('#userver-loading').hide()
-if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 2){
-    checkList.push(localStorage.getItem('us'))
-    if(localStorage.getItem('us') == 1){
+if(window.localStorage.getItem('us') == 1 || window.localStorage.getItem('us') == 2){
+    checkList.push(window.localStorage.getItem('us'))
+    if(window.localStorage.getItem('us') == 1){
         $('.asrcheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
         $('.span1').css('display','block')
         $('.span2').css('display','none')
     }
-    if(localStorage.getItem('us') == 2){
+    if(window.localStorage.getItem('us') == 2){
         $('.ttscheck').attr("checked","checked")
         $('.ttscheck').attr("disabled","true")
         $('.span1').css('display','none')
         $('.span2').css('display','block')
     }
-}else if(localStorage.getItem('us') == 3){
+}else if(window.localStorage.getItem('us') == 3){
     checkList.push('1','2')
     $('.asrcheck').attr("checked","checked")
     $('.ttscheck').attr("checked","checked")
@@ -52,15 +52,30 @@ function submit(){
                 checkArr = 2
             }
         }
+        var params = {
+            t:$.base64.decode(window.localStorage.getItem('token')),
+            lid:$.base64.decode(window.localStorage.getItem('acd')),
+            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            userService:checkArr,
+            u:"",
+            p:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            opwd:"",
+            pwd:"",
+            lenovoid:"",
+            code:"",
+            imgCode:"",
+            ucode:""
+        }
+        var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        params.sign = md5(stringParams)
         $.ajax({
           type:"POST",
             url:proURL+'/web/updUserService',
-            data:{
-                t:window.localStorage.getItem('token'),
-                lid:$.base64.decode(window.localStorage.getItem('acd')),
-                language:localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
-                userService:checkArr
-            },
+            data:params,
           dataType:"json",
           headers: {
                 "channel" : "cloudasr"
@@ -77,7 +92,7 @@ function submit(){
                         confirmButtonColor: '#94cb82'
                     })
                 }if(res.status == 101){
-                    localStorage.clear();
+                    window.localStorage.clear();
                     // Swal.fire({
                     //     text: i18n.get('logTimeOut'),
                     //     showCancelButton: false,
@@ -102,7 +117,7 @@ function submit(){
                     })
                 }
             }else{
-                localStorage.clear();
+                window.localStorage.clear();
                 // Swal.fire({
                 //     text: i18n.get('logTimeOut'),
                 //     showCancelButton: false,
@@ -133,14 +148,30 @@ function submit(){
 }
 getUserInfo()
 function getUserInfo(){
+    var infoParams = {
+        username:$.base64.decode(window.localStorage.getItem('un')),
+        lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
+        t:$.base64.decode(window.localStorage.getItem('token')),
+        u:"",
+        p:"",
+        language:"",
+        phone:"",
+        company:"",
+        dept:"",
+        lid:"",
+        opwd:"",
+        pwd:"",
+        userService:"",
+        code:"",
+        imgCode:"",
+        ucode:"",
+      }
+      var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+      infoParams.sign = md5(stringParams)
     $.ajax({
         type:"POST",
         url:proURL+'/userinfo',
-        data:{
-            username:window.localStorage.getItem('un'),
-            lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
-            t:localStorage.getItem('token')
-        },
+        data:infoParams,
         dataType:"json",
         headers: {
             "channel" : "cloudasr"
@@ -154,7 +185,7 @@ function getUserInfo(){
                 $('#remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
                 $('#remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
             }else{
-                localStorage.clear();
+                window.localStorage.clear();
                 // Swal.fire({
                 //     text: i18n.get('logTimeOut'),
                 //     showCancelButton: false,

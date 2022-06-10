@@ -9,7 +9,7 @@ var ixid
 var pidx = 1
 var over = 0
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
-var username = window.localStorage.getItem('token')
+var username = $.base64.decode(window.localStorage.getItem('token'))
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var h = 0,m = 0,s = 0,ms = 0,time = 0 //定时器
@@ -133,7 +133,7 @@ function getIxid(e){
         success:function(res){
             var ixids = String(res)
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
-            path = `${uri}${$.base64.encode(localStorage.getItem('un'))}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${ixids}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${ixids}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
             socket(e)
         }
     })

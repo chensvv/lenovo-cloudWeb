@@ -20,7 +20,7 @@
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="../assets/vendor/sweetalert/bootstrap-4.css" rel="stylesheet">
-  <link href="../assets/vendor/htools.select/css/htools.select.css" rel="stylesheet" >
+  <!-- <link href="../assets/vendor/htools.select/css/htools.select.css" rel="stylesheet" > -->
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/only.css" rel="stylesheet" >
@@ -39,21 +39,23 @@
             
           </span></a>
           <!-- Uncomment below if you prefer to use an image logo -->
-          <div class="select-box">
-            <label>
-                <select id="selectSamp">
-                    <option value="16000">16k</option>
-                    <option value="8000">8k</option>
-                    
-                </select>
-            </label>  
-            <label>
-                <select id="selectLang">
-                    <option value="chinese">中文</option>
-                    <option value="english">English</option>
+          <form>
+            <div class="select-box form-group">
+              <label>
+                  <select class="form-control" id="selectSamp">
+                      <option value="16000">16k</option>
+                      <option value="8000">8k</option>
                   </select>
-            </label>
-          </div>
+              </label>  
+              <label>
+                  <select class="form-control" id="selectLang">
+                      <option value="chinese">中文</option>
+                      <option value="english">English</option>
+                    </select>
+              </label>
+            </div>
+          </form>
+          
         </div>
   
         <nav class="nav-menu d-none d-lg-block">
@@ -122,12 +124,8 @@
                     <p><span>语音识别引擎版本：</span><span id="asrVersion"></span></p>
                     <p><span>语音识别置信度：</span><span id="confidence"></span></p>
                     <p><span>结果描述：</span><span id="desc"></span></p>
-                    <p><span>多备选置信度：</span><span id="nConf"></span></p>
-                    <p><span>最终解析结果：</span><span id="nText"></span></p>
                     <p><span>语义引擎版本：</span><span id="nlpVersion"></span></p>
                     <p><span>语音识别引擎解析结果：</span><span id="rawText"></span></p>
-                    <p><span>语音处理结果：</span><span id="result"></span></p>
-                    <p><span>结果状态：</span><span id="status"></span></p>
                     <!-- <p><span>服务器时间：</span><span id="time"></span></p> -->
                   </div>
                 </div>
@@ -150,16 +148,18 @@
 
 
   <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/js/common/iflogin.js"></script>
  <script src="../assets/js/common/isIE.js"></script>
-  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+
   <script src="../i18n/ehi-i18n.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/recorder-core/recorder.wav.min.js"></script>
   <script src="../assets/vendor/recorder-core/waveview.js"></script>
-  <script src="../assets/vendor/htools.select/js/htools.select.js"></script>
+  <script src="../assets/vendor/md5/md5.js"></script>
+  <!-- <script src="../assets/vendor/htools.select/js/htools.select.js"></script> -->
 
   <!-- Template Main JS File -->
   <script src="../assets/js/common/url.js"></script>

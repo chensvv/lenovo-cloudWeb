@@ -10,13 +10,27 @@ $('.pushbtn').click(function(){
       if(titleInput()){
         $('#pub-loading').show()
         $('.pushbtn').attr('disabled','disabled')
+        var addParams = {
+          t:$.base64.decode(window.localStorage.getItem('token')),
+          lid:$.base64.decode(window.localStorage.getItem('acd')),
+          language:"",
+          title:$('#exampleInput').val(),
+          content:$('#exampleFormControlTextarea').val(),
+          accountname:$.base64.decode(localStorage.getItem('un')),
+          articleid:"",
+          parentid:"",
+          datatype:0,
+          pagenum:"",
+          pagecount:"",
+          dataid:""
+        }
+        var stringParams = JSON.stringify(addParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        console.log(stringParams)
+        addParams.sign = md5(stringParams)
         $.ajax({
             type:"POST",
-            url:proURL+'/forum/add?datatype=0&title='+$('#exampleInput').val()+'&content='+$('#exampleFormControlTextarea').val()+'&accountname='+localStorage.getItem('un'),
-            data:{
-                t:window.localStorage.getItem('token'),
-                lid:$.base64.decode(window.localStorage.getItem('acd'))
-            },
+            url:proURL+'/forum/add',
+            data:addParams,
             dataType:"json",
             headers: {
                   "channel" : "cloudasr"
@@ -51,7 +65,7 @@ $('.pushbtn').click(function(){
                         })
                       }
                   }else{
-                      localStorage.clear();
+                    window.localStorage.clear();
                       // Swal.fire({
                       //   text: i18n.get('logTimeOut'),
                       //   showCancelButton: true,

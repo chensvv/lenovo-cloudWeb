@@ -2,7 +2,7 @@ var n = 0
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
-var username = localStorage.getItem('token')
+var username = $.base64.decode(localStorage.getItem('token'))
 var bgm = document.getElementById('bgMusic')
 
 function voicePlay(){

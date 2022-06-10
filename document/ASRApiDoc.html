@@ -103,7 +103,6 @@
                     <tr>
                         <th scope="row" i18n="headers"></th>
                         <td colspan="3">
-                            <div><span i18n="agent"></span>User-Agent:{platform=[android 4.2.x], name=[com.test.test], version=[1.0.1.130101_xxx]}</div>
                             <span i18n="paramdes"></span>
                             <table class="table table-bordered">
                                 <thead>
@@ -173,20 +172,16 @@
                                         <th scope="row">audioFormat</th>
                                         <td>String</td>
                                         <td>pcm_16000_16bit_sample</td>
-                                        <td i18n="audioFormat"><br>
-                                                pcm_16000_16bit_sample ：16k 16bit <span i18n="mono"></span> pcm<br>
-                                                pcm_8000_16bit_sample ：8k 16bit <span i18n="mono"></span> pcm<br>
-                                                alaw_8000_16bit_sample ：8k 16bit <span i18n="mono"></span> alaw<br>
-                                                ulaw_8000_16bit_sample ：8k 16bit <span i18n="mono"></span> ulaw</td>
+                                        <td><span i18n="audioFormat"></span><br>
+                                                pcm_16000_16bit_sample <span>pcm格式  16000采样率 16比特率的语音</span><br>
+                                                pcm_8000_16bit_sample <span> pcm格式  8000采样率 16比特率的语音</span><br>
+                                                speex_16000_16bit_sample <span>speex格式 16000采样率 16比特率的语音</span><br>
+                                                speex_8000_16bit_sample <span>speex格式 8000采样率 16比特率的语音</span><br>
+                                                alaw_8000_16bit_sample <span>alaw 格式 8000采样率 16比特率的语音</span><br>
+                                                ulaw_8000_16bit_sample <span>ulaw 格式 8000采样率 16比特率的语音</span>        
                                     </tr>
                                     <tr>
                                         <th scope="row">sessionid</th>
-                                        <td>Number</td>
-                                        <td>1356663021692</td>
-                                        <td i18n="sts"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">ixid</th>
                                         <td>Number</td>
                                         <td>1356663021692</td>
                                         <td i18n="sts"></td>
@@ -294,13 +289,15 @@
 
 
   <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/js/common/iflogin.js"></script>
  <script src="../assets/js/common/isIE.js"></script>
-  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+
   <script src="../i18n/ehi-i18n.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
+  <script src="../assets/vendor/md5/md5.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/common/url.js"></script>

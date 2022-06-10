@@ -1,15 +1,26 @@
 $(function () {
     var total = ""
+    var listParams = {
+        pagenum: 1,
+        pagecount: 10,
+        t: $.base64.decode(localStorage.getItem('token')),
+        lid: $.base64.decode(localStorage.getItem('acd')),
+        language:"",
+        title:"",
+        content:"",
+        accountname:"",
+        articleid:"",
+        parentid:"",
+        datatype:"",
+        dataid:""
+    }
+    var stringParams = JSON.stringify(listParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+    listParams.sign = md5(stringParams)
     $.ajax({
         url: proURL + '/forum/list',
         type: 'post',
         dataType: "json",
-        data: {
-            "pagenum": 1,
-            "pagecount": 10,
-            t: localStorage.getItem('token'),
-            lid: $.base64.decode(localStorage.getItem('acd'))
-        },
+        data:listParams,
         headers: {
             "channel": "cloudasr"
         },
@@ -93,16 +104,27 @@ $(function () {
             isPN: true, //是否显示上一页和下一面，默认true
             isFL: false, //是否显示首页和末页，默认true
             jump: function (curPage, pageSize) { //跳转功能回调，传递回来2个参数，当前页和每页大小。如果没有设置分页下拉，则第二个参数永远为0。这里的this被指定为一个空对象，如果回调中需用到this请自行使用bind方法
+                var params = {
+                    pagenum: curPage,
+                    pagecount: pageSize,
+                    t: $.base64.decode(localStorage.getItem('token')),
+                    lid: $.base64.decode(localStorage.getItem('acd')),
+                    language:"",
+                    title:"",
+                    content:"",
+                    accountname:"",
+                    articleid:"",
+                    parentid:"",
+                    datatype:"",
+                    dataid:""
+                }
+                var stringParams = JSON.stringify(params,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                params.sign = md5(stringParams)
                 $.ajax({
                     type: "POST",
                     url: proURL + "/forum/list",
                     dataType: "json",
-                    data: {
-                        "pagenum": curPage,
-                        "pagecount": pageSize,
-                        t: localStorage.getItem('token'),
-                        lid: $.base64.decode(localStorage.getItem('acd'))
-                    },
+                    data:params,
                     headers: {
                         "channel": "cloudasr"
                     },

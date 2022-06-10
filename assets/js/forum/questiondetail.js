@@ -1,7 +1,7 @@
 $(function () {
-    var Username = window.localStorage.getItem('un');
+    var Username = $.base64.decode(window.localStorage.getItem('un'));
     var accountid = $.base64.decode(window.localStorage.getItem('acd'));
-    var token = window.localStorage.getItem('token')
+    var token = $.base64.decode(window.localStorage.getItem('token'))
     $('#pub-loading').hide()
     // $(".qu_btn").click(function () {
     //     $('html,body').animate({
@@ -63,6 +63,22 @@ $(function () {
 
     // })
     function content(){
+        var detailParams = {
+            articleid:id,
+            lid:accountid,
+            t:token,
+            pagenum: "",
+            pagecount: "",
+            language:"",
+            title:"",
+            content:"",
+            accountname:"",
+            parentid:"",
+            datatype:"",
+            dataid:""
+        }
+        var stringParams = JSON.stringify(detailParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        detailParams.sign = md5(stringParams)
         $.ajax({
             type:"POST",
             url:proURL+"/forum/detail",
@@ -70,7 +86,7 @@ $(function () {
             headers: {
                 "channel" : "cloudasr"
             },
-            data:{"articleid":id,lid:accountid,t:token},
+            data:detailParams,
             success:function(res){
                 if(res.errorcode !=1024){
                     $.each(res.datalist.child, function (idx, val) {
@@ -146,15 +162,26 @@ $(function () {
                                 cancelButtonText:i18n.get('cancel')
                             }).then((result) => {
                                 if (result.isConfirmed) {
+                                    var detailParams = {
+                                        dataid: valid,
+                                        accountname: Username,
+                                        lid: accountid,
+                                        t: token,
+                                        articleid:"",
+                                        pagenum: "",
+                                        pagecount: "",
+                                        language:"",
+                                        title:"",
+                                        content:"",
+                                        parentid:"",
+                                        datatype:""
+                                    }
+                                    var stringParams = JSON.stringify(detailParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                                    detailParams.sign = md5(stringParams)
                                     $.ajax({
                                         type: "POST",
                                         url: proURL+"/forum/delete",
-                                        data: {
-                                            "dataid": valid,
-                                            "accountname": Username,
-                                            lid: accountid,
-                                            t: token
-                                        },
+                                        data:detailParams,
                                         headers: {
                                             "channel": "cloudasr"
                                         },
@@ -203,15 +230,26 @@ $(function () {
                                 cancelButtonText:i18n.get('cancel')
                             }).then((result) => {
                                 if (result.isConfirmed) {
+                                    var delParams = {
+                                        dataid: keyid,
+                                        accountname: Username,
+                                        lid: accountid,
+                                        t: token,
+                                        articleid:"",
+                                        pagenum: "",
+                                        pagecount: "",
+                                        language:"",
+                                        title:"",
+                                        content:"",
+                                        parentid:"",
+                                        datatype:""
+                                    }
+                                    var stringParams = JSON.stringify(delParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                                    delParams.sign = md5(stringParams)
                                     $.ajax({
                                         type: "POST",
                                         url: proURL+"/forum/delete",
-                                        data: {
-                                            "dataid": keyid,
-                                            "accountname": Username,
-                                            lid: accountid,
-                                            t: token
-                                        },
+                                        data:delParams,
                                         headers: {
                                             "channel": "cloudasr"
                                         },
@@ -296,19 +334,27 @@ $(function () {
                     var $content = $(".comment_textarea").val();
                     var parentEl = $(this).parent().parent().parent().parent();
                     var pid = parentEl.find(".pid").html();
+                    var addParams = {
+                        title: tit,
+                        content: $content,
+                        accountname: Username,
+                        articleid: id,
+                        parentid: pid,
+                        lid: accountid,
+                        t: token,
+                        dataid: "",
+                        pagenum: "",
+                        pagecount: "",
+                        language:"",
+                        datatype:1
+                    }
+                    var stringParams = JSON.stringify(addParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                    addParams.sign = md5(stringParams)
                     $.ajax({
                         type: "POST",
-                        url: proURL+"/forum/add?datatype=1",
+                        url: proURL+"/forum/add",
                         dataType: 'json',
-                        data: {
-                            "title": tit,
-                            "content": $content,
-                            "accountname": Username,
-                            "articleid": id,
-                            "parentid": pid,
-                            lid: accountid,
-                            t: token
-                        },
+                        data:addParams,
                         headers: {
                             "channel": "cloudasr"
                         },
@@ -413,15 +459,27 @@ $(function () {
         })
     }
     //文章展示
+    var detParams = {
+        articleid: id,
+        lid: accountid,
+        t: token,
+        dataid: "",
+        accountname: "",
+        pagenum: "",
+        pagecount: "",
+        language:"",
+        title:"",
+        content:"",
+        parentid:"",
+        datatype:""
+    }
+    var stringParams = JSON.stringify(detParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+    detParams.sign = md5(stringParams)
     $.ajax({
         type: 'POST',
         url: proURL+"/forum/detail",
         dataType: 'json',
-        data: {
-            "articleid": id,
-            lid: accountid,
-            t: token
-        },
+        data:detParams,
         headers: {
             "channel": "cloudasr"
         },
@@ -490,13 +548,26 @@ $(function () {
         var tit = $(".htitle").text();
         var tit2 = $('.reply_arrows').text()
         var $content = $("#content").val();
+        var adParams = {
+            lid: accountid,
+            t: token,
+            articleid: id,
+            dataid: "",
+            accountname: Username,
+            pagenum: "",
+            pagecount: "",
+            language:"",
+            title:tit || tit2,
+            content:$content,
+            parentid:0,
+            datatype:1
+        }
+        var stringParams = JSON.stringify(adParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        adParams.sign = md5(stringParams)
         $.ajax({
             type: 'POST',
-            url: proURL+"/forum/add?datatype=1&content=" + $content + '&accountname=' + Username + '&articleid=' + id + '&parentid=0&title=' + tit || tit2,
-            data: {
-                lid: accountid,
-                t: token
-            },
+            url: proURL+"/forum/add",
+            data:adParams,
             dataType: 'json',
             headers: {
                 "channel": "cloudasr"

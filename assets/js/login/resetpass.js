@@ -39,11 +39,31 @@ $('.reset-btn').click(function(){
     if(regPwd() && regCheckpwd()){
         $('#reset-loading').show()
         $('.reset-btn').attr('disabled','disabled')
+        var regParams = {
+            lid:$.base64.decode(localStorage.getItem('acd')),
+            t:$.base64.decode(localStorage.getItem('token')),
+            pwd:$.base64.encode($('#reg-password').val()),
+            u:"",
+            p:"",
+            language:"",
+            username:"",
+            phone:"",
+            company:"",
+            dept:"",
+            opwd:"",
+            lenovoid:"",
+            userService:"",
+            code:"",
+            imgCode:"",
+            ucode:""
+        }
+        var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        regParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/setpwd',
             type:'post',
             dataType:'json',
-            data:{lid:$.base64.decode(localStorage.getItem('acd')),t:localStorage.getItem('token'),pwd:$.base64.encode($('#reg-password').val())},
+            data:regParams,
             success:function(res){
                 $('#reset-loading').hide()
                 $('.reset-btn').removeAttr('disabled','disabled')
