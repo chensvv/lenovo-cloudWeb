@@ -6,13 +6,14 @@ var arrList = ["They often create amazing things from simple ideas.",
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var n = 0
-var username = $.base64.decode(localStorage.getItem('token'))
+var username = $.base64.decode(window.localStorage.getItem('token'))
+var userToken = window.localStorage.getItem('token')
 var box = document.getElementById('voice-btn');
 var chunkInfo;
 var rec;
 
 function record(e){
-    if (username == "" || username == null) {
+    if (userToken == "" || userToken == null) {
         Swal.fire({
             text: i18n.get('firstLogin'),
             showCancelButton: true,

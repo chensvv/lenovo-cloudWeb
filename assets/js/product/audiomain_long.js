@@ -12,6 +12,7 @@ var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 var username = $.base64.decode(window.localStorage.getItem('token'))
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
+var userToken = window.localStorage.getItem('token')
 var h = 0,m = 0,s = 0,ms = 0,time = 0 //定时器
 var str = '00:00:00'
 var times = ''
@@ -22,19 +23,11 @@ var statu = 0
 var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
-$selectSamp.goSelectInput({
-    height: 25,
-    width: 70
-});
-$selectLang.goSelectInput({
-    height: 25,
-    width: 70
-});
-
 
 function toggleRecording(e){
+    console.log(123)
     $('.hint-sp-left').css("display","none");
-    if (username == "" || username == null) {
+    if (userToken == "" || userToken == null) {
         $('#statusU').css('display','block')
         return;
     }
@@ -64,7 +57,7 @@ function toggleRecording(e){
                 cancelButtonText:i18n.get('cancel')
             }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '../product/long_recognise.html'
+                  window.location.href = '../user/uservice.html'
                 }
             })
         }

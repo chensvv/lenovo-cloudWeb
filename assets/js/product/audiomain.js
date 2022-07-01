@@ -1,6 +1,7 @@
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var username = $.base64.decode(window.localStorage.getItem('token'));
+var userToken = window.localStorage.getItem('token')
 var urlInfo = proURL +'/cloudasr';
 var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp");
@@ -14,17 +15,9 @@ var rec
 var chunkInfo
 var pidx = 1
 var statu = 0
-$selectSamp.goSelectInput({
-    height: 25,
-    width: 70
-});
-$selectLang.goSelectInput({
-    height: 25,
-    width: 70
-});
 function toggleRecording(e){
-    
-    if (username == "" || username == null) {
+    $('.hint-sp-left').css("display","none");
+    if (userToken == "" || userToken == null) {
         $('#statusU').css('display','block')
         return;
     }
@@ -51,7 +44,7 @@ function toggleRecording(e){
                 cancelButtonText:i18n.get('cancel')
             }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '../product/recognise.html'
+                  window.location.href = '../user/uservice.html'
                 }
             })
         }

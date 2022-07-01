@@ -107,6 +107,11 @@
                 <span class="tts-btn voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
                 <span class="tts-btn voice-pause" onclick="voicePause()" i18n="ttspause"></span>
                 <span class="tts-btn voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
+                <span class="rangebox">
+                  <span>倍速</span>
+                  <input type="range" class="myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
+                </span>
+                
             </div>
             <audio id="bgMusic">
                     
@@ -128,16 +133,13 @@
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../assets/js/common/iflogin.js"></script>
- <script src="../assets/js/common/isIE.js"></script>
-
-  <script src="../i18n/ehi-i18n.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
+  <script src="../assets/js/common/iflogin.js"></script>
+  <script src="../assets/js/common/isIE.js"></script>
+  <script src="../i18n/ehi-i18n.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/md5/md5.js"></script>
-  <!-- <script src="../assets/vendor/recorder-core/recorder.wav.min.js"></script>
-  <script src="../assets/vendor/recorder-core/waveview.js"></script> -->
 
   <!-- Template Main JS File -->
   <script src="../assets/js/common/url.js"></script>

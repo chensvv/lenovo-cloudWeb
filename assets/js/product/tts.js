@@ -2,11 +2,13 @@ var n = 0
 var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
-var username = $.base64.decode(localStorage.getItem('token'))
+var username = $.base64.decode(window.localStorage.getItem('token'))
+var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
+var rangeval = document.getElementById('myrange').value
 
 function voicePlay(){
-    if (username == "" || username == null) {
+    if (userToken == "" || userToken == null) {
         Swal.fire({
             text: i18n.get('firstLogin'),
             showCancelButton: true,
@@ -19,7 +21,6 @@ function voicePlay(){
             confirmButtonText: i18n.get('confirm'),
             cancelButtonText:i18n.get('cancel')
         }).then((result) => {
-          
             if (result.isConfirmed) {
               var url = window.location.href
               window.localStorage.setItem('returnurl',url)
@@ -58,7 +59,7 @@ function voicePlay(){
                 cancelButtonText:i18n.get('cancel')
             }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = '../product/tts.html'
+                  window.location.href = '../user/uservice.html'
                 }
             })
         }
@@ -93,7 +94,11 @@ bgm.addEventListener('canplaythrough', function(){
     bgm.play()
 })
 
-
+function myrange(){
+  var myx = document.getElementById('myrange').value
+  rangeval = myx
+  bgm.playbackRate = myx == 1.5 ? myx = 2 : myx;
+}
 
 function getData(){
     var req = new XMLHttpRequest();
@@ -113,7 +118,6 @@ function getData(){
         var reader = new FileReader();
         reader.readAsText(blob, 'utf-8');
         reader.onload = function (e) {
-          console.log(reader.result.length)
           if(reader.result.length < 200 && reader.result.length > 1){
             Swal.fire({
               text:reader.result.replace(/[^\u4e00-\u9fa5]/gi, ""),
@@ -128,6 +132,7 @@ function getData(){
             })
           }else{
             bgm.src = URL.createObjectURL(blob);
+            bgm.playbackRate = rangeval
           }
         }
     }

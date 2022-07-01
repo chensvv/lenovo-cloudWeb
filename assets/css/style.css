@@ -2149,6 +2149,7 @@ section {
 }
 .tts-main .tts-btn-box{
   margin-top: 15px;
+  position: relative;
 }
 .tts-main .tts-btn{
   display: block;
@@ -2179,6 +2180,17 @@ section {
 .asr-doc-main .align-center{
   text-align: center;
   /* width: 50%; */
+}
+.myr{
+  width: 70px;
+}
+.rangebox{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+.rangebox span{
+  vertical-align: text-bottom;
 }
 
 
@@ -3596,6 +3608,14 @@ body.swal2-toast-shown .swal2-container{
   .mobile-header .logo{
     display: none;
   }
+  .rangebox{
+    top: -5px;
+    right: 5px;
+  }
+  .rangebox span{
+    display: block;
+    text-align: center;
+  }
 }
 @media (max-width: 991.98px) {
   #login{
@@ -3671,3 +3691,4 @@ body.swal2-toast-shown .swal2-container{
     max-width: 1500px;
   }
 }
+
