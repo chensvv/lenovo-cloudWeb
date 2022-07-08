@@ -2181,16 +2181,29 @@ section {
   text-align: center;
   /* width: 50%; */
 }
-.myr{
+.myrv{
   width: 70px;
-}
-.rangebox{
+  transform: rotate(-90deg);
   position: absolute;
-  top: 8px;
-  right: 15px;
+  left: -22px;
+  top: -45px;
+  display: none;
+}
+.rangevol{
+  float: right;
+}
+.rangevol span{
+  vertical-align: text-bottom;
+  margin-right: 10px;
+  position: relative;
 }
 .rangebox span{
-  vertical-align: text-bottom;
+  cursor: pointer;
+}
+.volbox i{
+  cursor: pointer;
+  font-size: 22px;
+  vertical-align: middle;
 }
 
 

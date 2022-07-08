@@ -101,19 +101,25 @@
                         <span i18n="enterword"></span>
                         <span id="number">150</span>
                         <span i18n="ttsWords"></span>
+                        <div class="rangevol">
+                          <span class="volbox">
+                            <i class='bx bxs-volume-full' onclick="volbtn('myvol')"></i>
+                            <input type="range" class="myrv myv" id="myvol" min="0" max="1" step="0.1" value="1" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
+                          </span>
+                          <span class="rangebox">
+                            <span class="rate" onclick="rangbtn('myrange')">倍速</span>
+                            <input type="range" class="myrv myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
+                          </span>
+                        </div>
                     </div>
+                    
                 </div>
             <div class="tts-btn-box">
                 <span class="tts-btn voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
                 <span class="tts-btn voice-pause" onclick="voicePause()" i18n="ttspause"></span>
                 <span class="tts-btn voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
-                <span class="rangebox">
-                  <span>倍速</span>
-                  <input type="range" class="myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
-                </span>
-                
             </div>
-            <audio id="bgMusic">
+            <audio id="bgMusic" >
                     
             </audio>
         </div>

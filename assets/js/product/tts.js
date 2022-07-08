@@ -100,6 +100,60 @@ function myrange(){
   bgm.playbackRate = myx == 1.5 ? myx = 2 : myx;
 }
 
+
+function densityInput (event) {
+  console.log(event.target.value);
+  bgm.volume = event.target.value
+}
+
+function OnPropChanged (event) {
+  if (event.propertyName.toLowerCase () == "value") {
+      console.log(event.srcElement.value);
+  }
+}
+
+function volbtn(id){
+  var node=document.getElementById(id);
+
+  if(node.style.display=="block"){
+      node.style.display="none";
+  }else{
+      node.style.display="block";
+  }
+}
+
+function rangbtn(id){
+  var node=document.getElementById(id);
+
+  if(node.style.display=="block"){
+      node.style.display="none";
+  }else{
+      node.style.display="block";
+  }
+}
+
+document.onclick = function(event){
+  if(document.getElementById('myvol').style.display == "block" && event.target.className != "bx bxs-volume-full"){
+    $('.myv').css('display','none')
+  }
+  if(document.getElementById('myrange').style.display == "block" && event.target.className != "rate"){
+    $('.myr').css('display','none')
+  }
+}
+
+// 阻止事件冒泡
+document.getElementById('myvol').addEventListener("click",function(event){
+  var event = event || window.event;
+  var target = event.target || event.srcElement;
+  event.stopPropagation();
+})
+
+document.getElementById('myrange').addEventListener("click",function(event){
+  var event = event || window.event;
+  var target = event.target || event.srcElement;
+  event.stopPropagation();
+})
+
 function getData(){
     var req = new XMLHttpRequest();
     var formData = 'text='+$('#textarea').val()+'&user='+accountid
