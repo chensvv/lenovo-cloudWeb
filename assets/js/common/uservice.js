@@ -1,28 +1,34 @@
-var checkList=[]
+
 $('#userver-loading').hide()
-if(window.localStorage.getItem('us') == 1 || window.localStorage.getItem('us') == 2){
-    checkList.push(window.localStorage.getItem('us'))
-    if(window.localStorage.getItem('us') == 1){
+lide()
+function lide(){
+    var checkList=[]
+    if(window.localStorage.getItem('us') == 1 || window.localStorage.getItem('us') == 2){
+        checkList.push(window.localStorage.getItem('us'))
+        if(window.localStorage.getItem('us') == 1){
+            $('.asrcheck').attr("checked","checked")
+            $('.asrcheck').attr("disabled","true")
+            $('.span1').css('display','block')
+            $('.span2').css('display','none')
+        }
+        if(window.localStorage.getItem('us') == 2){
+            $('.ttscheck').attr("checked","checked")
+            $('.ttscheck').attr("disabled","true")
+            $('.span1').css('display','none')
+            $('.span2').css('display','block')
+        }
+    }else if(window.localStorage.getItem('us') == 3){
+        checkList.push('1','2')
         $('.asrcheck').attr("checked","checked")
+        $('.ttscheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
+        $('.ttscheck').attr("disabled","true")
         $('.span1').css('display','block')
+        $('.span2').css('display','block')
+    }else{
+        $('.span1').css('display','none')
         $('.span2').css('display','none')
     }
-    if(window.localStorage.getItem('us') == 2){
-        $('.ttscheck').attr("checked","checked")
-        $('.ttscheck').attr("disabled","true")
-        $('.span1').css('display','none')
-        $('.span2').css('display','block')
-    }
-}else if(window.localStorage.getItem('us') == 3){
-    checkList.push('1','2')
-    $('.asrcheck').attr("checked","checked")
-    $('.ttscheck').attr("checked","checked")
-    $('.asrcheck').attr("disabled","true")
-    $('.ttscheck').attr("disabled","true")
-    $('.sub-btn').attr('disabled','true')
-    $('.span1').css('display','block')
-    $('.span2').css('display','block')
 }
 
 function handleClick(val){
@@ -68,9 +74,11 @@ function submit(){
             lenovoid:"",
             code:"",
             imgCode:"",
-            ucode:""
+            ucode:"",
+            channel:$('#channel').val()
         }
         var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        console.log(stringParams)
         params.sign = md5(stringParams)
         $.ajax({
           type:"POST",
@@ -90,8 +98,12 @@ function submit(){
                         text:res.error,
                         confirmButtonText: i18n.get('confirm'),
                         confirmButtonColor: '#94cb82'
+                    }).then((result)=>{
+                        if(result.isConfirmed){
+                            lide()
+                        }
                     })
-                }if(res.status == 101){
+                } else if(res.status == 101){
                     window.localStorage.clear();
                     // Swal.fire({
                     //     text: i18n.get('logTimeOut'),
@@ -180,6 +192,8 @@ function getUserInfo(){
             if(res.errorcode != 1024){
                 $('#ak').html(res.lenovokey)
                 $('#sk').html(res.secretkey)
+                $('#channel').val(res.channel)
+                $('#body-num').html($('#channel').val().length)
                 $('#totalASRAmount').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
                 $('#totalTTSAmount').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
                 $('#remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
@@ -212,3 +226,7 @@ function getUserInfo(){
         }
     });
 }
+
+$('#channel').bind("input propertychange", function(){
+    $('#body-num').html($('#channel').val().length)
+})

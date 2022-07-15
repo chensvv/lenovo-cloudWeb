@@ -133,19 +133,19 @@ $('#loginBtn').click(function(){
 })
 
 $('#regbtn').click(function(){
-        var checkVal
-        if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == true){
-            checkVal = 3
-        }else if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == false){
-            checkVal = 0
-        }else{
-            if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == false){
-                checkVal = 1
-            }
-            if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == true){
-                checkVal = 2
-            }
-        }
+        // var checkVal
+        // if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == true){
+        //     checkVal = 3
+        // }else if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == false){
+        //     checkVal = 0
+        // }else{
+        //     if($('#asrcheck').is(":checked") == true && $('#ttscheck').is(":checked") == false){
+        //         checkVal = 1
+        //     }
+        //     if($('#asrcheck').is(":checked") == false && $('#ttscheck').is(":checked") == true){
+        //         checkVal = 2
+        //     }
+        // }
         $('#reg-loading').show()
         $('#regbtn').attr('disabled','true')
         var regParams = {
@@ -154,7 +154,7 @@ $('#regbtn').click(function(){
             username:$('#reg-name').val(),
             company:$('#reg-company').val(),
             dept:$('#reg-dep').val(),
-            userService:checkVal,
+            // userService:checkVal,
             p:$.base64.encode($('#reg-password').val()),
             code:$('#reg-code').val(),
             language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
