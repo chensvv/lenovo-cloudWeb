@@ -43,6 +43,7 @@ function oneSteps(){
         userService:"",
         imgCode:"",
         ucode:"",
+        channel:""
     }
     var stringParams = JSON.stringify(checkParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
     checkParams.sign = md5(stringParams)
@@ -101,7 +102,8 @@ function twoSteps(){
             lenovoid:"",
             userService:"",
             imgCode:"",
-            ucode:""
+            ucode:"",
+            channel:""
         }
         
         $.ajax({
@@ -195,7 +197,8 @@ function getCode(){
             lenovoid:"",
             userService:"",
             imgCode:"",
-            ucode:""
+            ucode:"",
+            channel:""
     }
     var stringParams = JSON.stringify(emailParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         emailParams.sign = md5(stringParams)

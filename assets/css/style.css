@@ -2291,6 +2291,9 @@ section {
 }
 .rangevol{
   float: right;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .rangevol span{
   vertical-align: text-bottom;

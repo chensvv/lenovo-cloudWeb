@@ -211,6 +211,7 @@
   "ulaw": "Return 8k8bit file in ulaw format",
   "audiostream": "Return the audio stream of corresponding format according to the audio type",
 
-  "server_error":" please try again later！"
+  "server_error":" please try again later！",
+  "channel_name":"Channel Name"
 
 }

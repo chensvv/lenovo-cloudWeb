@@ -3,6 +3,7 @@ var accountid = $.base64.decode(window.localStorage.getItem('acd'))
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var username = $.base64.decode(window.localStorage.getItem('token'))
+var channelval = $.base64.decode(window.localStorage.getItem('ch'))
 var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
 var rangeval = document.getElementById('myrange').value
@@ -158,7 +159,7 @@ function getData(){
     var req = new XMLHttpRequest();
     var formData = 'text='+$('#textarea').val()+'&user='+accountid
     req.open("POST", proURL+'/cloudtts', true); // grab our audio file
-    req.setRequestHeader('channel','cloudasr')
+    req.setRequestHeader('channel', channelval)
     req.setRequestHeader('lenovokey',lenkey)
     req.setRequestHeader('secretkey',secrkey)
     req.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -172,13 +173,14 @@ function getData(){
         var reader = new FileReader();
         reader.readAsText(blob, 'utf-8');
         reader.onload = function (e) {
-          if(reader.result.length < 200 && reader.result.length > 1){
+          let str = reader.result
+          if(str.length < 200 && str.length > 1){
             Swal.fire({
-              text:reader.result.replace(/[^\u4e00-\u9fa5]/gi, ""),
+              text:str.split('error=')[1],
               confirmButtonText: i18n.get('confirm'),
               confirmButtonColor: '#94cb82'
             })
-          }else if(reader.result.length == 0 || reader.result == ''){
+          }else if(str.length == 0 || str == ''){
             Swal.fire({
               text:'请稍后重试！',
               confirmButtonText: i18n.get('confirm'),

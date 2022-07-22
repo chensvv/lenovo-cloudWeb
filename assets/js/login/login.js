@@ -67,7 +67,8 @@ $('#loginBtn').click(function(){
             pwd:"",
             lenovoid:"",
             userService:"",
-            code:""
+            code:"",
+            channel:""
         }
         var stringParams = JSON.stringify(loginParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         loginParams.sign = md5(stringParams)
@@ -88,6 +89,7 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('token',$.base64.encode(res.token))
                     window.localStorage.setItem('us',res.userService)
                     window.localStorage.setItem('ms',res.meetingService)
+                    window.localStorage.setItem('ch',$.base64.encode(res.channel))
                     // var param = {
                     //     'acd':$.base64.encode(res.lenovoId),
                     //     'lk':$.base64.encode(res.lenovoKey),
@@ -151,9 +153,11 @@ $('#regbtn').click(function(){
             t:"",
             opwd:"",
             pwd:"",
-            lenovoid:""
+            lenovoid:"",
+            channel:""
         }
         var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+
         regParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/register',
@@ -161,6 +165,7 @@ $('#regbtn').click(function(){
             dataType:'json',
             data:regParams,
             success:function(res){
+                console.log(res)
                 $('#reg-loading').hide()
                 $('#regbtn').removeAttr('disabled','disabled')
                 if(res.status == 0){
@@ -194,6 +199,7 @@ $('#regbtn').click(function(){
                         window.localStorage.setItem('token',$.base64.encode(res.token))
                         window.localStorage.setItem('us',res.userService)
                         window.localStorage.setItem('ms',res.meetingService)
+                        window.localStorage.setItem('ch',$.base64.encode(res.channel))
                         if(window.localStorage.getItem('returnurl') != null){
                             window.location.href = window.localStorage.getItem('returnurl')
                         }else{
@@ -331,7 +337,8 @@ function regImgCode(){
             pwd:"",
             lenovoid:"",
             userService:"",
-            code:""
+            code:"",
+            channel:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -386,7 +393,8 @@ function loginImgCode(){
             pwd:"",
             lenovoid:"",
             userService:"",
-            code:""
+            code:"",
+            channel:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -557,7 +565,8 @@ function getCode(){
         userService:"",
         code:"",
         imgCode:"",
-        ucode:""
+        ucode:"",
+        channel:""
     }
     var stringParams = JSON.stringify(regCodeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
     regCodeParams.sign = md5(stringParams)

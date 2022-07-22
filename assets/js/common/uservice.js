@@ -105,22 +105,22 @@ function submit(){
                     })
                 } else if(res.status == 101){
                     window.localStorage.clear();
-                    // Swal.fire({
-                    //     text: i18n.get('logTimeOut'),
-                    //     showCancelButton: false,
-                    //     allowOutsideClick:false,
-                    //     allowEscapeKey:false,
-                    //     reverseButtons:true,
-                    //     width:'16em',
-                    //     confirmButtonColor: '#94cb82',
-                    //     confirmButtonText: i18n.get('confirm'),
-                    // }).then((result) => {
-                    //     if (result.isConfirmed) {
+                    Swal.fire({
+                        text: i18n.get('logTimeOut'),
+                        showCancelButton: false,
+                        allowOutsideClick:false,
+                        allowEscapeKey:false,
+                        reverseButtons:true,
+                        width:'16em',
+                        confirmButtonColor: '#94cb82',
+                        confirmButtonText: i18n.get('confirm'),
+                    }).then((result) => {
+                        if (result.isConfirmed) {
                             var url = window.location.href
                             window.localStorage.setItem('returnurl',url)
                             window.location.href = '../login/login.html'
-                    //     }
-                    // })
+                        }
+                    })
                 }else{
                     Swal.fire({
                         text:res.error,
@@ -130,22 +130,22 @@ function submit(){
                 }
             }else{
                 window.localStorage.clear();
-                // Swal.fire({
-                //     text: i18n.get('logTimeOut'),
-                //     showCancelButton: false,
-                //     allowOutsideClick:false,
-                //     allowEscapeKey:false,
-                //     reverseButtons:true,
-                //     width:'16em',
-                //     confirmButtonColor: '#94cb82',
-                //     confirmButtonText: i18n.get('confirm'),
-                // }).then((result) => {
-                //     if (result.isConfirmed) {
+                Swal.fire({
+                    text: i18n.get('logTimeOut'),
+                    showCancelButton: false,
+                    allowOutsideClick:false,
+                    allowEscapeKey:false,
+                    reverseButtons:true,
+                    width:'16em',
+                    confirmButtonColor: '#94cb82',
+                    confirmButtonText: i18n.get('confirm'),
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         var url = window.location.href
                         window.localStorage.setItem('returnurl',url)
                         window.location.href = '../login/login.html'
-                //     }
-                // })
+                    }
+                })
             }
         },error:function(err){
             $('#userver-loading').hide()
@@ -177,8 +177,10 @@ function getUserInfo(){
         code:"",
         imgCode:"",
         ucode:"",
+        channel:""
       }
       var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+
       infoParams.sign = md5(stringParams)
     $.ajax({
         type:"POST",
@@ -190,6 +192,7 @@ function getUserInfo(){
         },
         success:function(res){
             if(res.errorcode != 1024){
+                window.localStorage.setItem('ch',$.base64.encode(res.channel))
                 $('#ak').html(res.lenovokey)
                 $('#sk').html(res.secretkey)
                 $('#channel').val(res.channel)
@@ -200,22 +203,22 @@ function getUserInfo(){
                 $('#remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
             }else{
                 window.localStorage.clear();
-                // Swal.fire({
-                //     text: i18n.get('logTimeOut'),
-                //     showCancelButton: false,
-                //     allowOutsideClick:false,
-                //     allowEscapeKey:false,
-                //     reverseButtons:true,
-                //     width:'16em',
-                //     confirmButtonColor: '#94cb82',
-                //     confirmButtonText: i18n.get('confirm'),
-                // }).then((result) => {
-                //     if (result.isConfirmed) {
+                Swal.fire({
+                    text: i18n.get('logTimeOut'),
+                    showCancelButton: false,
+                    allowOutsideClick:false,
+                    allowEscapeKey:false,
+                    reverseButtons:true,
+                    width:'16em',
+                    confirmButtonColor: '#94cb82',
+                    confirmButtonText: i18n.get('confirm'),
+                }).then((result) => {
+                    if (result.isConfirmed) {
                     var url = window.location.href
                     window.localStorage.setItem('returnurl',url)
                     window.location.href = '../login/login.html'
-                //     }
-                // })
+                    }
+                })
             }
         },error:function(err){
             Swal.fire({

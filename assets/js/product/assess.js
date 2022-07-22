@@ -7,6 +7,7 @@ var lenkey = $.base64.decode(window.localStorage.getItem('lk'));
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'));
 var n = 0
 var username = $.base64.decode(window.localStorage.getItem('token'))
+var channelval = $.base64.decode(window.localStorage.getItem('ch'))
 var userToken = window.localStorage.getItem('token')
 var box = document.getElementById('voice-btn');
 var chunkInfo;

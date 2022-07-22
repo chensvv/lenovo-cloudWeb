@@ -55,7 +55,8 @@ $('.reset-btn').click(function(){
             userService:"",
             code:"",
             imgCode:"",
-            ucode:""
+            ucode:"",
+            channel:""
         }
         var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         regParams.sign = md5(stringParams)
@@ -69,41 +70,41 @@ $('.reset-btn').click(function(){
                 $('.reset-btn').removeAttr('disabled','disabled')
                 if(res.status == 0){
                     localStorage.clear();
-                    // Swal.fire({
-                    //     text: i18n.get('check_success'),
-                    //     showCancelButton: false,
-                    //     allowOutsideClick:false,
-                    //     allowEscapeKey:false,
-                    //     reverseButtons:true,
-                    //     icon:'success',
-                    //     width:'16em',
-                    //     confirmButtonColor: '#94cb82',
-                    //     confirmButtonText: i18n.get('confirm'),
-                    // }).then((result) => {
-                    //     if (result.isConfirmed) {
+                    Swal.fire({
+                        text: i18n.get('check_success'),
+                        showCancelButton: false,
+                        allowOutsideClick:false,
+                        allowEscapeKey:false,
+                        reverseButtons:true,
+                        icon:'success',
+                        width:'16em',
+                        confirmButtonColor: '#94cb82',
+                        confirmButtonText: i18n.get('confirm'),
+                    }).then((result) => {
+                        if (result.isConfirmed) {
                             var url = window.location.href
                             window.localStorage.setItem('returnurl',url)
                             window.location.href = './login.html'
-                    //     }
-                    // })
+                        }
+                    })
                 }else{
                     localStorage.clear();
-                    // Swal.fire({
-                    //     text: i18n.get('logTimeOut'),
-                    //     showCancelButton: false,
-                    //     allowOutsideClick:false,
-                    //     allowEscapeKey:false,
-                    //     reverseButtons:true,
-                    //     width:'16em',
-                    //     confirmButtonColor: '#94cb82',
-                    //     confirmButtonText: i18n.get('confirm'),
-                    //   }).then((result) => {
-                    //     if (result.isConfirmed) {
+                    Swal.fire({
+                        text: i18n.get('logTimeOut'),
+                        showCancelButton: false,
+                        allowOutsideClick:false,
+                        allowEscapeKey:false,
+                        reverseButtons:true,
+                        width:'16em',
+                        confirmButtonColor: '#94cb82',
+                        confirmButtonText: i18n.get('confirm'),
+                      }).then((result) => {
+                        if (result.isConfirmed) {
                             var url = window.location.href
                             window.localStorage.setItem('returnurl',url)
                             window.location.href = './login.html'
-                    //     }
-                    //   })
+                        }
+                      })
                 }
             },
             error:function(){

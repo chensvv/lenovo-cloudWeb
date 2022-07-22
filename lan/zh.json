@@ -209,7 +209,8 @@
   "ulaw": "返回8k8bit的ulaw格式文件",
   "audiostream": "根据音频种类返回对应格式的音频流",
 
-  "server_error":"请稍后重试！"
+  "server_error":"请稍后重试！",
+  "channel_name":"渠道名称"
 
 
 }
