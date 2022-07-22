@@ -156,9 +156,9 @@ var i18n = new EhiI18n('../lan/', function(){
     $('.nav-menu').removeClass('dis-flex')
   }
   if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
-    $('.trans').attr('src','../assets/img/trans2.png')
+    $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
   }else{
-    $('.trans').attr('src','../assets/img/trans.png')
+    $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
   }
 
   // var localStorageData = JSON.parse(localStorage.getItem('data'))
@@ -245,23 +245,23 @@ function logout(){
   window.localStorage.clear();
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = '../login/login.html'
+  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
 }
 
 function gologin(){
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = '../login/login.html'
+  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
 }
 
 function isLang(){
   if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
     i18n.setLanguage('us')
-    $('.trans').attr('src','../assets/img/trans.png')
+    $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
     // console.log("en===============")
   }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
     i18n.setLanguage('zh')
-    $('.trans').attr('src','../assets/img/trans2.png')
+    $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
     // console.log("中文===============")
   }
 }
