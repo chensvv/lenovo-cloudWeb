@@ -25,46 +25,64 @@ var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
 
 function toggleRecording(e){
-    console.log(123)
-    $('.hint-sp-left').css("display","none");
     if (userToken == "" || userToken == null) {
-        $('#statusU').css('display','block')
+        Swal.fire({
+            text: i18n.get('firstLogin'),
+            showCancelButton: true,
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            reverseButtons:true,
+            width:'16em',
+            confirmButtonColor: '#94cb82',
+            cancelButtonColor: '#d33',
+            confirmButtonText: i18n.get('confirm'),
+            cancelButtonText:i18n.get('cancel')
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var url = window.location.href
+                window.localStorage.setItem('returnurl',url)
+                window.location.href = '../login/login.html'
+            }
+        })
         return;
-    }
-    if (e.classList.contains("recording")) {
-        e.classList.remove("recording");
-        over++
-        ws.send(new Blob([ ]))
-        recStop()
-        timerReset()
-        ws.close()
-        pidx = 1
     }else{
-        e.classList.add("recording");
-        if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
-            getIxid(e)
+        if (e.classList.contains("recordm")) {
+            e.classList.remove("recordm");
+            over++
+            ws.send(new Blob([ ]))
+            recStop(e)
+            timerReset()
+            ws.close()
+            pidx = 1
         }else{
-            Swal.fire({
-                text: i18n.get('service_not_open'),
-                showCancelButton: true,
-                allowOutsideClick:false,
-                allowEscapeKey:false,
-                reverseButtons:true,
-                width:'16em',
-                confirmButtonColor: '#94cb82',
-                cancelButtonColor: '#d33',
-                confirmButtonText: i18n.get('go_to_open'),
-                cancelButtonText:i18n.get('cancel')
-            }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.href = '../user/uservice.html'
-                }
-            })
+            console.log(2)
+            e.classList.add("recordm");
+            if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
+                getIxid(e)
+            }else{
+                Swal.fire({
+                    text: i18n.get('service_not_open'),
+                    showCancelButton: true,
+                    allowOutsideClick:false,
+                    allowEscapeKey:false,
+                    reverseButtons:true,
+                    width:'16em',
+                    confirmButtonColor: '#94cb82',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: i18n.get('go_to_open'),
+                    cancelButtonText:i18n.get('cancel')
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = '../user/uservice.html'
+                    }
+                })
+            }
         }
     }
+    
 }
 
-function socket (e) {
+function socket () {
     ws = new WebSocket(path)
     ws.onopen = function(){
         // console.log('ws已连接')
@@ -84,8 +102,7 @@ function socket (e) {
     }
     ws.onmessage = function(data){
         let res = JSON.parse(data.data)
-        if(typeof(res.errormessage) == "string"){
-            e.classList.remove("recording");
+        if(res.errorcode == 1){
             statu = 1
             recStop()
             ws.close()
@@ -119,7 +136,7 @@ function socket (e) {
     }
 }
 
-function getIxid(e){
+function getIxid(){
     $.ajax({
         url:proURL+'/gensessionid',
         type:'post',
@@ -127,7 +144,7 @@ function getIxid(e){
             var ixids = String(res)
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${ixids}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
-            socket(e)
+            socket()
         }
     })
     
@@ -161,12 +178,22 @@ function recOpen(){
         //开始录音
         chunkInfo = null
         rec.start()
-        $('.hint-sp-left').css('display','none')
-        $('.result-box').css('display','block')
-        timerStart()
-        img_btn = '../../img/audiomain/Mic-act.png'
+        if(statu == 0){
+            $('.hint-sp-left').css('display','none')
+            $('.mic').css('display','none')
+            $('.result-box').css('display','block')
+            $('.line-box').css("display","inline-block");
+            $('.record-btn').addClass('recording')
+            $('.mic-btn').html('停止识别')
+            timerStart()
+        }
     }, function (msg, isUserNotAllow) {
         //用户拒绝了权限或浏览器不支持
+        $('#record').removeClass('recordm')
+        $('.line-box').css("display","none");
+        $('.mic').css('display','inline-block')
+        $('.record-btn').removeClass('recording')
+        $('.mic-btn').html('开始识别')
         timerReset()
         rec.close()
         ws.close()
@@ -181,13 +208,18 @@ function recOpen(){
 function recStop(){
     rec.stop(function(blob,duration){
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-        // rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
-        rec=null;
+        rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+        // rec=null;
+        $('#record').removeClass('recordm')
+        $('.line-box').css("display","none");
+        $('.mic').css('display','inline-block')
+        $('.record-btn').removeClass('recording')
+        $('.mic-btn').html('开始识别')
+        timerReset()
         if(statu == 1){
             $('.hint-sp-left').css('display','block')
             $('.result-box').css('display','none')
-            timerReset()
-            img_btn = '../../img/audiomain/Mic-act.png'
+            
         }
     },function(msg){
         ws.close()

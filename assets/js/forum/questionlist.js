@@ -1,5 +1,6 @@
 $(function () {
     var total = ""
+    var mytotal = ""
     var listParams = {
         pagenum: 1,
         pagecount: 10,
@@ -37,7 +38,7 @@ $(function () {
                                 </div>
                             </li>`
                 })
-                $('.question-list').append(vhtml)
+                $('.question-list').html(vhtml)
                 loadPage()
             } else {
                 localStorage.clear()
@@ -69,7 +70,6 @@ $(function () {
             })
         }
     })
-
     function formatDateTime(timeStamp) {
         var date = new Date();
         date.setTime(timeStamp * 1000);
@@ -91,9 +91,9 @@ $(function () {
     }
 
 
-    function loadPage(){
-        pageUtil.initPage('page', {
-            totalCount: total, //总页数，一般从回调函数中获取。如果没有数据则默认为1页
+    function loadPage(tabid){
+        pageUtil.initPage(tabid == 'pills-profile-tab' ? 'mypage' : 'page', {
+            totalCount: tabid == 'pills-profile-tab' ? mytotal : total, //总页数，一般从回调函数中获取。如果没有数据则默认为1页
             curPage: 1, //初始化时的默认选中页，默认第一页。如果所填范围溢出或者非数字或者数字字符串，则默认第一页
             showCount: 5, //分页栏显示的数量
             pageSizeList: [5, 10, 15, 20], //自定义分页数，默认[5,10,15,20,50]
@@ -111,7 +111,7 @@ $(function () {
                     language:"",
                     title:"",
                     content:"",
-                    accountname:"",
+                    accountname: tabid == 'pills-profile-tab' ? $.base64.decode(localStorage.getItem('un')) : '',
                     articleid:"",
                     parentid:"",
                     datatype:"",
@@ -129,18 +129,34 @@ $(function () {
                     },
                     success: function (res) {
                         if (res.errorcode != 1024) {
-                            $(".question-list").html("");
-                            var vhtml = "";
-                            $.each(res.datalist, (idx, val) => {
-                                vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
-                                            <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                                <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
-                                            </div>
-                                        </li>`
-                            })
-                            $('.question-list').append(vhtml)
+                            if(tabid == 'pills-profile-tab'){
+                                $(".myques-list").html("");
+                                var vhtml = "";
+                                $.each(res.datalist, (idx, val) => {
+                                    vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
+                                                <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
+                                                <div class="media-body">
+                                                    <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
+                                                    <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
+                                                </div>
+                                            </li>`
+                                })
+                                $('.myques-list').html(vhtml)
+                            }else{
+                                $(".question-list").html("");
+                                var vhtml = "";
+                                $.each(res.datalist, (idx, val) => {
+                                    vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
+                                                <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
+                                                <div class="media-body">
+                                                    <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
+                                                    <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
+                                                </div>
+                                            </li>`
+                                })
+                                $('.question-list').html(vhtml)
+                            }
+                            
                         } else {
                             localStorage.clear();
                             Swal.fire({
@@ -176,6 +192,91 @@ $(function () {
             },
         });
     }
+    $('#pills-tab a').on('click', function (event) {
+        event.preventDefault()
+        $(this).tab('show')
+        if($(this)[0].id == 'pills-profile-tab'){
+            if(mytotal == ""){
+                var listParams = {
+                    pagenum: 1,
+                    pagecount: 10,
+                    t: $.base64.decode(localStorage.getItem('token')),
+                    lid: $.base64.decode(localStorage.getItem('acd')),
+                    language:"",
+                    title:"",
+                    content:"",
+                    accountname:$.base64.decode(localStorage.getItem('un')),
+                    articleid:"",
+                    parentid:"",
+                    datatype:"",
+                    dataid:""
+                }
+                var stringParams = JSON.stringify(listParams,fourmReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                listParams.sign = md5(stringParams)
+                $.ajax({
+                    url: proURL + '/forum/list',
+                    type: 'post',
+                    dataType: "json",
+                    data:listParams,
+                    headers: {
+                        "channel": "cloudasr"
+                    },
+                    success: (res) => {
+                        mytotal=res.total;
+                        
+                        if (res.errorcode != 1024) {
+                            var vhtml = ''
+                            if(mytotal == 0){
+                                vhtml += `<p>无数据</p>`
+                            }else{
+                               $.each(res.datalist, (idx, val) => {
+                                    vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
+                                                <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
+                                                <div class="media-body">
+                                                    <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
+                                                    <div class="list-detail"><div class="detail-content">${unhtml(val.content)}</div><div class="detail-timer"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></div></div>
+                                                </div>
+                                            </li>`
+                                }) 
+                            }
+                            
+                            
+                            $('.myques-list').html(vhtml)
+                            loadPage($(this)[0].id)
+                        } else {
+                            localStorage.clear()
+                            Swal.fire({
+                                text: i18n.get('logTimeOut'),
+                                showCancelButton: true,
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                reverseButtons: true,
+                                width: '16em',
+                                confirmButtonColor: '#94cb82',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: i18n.get('confirm'),
+                                cancelButtonText: i18n.get('cancel')
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var url = window.location.href
+                                    window.localStorage.setItem('returnurl',url)
+                                    window.location.href = '../login/login.html'
+                                }
+                            })
+                        }
+                    },
+                    error: function (err) {
+                        Swal.fire({
+                            text:i18n.get('server_error'),
+                            confirmButtonText: i18n.get('confirm'),
+                            confirmButtonColor: '#94cb82'
+                        })
+                    }
+                })
+            }
+            
+        }
+    })
 })
 function questionDetail(val){
     window.location.href = './questiondetail.html?article='+val

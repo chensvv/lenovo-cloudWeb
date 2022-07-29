@@ -35,8 +35,8 @@
   "nav_news": "Information",
   "nav_forum": "Message",
   "nav_logo": "LeVoice Tech",
-  "nav_audiomain": "Short Speech Recognition",
-  "nav_audiomain_long": "Real-time Speech Recognition",
+  "nav_audiomain": "Short Speech",
+  "nav_audiomain_long": "Real-time Speech",
   "nav_tts": "Speech Synthesis",
   "nav_assess": "English Assessment",
   "nav_service": "User Service",
@@ -56,7 +56,7 @@
   "look_key": "Look the key",
   "logTimeOut": "Login timeout!",
 
-  "Miclick": "Click Mic to start the conversation and click again to end the recording.",
+  "Miclick": "Click Button to start the conversation and click again to end the recording.",
   "firstLogin": "Please Login",
   "speak": "Please Speak",
   "recogVoice": "Recognizing voice......",
@@ -74,13 +74,17 @@
 
   "service_not_open": "Service not opened!",
   "go_to_open": "Go to open",
+  "start":"Start",
+  "stop":"Stop",
+  "startvoice":"Start",
+  "stopvoice":"Stop",
 
 
-  "publishd": "Published",
+  "publishd": "Release",
 
   
   "realtimeASR": "Real-time ASR",
-  "disMic": "Click Mic to start recognition, and then click recognition again to finish.",
+  "disMic": "Click Button to start recognition, and then click recognition again to finish.",
   "disResult": "Result：",
   "disPageErr": "Parameter error, please refresh the page",
 
@@ -91,6 +95,7 @@
   "enterword": "You can enter ",
   "ttsWords": "Words",
   "ttsText": "Here you can input whatever you want to say, and we will synthesize the text information into a natural and vivid voice.",
+  "speeds":"Speed",
   "ttsplay": "Play",
   "ttspause": "Pause",
 
@@ -133,6 +138,8 @@
   "torc": "Please enter a title or content",
   "syserr": "please try again later！",
   "changesuc": "Change succeeded, please login again",
+  "all":"All",
+  "my":"My",
 
   "respass": "Reset Password",
   "newpass": "Please enter new password",

@@ -38,36 +38,18 @@
           <span i18n="nav_logo">
             
           </span></a>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <form>
-            <div class="select-box form-group">
-              <label>
-                  <select class="form-control" id="selectSamp">
-                      <option value="16000">16k</option>
-                      <option value="8000">8k</option>
-                  </select>
-              </label>  
-              <label>
-                  <select class="form-control" id="selectLang">
-                      <option value="chinese">中文</option>
-                      <option value="english">English</option>
-                    </select>
-              </label>
-            </div>
-          </form>
-          
         </div>
   
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-            <li class="drop-down active"><a href="" i18n="nav_product"></a>
-              <ul id="drop-ul">
+            <li class="active"><a href="" i18n="nav_product"></a>
+              <!-- <ul id="drop-ul">
                 <li class="active"><a href="javascript:void(0);" i18n="nav_audiomain"></a></li>
                 <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
                 <li><a href="./tts.html" i18n="nav_tts"></a></li>
                 <li><a href="./assess.html" i18n="nav_assess"></a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
@@ -105,32 +87,76 @@
     <!-- ======= document Section ======= -->
     <section class="audiomain-main-section">
       <div class="container">
-          <h2 class="audiomain-title" i18n="proEx">
-            
-          </h2>
-        <div class="audiomain-bg">
-            <div class="bgbox-main">
-                <span class="hint-sp-left" i18n="Miclick"></span>
-                <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' i18n="firstLogin">请先登录</a></span>
-                <span id="statusP" class="please-ask" i18n="speak"></span>
-                <span id="statusD" class="please-ask" i18n="recogVoice"></span>
-                <div id="viz" class="viz"></div>
-                <div class="result-box">
-                  <input type="text" class="form-control result-input" />
-                  <button class="btn update">修改</button>
-                  <div class="pre">
-                    <p><span>总耗时：</span><span id="allDur"></span>ms</p>
-                    <p><span>语音识别引擎耗费时间：</span><span id="asrDur"></span>ms</p>
-                    <p><span>语音识别引擎版本：</span><span id="asrVersion"></span></p>
-                    <p><span>语音识别置信度：</span><span id="confidence"></span></p>
-                    <p><span>结果描述：</span><span id="desc"></span></p>
-                    <p><span>语义引擎版本：</span><span id="nlpVersion"></span></p>
-                    <p><span>语音识别引擎解析结果：</span><span id="rawText"></span></p>
-                    <!-- <p><span>服务器时间：</span><span id="time"></span></p> -->
-                  </div>
-                </div>
-                <div class="record-btn" id="record" onclick="toggleRecording(this)"></div>
+        <h3 class="audiomain-title" i18n="proEx">
+          
+        </h3>
+        <div class="audiomain-silder">
+          <div class="silder-box">
+            <div class="silder-content">
+              <ul id="nav">
+                <li class="active"><a href="" i18n="nav_audiomain"></a></li>
+                <li id="asr"><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
+                <li id="tts"><a href="./tts.html" i18n="nav_tts"></a></li>
+                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+              </ul>
             </div>
+          </div>
+          <div class="audiomain-bg">
+            <div class="bgbox-main-tit">
+              <span class="bgbox-main-tit-m" i18n="speechRec"></span>
+              <form class="select-form">
+                <div class="select-box form-group">
+                  <label>
+                      <select class="form-control" id="selectSamp">
+                          <option value="16000">16k</option>
+                          <option value="8000">8k</option>
+                      </select>
+                  </label>  
+                  <label>
+                      <select class="form-control" id="selectLang">
+                          <option value="chinese">中文</option>
+                          <option value="english">English</option>
+                        </select>
+                  </label>
+                </div>
+              </form>
+            </div>
+              <div class="bgbox-main">
+                  <span class="hint-sp-left" i18n="Miclick"></span>
+                  <!-- <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' i18n="firstLogin">请先登录</a></span> -->
+                  <!-- <span id="statusP" class="please-ask" i18n="speak"></span>
+                  <span id="statusD" class="please-ask" i18n="recogVoice"></span> -->
+                  <!-- <div id="viz" class="viz"></div> -->
+                  <div class="result-box">
+                    <input type="text" class="form-control result-input" />
+                    <button class="btn update">修改</button>
+                    <div class="pre">
+                      <p><span>总耗时：</span><span id="allDur"></span>ms</p>
+                      <p><span>语音识别引擎耗费时间：</span><span id="asrDur"></span>ms</p>
+                      <p><span>语音识别引擎版本：</span><span id="asrVersion"></span></p>
+                      <p><span>语音识别置信度：</span><span id="confidence"></span></p>
+                      <p><span>结果描述：</span><span id="desc"></span></p>
+                      <p><span>语义引擎版本：</span><span id="nlpVersion"></span></p>
+                      <p><span>语音识别引擎解析结果：</span><span id="rawText"></span></p>
+                      <!-- <p><span>服务器时间：</span><span id="time"></span></p> -->
+                    </div>
+                  </div>
+                  <div class="record-btn" id="record" onclick="toggleRecording(this)">
+                    <i class='bx bxs-microphone mic'></i>
+                    <div class="line-box">
+                      <span class="line-list-line1"></span>
+                      <span class="line-list-line2"></span>
+                      <span class="line-list-line3"></span>
+                      <span class="line-list-line4"></span>
+                      <span class="line-list-line3"></span>
+                      <span class="line-list-line2"></span>
+                      <span class="line-list-line1"></span>
+                    </div>
+                    <span class="mic-btn" i18n="start"></span>
+                  </div>
+                  
+              </div>
+          </div>
         </div>
       </div>
     </section><!-- End main Section -->

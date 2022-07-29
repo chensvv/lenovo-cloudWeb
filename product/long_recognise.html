@@ -49,34 +49,18 @@
                 <option value="english">English</option>
             </select>
           </div> -->
-          <form>
-            <div class="select-box form-group">
-              <label>
-                  <select class="form-control" id="selectSamp">
-                      <option value="16000">16k</option>
-                      <option value="8000">8k</option>
-                  </select>
-              </label>  
-              <label>
-                  <select class="form-control" id="selectLang">
-                      <option value="chinese">中文</option>
-                      <option value="english">English</option>
-                    </select>
-              </label>
-            </div>
-          </form>
         </div>
   
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-            <li class="drop-down active"><a href="" i18n="nav_product"></a>
-              <ul id="drop-ul">
+            <li class="active"><a href="./recognise.html" i18n="nav_product"></a>
+              <!-- <ul id="drop-ul">
                 <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
                 <li class="active"><a href="javascript:void(0);" i18n="nav_audiomain_long"></a></li>
                 <li><a href="./tts.html" i18n="nav_tts"></a></li>
                 <li><a href="./assess.html" i18n="nav_assess"></a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
@@ -114,23 +98,66 @@
     <!-- ======= document Section ======= -->
     <section class="audiomain-long-section">
       <div class="container">
-          <h2 class="audiomain-title" i18n="proEx">
+          <h3 class="audiomain-title" i18n="proEx">
             
-          </h2>
-        <div class="audiomain-bg">
-            <div class="long-time">
-                <div class="record-btn" id="record" onclick="toggleRecording(this)"></div>
-                <span class="long-timer">00:00:00</span>
+          </h3>
+        <div class="audiomain-silder">
+          <div class="silder-box">
+            <div class="silder-content">
+              <ul id="nav">
+                <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
+                <li class="active"><a href="" i18n="nav_audiomain_long"></a></li>
+                <li><a href="./tts.html" i18n="nav_tts"></a></li>
+                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+              </ul>
             </div>
+          </div>
             <div class="bgbox-long-main">
+              <div class="bgbox-main-tit">
+                <span class="bgbox-main-tit-m" i18n="speechRec"></span>
+                <form class="select-form">
+                  <div class="select-box form-group">
+                    <label>
+                        <select class="form-control" id="selectSamp">
+                            <option value="16000">16k</option>
+                            <option value="8000">8k</option>
+                        </select>
+                    </label>  
+                    <label>
+                        <select class="form-control" id="selectLang">
+                            <option value="chinese">中文</option>
+                            <option value="english">English</option>
+                          </select>
+                    </label>
+                  </div>
+                </form>
+              </div>
+              <div class="bgbox-main">
                 <span class="hint-sp-left" i18n="disMic"></span>
                 <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' i18n="firstLogin">请先登录</a></span>
                 <div class="result-box">
                     <p class="prompt">
-                        <span i18n="disResult">识别结果：</span>
+                        <!-- <span i18n="disResult">识别结果：</span> -->
                         <span id="txt-f"></span>
                     </p>
                 </div>
+                <div class="long-time">
+                  <div class="record-btn" id="record" onclick="toggleRecording(this)">
+                    <i class='bx bxs-microphone mic'></i>
+                    <div class="line-box">
+                      <span class="line-list-line1"></span>
+                      <span class="line-list-line2"></span>
+                      <span class="line-list-line3"></span>
+                      <span class="line-list-line4"></span>
+                      <span class="line-list-line3"></span>
+                      <span class="line-list-line2"></span>
+                      <span class="line-list-line1"></span>
+                    </div>
+                    <span class="mic-btn" i18n="start"></span>
+                  </div>
+                  <span class="long-timer">00:00:00</span>
+                </div>
+              </div>
             </div>
         </div>
       </div>

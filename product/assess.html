@@ -43,13 +43,13 @@
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-            <li class="drop-down active"><a href="" i18n="nav_product"></a>
-              <ul id="drop-ul">
+            <li class="active"><a href="./recognise.html" i18n="nav_product"></a>
+              <!-- <ul id="drop-ul">
                 <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
                 <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
                 <li><a href="./tts.html" i18n="nav_tts"></a></li>
                 <li class="active"><a href="javascript:void(0);" i18n="nav_assess"></a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
@@ -77,67 +77,77 @@
       
     </header><!-- End Header -->
     <section class="assess" id="head">
-      <div class="head-bg d-flex justify-content-center">
+      <div class="head-bg d-flex justify-content-center align-items-center">
         <h2 i18n="nav_assess"></h2>
-        <div class="cyclo"></div>
-        <div class="bcy"></div>
-        <div class="halfcy"></div>
-        <div class="nav-main">
-            <div class="nav-f-sp">
-                <img src="../assets/img/audiomain/bah.png" alt="">
-                <span class="t">单词发音</span>
-            </div>
-            <div class="nav-f-sp mobile">
-                <img src="../assets/img/audiomain/bav.png" alt="">
-                <span class="t">段落评测</span>
-            </div>
-            <div class="back-boxo">
-                <div class="back-boxt">
-                    <div class="voice-box">
-                        <button class="clpage" i18n="changeNext"></button>
-                        <div class="voice-header"><span class="header-title">1</span>/5</div>
-                        <div class="voice-main">They often create amazing things from simple ideas.</div>
-                        <div class="voice-footer" id="voice-btn" onclick="record(this)">
-                          <span class="voice-footer-hint">点击录音</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="empty-box"></div>
-            <div class="nav-f-sp">
-                <img src="../assets/img/audiomain/bab.png" alt="">
-                <span>情景问答</span>
-            </div>
-            <div class="nav-f-ls mobile">
-                <img src="../assets/img/audiomain/bat.png" alt="">
-                <span class="t4">口语作文</span>
-            </div>
-        </div>
       </div>
+      <div class="bight"></div>
     </section><!-- End header Section -->
   <main id="main" class="assess-main">
-
     <!-- ======= document Section ======= -->
     <section class="assess-section">
         <div class="container">
-            <div class="z-g-b">
-                <h3 i18n="overall"></h3>
-                <h5 class="z-g" id="score">--</h5>
+          <h3 class="assess-title" i18n="proEx">
+            
+          </h3>
+          <div class="audiomain-silder">
+            <div class="silder-box">
+              <div class="silder-content">
+                <ul id="nav">
+                  <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
+                  <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
+                  <li><a href="./tts.html" i18n="nav_tts"></a></li>
+                  <li class="active"><a href="" i18n="nav_assess"></a></li>
+                </ul>
+              </div>
             </div>
-            <div class="grade">
-                <div>
-                    <h4 i18n="fluency"></h4>
-                    <h6 id="fluency">--</h6>
+            <div class="nav-main">
+              <div class="bgbox-main-tit">
+                <span class="bgbox-main-tit-m" i18n="nav_assess"></span>
+              </div>
+              <div class="assess-main-box">
+                <div class="voice-box">
+                    <div class="voice-main">They often create amazing things from simple ideas.</div>
+                    <div class="record-btn" id="voice-btn" onclick="record(this)">
+                      <i class='bx bxs-microphone mic'></i>
+                      <div class="line-box">
+                        <span class="ass line-list-line1"></span>
+                        <span class="ass line-list-line2"></span>
+                        <span class="ass line-list-line3"></span>
+                        <span class="ass line-list-line4"></span>
+                        <span class="ass line-list-line3"></span>
+                        <span class="ass line-list-line2"></span>
+                        <span class="ass line-list-line1"></span>
+                      </div>
+                      <span class="mic-btn" i18n="startvoice"></span>
+                    </div>
+                    <div class="voice-header"><button class="clpage" i18n="changeNext"></button><span class="header-title">1</span>/5</div>
                 </div>
-                <div>
-                    <h4 i18n="integrity"></h4>
-                    <h6 id="integrity">--</h6>
+                <div class="score-box">
+                  <div class="z-g-b">
+                      <h3 i18n="overall"></h3>
+                      <h5 class="z-g" id="score">--</h5>
+                  </div>
+                  <div class="grade">
+                      <div>
+                          <h4 i18n="fluency"></h4>
+                          <h6 id="fluency">--</h6>
+                      </div>
+                      <div>
+                          <h4 i18n="integrity"></h4>
+                          <h6 id="integrity">--</h6>
+                      </div>
+                      <div>
+                          <h4 i18n="accuracy"></h4>
+                          <h6 id="degree">--</h6>
+                      </div>
+                  </div>
                 </div>
-                <div>
-                    <h4 i18n="accuracy"></h4>
-                    <h6 id="degree">--</h6>
-                </div>
-            </div>
+              </div>
+              
+          </div>
+          
+          </div>
+            
         </div>
     </section><!-- End main Section -->
   </main><!-- End #main -->
@@ -151,7 +161,14 @@
         </div>
       </div>
     </footer><!-- End Footer -->
-
+    <div class="assloading" id="assload">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+    
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>

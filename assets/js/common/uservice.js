@@ -10,12 +10,14 @@ function lide(){
             $('.asrcheck').attr("disabled","true")
             $('.span1').css('display','block')
             $('.span2').css('display','none')
+            $('#channel').attr("readonly","readonly")
         }
         if(window.localStorage.getItem('us') == 2){
             $('.ttscheck').attr("checked","checked")
             $('.ttscheck').attr("disabled","true")
             $('.span1').css('display','none')
             $('.span2').css('display','block')
+            $('#channel').attr("readonly","readonly")
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
@@ -25,9 +27,11 @@ function lide(){
         $('.ttscheck').attr("disabled","true")
         $('.span1').css('display','block')
         $('.span2').css('display','block')
+        $('#channel').attr("readonly","readonly")
     }else{
         $('.span1').css('display','none')
         $('.span2').css('display','none')
+        $('#channel').removeAttr("readonly")
     }
 }
 

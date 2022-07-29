@@ -43,13 +43,13 @@
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-            <li class="drop-down active"><a href="" i18n="nav_product"></a>
-              <ul id="drop-ul">
+            <li class="active"><a href="./recognise.html" i18n="nav_product"></a>
+              <!-- <ul id="drop-ul">
                 <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
                 <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
                 <li class="active"><a href="javascript:void(0);" i18n="nav_tts"></a></li>
                 <li><a href="./assess.html" i18n="nav_assess"></a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
             <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
@@ -87,33 +87,43 @@
     <!-- ======= document Section ======= -->
     <section class="tts-section">
       <div class="container">
-          <h2 class="tts-title" i18n="proEx">
-            
-          </h2>
-        <div class="tts-main-box">
-                <div class="tts-hint">
-                    <span id="tts-hint-left" i18n="inputText"></span>
-                    <span class="tts-hint-right" onclick="random()" i18n="random"></span>
+        <h3 class="tts-title" i18n="proEx">
+          
+        </h3>
+        <div class="audiomain-silder">
+          <div class="silder-box">
+            <div class="silder-content">
+              <ul id="nav">
+                <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
+                <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
+                <li class="active"><a href="" i18n="nav_tts"></a></li>
+                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="tts-main-box">
+            <div class="tts-hint">
+                <span id="tts-hint-left" i18n="inputText"></span>
+                <span class="tts-hint-right" onclick="random()" i18n="random"></span>
+            </div>
+            <div class="textarea-box">
+              <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" i18n="[placeholder]ttsText"></textarea>
+              <div class="hint-num">
+                <span i18n="enterword"></span>
+                <span id="number">150</span>
+                <span i18n="ttsWords"></span>
+                <div class="rangevol">
+                  <span class="volbox">
+                    <i class='bx bxs-volume-full' onclick="volbtn('myvol')"></i>
+                    <input type="range" class="myrv myv" id="myvol" min="0" max="1" step="0.1" value="1" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
+                  </span>
+                  <span class="rangebox">
+                    <span class="rate" onclick="rangbtn('myrange')" i18n="speeds"></span>
+                    <input type="range" class="myrv myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
+                  </span>
                 </div>
-                <div class="textarea-box">
-                    <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" i18n="[placeholder]ttsText"></textarea>
-                    <div class="hint-num">
-                        <span i18n="enterword"></span>
-                        <span id="number">150</span>
-                        <span i18n="ttsWords"></span>
-                        <div class="rangevol">
-                          <span class="volbox">
-                            <i class='bx bxs-volume-full' onclick="volbtn('myvol')"></i>
-                            <input type="range" class="myrv myv" id="myvol" min="0" max="1" step="0.1" value="1" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
-                          </span>
-                          <span class="rangebox">
-                            <span class="rate" onclick="rangbtn('myrange')">倍速</span>
-                            <input type="range" class="myrv myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
-                          </span>
-                        </div>
-                    </div>
-                    
-                </div>
+              </div>
+            </div>
             <div class="tts-btn-box">
                 <span class="tts-btn voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
                 <span class="tts-btn voice-pause" onclick="voicePause()" i18n="ttspause"></span>
@@ -122,7 +132,9 @@
             <audio id="bgMusic" >
                     
             </audio>
+          </div>
         </div>
+        
       </div>
     </section><!-- End main Section -->
   </main><!-- End #main -->

@@ -9,6 +9,7 @@ var bgm = document.getElementById('bgMusic')
 var rangeval = document.getElementById('myrange').value
 
 function voicePlay(){
+  console.log(3)
     if (userToken == "" || userToken == null) {
         Swal.fire({
             text: i18n.get('firstLogin'),
@@ -43,8 +44,7 @@ function voicePlay(){
         })
     }else{
         if(localStorage.getItem('us') == 2 || localStorage.getItem('us') == 3){
-            $('.voice-play').css('display','none')
-            $('.voice-pause').css('display','block')
+            
             getData()
         }else{
             Swal.fire({
@@ -74,6 +74,7 @@ function voicePause(){
 }
 function voiceKeep(){
     bgm.play()
+    console.log(1)
 }
 
 bgm.addEventListener('ended', function () {
@@ -93,6 +94,7 @@ bgm.addEventListener('pause', function () {
 }, false);
 bgm.addEventListener('canplaythrough', function(){
     bgm.play()
+    console.log(2)
 })
 
 function myrange(){
@@ -187,6 +189,8 @@ function getData(){
               confirmButtonColor: '#94cb82'
             })
           }else{
+            $('.voice-play').css('display','none')
+            $('.voice-pause').css('display','block')
             bgm.src = URL.createObjectURL(blob);
             bgm.playbackRate = rangeval
           }

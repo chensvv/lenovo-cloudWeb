@@ -37,9 +37,17 @@ function record(e){
     }
     if (e.classList.contains("recording")) {
         e.classList.remove("recording");
+        $('.line-box').css('display','none')
+        $('.mic').css('display','inline-block')
+        $('#voice-btn').removeClass('ass-recording')
+        $('.mic-btn').html(i18n.get('startvoice'));
         recStop()
     } else {
         e.classList.add("recording");
+        $('.mic-btn').html(i18n.get('stopvoice'))
+        $('.mic').css('display','none')
+        $('.line-box').css("display","inline-block");
+        $('#voice-btn').addClass('ass-recording')
         recOpen()
     }
 }
@@ -53,12 +61,16 @@ function recOpen(success){
     rec.open(function(){//打开麦克风授权获得相关资源
         //dialog&&dialog.Cancel(); 如果开启了弹框，此处需要取消
         rec.start() //此处可以立即开始录音，但不建议这样编写，因为open是一个延迟漫长的操作，通过两次用户操作来分别调用open和start是推荐的最佳流程
-        $('.voice-footer-hint').html(i18n.get('recing'))
+        
         success&&success();
     },function(msg,isUserNotAllow){//用户拒绝未授权或不支持
         //dialog&&dialog.Cancel(); 如果开启了弹框，此处需要取消
         // console.log((isUserNotAllow?"UserNotAllow，":"")+"无法录音:"+msg);
-        
+        $('.line-box').css('display','none')
+        $('.mic').css('display','inline-block')
+        $('#voice-btn').removeClass('ass-recording')
+        $('.mic-btn').html(i18n.get('startvoice'));
+        $('#voice-btn').removeClass('recording')
         Swal.fire({
             text:msg,
             confirmButtonText: i18n.get('confirm'),
@@ -73,14 +85,14 @@ function recStart(){//打开了录音后才能进行start、stop调用
 };
 
 function recStop(){
-    $(".voice-footer").css("pointer-events","none"); 
+    
     rec.stop(function(blob,duration){
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
         // rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
         rec=null;
         // console.log(document.getElementById('text').innerHTML)
         // blob.arrayBuffer().then(function(arr){console.log(new Uint8Array(arr))})
-        $('.voice-footer-hint').html('Loading...')
+        $('#assload').css('display','block')
         var reader = new FileReader();
         reader.readAsArrayBuffer(blob, 'utf-8');
         reader.onload = function (e) {
@@ -133,16 +145,14 @@ function recStop(){
                 processData: false,
                 contentType: false,
                 success:function(res){
-                    $(".voice-footer").css("pointer-events","auto"); 
-                    $('.voice-footer-hint').html(i18n.get('clickRecod'))
+                    $('#assload').css('display','none')
                     $('#fluency').html(res.fluent_score)
                     $('#integrity').html(res.integrity)
                     $('#degree').html(res.overall_pronunciation)
                     $('#score').html(res.overall)
                 },
                 error:function(){
-                    $(".voice-footer").css("pointer-events","auto"); 
-                    $('.voice-footer-hint').html(i18n.get('clickRecod'))
+                    $('#assload').css('display','none')
                     Swal.fire({
                         text:i18n.get('server_error'),
                         confirmButtonText: i18n.get('confirm'),
@@ -165,7 +175,7 @@ function recStop(){
     });
 };
 
-$('.clpage').on('click',function(){
+$('.voice-header').on('click',function(){
     n = n + 1;
     if(n == arrList.length){
         n = 0;

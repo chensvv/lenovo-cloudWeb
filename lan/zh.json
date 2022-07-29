@@ -69,16 +69,20 @@
 
   "publishd": "发表留言",
 
-  "Miclick": "点击Mic开始对话，再次点击结束录音",
+  "Miclick": "点击按钮开始对话，再次点击结束录音",
   "firstLogin": "请先登录",
   "speak": "请说话",
   "recogVoice": "正在识别语音......",
   "service_not_open": "服务未开通!",
   "go_to_open": "去开通",
+  "start":"开始识别",
+  "stop":"停止识别",
+  "startvoice":"开始录音",
+  "stopvoice":"停止录音",
 
   "proEx": "产品体验",
   "realtimeASR": "长语音识别",
-  "disMic": "点击话筒开始识别，再次点击识别结束。",
+  "disMic": "点击按钮开始识别，再次点击识别结束。",
   "disResult": "识别结果：",
   "disPageErr": "请求出错，请刷新页面重试",
 
@@ -89,15 +93,18 @@
   "enterword": "还可输入",
   "ttsWords": "个字",
   "ttsText": "在这里你可以输入任意想要说的话，我们会将文字信息合成自然、生动的人声。",
+  "speeds":"倍速",
   "ttsplay": "播放",
   "ttspause": "暂停",
-  "changeNext": "切换下一张",
+  "changeNext": "切换",
   "clickRecod": "点击录音",
   "recing": "录音中···",
   "overall": "综合得分",
   "fluency": "流利度",
   "integrity": "完整度",
   "accuracy": "准确度",
+  "all":"全部",
+  "my":"我的",
 
   
   "pubTime": "发布于：",
