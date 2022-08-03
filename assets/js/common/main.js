@@ -268,3 +268,5 @@ function isLang(){
 function goback(){
   window.history.go(-1)
 }
+
+// console.log(window.location.href.slice(window.location.href.lastIndexOf('/')+1))

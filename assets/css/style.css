@@ -3972,6 +3972,11 @@ body.swal2-toast-shown .swal2-container{
   }
   
 }
+@media (max-width: 770px){
+  .bgbox-main-tit .bgbox-main-tit-m{
+    display: none;
+  }
+}
 @media (min-width: 1200px){
   #header .container, #header .container-lg, #header .container-md, #header .container-sm, #header .container-xl {
     max-width: 1500px;

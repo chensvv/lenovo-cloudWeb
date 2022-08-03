@@ -9,7 +9,6 @@ var bgm = document.getElementById('bgMusic')
 var rangeval = document.getElementById('myrange').value
 
 function voicePlay(){
-  console.log(3)
     if (userToken == "" || userToken == null) {
         Swal.fire({
             text: i18n.get('firstLogin'),
@@ -161,7 +160,7 @@ function getData(){
     var req = new XMLHttpRequest();
     var formData = 'text='+$('#textarea').val()+'&user='+accountid
     req.open("POST", proURL+'/cloudtts', true); // grab our audio file
-    req.setRequestHeader('channel', channelval)
+    req.setRequestHeader('channel', 'cloudasr')
     req.setRequestHeader('lenovokey',lenkey)
     req.setRequestHeader('secretkey',secrkey)
     req.setRequestHeader('content-type', 'application/x-www-form-urlencoded')

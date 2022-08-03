@@ -44,7 +44,6 @@ function toggleRecording(e){
                 window.location.href = '../login/login.html'
             }
         })
-        return;
     }else{
         if (e.classList.contains("recordm")) {
             e.classList.remove("recordm");
@@ -112,6 +111,16 @@ function socket () {
                 confirmButtonText: i18n.get('confirm'),
                 confirmButtonColor: '#94cb82'
             })
+        }else if(res.status == 'failed'){
+            statu = 1
+            recStop()
+            ws.close()
+            timerReset()
+            Swal.fire({
+                text:i18n.get('syserr'),
+                confirmButtonText: i18n.get('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
         }else{
             statu = 0
             rt = res.rawText
@@ -143,7 +152,7 @@ function getIxid(){
         success:function(res){
             var ixids = String(res)
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
-            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${ixids}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
             socket()
         }
     })
@@ -158,13 +167,13 @@ function recOpen(){
         bufferSize: 4096,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
-            let buf = chunkInfo.data
+            var buf = chunkInfo.data
             if (pidx == 1) {
-                let buf2 = [];
+                var buf2 = [];
                 if($selectSamp.val() == '8000'){
-                    buf2.unshift(1, 0, 0, 0);
+                    buf2.unshift(1, 0, 0, 0, ...buf);
                 }else{
-                    buf2.unshift(5, 0, 0, 0);
+                    buf2.unshift(5, 0, 0, 0, ...buf);
                 }
                 var buf4 = new Int16Array(buf2);
                 pidx++

@@ -225,7 +225,7 @@ function recOpen(success){
         $('.mic').css('display','inline-block')
         $('.record-btn').removeClass('recording')
         $('.record-btn').removeClass('recordm')
-        $('.hint-sp-left').html(i18n.get('start'))
+        $('.hint-sp-left').html(i18n.get('Miclick'))
         Swal.fire({
             text:msg,
             confirmButtonText: i18n.get('confirm'),
@@ -251,7 +251,7 @@ function recStop(){
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
             $('.record-btn').removeClass('recordm')
-            $('.hint-sp-left').html(i18n.get('start'));
+            $('.hint-sp-left').html(i18n.get('Miclick'));
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
             // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
