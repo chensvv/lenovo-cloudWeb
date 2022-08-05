@@ -8,6 +8,7 @@ var $selectSamp = $("#selectSamp");
 var $selectLang = $("#selectLang");
 var path = ''
 // var uri = 'ws://10.110.148.59:8080/lasf/wsasr/'
+// var uri = 'ws://10.110.148.59:8084/lasf/webSocket/'
 var uri = 'wss://voice.lenovomm.com/website/webSocket/'
 var rt = ''
 var firstup = true

@@ -237,7 +237,15 @@ if(window.localStorage.getItem('ms') == 1){
   $('.ifshow').css('display','none')
 }
   
-
+$(".nav-item").find("li").each(function () {
+  var a = $(this).find("a:first")[0];
+  if ($(a).attr("href").replace('..','') === location.pathname || $(a).attr("href").replace('..','') === location.pathname.replace('/voicePlatform','')) {
+      $(this).parents("li").addClass("open");
+      $(this).addClass("active");
+  } else {
+      $(this).removeClass("active");
+  }
+});
   
 })(jQuery);
 
@@ -269,4 +277,3 @@ function goback(){
   window.history.go(-1)
 }
 
-// console.log(window.location.href.slice(window.location.href.lastIndexOf('/')+1))
