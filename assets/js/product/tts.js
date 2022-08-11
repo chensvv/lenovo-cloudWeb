@@ -28,7 +28,6 @@ function voicePlay(){
               window.location.href = '../login/login.html'
             }
         })
-        return;
     }else if($('#textarea').val() == ''){
         Swal.fire({
           text:i18n.get('inputText'),
@@ -43,7 +42,6 @@ function voicePlay(){
         })
     }else{
         if(localStorage.getItem('us') == 2 || localStorage.getItem('us') == 3){
-            
             getData()
         }else{
             Swal.fire({
@@ -158,7 +156,7 @@ document.getElementById('myrange').addEventListener("click",function(event){
 
 function getData(){
     var req = new XMLHttpRequest();
-    var formData = 'text='+$('#textarea').val()+'&user='+accountid
+    var formData = 'text='+encodeURI($('#textarea').val())+'&user='+accountid
     req.open("POST", proURL+'/cloudtts', true); // grab our audio file
     req.setRequestHeader('channel', 'cloudasr')
     req.setRequestHeader('lenovokey',lenkey)
