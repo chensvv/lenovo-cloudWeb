@@ -113,7 +113,7 @@
         if(res.errorcode != 1024){
           var vhtml = ''
           $.each(res.dataLists.reverse(),function(idx,val){
-            vhtml +=`<div class="col-md-2 col-lg-6 d-flex align-items-stretch justify-content-center card-row">
+            vhtml +=`<div class="col-md-4 col-sm-6 d-flex align-items-start justify-content-center card-row">
                   <div class="card">
                     <a href="${val.detailsUrl}">
                       <img src="${val.newsImg}" class="card-img-top">
