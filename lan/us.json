@@ -96,6 +96,8 @@
   "ttsWords": "Words",
   "ttsText": "Here you can input whatever you want to say, and we will synthesize the text information into a natural and vivid voice.",
   "speeds":"Speed",
+  "volume":"Volume",
+  "pitch":"Pitch",
   "ttsplay": "Play",
   "ttspause": "Pause",
 

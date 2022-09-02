@@ -6,8 +6,8 @@ var username = $.base64.decode(window.localStorage.getItem('token'))
 var channelval = $.base64.decode(window.localStorage.getItem('ch'))
 var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
-var rangeval = document.getElementById('myrange').value
-
+var rangeval
+$('#tts-loading').hide()
 function voicePlay(){
     if (userToken == "" || userToken == null) {
         Swal.fire({
@@ -42,6 +42,10 @@ function voicePlay(){
         })
     }else{
         if(localStorage.getItem('us') == 2 || localStorage.getItem('us') == 3){
+          $('#tts-loading').show()
+          $('.voice-play').css('display','none')
+          $('.voice-pause').css('display','none')
+          $('.voice-keep').css('display','none')
             getData()
         }else{
             Swal.fire({
@@ -71,39 +75,45 @@ function voicePause(){
 }
 function voiceKeep(){
     bgm.play()
-    console.log(1)
 }
 
 bgm.addEventListener('ended', function () {
-    $('.voice-play').css('display','block')
+    $('.voice-play').css('display','inline-block')
     $('.voice-pause').css('display','none')
     $('.voice-keep').css('display','none')
 }, false);
 bgm.addEventListener('playing', function () {
     $('.voice-play').css('display','none')
     $('.voice-keep').css('display','none')
-    $('.voice-pause').css('display','block')
+    $('.voice-pause').css('display','inline-block')
 }, false);
 bgm.addEventListener('pause', function () {
     $('.voice-play').css('display','none')
     $('.voice-pause').css('display','none')
-    $('.voice-keep').css('display','block')
+    $('.voice-keep').css('display','inline-block')
 }, false);
 bgm.addEventListener('canplaythrough', function(){
     bgm.play()
-    console.log(2)
 })
 
-function myrange(){
-  var myx = document.getElementById('myrange').value
-  rangeval = myx
-  bgm.playbackRate = myx == 1.5 ? myx = 2 : myx;
+function myrange(event){
+  // var myx = document.getElementById('myrange').value
+  console.log("speed:"+event.target.value)
+  $('#speedVal').html(event.target.value)
+  // bgm.playbackRate = myx == 1.5 ? myx = 2 : myx;
 }
 
 
 function densityInput (event) {
-  console.log(event.target.value);
-  bgm.volume = event.target.value
+  console.log("volume:"+event.target.value);
+  $('#volVal').html(event.target.value)
+  // bgm.volume = event.target.value
+}
+
+function mypitch (event) {
+  console.log("volume:"+event.target.value);
+  $('#pitchVal').html(event.target.value)
+  // bgm.volume = event.target.value
 }
 
 function OnPropChanged (event) {
@@ -112,51 +122,60 @@ function OnPropChanged (event) {
   }
 }
 
-function volbtn(id){
-  var node=document.getElementById(id);
+$("#seletype li").click(function(e) {
+  $(this).siblings('li').removeClass('active');  // 删除其他兄弟元素的样式
+  $(this).addClass('active');                            // 添加当前元素的样式
+});
 
-  if(node.style.display=="block"){
-      node.style.display="none";
-  }else{
-      node.style.display="block";
-  }
-}
+// function volbtn(id){
+//   var node=document.getElementById(id);
 
-function rangbtn(id){
-  var node=document.getElementById(id);
+//   if(node.style.display=="block"){
+//       node.style.display="none";
+//   }else{
+//       node.style.display="block";
+//   }
+// }
 
-  if(node.style.display=="block"){
-      node.style.display="none";
-  }else{
-      node.style.display="block";
-  }
-}
+// function rangbtn(id){
+//   var node=document.getElementById(id);
 
-document.onclick = function(event){
-  if(document.getElementById('myvol').style.display == "block" && event.target.className != "bx bxs-volume-full"){
-    $('.myv').css('display','none')
-  }
-  if(document.getElementById('myrange').style.display == "block" && event.target.className != "rate"){
-    $('.myr').css('display','none')
-  }
-}
+//   if(node.style.display=="block"){
+//       node.style.display="none";
+//   }else{
+//       node.style.display="block";
+//   }
+// }
+
+// document.onclick = function(event){
+//   if(document.getElementById('myvol').style.display == "block" && event.target.className != "bx bxs-volume-full"){
+//     $('.myv').css('display','none')
+//   }
+//   if(document.getElementById('myrange').style.display == "block" && event.target.className != "rate"){
+//     $('.myr').css('display','none')
+//   }
+// }
 
 // 阻止事件冒泡
-document.getElementById('myvol').addEventListener("click",function(event){
-  var event = event || window.event;
-  var target = event.target || event.srcElement;
-  event.stopPropagation();
-})
+// document.getElementById('myvol').addEventListener("click",function(event){
+//   var event = event || window.event;
+//   var target = event.target || event.srcElement;
+//   event.stopPropagation();
+// })
 
-document.getElementById('myrange').addEventListener("click",function(event){
-  var event = event || window.event;
-  var target = event.target || event.srcElement;
-  event.stopPropagation();
-})
+// document.getElementById('myrange').addEventListener("click",function(event){
+//   var event = event || window.event;
+//   var target = event.target || event.srcElement;
+//   event.stopPropagation();
+// })
 
 function getData(){
     var req = new XMLHttpRequest();
-    var formData = 'text='+encodeURI($('#textarea').val())+'&user='+accountid
+    var formData = 'text='+encodeURI($('#textarea').val())+'&user='+accountid+
+                  '&speed='+document.getElementById('myrange').value+
+                  '&volume='+document.getElementById('myvol').value+
+                  '&pitch='+document.getElementById('mypitch').value+
+                  '&speaker='+$('#seletype .active')[0].id
     req.open("POST", proURL+'/cloudtts', true); // grab our audio file
     req.setRequestHeader('channel', 'cloudasr')
     req.setRequestHeader('lenovokey',lenkey)
@@ -165,6 +184,7 @@ function getData(){
     req.responseType = "arraybuffer";   // needs to be specific type to work
     req.overrideMimeType('text/xml; charset = utf-8')
     req.onload = function() {
+      $('#tts-loading').hide()
         //根据pcm文件 填写 sampleRateTmp【采样率】（16000） 和sampleBits【采样精度】（16） channelCount【声道】（单声道1，双声道2）
         // var fileResult = addWavHeader(req.response,16000,16,1);
         // var blob = new Blob([fileResult], {type:'autio/wav'});
@@ -189,7 +209,7 @@ function getData(){
             $('.voice-play').css('display','none')
             $('.voice-pause').css('display','block')
             bgm.src = URL.createObjectURL(blob);
-            bgm.playbackRate = rangeval
+            // bgm.playbackRate = rangeval
           }
         }
     }

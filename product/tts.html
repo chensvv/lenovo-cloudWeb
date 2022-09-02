@@ -56,32 +56,58 @@
             </div>
           </div>
           <div class="tts-main-box">
-            <div class="tts-hint">
-                <span id="tts-hint-left" i18n="inputText"></span>
+            <div class="text-main-box">
+              <!-- <div class="tts-hint">
+                  <span id="tts-hint-left" i18n="inputText"></span>
+              </div> -->
+              <div class="textarea-box">
+                <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 100, 'number');" maxlength="100" i18n="[placeholder]ttsText"></textarea>
+                <div class="tts-btn-box">
+                    <div class="tts-btn">
+                      <div class="spinner-border spinner-border-sm" id="tts-loading" role="status">
+                      </div>
+                      <span class="voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
+                      <span class="voice-pause" onclick="voicePause()" i18n="ttspause"></span>
+                      <span class="voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
+                    </div>
+                </div>
+                
                 <span class="tts-hint-right" onclick="random()" i18n="random"></span>
-            </div>
-            <div class="textarea-box">
-              <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 150, 'number');" maxlength="150" i18n="[placeholder]ttsText"></textarea>
-              <div class="hint-num">
-                <span i18n="enterword"></span>
-                <span id="number">150</span>
-                <span i18n="ttsWords"></span>
-                <div class="rangevol">
-                  <span class="volbox">
-                    <i class='bx bxs-volume-full' onclick="volbtn('myvol')"></i>
-                    <input type="range" class="myrv myv" id="myvol" min="0" max="1" step="0.1" value="1" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
-                  </span>
-                  <span class="rangebox">
-                    <span class="rate" onclick="rangbtn('myrange')" i18n="speeds"></span>
-                    <input type="range" class="myrv myr" id="myrange" min="0.5" max="1.5" step="0.5" value="1" onchange="myrange()">
-                  </span>
+                <div class="hint-num">
+                  <span i18n="enterword"></span>
+                  <span id="number">100</span>
+                  <span i18n="ttsWords"></span>
                 </div>
               </div>
             </div>
-            <div class="tts-btn-box">
-                <span class="tts-btn voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
-                <span class="tts-btn voice-pause" onclick="voicePause()" i18n="ttspause"></span>
-                <span class="tts-btn voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
+            <div class="rangevol">
+              <div class="seletype-box">
+                <ul id="seletype">
+                  <li class="active" id="db4">
+                    <span class="seletype-icon icon-woman"></span>
+                    <span>女声</span>
+                  </li>
+                  <li id="db2">
+                    <span class="seletype-icon icon-man"></span>
+                    <span>男声</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="volbox">
+                <div class="rate" i18n="volume"></div>
+                <input type="range" class="myrv myv" id="myvol" min="0" max="9" step="1" value="9" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
+                <div id="volVal" class="volval">9</div>
+              </div>
+              <div class="rangebox">
+                <div class="rate" i18n="speeds"></div>
+                <input type="range" class="myrv myr" id="myrange" min="0" max="9" step="1" value="5" oninput="myrange(event)">
+                <div id="speedVal" class="speedval">5</div>
+              </div>
+              <div class="pitchbox">
+                <div class="rate" i18n="pitch"></div>
+                <input type="range" class="myrv myr" id="mypitch" min="0" max="9" step="1" value="5" oninput="mypitch(event)">
+                <div id="pitchVal" class="pitchval">5</div>
+              </div>
             </div>
             <audio id="bgMusic" >
                     

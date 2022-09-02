@@ -1930,6 +1930,9 @@ section {
   border-bottom: 1px solid #e5e5e5;
   line-height: 70px;
 }
+.bgbox-main-tit .selelabel{
+  padding-left: 20px;
+}
 .bgbox-main-tit .bgbox-main-tit-m{
   font-size: 14px;
   color: #000;
@@ -1938,6 +1941,9 @@ section {
 }
 .bgbox-main-tit .select-form{
   display: inline-block;
+}
+.select-form .select-box select{
+  width: 90px;
 }
 .bgbox-main .record-btn{
   height: 35px;
@@ -2308,81 +2314,92 @@ section {
 }
 .tts-main .tts-main-box{
   margin-left: 210px;
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid #E5E5E5;
 }
 
 .tts-main .textarea-box{
-  height: 200px;
-  border: 1px solid #C6CDE3;
+  padding: 20px;
+}
+.tts-main .text-main-box{
+  width: calc(100% - 300px);
+  border-left: 1px solid #E5E5E5;
 }
 
 .tts-main .textarea{
   border: none;
   resize: none;
-  height: 85%;
+  height: 150px;
+  padding: 0;
 }
 .tts-main .tts-hint{
-  width: 100%;
-  margin-bottom: 10px;
+  /* display: none; */
 }
 
 
-.tts-main .tts-hint .tts-hint-right{
+.tts-main .tts-hint-right{
   float: right;
   border-bottom: 1px solid #779ED8;
   cursor: pointer;
+  margin-top: 17px;
+  font-size: 14px;
 }
 .tts-main .tts-btn-box{
-  margin-top: 15px;
-  position: relative;
+  display: inline-block;
+  margin-top: 10px;
 }
 .tts-main .tts-btn{
-  display: block;
-  background: #74A6DC;
-  width: 150px;
-  text-align: center;
-  font-size: 20px;
+  height: 35px;
+  min-width: 140px;
+  /* padding: 0 20px; */
+  background-color: #00a4ff;
   color: #fff;
+  font-size: 14px;
+  line-height: 35px;
+  text-align: center;
+  display: inline-block;
   cursor: pointer;
-  margin: 0 auto;
-  height: 40px;
-  line-height: 40px;
+  outline: 0;
+  border: none;
+  border-radius: 1px;
+  display: block;
 }
 
 .tts-main-box .hint-num{
-  padding-left: 10px;
-  font-size: 14px;
-  height: 15%;
+  padding-left: 5px;
+  font-size: 12px;
+  color: #B0B0B0;
+  display: inline-block;
 }
 
 .tts-main-box .hint-num #number, #words{
-  font-size: 16px;
+  font-size: 14px;
   color: #D87657;
+}
+.tts-main-box .tts-btn-box .voice-play{
+  display: inline-block;
+  width: 100%;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
 }
 .tts-main-box .tts-btn-box .voice-pause, .tts-main-box .tts-btn-box .voice-keep{
   display: none;
+  width: 100%;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
 }
 .asr-doc-main .align-center{
   text-align: center;
   /* width: 50%; */
 }
 .myrv{
-  width: 70px;
-  transform: rotate(-90deg);
-  position: absolute;
-  left: -22px;
-  top: -45px;
-  display: none;
+  width: calc(100% - 78px)
 }
 .rangevol{
-  float: right;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-.rangevol span{
-  vertical-align: text-bottom;
-  margin-right: 10px;
-  position: relative;
+  width: 300px;
+  background: #FBFBFC;
+  padding: 20px;
 }
 .rangebox span{
   cursor: pointer;
@@ -2391,6 +2408,51 @@ section {
   cursor: pointer;
   font-size: 22px;
   vertical-align: middle;
+}
+.volval, .rate, .myrv, .speedval, .pitchval{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.seletype-box{
+  width: 100%;
+  height: 110px;
+  margin-bottom: 20px;
+}
+.seletype-box ul{
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+}
+.seletype-box ul li{
+  width: 40%;
+  height: 46px;
+  padding: 7px 8px;
+  box-sizing: border-box;
+  line-height: 28px;
+  display: inline-block;
+  margin-bottom: 5px;
+  border: 1px solid #e4e4e4;
+}
+.seletype-icon{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.seletype-icon.icon-woman{
+  background-image: url(../img/woman.png);
+  background-size: 100%;
+  background-position: 2.78% 2.94%;
+  background-repeat: no-repeat;
+}
+.seletype-icon.icon-man{
+  background-image: url(../img/man.png);
+  background-size: 100%;
+  background-position: 2.78% 2.94%;
+  background-repeat: no-repeat;
 }
 
 
@@ -3958,6 +4020,25 @@ body.swal2-toast-shown .swal2-container{
   }
   .assess-main .voice-main{
     height: 80px;
+  }
+  .tts-main .textarea-box, .rangevol{
+    padding: 15px;
+  }
+  .tts-main .tts-main-box{
+    flex-direction: column-reverse;
+  }
+  .tts-main .text-main-box, .rangevol{
+    width: 100%;
+  }
+  .seletype-box{
+    height: 75px;
+  }
+  .tts-main .textarea{
+    max-height: 105px;
+    font-size: 14px;
+  }
+  .tts-main-box .hint-num{
+    display: block;
   }
 }
 
