@@ -15,9 +15,11 @@ class EhiI18n {
             this.basePath = basePath
             this.callback = callback
         }
-
+        // this.setLanguage()
         this.getLanguage()
         this.loadLanguage()
+        // console.log(`${this.languageKey} = ${this.language}`)
+        this.setCookie(this.languageKey,this.language,7)
         
     }
 
@@ -122,7 +124,9 @@ class EhiI18n {
      * 获取当前设置的语言
      */
     getLanguage() {
-        let languageTemp = localStorage.getItem(`${this.languageKey}`)
+        // console.log(this.getCookie(document.cookie))
+        // let languageTemp = localStorage.getItem(`${this.languageKey}`)
+        let languageTemp = this.getCookie(document.cookie)
         if (languageTemp != null && languageTemp.length > 0) {
             this.language = languageTemp
         }
@@ -133,9 +137,37 @@ class EhiI18n {
      * 设置当前语言
      * @param language
      */
+    
     setLanguage(language) {
         this.language = language
-        localStorage.setItem(`${this.languageKey}`, language)
+        // localStorage.setItem(`${this.languageKey}`, language)
+        this.setCookie(this.languageKey,language,7)
         this.loadLanguage()
     }
+    
+    /**
+     * 获取cookie
+     */
+
+    getCookie(s){
+        var str = s;
+        //将值切割成数组
+        var arr = str.split(";");
+        var userid;
+        //遍历数组
+        for(var i=0;i<arr.length;i++){
+            var value = arr[i].split("=");
+            if(value[0] == 'ehiI18n.Language'){
+                userid = value[1];
+            }
+        }
+        return userid
+    }
+
+    setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + "; " + expires + ";path=/";
+	}
 }

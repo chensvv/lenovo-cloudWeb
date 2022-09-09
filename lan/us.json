@@ -221,6 +221,19 @@
   "audiostream": "Return the audio stream of corresponding format according to the audio type",
 
   "server_error":" please try again later！",
-  "channel_name":"Channel Name"
+  "channel_name":"Channel Name",
+  "sampleRate":"sample Rate",
+  "lang":"Language",
+  "male":"Male",
+  "female":"Female",
+  "voicetech":"Voice technology",
+  "newbie":"Newbie guide",
+  "phonenum":"Mobile phone",
+  "company":"company",
+  "myname":"Name",
+  "depname":"Department name",
+  "voiceper":"Voice permissions",
+  "thekey":"Key",
+  "view":"View"
 
 }

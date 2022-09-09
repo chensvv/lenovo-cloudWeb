@@ -155,7 +155,7 @@ var i18n = new EhiI18n('../lan/', function(){
   }else{
     $('.nav-menu').removeClass('dis-flex')
   }
-  if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
+  if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == 'null' || getCookie(document.cookie) == undefined){
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
   }else{
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
@@ -262,12 +262,24 @@ function gologin(){
   window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
 }
 
+// function isLang(){
+//   if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
+//     i18n.setLanguage('us')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
+//     // console.log("en===============")
+//   }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
+//     i18n.setLanguage('zh')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
+//     // console.log("中文===============")
+//   }
+// }
+
 function isLang(){
-  if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
+  if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == 'null' || getCookie(document.cookie) == undefined){
     i18n.setLanguage('us')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
     // console.log("en===============")
-  }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
+  }else if(getCookie(document.cookie) == 'us'){
     i18n.setLanguage('zh')
     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
     // console.log("中文===============")
@@ -275,5 +287,20 @@ function isLang(){
 }
 function goback(){
   window.history.go(-1)
+}
+
+function getCookie(s){
+  var str = s;
+  //将值切割成数组
+  var arr = str.split(";");
+  var userid;
+  //遍历数组
+  for(var i=0;i<arr.length;i++){
+      var value = arr[i].split("=");
+      if(value[0] == 'ehiI18n.Language'){
+          userid = value[1];
+      }
+  }
+  return userid
 }
 

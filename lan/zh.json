@@ -85,6 +85,7 @@
   "disMic": "点击按钮开始识别，再次点击识别结束。",
   "disResult": "识别结果：",
   "disPageErr": "请求出错，请刷新页面重试",
+  
 
   
   "synthesi": "语音合成",
@@ -219,7 +220,19 @@
   "audiostream": "根据音频种类返回对应格式的音频流",
 
   "server_error":"请稍后重试！",
-  "channel_name":"渠道名称"
-
+  "channel_name":"渠道名称",
+  "sampleRate":"采样率",
+  "lang":"语言",
+  "male":"男声",
+  "female":"女声",
+  "voicetech":"语音技术",
+  "newbie":"新手指南",
+  "phonenum":"手机号",
+  "company":"公司名称",
+  "myname":"姓名",
+  "depname":"部门名称",
+  "voiceper":"语音权限",
+  "thekey":"密钥",
+  "view":"点击查看"
 
 }

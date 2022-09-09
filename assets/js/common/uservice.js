@@ -65,7 +65,7 @@ function submit(){
         var params = {
             t:$.base64.decode(window.localStorage.getItem('token')),
             lid:$.base64.decode(window.localStorage.getItem('acd')),
-            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || 'null' || '' ? 'chinese': 'english',
+            language:getCookie(ehiI18n.Language) == 'zh' || getCookie(ehiI18n.Language) == 'null' || '' ? 'chinese': 'english',
             userService:checkArr,
             u:"",
             p:"",

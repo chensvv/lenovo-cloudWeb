@@ -2426,9 +2426,9 @@ section {
   align-items: center;
 }
 .seletype-box ul li{
-  width: 40%;
+  width: 42%;
   height: 46px;
-  padding: 7px 8px;
+  padding: 7px 6px;
   box-sizing: border-box;
   line-height: 28px;
   display: inline-block;
@@ -3354,7 +3354,7 @@ section {
   font-size: 20px;
 }
 .userinfo-bg .label-title{
-  width: 100px;
+  width: 150px;
 }
 .userinfo-bg .li{
   padding-left: 10px;

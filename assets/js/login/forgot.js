@@ -17,7 +17,7 @@ let i18n = new EhiI18n('../lan/',()=>{
     });
     $('#stepone-loading').hide()
     $('#steptwo-loading').hide()
-    if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == null || window.localStorage.getItem('ehiI18n.Language') == undefined){
+    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == null || getCookie(document.cookie) == undefined){
         $('.trans').attr('src','../assets/img/trans2.png')
     }else{
         $('.trans').attr('src','../assets/img/trans.png')
@@ -105,13 +105,15 @@ function twoSteps(){
             ucode:"",
             channel:""
         }
-        
+        var stringParams = JSON.stringify(pwdParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        pwdParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/resetpwd',
             type:'post',
             dataType:'json',
             data:pwdParams,
             success:function(res){
+                console.log(res)
                 $('#steptwo-loading').hide()
                 $('#steptwo').removeAttr('disabled','disabled')
                 if(res.status == 0){
@@ -183,7 +185,7 @@ function getCode(){
     $('.code-btn').css('pointer-events','none')
     var emailParams = {
         u:$('#forgot-username').val(),
-            language:window.localStorage.getItem('ehiI18n.Language') == 'zh' || '' ? 'chinese': 'english',
+            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' ? 'chinese': 'english',
             code:"",
             pwd:"",
             p:"",
@@ -253,13 +255,28 @@ function timer() {
 
 
 function isLang(){
-    if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
-        i18n.setLanguage('us')
-        $('.trans').attr('src','../assets/img/trans.png')
-        // console.log("en===============")
-      }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
-        i18n.setLanguage('zh')
-        $('.trans').attr('src','../assets/img/trans2.png')
-        // console.log("中文===============")
-      }
+    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == 'null' || getCookie(document.cookie) == undefined){
+      i18n.setLanguage('us')
+      $('.trans').attr('src','../assets/img/trans.png')
+      // console.log("en===============")
+    }else if(getCookie(document.cookie) == 'us'){
+      i18n.setLanguage('zh')
+      $('.trans').attr('src','../assets/img/trans2.png')
+      // console.log("中文===============")
+    }
+  }
+
+  function getCookie(s){
+    var str = s;
+    //将值切割成数组
+    var arr = str.split(";");
+    var userid;
+    //遍历数组
+    for(var i=0;i<arr.length;i++){
+        var value = arr[i].split("=");
+        if(value[0] == 'ehiI18n.Language'){
+            userid = value[1];
+        }
+    }
+    return userid
   }

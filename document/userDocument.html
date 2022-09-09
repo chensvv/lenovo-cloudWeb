@@ -42,20 +42,20 @@
       
       <div class="con-box">
         <div class="silder-box">
-          <span class="name">语音技术</span>
+          <span class="name" i18n="voicetech"></span>
           <div class="silder-content">
             <ul id="nav">
-              <li class="active" id="nebie">新手指南</li>
-              <li id="asr">语音识别</li>
-              <li id="tts">语音合成</li>
-              <li><a href="./SDKDownload.html">SDK下载</a></li>
-              <li><a href="../forum/questionlist.html">常见问题与解答</a></li>
+              <li class="active" id="nebie" i18n="newbie"></li>
+              <li id="asr" i18n="speechRec"></li>
+              <li id="tts" i18n="nav_tts"></li>
+              <li><a href="./SDKDownload.html" i18n="sdkdownload"></a></li>
+              <li><a href="../forum/questionlist.html" i18n="proan"></a></li>
             </ul>
           </div>
         </div>
         <div class="row document-row">
           <div class="newbie-box">
-            <h1 class="post-title">新手指南</h1>
+            <h1 class="post-title" i18n="newbie"></h1>
             <div class="post-description"></div>
             <div class="post-body">
               <p>完成账号的基本注册并登录后：</p>
@@ -420,64 +420,6 @@
       $('#head-page').load('../assets/head/header.html')
     })
   </script>
-<script>
-    userInfo()
-      function userInfo(){
-        var params = {
-              username:$.base64.decode(window.localStorage.getItem('un')),
-              lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
-              t:$.base64.decode(window.localStorage.getItem('token')),
-              u:"",
-              p:"",
-              language:"",
-              phone:"",
-              company:"",
-              dept:"",
-              lid:"",
-              opwd:"",
-              pwd:"",
-              userService:"",
-              code:"",
-              imgCode:"",
-              ucode:"",
-            }
-            var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
-            params.sign = md5(stringParams)
-        $.ajax({
-            type:"POST",
-            url:proURL+"/userinfo",
-            headers: {  
-            "channel" : "cloudasr"
-            },
-            data:params,
-            success:function(data){
-                if(data.errorcode ==1024){
-                    localStorage.clear()
-                    Swal.fire({
-                        text: i18n.get('firstLogin'),
-                        showCancelButton: false,
-                        allowOutsideClick:false,
-                        allowEscapeKey:false,
-                        reverseButtons:true,
-                        width:'16em', 
-                        confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
-                    }).then((result)=>{
-                        if (result.isConfirmed) {
-                        var url = window.location.href
-                        window.localStorage.setItem('returnurl',url)
-                        window.location.href = '../login/login.html'
-                        }
-                    })
-                }
-            },
-            error:function(){
-                $('.user').css("display","none")
-                $('.login-reg').css("display","block")
-            }
-        })
-      }
-</script>
 </body>
 
 </html>
