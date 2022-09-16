@@ -39,7 +39,7 @@ class EhiI18n {
             let attr = ''
             if (result != null && result.length > 0) {
                 let type = result[0]
-                type = type.substr(1, type.length - 2)
+                type = type.substring(1, type.length - 2)
                 if (type.indexOf(',') !== -1) {
                     let typeArr = type.split(',')
                     for (let j = 0; j < typeArr.length; j++) {
