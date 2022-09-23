@@ -6,6 +6,12 @@ $('.pushbtn').click(function(){
             confirmButtonText: i18n.get('confirm'),
             confirmButtonColor: '#94cb82'
         })
+    }else if($('#exampleFormControlTextarea').val().length < 6 ){
+      Swal.fire({
+          text: '内容长度不能少于6个字符',
+          confirmButtonText: i18n.get('confirm'),
+          confirmButtonColor: '#94cb82'
+      })
     }else{
       if(titleInput()){
         $('#pub-loading').show()

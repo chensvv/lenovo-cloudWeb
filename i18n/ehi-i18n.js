@@ -16,10 +16,10 @@ class EhiI18n {
             this.callback = callback
         }
         // this.setLanguage()
-        this.getLanguage()
+        // this.getLanguage()
         this.loadLanguage()
         // console.log(`${this.languageKey} = ${this.language}`)
-        this.setCookie(this.languageKey,this.language,7)
+        // this.setCookie(this.languageKey,this.language,7)
         
     }
 
@@ -39,7 +39,8 @@ class EhiI18n {
             let attr = ''
             if (result != null && result.length > 0) {
                 let type = result[0]
-                type = type.substring(1, type.length - 2)
+                type = type.substr(1, type.length - 2)
+                console.log(type)
                 if (type.indexOf(',') !== -1) {
                     let typeArr = type.split(',')
                     for (let j = 0; j < typeArr.length; j++) {
