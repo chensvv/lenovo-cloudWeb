@@ -28,7 +28,7 @@ function setCookie(c_name, value, expiredays) {
 //   }
 //   return ""
 // }
-
+var languri
 function getCookies(s){
   var str = s;
   //将值切割成数组
@@ -78,10 +78,15 @@ var execI18n = function(){
     return false;
   };
 
+  if(window.location.host.indexOf('voice.lenovomm.com') == 0){
+    languri = 'https://voice.lenovomm.com/voicePlatform/'
+  }else{
+    languri = '../'
+  }
   // i18n翻译方法
   jQuery.i18n.properties({
     name : 'messages',  //资源文件前缀
-    path : '../i18n/',     //资源文件路径
+    path : languri+'i18n/',     //资源文件路径
     mode : 'map',       //用Map的方式使用资源文件中的值
     language : i18nLanguage,
     callback : function() {//加载成功后设置显示内容
@@ -113,12 +118,14 @@ var execI18n = function(){
   execI18n();
   // 将语言选择默认选中缓存中的值
   // $("#language option[value="+i18nLanguage+"]").attr("selected",true);
-  if(getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == '' || getCookies(document.cookie) == 'null' || getCookies(document.cookie) == undefined){
-    $('#checkLang').attr('src','../assets/img/zh_CN.png')
-  }else{
-    $('#checkLang').attr('src','../assets/img/en_US.png')
-  }
   // 选择语言方法
+
+  if(getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == '' || getCookies(document.cookie) == 'null' || getCookies(document.cookie) == undefined){
+    $('#checkLang').attr('src',languri+'assets/img/zh_CN.png')
+  }else{
+    $('#checkLang').attr('src',languri+'assets/img/en_US.png')
+  }
+
   function trans(){
     if(getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == '' || getCookies(document.cookie) == 'null' || getCookies(document.cookie) == undefined){
       setCookie("languageType", 'en_US', 1);

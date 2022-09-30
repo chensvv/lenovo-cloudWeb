@@ -156,7 +156,6 @@
     $('.nav-menu').removeClass('dis-flex')
   }
 
-
   // var localStorageData = JSON.parse(localStorage.getItem('data'))
   // if(localStorageData == null){
   //   $('.user').css("display","none")
@@ -245,17 +244,23 @@ if(window.localStorage.getItem('ms') == 1){
   
 })(jQuery);
 
+var languri
+if(window.location.host.indexOf('voice.lenovomm.com') == 0){
+  languri = 'https://voice.lenovomm.com/voicePlatform/'
+}else{
+  languri = '../'
+}
 function logout(){
   window.localStorage.clear();
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
+  window.location.href = languri+'login/login.html'
 }
 
 function gologin(){
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
+  window.location.href = languri+'login/login.html'
 }
 
 // function isLang(){
