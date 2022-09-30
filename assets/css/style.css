@@ -57,6 +57,25 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   transition: background 0.2s ease-in-out;
 }
 
+#language{
+  background: transparent;
+  color: #fff;
+  border: none;
+}
+#language option{
+  color: #333;
+}
+
+#language:focus-visible{
+  outline: 0;
+}
+.login-lang{
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  z-index: 10;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -101,7 +120,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 }
 
 #header .logo, .login-logo{
-  min-width: 130px
+  min-width: 130px;
+  margin-left: 10px;
 }
 
 #header .logo span, .login-logo span {
@@ -117,12 +137,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 .trans{
   width: 40px;
   height: 20px;
-  /* position: absolute;
-  top: 20px;
-  right: 10px; */
   cursor: pointer;
   z-index: 99;
   margin-top: 20px;
+  margin-right: 10px;
 }
 .login-trans{
   width: 40px;
@@ -155,7 +173,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   
 }
 .login-reg{
-  min-width: 118px;
+  min-width: 175px;
   color: #fff;
 }
 
@@ -2394,7 +2412,7 @@ section {
   /* width: 50%; */
 }
 .myrv{
-  width: calc(100% - 78px)
+  width: calc(100% - 100px)
 }
 .rangevol{
   width: 300px;
@@ -2408,6 +2426,9 @@ section {
   cursor: pointer;
   font-size: 22px;
   vertical-align: middle;
+}
+.rate{
+  width: 60px;
 }
 .volval, .rate, .myrv, .speedval, .pitchval{
   display: inline-block;
@@ -3970,8 +3991,8 @@ body.swal2-toast-shown .swal2-container{
   }
   .trans{
     position: absolute;
-    left: 10px;
-    top: 20px;
+    right: 50px;
+    top: 19px;
     margin-top: 0;
   }
   .login-trans{
@@ -4045,7 +4066,7 @@ body.swal2-toast-shown .swal2-container{
 @media (max-width: 640px){
   .trans{
     position: absolute;
-    right: 60px;
+    right: 50px;
     left: auto;
   }
   .login-trans{

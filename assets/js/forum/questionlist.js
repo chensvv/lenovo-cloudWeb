@@ -35,7 +35,14 @@ function getData(){
                                 <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                    <div class="list-detail"><div class="detail-content">${unhtml(val.content)}</div><div class="detail-timer"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></div></div>
+                                    <div class="list-detail">
+                                        <div class="detail-content">${unhtml(val.content)}</div>
+                                        <div class="detail-timer">
+                                            <span>${val.accountName}</span> 
+                                            <span class='i18n'>${$.i18n.prop('pubTime')}</span><span>${formatDateTime(val.createTime)}</span>
+                                            <span class='i18n'>${$.i18n.prop('lastreply')}</span><span>${formatDateTime(val.lastUpdateTime)}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>`
                 })
@@ -44,7 +51,7 @@ function getData(){
             } else {
                 localStorage.clear()
                 Swal.fire({
-                    text: i18n.get('logTimeOut'),
+                    text: $.i18n.prop('logTimeOut'),
                     showCancelButton: true,
                     allowOutsideClick: false,
                     allowEscapeKey: false,
@@ -52,8 +59,8 @@ function getData(){
                     width: '16em',
                     confirmButtonColor: '#94cb82',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: i18n.get('confirm'),
-                    cancelButtonText: i18n.get('cancel')
+                    confirmButtonText: $.i18n.prop('confirm'),
+                    cancelButtonText: $.i18n.prop('cancel')
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var url = window.location.href
@@ -65,8 +72,8 @@ function getData(){
         },
         error: function (err) {
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -121,7 +128,7 @@ function loadPage(tabid){
                                             <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                             <div class="media-body">
                                                 <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                                <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
+                                                <p class="list-detail"><span>${val.accountName}</span> <span>${$.i18n.prop('pubTime')}${formatDateTime(val.createTime)}</span> <span>${$.i18n.prop('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
                                             </div>
                                         </li>`
                             })
@@ -134,7 +141,7 @@ function loadPage(tabid){
                                             <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                             <div class="media-body">
                                                 <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                                <p class="list-detail"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
+                                                <p class="list-detail"><span>${val.accountName}</span> <span>${$.i18n.prop('pubTime')}${formatDateTime(val.createTime)}</span> <span>${$.i18n.prop('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></p>
                                             </div>
                                         </li>`
                             })
@@ -144,7 +151,7 @@ function loadPage(tabid){
                     } else {
                         localStorage.clear();
                         Swal.fire({
-                            text: i18n.get('logTimeOut'),
+                            text: $.i18n.prop('logTimeOut'),
                             showCancelButton: true,
                             allowOutsideClick: false,
                             allowEscapeKey: false,
@@ -152,8 +159,8 @@ function loadPage(tabid){
                             width: '16em',
                             confirmButtonColor: '#94cb82',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: i18n.get('confirm'),
-                            cancelButtonText: i18n.get('cancel')
+                            confirmButtonText: $.i18n.prop('confirm'),
+                            cancelButtonText: $.i18n.prop('cancel')
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 var url = window.location.href
@@ -166,8 +173,8 @@ function loadPage(tabid){
                 },
                 error: function (err) {
                     Swal.fire({
-                        text:i18n.get('server_error'),
-                        confirmButtonText: i18n.get('confirm'),
+                        text:$.i18n.prop('server_error'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }
@@ -218,7 +225,7 @@ $('#pills-tab a').on('click', function (event) {
                                             <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
                                             <div class="media-body">
                                                 <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                                <div class="list-detail"><div class="detail-content">${unhtml(val.content)}</div><div class="detail-timer"><span>${val.accountName}</span> <span>${i18n.get('pubTime')}${formatDateTime(val.createTime)}</span> <span>${i18n.get('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></div></div>
+                                                <div class="list-detail"><div class="detail-content">${unhtml(val.content)}</div><div class="detail-timer"><span>${val.accountName}</span> <span>${$.i18n.prop('pubTime')}${formatDateTime(val.createTime)}</span> <span>${$.i18n.prop('lastreply')}${formatDateTime(val.lastUpdateTime)}</span></div></div>
                                             </div>
                                         </li>`
                             }) 
@@ -230,7 +237,7 @@ $('#pills-tab a').on('click', function (event) {
                     } else {
                         localStorage.clear()
                         Swal.fire({
-                            text: i18n.get('logTimeOut'),
+                            text: $.i18n.prop('logTimeOut'),
                             showCancelButton: true,
                             allowOutsideClick: false,
                             allowEscapeKey: false,
@@ -238,8 +245,8 @@ $('#pills-tab a').on('click', function (event) {
                             width: '16em',
                             confirmButtonColor: '#94cb82',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: i18n.get('confirm'),
-                            cancelButtonText: i18n.get('cancel')
+                            confirmButtonText: $.i18n.prop('confirm'),
+                            cancelButtonText: $.i18n.prop('cancel')
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 var url = window.location.href
@@ -251,8 +258,8 @@ $('#pills-tab a').on('click', function (event) {
                 },
                 error: function (err) {
                     Swal.fire({
-                        text:i18n.get('server_error'),
-                        confirmButtonText: i18n.get('confirm'),
+                        text:$.i18n.prop('server_error'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }

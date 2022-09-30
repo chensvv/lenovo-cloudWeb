@@ -27,7 +27,7 @@ var $selectLang = $("#selectLang");
 function toggleRecording(e){
     if (userToken == "" || userToken == null) {
         Swal.fire({
-            text: i18n.get('firstLogin'),
+            text: $.i18n.prop('firstLogin'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,
@@ -35,8 +35,8 @@ function toggleRecording(e){
             width:'16em',
             confirmButtonColor: '#94cb82',
             cancelButtonColor: '#d33',
-            confirmButtonText: i18n.get('confirm'),
-            cancelButtonText:i18n.get('cancel')
+            confirmButtonText: $.i18n.prop('confirm'),
+            cancelButtonText:$.i18n.prop('cancel')
         }).then((result) => {
             if (result.isConfirmed) {
                 var url = window.location.href
@@ -60,7 +60,7 @@ function toggleRecording(e){
                 getIxid(e)
             }else{
                 Swal.fire({
-                    text: i18n.get('service_not_open'),
+                    text: $.i18n.prop('service_not_open'),
                     showCancelButton: true,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
@@ -68,8 +68,8 @@ function toggleRecording(e){
                     width:'16em',
                     confirmButtonColor: '#94cb82',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: i18n.get('go_to_open'),
-                    cancelButtonText:i18n.get('cancel')
+                    confirmButtonText: $.i18n.prop('go_to_open'),
+                    cancelButtonText:$.i18n.prop('cancel')
                 }).then((result) => {
                     if (result.isConfirmed) {
                       window.location.href = '../user/uservice.html'
@@ -93,8 +93,8 @@ function socket () {
         // console.log(recOpen())
         timerReset()
         Swal.fire({
-            text:i18n.get('server_error'),
-            confirmButtonText: i18n.get('confirm'),
+            text:$.i18n.prop('server_error'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
         recStop()
@@ -108,7 +108,7 @@ function socket () {
             timerReset()
             Swal.fire({
                 text:res.errormessage,
-                confirmButtonText: i18n.get('confirm'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }else if(res.status == 'failed'){
@@ -117,8 +117,8 @@ function socket () {
             ws.close()
             timerReset()
             Swal.fire({
-                text:i18n.get('syserr'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('syserr'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }else{
@@ -208,7 +208,7 @@ function recOpen(){
         ws.close()
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
         
@@ -236,7 +236,7 @@ function recStop(){
         rec=null;
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
     });

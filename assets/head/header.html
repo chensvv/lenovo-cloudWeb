@@ -1,9 +1,9 @@
 <header id="header" class="fixed-top">
-    <div class="container display-flex">
+    <div class="display-flex">
       <div class="logo">
         <a href="../welcome/index.html">
           <img src="../assets/img/favicon.ico" alt="">
-        <span i18n="nav_logo">
+        <span class="i18n" name="logo">
           
         </span></a>
         
@@ -11,37 +11,41 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul class="nav-item">
-          <li><a href="../welcome/index.html" i18n="nav_index"></a></li>
-          <li><a href="../product/recognise.html" i18n="nav_product"></a>
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li><a href="../product/recognise.html" class="i18n" name="product"></a>
             <!-- <ul id="drop-ul">
-              <li><a href="../recognise.html" i18n="nav_audiomain"></a></li>
-              <li><a href="../long_recognise.html" i18n="nav_audiomain_long"></a></li>
-              <li><a href="../tts.html" i18n="nav_tts"></a></li>
-              <li><a href="../assess.html" i18n="nav_assess"></a></li>
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
             </ul> -->
           </li>
-          <li class="ifshow"><a href="../user/control.html" i18n="control"></a></li>
-          <li><a href="../document/userDocument.html" i18n="nav_document"></a></li>
-          <li><a href="../new/newlist.html" i18n="nav_news"></a></li>
-          <li><a href="../user/uservice.html" i18n="nav_service"></a></li>
-          <li><a href="../forum/questionlist.html" i18n="nav_forum"></a></li>
-          <li class="mobile-contact"><a href="javascript:void(0)" i18n="nav_contact"></a></li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <li><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li>
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
           
         </ul>
+        <select id="language">
+          <option value="zh_CN">中文简体</option>
+          <option value="en_US">English</option>
+        </select>
         <li class="login-reg" style="display:none;">
-            <a href="../login/login.html" onclick="gologin()" i18n="signIn"></a>
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
             |
-            <a href="../login/register.html" onclick="gologin()" i18n="signUp"></a>
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
         </li>
         <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
           <ul id="drop-ul">
-            <li><a href="../user/userinfo.html" i18n="nav_userinfo"></a></li>
-            <li><a href="../login/resetpass.html" i18n="nav_checkpass"></a></li>
-            <li><a id="logout" onclick="logout()" i18n="nav_logout"></a></li>
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
           </ul>
         </li>
       </nav><!-- .nav-menu -->
-      <img src="../assets/img/trans2.png" class="trans" onclick="isLang()">
+      <!-- <img src="../assets/img/trans2.png" class="trans" onclick="isLang()"> -->
     </div>
     
   </header><!-- End Header -->

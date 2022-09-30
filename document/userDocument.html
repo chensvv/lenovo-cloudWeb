@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords" content="联想语音,乐语音,联想小乐,联想语音平台,联想语音助手,moto语音助手,摩托语音助手,摩托语音,moto语音,小乐语音助手,小乐语音,联想智能语音,小乐小乐">
 
@@ -28,10 +28,56 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div id="head-page"></div>
+  <header id="header" class="fixed-top">
+    <div class="display-flex">
+      <div class="logo">
+        <a href="../welcome/index.html">
+          <img src="../assets/img/favicon.ico" alt="">
+        <span class="i18n" name="logo">
+          
+        </span></a>
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-item">
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li><a href="../product/recognise.html" class="i18n" name="product"></a>
+            <!-- <ul id="drop-ul">
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
+            </ul> -->
+          </li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li class="active"><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <li><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li>
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
+          
+        </ul>
+        <li class="login-reg" style="display:none;">
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
+            |
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
+        </li>
+        <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+          <ul id="drop-ul">
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
+          </ul>
+        </li>
+      </nav><!-- .nav-menu -->
+      <img src="" class="trans" id="checkLang" onclick="trans()">
+    </div>
+    
+  </header>
     <section class="document" id="head">
       <div class="head-bg d-flex justify-content-center align-items-center">
-        <h2 i18n="nav_document"></h2>
+        <h2 class="i18n" name="document"></h2>
       </div>
       <div class="bight"></div>
     </section><!-- End About Us Section -->
@@ -42,20 +88,20 @@
       
       <div class="con-box">
         <div class="silder-box">
-          <span class="name" i18n="voicetech"></span>
+          <span class="name i18n" name="voicetech"></span>
           <div class="silder-content">
             <ul id="nav">
-              <li class="active" id="nebie" i18n="newbie"></li>
-              <li id="asr" i18n="speechRec"></li>
-              <li id="tts" i18n="nav_tts"></li>
-              <li><a href="./SDKDownload.html" i18n="sdkdownload"></a></li>
-              <li><a href="../forum/questionlist.html" i18n="proan"></a></li>
+              <li class="i18n active" id="nebie" name="newbie"></li>
+              <li class="i18n" id="asr" name="speechRec"></li>
+              <li class="i18n" id="tts" name="tts"></li>
+              <li><a href="./SDKDownload.html" class="i18n" name="sdkdownload"></a></li>
+              <li><a href="../forum/questionlist.html" class="i18n" name="proan"></a></li>
             </ul>
           </div>
         </div>
         <div class="row document-row">
           <div class="newbie-box">
-            <h1 class="post-title" i18n="newbie"></h1>
+            <h1 class="post-title i18n" name="newbie"></h1>
             <div class="post-description"></div>
             <div class="post-body">
               <p>完成账号的基本注册并登录后：</p>
@@ -88,24 +134,24 @@
                         <td colspan="3">https://voice.lenovomm.com/lasf/cloudasr</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="method"></th>
+                        <th scope="row" class="i18n" name="method"></th>
                         <td colspan="3">POST</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="format"></th>
+                        <th scope="row" class="i18n" name="format"></th>
                         <td colspan="3">multipart/form-data</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="headers"></th>
+                        <th scope="row" class="i18n" name="headers"></th>
                         <td colspan="3">
-                            <span i18n="paramdes"></span>
+                            <span class="i18n" name="paramdes"></span>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                    <th scope="col" i18n="name"></th>
-                                    <th scope="col" i18n="format"></th>
-                                    <th scope="col" i18n="conval"></th>
-                                    <th scope="col" i18n="describe"></th>
+                                    <th scope="col" class="i18n" name="name"></th>
+                                    <th scope="col" class="i18n" name="format"></th>
+                                    <th scope="col" class="i18n" name="conval"></th>
+                                    <th scope="col" class="i18n" name="describe"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -113,35 +159,35 @@
                                     <th scope="row">lenovoKey</th>
                                     <td>String</td>
                                     <td>LENOVO-VOICE-aaabbbccc</td>
-                                    <td i18n="desc4"></td>
+                                    <td class="i18n" name="desc4"></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">secretKey</th>
                                     <td>String</td>
                                     <td>kasdjkfsldjsldfjkdkkkde</td>
-                                    <td i18n="desc5"></td>
+                                    <td class="i18n" name="desc5"></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">channel</th>
                                     <td>String</td>
                                     <td>cloudasr</td>
-                                    <td i18n="desc6"></td>
+                                    <td class="i18n" name="desc6"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="content"></th>
+                        <th scope="row" class="i18n" name="content"></th>
                         <td colspan="3">
-                            <span i18n="paramdes"></span>
+                            <span class="i18n" name="paramdes"></span>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                    <th scope="col" i18n="name"></th>
-                                    <th scope="col" i18n="format"></th>
-                                    <th scope="col" i18n="conval"></th>
-                                    <th scope="col" i18n="describe"></th>
+                                    <th scope="col" class="i18n" name="name"></th>
+                                    <th scope="col" class="i18n" name="format"></th>
+                                    <th scope="col" class="i18n" name="conval"></th>
+                                    <th scope="col" class="i18n" name="describe"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -149,25 +195,25 @@
                                         <th scope="row">scene</th>
                                         <td>String</td>
                                         <td>short</td>
-                                        <td i18n="scene"></td>
+                                        <td class="i18n" name="scene"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">language</th>
                                         <td>String</td>
                                         <td>chinese</td>
-                                        <td i18n="language"></td>
+                                        <td class="i18n" name="language"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">sample</th>
                                         <td>Number</td>
                                         <td>1</td>
-                                        <td i18n="sample"></td>
+                                        <td class="i18n" name="sample"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">audioFormat</th>
                                         <td>String</td>
                                         <td>pcm_16000_16bit_sample</td>
-                                        <td><span i18n="audioFormat"></span>:<br>
+                                        <td><span class="i18n" name="audioFormat"></span>:<br>
                                                 pcm_16000_16bit_sample: <span>pcm格式  16000采样率 16比特率的语音</span><br>
                                                 pcm_8000_16bit_sample: <span> pcm格式  8000采样率 16比特率的语音</span><br>
                                                 speex_16000_16bit_sample: <span>speex格式 16000采样率 16比特率的语音</span><br>
@@ -179,83 +225,83 @@
                                         <th scope="row">sessionid</th>
                                         <td>Number</td>
                                         <td>1356663021692</td>
-                                        <td i18n="sts"></td>
+                                        <td class="i18n" name="sts"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">packageid</th>
                                         <td>Number</td>
                                         <td>1</td>
-                                        <td i18n="paid"></td>
+                                        <td class="i18n" name="paid"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">over</th>
                                         <td>Number</td>
                                         <td>1</td>
-                                        <td i18n="over"></td>
+                                        <td class="i18n" name="over"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">voice-data</th>
                                         <td>ByteArray</td>
                                         <td>application/i7-voice</td>
-                                        <td i18n="desc8"></td>
+                                        <td class="i18n" name="desc8"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="response"></th>
+                        <th scope="row" class="i18n" name="response"></th>
                         <td colspan="3">
                             <div>
                                 <p>{</p>
                                 <p class="res-info">
                                     <span class="res-padding">"allDur":4314,</span>
-                                    <span class="res-right" i18n="alldur"></span>
+                                    <span class="res-right i18n" name="alldur"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"asrDur":4254,</span>
-                                    <span class="res-right" i18n="asrdur"></span>
+                                    <span class="res-right i18n" name="asrdur"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"asrVersion":"1.0.13.8.20",</span>
-                                    <span class="res-right" i18n="asrver"></span>
+                                    <span class="res-right i18n" name="asrver"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"confidence":100,</span>
-                                    <span class="res-right" i18n="confidence"></span>
+                                    <span class="res-right i18n" name="confidence"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"desc":"",</span>
-                                    <span class="res-right" i18n="desc"></span>
+                                    <span class="res-right i18n" name="desc"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"nConf":[100],</span>
-                                    <span class="res-right" i18n="nConf"></span>
+                                    <span class="res-right i18n" name="nConf"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"nText":["Motor-Tober player"],</span>
-                                    <span class="res-right" i18n="nText"></span>
+                                    <span class="res-right i18n" name="nText"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"nlpVersion":"1.1.6.2146",</span>
-                                    <span class="res-right" i18n="nlpVer"></span>
+                                    <span class="res-right i18n" name="nlpVer"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"rawText":"Motor-Tober player",</span>
-                                    <span class="res-right" i18n="rawText"></span>
+                                    <span class="res-right i18n" name="rawText"></span>
                                 </p>
             
                                 <p class="res-info">
                                     <span class="res-padding">"result":null,</span>
-                                    <span class="res-right" i18n="result"></span>
+                                    <span class="res-right i18n" name="result"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"status":"success",</span>
-                                    <span class="res-right" i18n="status"></span>
+                                    <span class="res-right i18n" name="status"></span>
                                 </p>
                                 <p class="res-info">
                                     <span class="res-padding">"time":1503994221761</span>
-                                    <span class="res-right" i18n="time"></span>
+                                    <span class="res-right i18n" name="time"></span>
                                 </p>
                                 <p>}</p>
                             </div>
@@ -273,24 +319,24 @@
                         <td colspan="3">https://voice.lenovomm.com/lasf/cloudtts</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="method"></th>
+                        <th scope="row" class="i18n" name="method"></th>
                         <td colspan="3">POST</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="format"></th>
+                        <th scope="row" class="i18n" name="format"></th>
                         <td colspan="3">application/x-www-form-urlencoded</td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="headers"></th>
+                        <th scope="row" class="i18n" name="headers"></th>
                         <td colspan="3">
-                            <span i18n="paramdes"></span>
+                            <span class="i18n" name="paramdes"></span>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                    <th scope="col" i18n="name"></th>
-                                    <th scope="col" i18n="format"></th>
-                                    <th scope="col" i18n="conval"></th>
-                                    <th scope="col" i18n="describe"></th>
+                                    <th scope="col" class="i18n" name="name"></th>
+                                    <th scope="col" class="i18n" name="format"></th>
+                                    <th scope="col" class="i18n" name="conval"></th>
+                                    <th scope="col" class="i18n" name="describe"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -298,78 +344,78 @@
                                     <th scope="row">lenovoKey</th>
                                     <td>String</td>
                                     <td>LENOVO-VOICE-aaabbbccc</td>
-                                    <td i18n="desc4"></td>
+                                    <td class="i18n" name="desc4"></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">secretKey</th>
                                     <td>String</td>
                                     <td>kasdjkfsldjsldfjkdkkkde</td>
-                                    <td i18n="desc5"></td>
+                                    <td class="i18n" name="desc5"></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">channel</th>
                                     <td>String</td>
                                     <td>cloudasr</td>
-                                    <td i18n="desc6"></td>
+                                    <td class="i18n" name="desc6"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="content"></th>
+                        <th scope="row" class="i18n" name="content"></th>
                         <td colspan="3">
-                            <span i18n="paramdes"></span>
+                            <span class="i18n" name="paramdes"></span>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                    <th scope="col" i18n="name"></th>
-                                    <th scope="col" i18n="format"></th>
-                                    <th scope="col" i18n="ismust"></th>
-                                    <th scope="col" i18n="describe"></th>
+                                    <th scope="col" class="i18n" name="name"></th>
+                                    <th scope="col" class="i18n" name="format"></th>
+                                    <th scope="col" class="i18n" name="ismust"></th>
+                                    <th scope="col" class="i18n" name="describe"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">text</th>
                                         <td>String</td>
-                                        <td i18n="yes"></td>
-                                        <td i18n="tce"></td>
+                                        <td class="i18n" name="yes"></td>
+                                        <td class="i18n" name="tce"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">user</th>
                                         <td>String</td>
-                                        <td i18n="yes"></td>
-                                        <td i18n="accid"></td>
+                                        <td class="i18n" name="yes"></td>
+                                        <td class="i18n" name="accid"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">speed</th>
                                         <td>Number</td>
-                                        <td i18n="no"></td>
-                                        <td i18n="speed"></td>
+                                        <td class="i18n" name="no"></td>
+                                        <td class="i18n" name="speed"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">volume</th>
                                         <td>int</td>
-                                        <td i18n="no"></td>
-                                        <td i18n="spq"></td>
+                                        <td class="i18n" name="no"></td>
+                                        <td class="i18n" name="spq"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">pitch</th>
                                         <td>Number</td>
-                                        <td i18n="no"></td>
-                                        <td i18n="itt"></td>
+                                        <td class="i18n" name="no"></td>
+                                        <td class="i18n" name="itt"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">audioType</th>
                                         <td>String</td>
-                                        <td i18n="no"></td>
-                                        <td><span i18n="audiotype"></span></td>
+                                        <td class="i18n" name="no"></td>
+                                        <td><span class="i18n" name="audiotype"></span></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">speaker</th>
                                         <td>String</td>
-                                        <td i18n="no"></td>
+                                        <td class="i18n" name="no"></td>
                                         <td><span>speaker：说话人;<br> db4：女声 db2：男生; <br> 默认为：db4</span></td>
                                     </tr>
                                 </tbody>
@@ -377,10 +423,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" i18n="response"></th>
+                        <th scope="row" class="i18n" name="response"></th>
                     </tr>
                     <tr>
-                        <th scope="col" i18n="problems"></th>
+                        <th scope="col" class="i18n" name="problems"></th>
                     </tr>
                 </tbody>
             </table>
@@ -395,8 +441,8 @@
   <footer id="footer">
       <div class="container">
         <div class="copyright">
-            <span i18n="footerFAQ"></span> 
-            <a href="../user/contact.html" i18n="nav_contact"></a>
+            <span class="i18n" name="footerFAQ"></span> 
+            <a href="../user/contact.html" class="i18n" name="contact"></a>
         </div>
       </div>
     </footer><!-- End Footer -->
@@ -406,7 +452,8 @@
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/js/common/isIE.js"></script>
-  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../js/jquery.i18n.js"></script>
+  <script src="../js/language.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/md5/md5.js"></script>
@@ -415,11 +462,7 @@
   <script src="../assets/js/common/url.js"></script>
   <script src="../assets/js/common/main.js" async></script>
   <script src="../assets/js/document/document.js" async></script>
-  <script>
-    $(function(){
-      $('#head-page').load('../assets/head/header.html')
-    })
-  </script>
+
 </body>
 
 </html>

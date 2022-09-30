@@ -1,9 +1,4 @@
-let i18n = new EhiI18n('../lan/',()=>{
-    //获取当前语言
-    // console.log(`当前语言${i18n.getLanguage()}`)
-    //从语言中获取值,可在Js获取的时候使用
-    // console.log(i18n.get('login_username'))
-  })
+
   var c = 60
   var reguuid
   var loginuuid
@@ -19,11 +14,6 @@ let i18n = new EhiI18n('../lan/',()=>{
       });
     $('#login-loading').hide()
     $('#reg-loading').hide()
-    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == null || getCookie(document.cookie) == undefined){
-        $('.trans').attr('src','../assets/img/trans2.png')
-      }else{
-        $('.trans').attr('src','../assets/img/trans.png')
-      }
 })(jQuery)
 $('a[data-toggle="tab"]').on('hidden.bs.tab', function (event) {
     // event.target // newly activated tab
@@ -42,10 +32,10 @@ $('#loginBtn').click(function(){
     var password = $.base64.encode($('#login-password').val())
 
     if(username == ''){
-        $('.login-username-empty').html(i18n.get('username_empty'))
+        $('.login-username-empty').html($.i18n.prop('username_empty'))
         $('.login-username-empty').siblings().css('border-color','#dc3545')
     }else if(password == ''){
-        $('.login-password-empty').html(i18n.get('password_empty'))
+        $('.login-password-empty').html($.i18n.prop('password_empty'))
         $('.login-password-empty').siblings().css('border-color','#dc3545')
     }else{
         $('#login-loading').show()
@@ -53,7 +43,7 @@ $('#loginBtn').click(function(){
         var loginParams = {
             u:username,
             p:password,
-            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
             imgCode:$('#login-img-code').val(),
             ucode:loginuuid,
             username:"",
@@ -124,8 +114,8 @@ $('#loginBtn').click(function(){
                 $('#login-loading').hide()
                 $('#loginBtn').removeAttr('disabled','disabled')
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -145,7 +135,7 @@ $('#regbtn').click(function(){
             userService:"",
             p:$.base64.encode($('#reg-password').val()),
             code:$('#reg-code').val(),
-            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
             imgCode:$('#reg-img-code').val(),
             ucode:reguuid,
             lid:"",
@@ -224,8 +214,8 @@ $('#regbtn').click(function(){
                 $('#reg-loading').hide()
                 $('#regbtn').removeAttr('disabled','disabled')
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -288,7 +278,7 @@ function regEmail(){
     var emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     var emailVal = $('#reg-email').val()
     if(emailVal == ''){
-        $('.reg-email-error').html(i18n.get('email_empty'))
+        $('.reg-email-error').html($.i18n.prop('email_empty'))
         $('.reg-email-error').siblings().css('border-color','#dc3545')
         return false
     }else if(emailReg.test(emailVal)){
@@ -296,7 +286,7 @@ function regEmail(){
         $('.reg-email-error').siblings().css('border-color','')
         return true
     }else{
-        $('.reg-email-error').html(i18n.get('email_error'))
+        $('.reg-email-error').html($.i18n.prop('email_error'))
         $('.reg-email-error').siblings().css('border-color','#dc3545')
         return false
     }
@@ -306,7 +296,7 @@ function regCode(){
     flag = false
     var codeVal = $('#reg-code').val()
     if(codeVal == ''){
-        $('.reg-code-error').html(i18n.get('code_empty'))
+        $('.reg-code-error').html($.i18n.prop('code_empty'))
         $('.reg-code-btn').siblings().css('border-color','#dc3545')
         flag = false
     }else{
@@ -317,13 +307,13 @@ function regCode(){
 function regImgCode(){
     var imgCodeVal = $('#reg-img-code').val()
     if(imgCodeVal == ''){
-        $('.reg-img-error').html(i18n.get('img_code'))
+        $('.reg-img-error').html($.i18n.prop('img_code'))
         $('.reg-img-code').siblings().css('border-color','#dc3545')
     }else{
         var codeParams = {
             imgCode:$('#reg-img-code').val(),
             ucode:reguuid,
-            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
             u:"",
             p:"",
             username:"",
@@ -360,8 +350,8 @@ function regImgCode(){
             },
             error:function(){
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
                 flag = false
@@ -373,13 +363,13 @@ function regImgCode(){
 function loginImgCode(){
     var imgCodeVal = $('#login-img-code').val()
     if(imgCodeVal == ''){
-        $('.login-img-error').html(i18n.get('img_code'))
+        $('.login-img-error').html($.i18n.prop('img_code'))
         $('.login-img-code').siblings().css('border-color','#dc3545')
     }else{
         var codeParams = {
             imgCode:$('#login-img-code').val(),
             ucode:loginuuid,
-            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
             u:"",
             p:"",
             username:"",
@@ -416,8 +406,8 @@ function loginImgCode(){
             },
             error:function(){
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
                 flag = false
@@ -431,7 +421,7 @@ function regPhone(){
     var phoneReg = /^1[0-9]{10}$/
     var phoneVal = $('#reg-phone').val()
     if(phoneVal == ''){
-        $('.reg-phone-error').html(i18n.get('phone_empty'))
+        $('.reg-phone-error').html($.i18n.prop('phone_empty'))
         $('.reg-phone-error').siblings().css('border-color','#dc3545')
         return false
     }else if(phoneReg.test(phoneVal)){
@@ -439,7 +429,7 @@ function regPhone(){
         $('.reg-phone-error').siblings().css('border-color','')
         return true
     }else{
-        $('.reg-phone-error').html(i18n.get('phone_error'))
+        $('.reg-phone-error').html($.i18n.prop('phone_error'))
         $('.reg-phone-error').siblings().css('border-color','#dc3545')
         
         return false
@@ -451,7 +441,7 @@ function regPwd(){
     var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#reg-password').val()
     if(pwdVal == ''){
-        $('.reg-password-error').html(i18n.get('password_empty'))
+        $('.reg-password-error').html($.i18n.prop('password_empty'))
         $('.reg-password-error').siblings().css('border-color','#dc3545')
         return false
     }else if(passwordReg.test(pwdVal)){
@@ -459,7 +449,7 @@ function regPwd(){
         $('.reg-password-error').siblings().css('border-color','')
         return true
     }else{
-        $('.reg-password-error').html(i18n.get('password_error'))
+        $('.reg-password-error').html($.i18n.prop('password_error'))
         $('.reg-password-error').siblings().css('border-color','#dc3545')
         
         return false
@@ -470,7 +460,7 @@ function regCheckpwd(){
     if($('#reg-checkpwd').val() === $('#reg-password').val()){
         return true
     }else{
-        $('.reg-checkpwd-error').html(i18n.get('checkpwd_error'))
+        $('.reg-checkpwd-error').html($.i18n.prop('checkpwd_error'))
         $('.reg-checkpwd-error').siblings().css('border-color','#dc3545')
         return false
     }
@@ -486,11 +476,11 @@ $('#reg-checkpwd').on('input',function(){
 function regName(){
     var beReg = /^\S+$/;
     if($('#reg-name').val() == ''){
-        $('.reg-name-error').html(i18n.get('name_error'))
+        $('.reg-name-error').html($.i18n.prop('name_error'))
         $('.reg-name-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-name').val())){
-        $('.reg-name-error').html(i18n.get('be_error'))
+        $('.reg-name-error').html($.i18n.prop('be_error'))
         $('.reg-name-error').siblings().css('border-color','#dc3545')
         return false
     }else{
@@ -503,11 +493,11 @@ function regName(){
 function regCompany(){
     var beReg = /^\S+$/;
     if($('#reg-company').val() == ''){
-        $('.reg-company-error').html(i18n.get('company_error'))
+        $('.reg-company-error').html($.i18n.prop('company_error'))
         $('.reg-company-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-company').val())){
-        $('.reg-company-error').html(i18n.get('be_error'))
+        $('.reg-company-error').html($.i18n.prop('be_error'))
         $('.reg-company-error').siblings().css('border-color','#dc3545')
         return false
     }else{
@@ -520,11 +510,11 @@ function regCompany(){
 function regDep(){
     var beReg = /^\S+$/;
     if($('#reg-dep').val() == ''){
-        $('.reg-dep-error').html(i18n.get('dep_error'))
+        $('.reg-dep-error').html($.i18n.prop('dep_error'))
         $('.reg-dep-error').siblings().css('border-color','#dc3545')
         return false
     }else if(!beReg.test($('#reg-dep').val())){
-        $('.reg-dep-error').html(i18n.get('be_error'))
+        $('.reg-dep-error').html($.i18n.prop('be_error'))
         $('.reg-dep-error').siblings().css('border-color','#dc3545')
         return false
     }else{
@@ -550,7 +540,7 @@ function getCode(){
     $('.reg-code-btn').css('pointer-events','none')
     var regCodeParams = {
         u:$('#reg-email').val(),
-        language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == 'null' || '' ? 'chinese': 'english',
+        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
         p:"",
         username:"",
         phone:"",
@@ -578,9 +568,9 @@ function getCode(){
             if(res.status == 0){
                 timer()
             // Swal.fire({
-            //     text:i18n.get('code_sent'),
+            //     text:$.i18n.prop('code_sent'),
             //     icon:'success',
-            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonText: $.i18n.prop('confirm'),
             //     confirmButtonColor: '#94cb82'
             // })
                 Swal.fire({
@@ -596,7 +586,7 @@ function getCode(){
                 $('.reg-code-btn').css('pointer-events','auto')
                 // Swal.fire({
                 //     text:res.error,
-                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonText: $.i18n.prop('confirm'),
                 //     confirmButtonColor: '#94cb82'
                 // })
                 Swal.fire({
@@ -614,8 +604,8 @@ function getCode(){
         error:function(){
             $('.reg-code-btn').css('pointer-events','auto')
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -631,15 +621,15 @@ function getRegImgCode(){
                 $('#img-code-reg').attr('src','data:image/png;base64,'+res.imgage)
                 reguuid=res.uuid
             // Swal.fire({
-            //     text:i18n.get('code_sent'),
+            //     text:$.i18n.prop('code_sent'),
             //     icon:'success',
-            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonText: $.i18n.prop('confirm'),
             //     confirmButtonColor: '#94cb82'
             // })
             }else{
                 // Swal.fire({
                 //     text:res.error,
-                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonText: $.i18n.prop('confirm'),
                 //     confirmButtonColor: '#94cb82'
                 // })
                 Swal.fire({
@@ -656,8 +646,8 @@ function getRegImgCode(){
         },
         error:function(){
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -674,15 +664,15 @@ function getLoginImgCode(){
                 $('#img-code-login').attr('src','data:image/png;base64,'+res.imgage)
                 loginuuid=res.uuid
             // Swal.fire({
-            //     text:i18n.get('code_sent'),
+            //     text:$.i18n.prop('code_sent'),
             //     icon:'success',
-            //     confirmButtonText: i18n.get('confirm'),
+            //     confirmButtonText: $.i18n.prop('confirm'),
             //     confirmButtonColor: '#94cb82'
             // })
             }else{
                 // Swal.fire({
                 //     text:res.error,
-                //     confirmButtonText: i18n.get('confirm'),
+                //     confirmButtonText: $.i18n.prop('confirm'),
                 //     confirmButtonColor: '#94cb82'
                 // })
                 Swal.fire({
@@ -699,8 +689,8 @@ function getLoginImgCode(){
         },
         error:function(){
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -710,7 +700,7 @@ function getLoginImgCode(){
 function timer() {
     if (c == 0) {    
         $('.reg-code-btn').css('pointer-events','auto')        
-        $('.reg-code-btn').html(i18n.get('reg_code_btn'))
+        $('.reg-code-btn').html($.i18n.prop('reg_code_btn'))
         c = 60;
     } else {
         $('.reg-code-btn').html(` ${c} s`)
@@ -724,30 +714,3 @@ function timer() {
 function getStyle(obj, attr) {
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
 }
-
-function isLang(){
-    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == 'null' || getCookie(document.cookie) == undefined){
-      i18n.setLanguage('us')
-      $('.trans').attr('src','../assets/img/trans.png')
-      // console.log("en===============")
-    }else if(getCookie(document.cookie) == 'us'){
-      i18n.setLanguage('zh')
-      $('.trans').attr('src','../assets/img/trans2.png')
-      // console.log("中文===============")
-    }
-  }
-
-  function getCookie(s){
-    var str = s;
-    //将值切割成数组
-    var arr = str.split(";");
-    var userid;
-    //遍历数组
-    for(var i=0;i<arr.length;i++){
-        var value = arr[i].split("=");
-        if(value[0] == 'ehiI18n.Language'){
-            userid = value[1];
-        }
-    }
-    return userid
-  }

@@ -3,10 +3,10 @@ function regPwd(){
     var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#reg-password').val()
     if(pwdVal == ''){
-        $('.reg-password-error').html(i18n.get('password_empty'))
+        $('.reg-password-error').html($.i18n.prop('password_empty'))
         return false
     }else if(!passwordReg.test(pwdVal)){
-        $('.reg-password-error').html(i18n.get('password_error'))
+        $('.reg-password-error').html($.i18n.prop('password_error'))
         return false
     }else{
         $('.reg-password-error').html('')
@@ -24,7 +24,7 @@ function regCheckpwd(){
     if($('#reg-checkpwd').val() === $('#reg-password').val()){
         return true
     }else{
-        $('.reg-checkpwd-error').html(i18n.get('checkpwd_error'))
+        $('.reg-checkpwd-error').html($.i18n.prop('checkpwd_error'))
         return false
     }
 }
@@ -71,7 +71,7 @@ $('.reset-btn').click(function(){
                 if(res.status == 0){
                     localStorage.clear();
                     Swal.fire({
-                        text: i18n.get('check_success'),
+                        text: $.i18n.prop('check_success'),
                         showCancelButton: false,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
@@ -79,7 +79,7 @@ $('.reset-btn').click(function(){
                         icon:'success',
                         width:'16em',
                         confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                     }).then((result) => {
                         if (result.isConfirmed) {
                             var url = window.location.href
@@ -90,14 +90,14 @@ $('.reset-btn').click(function(){
                 }else{
                     localStorage.clear();
                     Swal.fire({
-                        text: i18n.get('logTimeOut'),
+                        text: $.i18n.prop('logTimeOut'),
                         showCancelButton: false,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
                         reverseButtons:true,
                         width:'16em',
                         confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                       }).then((result) => {
                         if (result.isConfirmed) {
                             var url = window.location.href
@@ -111,8 +111,8 @@ $('.reset-btn').click(function(){
                 $('#reset-loading').hide()
                 $('.reset-btn').removeAttr('disabled','disabled')
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }

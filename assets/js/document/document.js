@@ -57,14 +57,14 @@ userInfo()
                 if(data.errorcode ==1024){
                     localStorage.clear()
                     Swal.fire({
-                        text: i18n.get('firstLogin'),
+                        text: $.i18n.prop('firstLogin'),
                         showCancelButton: false,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
                         reverseButtons:true,
                         width:'16em', 
                         confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                     }).then((result)=>{
                         if (result.isConfirmed) {
                         var url = window.location.href

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords" content="联想语音,乐语音,联想小乐,联想语音平台,联想语音助手,moto语音助手,摩托语音助手,摩托语音,moto语音,小乐语音助手,小乐语音,联想智能语音,小乐小乐">
 
@@ -30,10 +30,56 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div id="head-page"></div>
+  <header id="header" class="fixed-top">
+    <div class="display-flex">
+      <div class="logo">
+        <a href="../welcome/index.html">
+          <img src="../assets/img/favicon.ico" alt="">
+        <span class="i18n" name="logo">
+          
+        </span></a>
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-item">
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li class="active"><a href="../product/recognise.html" class="i18n" name="product"></a>
+            <!-- <ul id="drop-ul">
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
+            </ul> -->
+          </li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <li><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li>
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
+          
+        </ul>
+        <li class="login-reg" style="display:none;">
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
+            |
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
+        </li>
+        <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+          <ul id="drop-ul">
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
+          </ul>
+        </li>
+      </nav><!-- .nav-menu -->
+      <img src="" class="trans" id="checkLang" onclick="trans()">
+    </div>
+    
+  </header>
     <section class="audiomain-long" id="head">
       <div class="head-bg d-flex justify-content-center align-items-center">
-        <h2 i18n="nav_audiomain_long"></h2>
+        <h2 class="i18n" name="audiomain_long"></h2>
       </div>
       <div class="bight"></div>
     </section><!-- End header Section -->
@@ -42,17 +88,17 @@
     <!-- ======= document Section ======= -->
     <section class="audiomain-long-section">
       <div class="container">
-          <h3 class="audiomain-title" i18n="proEx">
+          <h3 class="audiomain-title i18n" name="proEx">
             
           </h3>
         <div class="audiomain-silder">
           <div class="silder-box">
             <div class="silder-content">
               <ul id="nav">
-                <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
-                <li class="active"><a href="" i18n="nav_audiomain_long"></a></li>
-                <li><a href="./tts.html" i18n="nav_tts"></a></li>
-                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+                <li><a href="./recognise.html" class="i18n" name="audiomain"></a></li>
+                <li class="active"><a href="" class="i18n" name="audiomain_long"></a></li>
+                <li><a href="./tts.html" class="i18n" name="tts"></a></li>
+                <li><a href="./assess.html" class="i18n" name="assess"></a></li>
               </ul>
             </div>
           </div>
@@ -61,14 +107,14 @@
                 <!-- <span class="bgbox-main-tit-m" i18n="speechRec"></span> -->
                 <form class="select-form">
                   <div class="select-box form-group">
-                    <span class="selelabel" i18n="sampleRate"></span>
+                    <span class="selelabel i18n" name="sampleRate"></span>
                     <label>
                         <select class="form-control" id="selectSamp">
                             <option value="16000">16k</option>
                             <option value="8000">8k</option>
                         </select>
                     </label>  
-                    <span class="selelabel" i18n="lang"></span>
+                    <span class="selelabel i18n" name="lang"></span>
                     <label>
                         <select class="form-control" id="selectLang">
                             <option value="chinese">中文</option>
@@ -79,11 +125,11 @@
                 </form>
               </div>
               <div class="bgbox-main">
-                <span class="hint-sp-left" i18n="disMic"></span>
-                <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' i18n="firstLogin">请先登录</a></span>
+                <span class="hint-sp-left i18n" name="disMic"></span>
+                <span id="statusU" class="please-ask"><a onclick="gologin()" target="_self" id='lenovo-user-name' class="i18n" name="firstLogin">请先登录</a></span>
                 <div class="result-box">
                     <p class="prompt">
-                        <!-- <span i18n="disResult">识别结果：</span> -->
+                        <!-- <span name="disResult">识别结果：</span> -->
                         <span id="txt-f"></span>
                     </p>
                 </div>
@@ -99,7 +145,7 @@
                       <span class="line-list-line2"></span>
                       <span class="line-list-line1"></span>
                     </div>
-                    <span class="mic-btn" i18n="start"></span>
+                    <span class="mic-btn i18n" name="start"></span>
                   </div>
                   <span class="long-timer">00:00:00</span>
                 </div>
@@ -114,8 +160,8 @@
   <footer id="footer">
       <div class="container">
         <div class="copyright">
-            <span i18n="footerFAQ"></span> 
-            <a href="../user/contact.html" i18n="nav_contact"></a>
+            <span class="i18n" name="footerFAQ"></span> 
+            <a href="../user/contact.html" class="i18n" name="contact"></a>
         </div>
       </div>
     </footer><!-- End Footer -->
@@ -126,9 +172,8 @@
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/js/common/iflogin.js"></script>
  <script src="../assets/js/common/isIE.js"></script>
-
-  <script src="../i18n/ehi-i18n.js"></script>
-
+ <script src="../js/jquery.i18n.js"></script>
+ <script src="../js/language.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/recorder-core/recorder.wav.min.js"></script>
@@ -140,11 +185,11 @@
   <script src="../assets/js/common/url.js"></script>
   <script src="../assets/js/common/main.js"></script>
   <script src="../assets/js/product/audiomain_long.js"></script>
-  <script>
+  <!-- <script>
     $(function(){
       $('#head-page').load('../assets/head/header.html')
     })
-  </script>
+  </script> -->
 
 </body>
 

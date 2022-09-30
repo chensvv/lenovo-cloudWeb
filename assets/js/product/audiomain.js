@@ -22,7 +22,7 @@ function toggleRecording(e){
         // $('.hint-sp-left').css("display","none");
         // $('#statusU').css("display","block");
         Swal.fire({
-            text: i18n.get('firstLogin'),
+            text: $.i18n.prop('firstLogin'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,
@@ -30,8 +30,8 @@ function toggleRecording(e){
             width:'16em',
             confirmButtonColor: '#94cb82',
             cancelButtonColor: '#d33',
-            confirmButtonText: i18n.get('confirm'),
-            cancelButtonText:i18n.get('cancel')
+            confirmButtonText: $.i18n.prop('confirm'),
+            cancelButtonText:$.i18n.prop('cancel')
         }).then((result) => {
             if (result.isConfirmed) {
                 var url = window.location.href
@@ -46,7 +46,7 @@ function toggleRecording(e){
             $('.line-box').css('display','none')
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
-            $('.mic-btn').html(i18n.get('start'))
+            $('.mic-btn').html($.i18n.prop('start'))
             recStop()
         }else{
             if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
@@ -55,7 +55,7 @@ function toggleRecording(e){
                 getIxid(e)
             }else{
                 Swal.fire({
-                    text: i18n.get('service_not_open'),
+                    text: $.i18n.prop('service_not_open'),
                     showCancelButton: true,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
@@ -63,8 +63,8 @@ function toggleRecording(e){
                     width:'16em',
                     confirmButtonColor: '#94cb82',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: i18n.get('go_to_open'),
-                    cancelButtonText:i18n.get('cancel')
+                    confirmButtonText: $.i18n.prop('go_to_open'),
+                    cancelButtonText:$.i18n.prop('cancel')
                 }).then((result) => {
                     if (result.isConfirmed) {
                       window.location.href = '../user/uservice.html'
@@ -85,13 +85,13 @@ function socket (e) {
         $('.mic').css('display','none')
         $('.line-box').css("display","inline-block");
         $('.record-btn').addClass('recording')
-        $('.hint-sp-left').html(i18n.get('speak'))
-        $('.mic-btn').html(i18n.get('stop'))
+        $('.hint-sp-left').html($.i18n.prop('speak'))
+        $('.mic-btn').html($.i18n.prop('stop'))
     }
     ws.onerror = function(error){
         Swal.fire({
-            text:i18n.get('server_error'),
-            confirmButtonText: i18n.get('confirm'),
+            text:$.i18n.prop('server_error'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
         recStop()
@@ -106,7 +106,7 @@ function socket (e) {
             ws.close()
             Swal.fire({
                 text:res.errormessage,
-                confirmButtonText: i18n.get('confirm'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }else{
@@ -226,10 +226,10 @@ function recOpen(success){
         $('.mic').css('display','inline-block')
         $('.record-btn').removeClass('recording')
         $('.record-btn').removeClass('recordm')
-        $('.hint-sp-left').html(i18n.get('Miclick'))
+        $('.hint-sp-left').html($.i18n.prop('Miclick'))
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
     });
@@ -242,7 +242,7 @@ function recStart(){//打开了录音后才能进行start、stop调用
 function recStop(){
     rec.stop(function(blob,duration){
         if(statu != 1){
-            $('.hint-sp-left').html(i18n.get('recogVoice'))
+            $('.hint-sp-left').html($.i18n.prop('recogVoice'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
             // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
@@ -252,7 +252,7 @@ function recStop(){
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
             $('.record-btn').removeClass('recordm')
-            $('.hint-sp-left').html(i18n.get('Miclick'));
+            $('.hint-sp-left').html($.i18n.prop('Miclick'));
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
             // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
@@ -315,8 +315,8 @@ function recStop(){
             //     },
             //     error:function(){
             //         Swal.fire({
-            //             text:i18n.get('server_error'),
-            //             confirmButtonText: i18n.get('confirm'),
+            //             text:$.i18n.prop('server_error'),
+            //             confirmButtonText: $.i18n.prop('confirm'),
             //             confirmButtonColor: '#94cb82'
             //         })
             //     }
@@ -328,7 +328,7 @@ function recStop(){
         rec=null;
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
     });

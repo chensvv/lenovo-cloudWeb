@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords" content="联想语音,乐语音,联想小乐,联想语音平台,联想语音助手,moto语音助手,摩托语音助手,摩托语音,moto语音,小乐语音助手,小乐语音,联想智能语音,小乐小乐">
 
@@ -28,7 +28,53 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div id="head-page"></div>
+  <header id="header" class="fixed-top">
+    <div class="display-flex">
+      <div class="logo">
+        <a href="../welcome/index.html">
+          <img src="../assets/img/favicon.ico" alt="">
+        <span class="i18n" name="logo">
+          
+        </span></a>
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-item">
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li><a href="../product/recognise.html" class="i18n" name="product"></a>
+            <!-- <ul id="drop-ul">
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
+            </ul> -->
+          </li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <li class="active"><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li>
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
+          
+        </ul>
+        <li class="login-reg" style="display:none;">
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
+            |
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
+        </li>
+        <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+          <ul id="drop-ul">
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
+          </ul>
+        </li>
+      </nav><!-- .nav-menu -->
+      <img src="" class="trans" id="checkLang" onclick="trans()">
+    </div>
+    
+  </header>
     <section class="questiondetail" id="head">
       
     </section><!-- End About Us Section -->
@@ -41,7 +87,7 @@
             <p class="detail-info">
                 <span class="newauthor"></span>
                 <span class="newtime"></span>
-                <span class="rep" i18n="replyer"></span><span class="reply_length">0</span>
+                <span class="rep i18n" name="replyer"></span><span class="reply_length">0</span>
             </p>
             <!-- 帖子内容区 -->
             <div class="cont">
@@ -51,13 +97,13 @@
             </div>
             <!-- 回复内容区 -->
             <div class="comment-list" id="aa"></div>
-            <div class="comment-empty" i18n="noComment"></div>
+            <div class="comment-empty i18n" name="noComment"></div>
             <!-- 快速回复框 -->
             <div class="commentbox">
-                <textarea cols="80" rows="50" i18n="[placeholder]saysome" class="mytextarea" id="content"></textarea>
+                <textarea cols="80" rows="50" class="mytextarea i18n-input" id="content" selectname="saysome" selectattr="placeholder"></textarea>
                 <button class="qu_sub_btn common-btn-loading" id="comment">
                     <span class="spinner-border spinner-border-sm" id="pub-loading" role="status" aria-hidden="true"></span>
-                    <span i18n="publish"></span>
+                    <span class="i18n" name="publish"></span>
                 </button>
             </div>
         </div>
@@ -68,8 +114,8 @@
   <footer id="footer">
       <div class="container">
         <div class="copyright">
-            <span i18n="footerFAQ"></span> 
-            <a href="../user/contact.html" i18n="nav_contact"></a>
+            <span class="i18n" name="footerFAQ"></span> 
+            <a href="../user/contact.html" class="i18n" name="contact"></a>
         </div>
       </div>
     </footer><!-- End Footer -->
@@ -80,7 +126,8 @@
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/js/common/iflogin.js"></script>
   <script src="../assets/js/common/isIE.js"></script>
-  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../js/jquery.i18n.js"></script>
+  <script src="../js/language.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/md5/md5.js"></script>
@@ -90,11 +137,6 @@
   <script src="../assets/js/common/main.js"></script>
   <script src="../assets/js/forum/questiondetail.js"></script>
   
-  <script>
-    $(function(){
-      $('#head-page').load('../assets/head/header.html')
-    })
-  </script>
 </body>
 
 </html>

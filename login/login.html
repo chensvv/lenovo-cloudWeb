@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords" content="联想语音,乐语音,联想小乐,联想语音平台,联想语音助手,moto语音助手,摩托语音助手,摩托语音,moto语音,小乐语音助手,小乐语音,联想智能语音,小乐小乐">
 
@@ -30,11 +30,11 @@
 </head>
 
 <body>
-    <img src="../assets/img/trans2.png" class="trans login-trans" onclick="isLang()">
+    <img src="" class="login-trans" id="checkLang" onclick="trans()">
     <div class="login-logo" >
         <a href="">
             <img src="../assets/img/favicon.ico" alt="">
-        <span id="text" i18n="nav_logo">
+        <span id="text" class="i18n" name="logo">
             
         </span></a>
         
@@ -47,7 +47,7 @@
         <!-- <nav> -->
             <div class="head-tabs dis-flex justify-content-center">
                 <!-- <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" i18n="signIn"></a> -->
-                <span class="nav-link" i18n="signIn"></span>
+                <span class="nav-link i18n" name="signIn"></span>
                 <!-- <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a> -->
             </div>
         <!-- </nav> -->
@@ -55,20 +55,20 @@
             <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> -->
                 <!-- <form id="defaultForm" class="form-horizontal" novalidate> -->
                     <div class="form-group">
-                        <input type="text" class="form-control" id="login-username" i18n="[placeholder]login_username">
+                        <input type="text" class="form-control i18n-input" id="login-username" selectname="login_username" selectattr="placeholder">
                         <div class="error-tooltip login-username-empty" data-aos="fade-down">
                             
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="login-password" i18n="[placeholder]login_password">
+                        <input type="password" class="form-control i18n-input" id="login-password" selectname="login_password" selectattr="placeholder">
                         <div class="error-tooltip login-password-empty" data-aos="fade-down">
 
                         </div>
                     </div>
                     <div class="form-group">
                     <div class="reg-code-box dis-flex">
-                        <input type="text" class="form-control img-code-input" id="login-img-code" i18n="[placeholder]img_code" autocomplete="off" onblur="loginImgCode()">
+                        <input type="text" class="form-control img-code-input i18n-input" id="login-img-code" selectname="img_code" selectattr="placeholder" autocomplete="off" onblur="loginImgCode()">
                         <img id="img-code-login" class="img-code" onclick="getLoginImgCode()" /> 
                     </div>
                     <div class="error-tooltip reg-img-error" data-aos="fade-down">
@@ -78,11 +78,11 @@
                 <div class="form-group form-btn">
                         <button type="submit" name="submit" class="btn btn-primary login-btn common-btn-loading" id="loginBtn">
                                 <span class="spinner-border spinner-border-sm" id="login-loading" role="status" aria-hidden="true"></span>
-                                <span i18n="signIn"></span>
+                                <span class="i18n" name="signIn"></span>
                         </button>
                         <div class="forgot-reg">
-                            <a href="./forgot.html" class="forgot" target="_blank" i18n="login_forgot"></a>
-                            <a href="./register.html" class="register" i18n="login_reg"></a>
+                            <a href="./forgot.html" class="forgot i18n" target="_blank" name="login_forgot"></a>
+                            <a href="./register.html" class="register i18n" name="login_reg"></a>
                         </div>
                 </div>
                 <!-- </form> -->
@@ -102,7 +102,8 @@
   <!-- Vendor JS Files -->
   <script src="../assets/js/common/isIE.js"></script>
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../js/jquery.i18n.js"></script>
+  <script src="../js/language.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>

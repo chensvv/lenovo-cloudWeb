@@ -47,7 +47,7 @@ function newList(){
         }else{
           localStorage.clear();
           Swal.fire({
-            text: i18n.get('logTimeOut'),
+            text: $.i18n.prop('logTimeOut'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,
@@ -55,8 +55,8 @@ function newList(){
             width:'16em',
             confirmButtonColor: '#94cb82',
             cancelButtonColor: '#d33',
-            confirmButtonText: i18n.get('confirm'),
-            cancelButtonText:i18n.get('cancel')
+            confirmButtonText: $.i18n.prop('confirm'),
+            cancelButtonText:$.i18n.prop('cancel')
           }).then((result)=>{
             if (result.isConfirmed) {
               var url = window.location.href
@@ -69,8 +69,8 @@ function newList(){
       },
       error:function(){
         Swal.fire({
-            text:i18n.get('server_error'),
-            confirmButtonText: i18n.get('confirm'),
+            text:$.i18n.prop('server_error'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
       }

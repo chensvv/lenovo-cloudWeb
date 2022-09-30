@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords">
 
@@ -31,11 +31,11 @@
 </head>
 
 <body>
-    <img src="../assets/img/trans2.png" class="trans login-trans" onclick="isLang()">
+    <img src="" class="login-trans" id="checkLang" onclick="trans()">
     <div class="login-logo" >
         <a href="">
             <img src="../assets/img/favicon.ico" alt="">
-        <span id="text" i18n="nav_logo">
+        <span id="text" class="i18n" name="logo">
             
         </span></a>
         
@@ -51,64 +51,64 @@
                 <div class="processbar">
                     <div class="steps active">
                         <div class="one-steps"><div class="bi stepnum">1</div></div>
-                        <div class="bi bit" i18n="write_info"></div>
+                        <div class="bi bit i18n" name="write_info"></div>
                     </div>
                     <div class="steps ac">
                         <div class="lines"></div>
                         <div class="two-steps"><div class="bi stepnum">2</div></div>
-                        <div class="bi bit" i18n="email_veri"></div>
+                        <div class="bi bit i18n" name="email_veri"></div>
                     </div>
                 </div>
             </div>
             <div class="head-tabs dis-flex justify-content-center">
-                <span class="nav-link" i18n="signUp"></span>
+                <span class="nav-link i18n" name="signUp"></span>
             </div>
             <!-- <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" i18n="signUp"></a> -->
             <div id="mustInfo">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="reg-email" name="email" i18n="[placeholder]email_empty" autocomplete="off" onblur="regEmail()">
+                    <input type="text" class="form-control i18n-input" id="reg-email" name="email" selectname="email_empty" selectattr="placeholder" autocomplete="off" onblur="regEmail()">
                     <div class="error-tooltip reg-email-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="reg-phone" name="phone" i18n="[placeholder]phone_empty" autocomplete="off" onblur="regPhone()">
+                    <input type="text" class="form-control i18n-input" id="reg-phone" name="phone" selectname="phone_empty" selectattr="placeholder" autocomplete="off" onblur="regPhone()">
                     <div class="error-tooltip reg-phone-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" value class="form-control" id="reg-password" name="password" i18n="[placeholder]password_empty" autocomplete="new-password" onblur="regPwd()">
+                    <input type="password" value class="form-control i18n-input" id="reg-password" name="password" selectname="password_empty" selectattr="placeholder" autocomplete="new-password" onblur="regPwd()">
                     <div class="error-tooltip reg-password-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="reg-checkpwd" i18n="[placeholder]check_password" autocomplete="new-password" onblur="regCheckpwd()">
+                    <input type="password" class="form-control i18n-input" id="reg-checkpwd" selectname="check_password" selectattr="placeholder" autocomplete="new-password" onblur="regCheckpwd()">
                     <div class="error-tooltip reg-checkpwd-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="reg-name" i18n="[placeholder]name_error" autocomplete="off" onblur="regName()">
+                    <input type="text" class="form-control i18n-input" id="reg-name" selectname="name_error" selectattr="placeholder" autocomplete="off" onblur="regName()">
                     <div class="error-tooltip reg-name-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="reg-company" i18n="[placeholder]company_error" autocomplete="off" onkeyup="isShowdep()" onblur="regCompany()">
+                    <input type="text" class="form-control i18n-input" id="reg-company" selectname="company_error" selectattr="placeholder" autocomplete="off" onkeyup="isShowdep()" onblur="regCompany()">
                     <div class="error-tooltip reg-company-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group" id="dep">
-                    <input type="text" class="form-control" id="reg-dep" i18n="[placeholder]dep_error" autocomplete="off" onblur="regDep()">
+                    <input type="text" class="form-control i18n-input" id="reg-dep" selectname="dep_error" selectattr="placeholder" autocomplete="off" onblur="regDep()">
                     <div class="error-tooltip reg-dep-error" data-aos="fade-down">
                         
                     </div>
                 </div>
                 <div class="form-group form-btn">
-                    <button class="btn btn-primary login-btn" id="nextbtn" i18n="next_btn"></button>
+                    <button class="btn btn-primary login-btn i18n" id="nextbtn" name="next_btn"></button>
                 </div> 
             </div>
             <div id="basicInfo">
@@ -117,7 +117,7 @@
                 </div>
                 <div class="form-group">
                     <div class="reg-code-box dis-flex">
-                        <input type="text" class="form-control" id="reg-code" i18n="[placeholder]pass_code" autocomplete="off" onblur="regCode()">
+                        <input type="text" class="form-control i18n-input" id="reg-code" selectname="pass_code" selectattr="placeholder" autocomplete="off" onblur="regCode()">
                         <span class="reg-code-btn" onclick="getCode()">验证邮箱</span>
                     </div>
                     <div class="error-tooltip reg-code-error" data-aos="fade-down">
@@ -126,7 +126,7 @@
                 </div>
                 <div class="form-group">
                     <div class="reg-code-box dis-flex">
-                        <input type="text" class="form-control img-code-input" id="reg-img-code" i18n="[placeholder]img_code" autocomplete="off" onblur="regImgCode()">
+                        <input type="text" class="form-control img-code-input i18n-input" id="reg-img-code" selectname="img_code" selectattr="placeholder" autocomplete="off" onblur="regImgCode()">
                         <img id="img-code-reg" class="img-code" onclick="getRegImgCode()" /> 
                     </div>
                     <div class="error-tooltip reg-img-error" data-aos="fade-down">
@@ -153,11 +153,11 @@
                         <button class="btn btn-primary login-btn float-right" id="nextbtnm" i18n="next_btn"></button>
                 </div> -->
                 <div class="form-group form-btn flex-btn">
-                    <button class="btn btn-primary reg-btn" id="prevbtn" i18n="prev_btn"></button>
+                    <button class="btn btn-primary reg-btn i18n" id="prevbtn" name="prev_btn"></button>
                     <!-- <button class="btn btn-primary login-btn" id="prevbtnm" i18n="prev_btn"></button> -->
                     <button class="btn btn-primary reg-btn common-btn-loading" id="regbtn">
                             <span class="spinner-border spinner-border-sm" id="reg-loading" role="status" aria-hidden="true"></span>
-                            <span i18n="signUp"></span>
+                            <span class="i18n" name="signUp"></span>
                     </button>
                     
                 </div>
@@ -168,7 +168,8 @@
   <!-- Vendor JS Files -->
   <script src="../assets/js/common/isIE.js"></script>
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../js/jquery.i18n.js"></script>
+  <script src="../js/language.js"></script>
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"  />
 
-  <title i18n="nav_title"></title>
+  <title class="i18n" name="title"></title>
   <meta name="descriptison">
   <meta name="keywords" content="联想语音,乐语音,联想小乐,联想语音平台,联想语音助手,moto语音助手,摩托语音助手,摩托语音,moto语音,小乐语音助手,小乐语音,联想智能语音,小乐小乐">
 
@@ -29,10 +29,56 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div id="head-page"></div>
+  <header id="header" class="fixed-top">
+    <div class="display-flex">
+      <div class="logo">
+        <a href="../welcome/index.html">
+          <img src="../assets/img/favicon.ico" alt="">
+        <span class="i18n" name="logo">
+          
+        </span></a>
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-item">
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li class="active"><a href="../product/recognise.html" class="i18n" name="product"></a>
+            <!-- <ul id="drop-ul">
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
+            </ul> -->
+          </li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <li><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li>
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
+          
+        </ul>
+        <li class="login-reg" style="display:none;">
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
+            |
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
+        </li>
+        <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+          <ul id="drop-ul">
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
+          </ul>
+        </li>
+      </nav><!-- .nav-menu -->
+      <img src="" class="trans" id="checkLang" onclick="trans()">
+    </div>
+    
+  </header>
     <section class="tts" id="head">
       <div class="head-bg d-flex justify-content-center align-items-center">
-        <h2 i18n="nav_tts"></h2>
+        <h2 class="i18n" name="tts"></h2>
       </div>
       <div class="bight"></div>
     </section><!-- End header Section -->
@@ -41,17 +87,17 @@
     <!-- ======= document Section ======= -->
     <section class="tts-section">
       <div class="container">
-        <h3 class="tts-title" i18n="proEx">
+        <h3 class="tts-title i18n" name="proEx">
           
         </h3>
         <div class="audiomain-silder">
           <div class="silder-box">
             <div class="silder-content">
               <ul id="nav">
-                <li><a href="./recognise.html" i18n="nav_audiomain"></a></li>
-                <li><a href="./long_recognise.html" i18n="nav_audiomain_long"></a></li>
-                <li class="active"><a href="" i18n="nav_tts"></a></li>
-                <li><a href="./assess.html" i18n="nav_assess"></a></li>
+                <li><a href="./recognise.html" class="i18n" name="audiomain"></a></li>
+                <li><a href="./long_recognise.html" class="i18n" name="audiomain_long"></a></li>
+                <li class="active"><a href="" class="i18n" name="tts"></a></li>
+                <li><a href="./assess.html" class="i18n" name="assess"></a></li>
               </ul>
             </div>
           </div>
@@ -61,22 +107,22 @@
                   <span id="tts-hint-left" i18n="inputText"></span>
               </div> -->
               <div class="textarea-box">
-                <textarea id="textarea" class="form-control textarea" onkeyup="setShowLength(this, 100, 'number');" maxlength="100" i18n="[placeholder]ttsText"></textarea>
+                <textarea id="textarea" class="form-control textarea i18n-input" onkeyup="setShowLength(this, 100, 'number');" maxlength="100" selectname="ttsText" selectattr="placeholder"></textarea>
                 <div class="tts-btn-box">
                     <div class="tts-btn">
                       <div class="spinner-border spinner-border-sm" id="tts-loading" role="status">
                       </div>
-                      <span class="voice-play" onclick="voicePlay()" i18n="ttsplay"></span>
-                      <span class="voice-pause" onclick="voicePause()" i18n="ttspause"></span>
-                      <span class="voice-keep" onclick="voiceKeep()" i18n="ttsplay"></span>
+                      <span class="voice-play i18n" onclick="voicePlay()" name="ttsplay"></span>
+                      <span class="voice-pause i18n" onclick="voicePause()" name="ttspause"></span>
+                      <span class="voice-keep i18n" onclick="voiceKeep()" name="ttsplay"></span>
                     </div>
                 </div>
                 
-                <span class="tts-hint-right" onclick="random()" i18n="random"></span>
+                <span class="tts-hint-right i18n" onclick="random()" name="random"></span>
                 <div class="hint-num">
-                  <span i18n="enterword"></span>
+                  <span class="i18n" name="enterword"></span>
                   <span id="number">100</span>
-                  <span i18n="ttsWords"></span>
+                  <span class="i18n" name="ttsWords"></span>
                 </div>
               </div>
             </div>
@@ -85,26 +131,26 @@
                 <ul id="seletype">
                   <li class="active" id="db4">
                     <span class="seletype-icon icon-woman"></span>
-                    <span i18n="female"></span>
+                    <span class="i18n" name="female"></span>
                   </li>
                   <li id="db2">
                     <span class="seletype-icon icon-man"></span>
-                    <span i18n="male"></span>
+                    <span class="i18n" name="male"></span>
                   </li>
                 </ul>
               </div>
               <div class="volbox">
-                <div class="rate" i18n="volume"></div>
+                <div class="rate i18n" name="volume"></div>
                 <input type="range" class="myrv myv" id="myvol" min="0" max="9" step="1" value="9" oninput="densityInput(event)" onpropertychange="OnPropChanged(event)">
                 <div id="volVal" class="volval">9</div>
               </div>
               <div class="rangebox">
-                <div class="rate" i18n="speeds"></div>
+                <div class="rate i18n" name="speeds"></div>
                 <input type="range" class="myrv myr" id="myrange" min="0" max="9" step="1" value="5" oninput="myrange(event)">
                 <div id="speedVal" class="speedval">5</div>
               </div>
               <div class="pitchbox">
-                <div class="rate" i18n="pitch"></div>
+                <div class="rate i18n" name="pitch"></div>
                 <input type="range" class="myrv myr" id="mypitch" min="0" max="9" step="1" value="5" oninput="mypitch(event)">
                 <div id="pitchVal" class="pitchval">5</div>
               </div>
@@ -123,8 +169,8 @@
   <footer id="footer">
       <div class="container">
         <div class="copyright">
-            <span i18n="footerFAQ"></span> 
-            <a href="../user/contact.html" i18n="nav_contact"></a>
+            <span class="i18n" name="footerFAQ"></span> 
+            <a href="../user/contact.html" class="i18n" name="contact"></a>
         </div>
       </div>
     </footer><!-- End Footer -->
@@ -134,7 +180,8 @@
   <script src="../assets/vendor/jquery.Base64/jquery.base64.js"></script>
   <script src="../assets/js/common/iflogin.js"></script>
   <script src="../assets/js/common/isIE.js"></script>
-  <script src="../i18n/ehi-i18n.js"></script>
+  <script src="../js/jquery.i18n.js"></script>
+  <script src="../js/language.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="../assets/vendor/md5/md5.js"></script>
@@ -143,11 +190,11 @@
   <script src="../assets/js/common/url.js"></script>
   <script src="../assets/js/common/main.js"></script>
   <script src="../assets/js/product/tts.js"></script>
-  <script>
+  <!-- <script>
     $(function(){
       $('#head-page').load('../assets/head/header.html')
     })
-  </script>
+  </script> -->
 
 </body>
 

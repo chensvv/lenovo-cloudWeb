@@ -16,7 +16,7 @@ var rec;
 function record(e){
     if (userToken == "" || userToken == null) {
         Swal.fire({
-            text: i18n.get('firstLogin'),
+            text: $.i18n.prop('firstLogin'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,
@@ -24,8 +24,8 @@ function record(e){
             width:'16em',
             confirmButtonColor: '#94cb82',
             cancelButtonColor: '#d33',
-            confirmButtonText: i18n.get('confirm'),
-            cancelButtonText:i18n.get('cancel')
+            confirmButtonText: $.i18n.prop('confirm'),
+            cancelButtonText:$.i18n.prop('cancel')
         }).then((result) => {
             if (result.isConfirmed) {
                 var url = window.location.href
@@ -40,11 +40,11 @@ function record(e){
         $('.line-box').css('display','none')
         $('.mic').css('display','inline-block')
         $('#voice-btn').removeClass('ass-recording')
-        $('.mic-btn').html(i18n.get('startvoice'));
+        $('.mic-btn').html($.i18n.prop('startvoice'));
         recStop()
     } else {
         e.classList.add("recording");
-        $('.mic-btn').html(i18n.get('stopvoice'))
+        $('.mic-btn').html($.i18n.prop('stopvoice'))
         $('.mic').css('display','none')
         $('.line-box').css("display","inline-block");
         $('#voice-btn').addClass('ass-recording')
@@ -69,11 +69,11 @@ function recOpen(success){
         $('.line-box').css('display','none')
         $('.mic').css('display','inline-block')
         $('#voice-btn').removeClass('ass-recording')
-        $('.mic-btn').html(i18n.get('startvoice'));
+        $('.mic-btn').html($.i18n.prop('startvoice'));
         $('#voice-btn').removeClass('recording')
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
         
@@ -154,8 +154,8 @@ function recStop(){
                 error:function(){
                     $('#assload').css('display','none')
                     Swal.fire({
-                        text:i18n.get('server_error'),
-                        confirmButtonText: i18n.get('confirm'),
+                        text:$.i18n.prop('server_error'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }
@@ -169,7 +169,7 @@ function recStop(){
         rec=null;
         Swal.fire({
             text:msg,
-            confirmButtonText: i18n.get('confirm'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
     });

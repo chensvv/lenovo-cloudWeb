@@ -395,8 +395,8 @@ if(typeof layui ==='undefined' && typeof layer ==='undefined'){
 			prev = document.createElement('li');
 		next.className = 'next';
 		prev.className = 'prev';
-		next.innerHTML = i18n.get('next_limit');
-		prev.innerHTML = i18n.get('prev_limit');
+		next.innerHTML = $.i18n.prop('next_limit');
+		prev.innerHTML = $.i18n.prop('prev_limit');
 		
 		
 		first.className = 'first';

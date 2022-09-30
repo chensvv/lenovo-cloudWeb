@@ -1,9 +1,4 @@
-let i18n = new EhiI18n('../lan/',()=>{
-    //获取当前语言
-    // console.log(`当前语言${i18n.getLanguage()}`)
-    //从语言中获取值,可在Js获取的时候使用
-    // console.log(i18n.get('login_username'))
-  })
+
 
 !(function($){
     function aos_init() {
@@ -17,11 +12,6 @@ let i18n = new EhiI18n('../lan/',()=>{
     });
     $('#stepone-loading').hide()
     $('#steptwo-loading').hide()
-    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == null || getCookie(document.cookie) == undefined){
-        $('.trans').attr('src','../assets/img/trans2.png')
-    }else{
-        $('.trans').attr('src','../assets/img/trans.png')
-    }
 })(jQuery)
 
 var c = 60
@@ -185,7 +175,7 @@ function getCode(){
     $('.code-btn').css('pointer-events','none')
     var emailParams = {
         u:$('#forgot-username').val(),
-            language:getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
             code:"",
             pwd:"",
             p:"",
@@ -252,31 +242,3 @@ function timer() {
         }, 1000)
     }
 }
-
-
-function isLang(){
-    if(getCookie(document.cookie) == 'zh' || getCookie(document.cookie) == '' || getCookie(document.cookie) == 'null' || getCookie(document.cookie) == undefined){
-      i18n.setLanguage('us')
-      $('.trans').attr('src','../assets/img/trans.png')
-      // console.log("en===============")
-    }else if(getCookie(document.cookie) == 'us'){
-      i18n.setLanguage('zh')
-      $('.trans').attr('src','../assets/img/trans2.png')
-      // console.log("中文===============")
-    }
-  }
-
-  function getCookie(s){
-    var str = s;
-    //将值切割成数组
-    var arr = str.split(";");
-    var userid;
-    //遍历数组
-    for(var i=0;i<arr.length;i++){
-        var value = arr[i].split("=");
-        if(value[0] == 'ehiI18n.Language'){
-            userid = value[1];
-        }
-    }
-    return userid
-  }

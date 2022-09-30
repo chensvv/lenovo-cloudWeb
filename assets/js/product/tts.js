@@ -8,10 +8,11 @@ var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
 var rangeval
 $('#tts-loading').hide()
+
 function voicePlay(){
     if (userToken == "" || userToken == null) {
         Swal.fire({
-            text: i18n.get('firstLogin'),
+            text: $.i18n.prop('firstLogin'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,
@@ -19,8 +20,8 @@ function voicePlay(){
             width:'16em',
             confirmButtonColor: '#94cb82',
             cancelButtonColor: '#d33',
-            confirmButtonText: i18n.get('confirm'),
-            cancelButtonText:i18n.get('cancel')
+            confirmButtonText: $.i18n.prop('confirm'),
+            cancelButtonText:$.i18n.prop('cancel')
         }).then((result) => {
             if (result.isConfirmed) {
               var url = window.location.href
@@ -30,14 +31,14 @@ function voicePlay(){
         })
     }else if($('#textarea').val() == ''){
         Swal.fire({
-          text:i18n.get('inputText'),
-          confirmButtonText: i18n.get('confirm'),
+          text:$.i18n.prop('inputText'),
+          confirmButtonText: $.i18n.prop('confirm'),
           confirmButtonColor: '#94cb82'
         })
     }else if(window.navigator.userAgent.indexOf("MSIE")>=1) {
         Swal.fire({
           text:"此浏览器不支持音频播放",
-          confirmButtonText: i18n.get('confirm'),
+          confirmButtonText: $.i18n.prop('confirm'),
           confirmButtonColor: '#94cb82'
         })
     }else{
@@ -49,7 +50,7 @@ function voicePlay(){
             getData()
         }else{
             Swal.fire({
-                text: i18n.get('service_not_open'),
+                text: $.i18n.prop('service_not_open'),
                 showCancelButton: true,
                 allowOutsideClick:false,
                 allowEscapeKey:false,
@@ -57,8 +58,8 @@ function voicePlay(){
                 width:'16em',
                 confirmButtonColor: '#94cb82',
                 cancelButtonColor: '#d33',
-                confirmButtonText: i18n.get('go_to_open'),
-                cancelButtonText:i18n.get('cancel')
+                confirmButtonText: $.i18n.prop('go_to_open'),
+                cancelButtonText:$.i18n.prop('cancel')
             }).then((result) => {
                 if (result.isConfirmed) {
                   window.location.href = '../user/uservice.html'
@@ -95,7 +96,6 @@ bgm.addEventListener('pause', function () {
 bgm.addEventListener('canplaythrough', function(){
     bgm.play()
 })
-
 function myrange(event){
   // var myx = document.getElementById('myrange').value
   console.log("speed:"+event.target.value)
@@ -196,13 +196,13 @@ function getData(){
           if(str.length < 200 && str.length > 1){
             Swal.fire({
               text:str.split('error=')[1],
-              confirmButtonText: i18n.get('confirm'),
+              confirmButtonText: $.i18n.prop('confirm'),
               confirmButtonColor: '#94cb82'
             })
           }else if(str.length == 0 || str == ''){
             Swal.fire({
               text:'请稍后重试！',
-              confirmButtonText: i18n.get('confirm'),
+              confirmButtonText: $.i18n.prop('confirm'),
               confirmButtonColor: '#94cb82'
             })
           }else{
@@ -215,8 +215,8 @@ function getData(){
     }
     req.onerror = function(){
       Swal.fire({
-          text:i18n.get('server_error'),
-          confirmButtonText: i18n.get('confirm'),
+          text:$.i18n.prop('server_error'),
+          confirmButtonText: $.i18n.prop('confirm'),
           confirmButtonColor: '#94cb82'
       })
     }

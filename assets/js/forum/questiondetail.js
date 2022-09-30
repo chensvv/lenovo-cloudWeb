@@ -110,9 +110,9 @@ $(function () {
                                                 <div class='col-update'>
                                                     <span class='reply-time'>${nowtime}</span>`
                                                     if(hideStar(Username) == val.accountName){
-                                                        el+=`<span class='del'>${i18n.get('del')}</span>`
+                                                        el+=`<span class='del'>${$.i18n.prop('del')}</span>`
                                                     }
-                                                        el+=`<span class='reply-btn'>${i18n.get('reply')}</span>
+                                                        el+=`<span class='reply-btn'>${$.i18n.prop('reply')}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,7 +129,7 @@ $(function () {
                                                 </div>
                                                  <p>`
                                             if(hideStar(Username) == rep.accountName){
-                                                el+=`<span class='delchild'>${i18n.get('del')}</span>`
+                                                el+=`<span class='delchild'>${$.i18n.prop('del')}</span>`
                                             }
                                                 el+=`<span class='reptime'>${formatDateTime(rep.createTime)}</span>
                                                 </p>
@@ -150,7 +150,7 @@ $(function () {
                         $(".comment-list").find(".del").unbind().click(function(e){
                             var valid = $(this).parent().parent().parent().parent().find(".valid").text()
                             Swal.fire({
-                                text: i18n.get('nodelete'),
+                                text: $.i18n.prop('nodelete'),
                                 showCancelButton: true,
                                 allowOutsideClick:false,
                                 allowEscapeKey:false,
@@ -158,8 +158,8 @@ $(function () {
                                 width:'16em',
                                 confirmButtonColor: '#94cb82',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: i18n.get('confirm'),
-                                cancelButtonText:i18n.get('cancel')
+                                confirmButtonText: $.i18n.prop('confirm'),
+                                cancelButtonText:$.i18n.prop('cancel')
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     var detailParams = {
@@ -191,7 +191,7 @@ $(function () {
                                             } else {
                                                 localStorage.clear();
                                                 Swal.fire({
-                                                    text: i18n.get('logTimeOut'),
+                                                    text: $.i18n.prop('logTimeOut'),
                                                     showCancelButton: true,
                                                     allowOutsideClick:false,
                                                     allowEscapeKey:false,
@@ -199,8 +199,8 @@ $(function () {
                                                     width:'16em',
                                                     confirmButtonColor: '#94cb82',
                                                     cancelButtonColor: '#d33',
-                                                    confirmButtonText: i18n.get('confirm'),
-                                                    cancelButtonText:i18n.get('cancel')
+                                                    confirmButtonText: $.i18n.prop('confirm'),
+                                                    cancelButtonText:$.i18n.prop('cancel')
                                                 }).then((result) => {
                                                     if (result.isConfirmed) {
                                                         var url = window.location.href
@@ -218,7 +218,7 @@ $(function () {
                         $(".comment-list").find(".delchild").unbind().click(function(){
                             var keyid = $(this).parent().parent().find(".keyid").text();
                             Swal.fire({
-                                text: i18n.get('nodelete'),
+                                text: $.i18n.prop('nodelete'),
                                 showCancelButton: true,
                                 allowOutsideClick:false,
                                 allowEscapeKey:false,
@@ -226,8 +226,8 @@ $(function () {
                                 width:'16em',
                                 confirmButtonColor: '#94cb82',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: i18n.get('confirm'),
-                                cancelButtonText:i18n.get('cancel')
+                                confirmButtonText: $.i18n.prop('confirm'),
+                                cancelButtonText:$.i18n.prop('cancel')
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     var delParams = {
@@ -259,7 +259,7 @@ $(function () {
                                             } else {
                                                 localStorage.clear();
                                                 Swal.fire({
-                                                    text: i18n.get('logTimeOut'),
+                                                    text: $.i18n.prop('logTimeOut'),
                                                     showCancelButton: true,
                                                     allowOutsideClick:false,
                                                     allowEscapeKey:false,
@@ -267,8 +267,8 @@ $(function () {
                                                     width:'16em',
                                                     confirmButtonColor: '#94cb82',
                                                     cancelButtonColor: '#d33',
-                                                    confirmButtonText: i18n.get('confirm'),
-                                                    cancelButtonText:i18n.get('cancel')
+                                                    confirmButtonText: $.i18n.prop('confirm'),
+                                                    cancelButtonText:$.i18n.prop('cancel')
                                                 }).then((result) => {
                                                     if (result.isConfirmed) {
                                                         var url = window.location.href
@@ -293,7 +293,7 @@ $(function () {
                 } else {
                     localStorage.clear();
                     Swal.fire({
-                        text: i18n.get('logTimeOut'),
+                        text: $.i18n.prop('logTimeOut'),
                         showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
@@ -301,8 +301,8 @@ $(function () {
                         width:'16em',
                         confirmButtonColor: '#94cb82',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: i18n.get('confirm'),
-                        cancelButtonText:i18n.get('cancel')
+                        confirmButtonText: $.i18n.prop('confirm'),
+                        cancelButtonText:$.i18n.prop('cancel')
                     }).then((result) => {
                         if (result.isConfirmed) {
                             var url = window.location.href
@@ -314,8 +314,8 @@ $(function () {
             },
             error: function (err) {
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -326,7 +326,7 @@ $(function () {
 
     //二级评论
     function replyClick(el) {
-        var secondTeply = el.parent().parent().append(`<div class='replybox'><textarea cols='80' rows='50' class='comment_textarea' ></textarea><span class='send'>${i18n.get('send')}</span></div>`)
+        var secondTeply = el.parent().parent().append(`<div class='replybox'><textarea cols='80' rows='50' class='comment_textarea' ></textarea><span class='send'>${$.i18n.prop('send')}</span></div>`)
         secondTeply.find(".send").click(function () {
                 var content = $(this).prev().val();
                 if (content != "") {
@@ -364,7 +364,7 @@ $(function () {
                             } else {
                                 localStorage.clear();
                                 Swal.fire({
-                                    text: i18n.get('logTimeOut'),
+                                    text: $.i18n.prop('logTimeOut'),
                                     showCancelButton: true,
                                     allowOutsideClick:false,
                                     allowEscapeKey:false,
@@ -372,8 +372,8 @@ $(function () {
                                     width:'16em',
                                     confirmButtonColor: '#94cb82',
                                     cancelButtonColor: '#d33',
-                                    confirmButtonText: i18n.get('confirm'),
-                                    cancelButtonText:i18n.get('cancel')
+                                    confirmButtonText: $.i18n.prop('confirm'),
+                                    cancelButtonText:$.i18n.prop('cancel')
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         var url = window.location.href
@@ -386,8 +386,8 @@ $(function () {
                         },
                         error: function (err) {
                             Swal.fire({
-                                text:i18n.get('server_error'),
-                                confirmButtonText: i18n.get('confirm'),
+                                text:$.i18n.prop('server_error'),
+                                confirmButtonText: $.i18n.prop('confirm'),
                                 confirmButtonColor: '#94cb82'
                             })
                         }
@@ -396,8 +396,8 @@ $(function () {
 
                 } else {
                     Swal.fire({
-                        text:i18n.get('noempty'),
-                        confirmButtonText: i18n.get('confirm'),
+                        text:$.i18n.prop('noempty'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }
@@ -500,7 +500,7 @@ $(function () {
             } else {
                 localStorage.clear();
                 Swal.fire({
-                    text: i18n.get('logTimeOut'),
+                    text: $.i18n.prop('logTimeOut'),
                     showCancelButton: true,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
@@ -508,8 +508,8 @@ $(function () {
                     width:'16em',
                     confirmButtonColor: '#94cb82',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: i18n.get('confirm'),
-                    cancelButtonText:i18n.get('cancel')
+                    confirmButtonText: $.i18n.prop('confirm'),
+                    cancelButtonText:$.i18n.prop('cancel')
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var url = window.location.href
@@ -521,8 +521,8 @@ $(function () {
         },
         error: function (err) {
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -537,8 +537,8 @@ $(function () {
     $("#comment").click(function () {
         if ($("#content").val() == "") {
             Swal.fire({
-                text:i18n.get('noempty'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('noempty'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
             return;
@@ -583,7 +583,7 @@ $(function () {
                 } else {
                     localStorage.clear();
                     Swal.fire({
-                        text: i18n.get('logTimeOut'),
+                        text: $.i18n.prop('logTimeOut'),
                         showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
@@ -591,8 +591,8 @@ $(function () {
                         width:'16em',
                         confirmButtonColor: '#94cb82',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: i18n.get('confirm'),
-                        cancelButtonText:i18n.get('cancel')
+                        confirmButtonText: $.i18n.prop('confirm'),
+                        cancelButtonText:$.i18n.prop('cancel')
                     }).then((result) => {
                         if (result.isConfirmed) {
                             var url = window.location.href
@@ -606,8 +606,8 @@ $(function () {
                 $('#pub-loading').hide()
                 $('#comment').removeAttr('disabled','disabled')
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }

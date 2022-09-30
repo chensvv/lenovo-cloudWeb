@@ -2,14 +2,14 @@ $('#pub-loading').hide()
 $('.pushbtn').click(function(){
     if($('#exampleInput').val() == '' || $('#exampleFormControlTextarea').val() == ''){
         Swal.fire({
-            text: i18n.get('enter_t_c'),
-            confirmButtonText: i18n.get('confirm'),
+            text: $.i18n.prop('enter_t_c'),
+            confirmButtonText: $.i18n.prop('confirm'),
             confirmButtonColor: '#94cb82'
         })
     }else if($('#exampleFormControlTextarea').val().length < 6 ){
       Swal.fire({
-          text: '内容长度不能少于6个字符',
-          confirmButtonText: i18n.get('confirm'),
+          text: $.i18n.prop('contentLength'),
+          confirmButtonText: $.i18n.prop('confirm'),
           confirmButtonColor: '#94cb82'
       })
     }else{
@@ -49,7 +49,7 @@ $('.pushbtn').click(function(){
                       $("#exampleFormControlTextarea").val("");
                       if(res.dataid){
                         Swal.fire({
-                            text: i18n.get('post_success'),
+                            text: $.i18n.prop('post_success'),
                             showCancelButton: false,
                             allowOutsideClick:false,
                             allowEscapeKey:false,
@@ -57,7 +57,7 @@ $('.pushbtn').click(function(){
                             icon:'success',
                             width:'16em',
                             confirmButtonColor: '#94cb82',
-                            confirmButtonText: i18n.get('confirm'),
+                            confirmButtonText: $.i18n.prop('confirm'),
                           }).then((result) => {
                             if (result.isConfirmed) {
                               window.location.href = '../forum/questionlist.html'
@@ -65,15 +65,15 @@ $('.pushbtn').click(function(){
                           })
                       }else{
                         Swal.fire({
-                            text: i18n.get('post_no'),
-                            confirmButtonText: i18n.get('confirm'),
+                            text: $.i18n.prop('post_no'),
+                            confirmButtonText: $.i18n.prop('confirm'),
                             confirmButtonColor: '#94cb82'
                         })
                       }
                   }else{
                     window.localStorage.clear();
                       Swal.fire({
-                        text: i18n.get('logTimeOut'),
+                        text: $.i18n.prop('logTimeOut'),
                         showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
@@ -81,8 +81,8 @@ $('.pushbtn').click(function(){
                         width:'16em',
                         confirmButtonColor: '#94cb82',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: i18n.get('confirm'),
-                        cancelButtonText:i18n.get('cancel')
+                        confirmButtonText: $.i18n.prop('confirm'),
+                        cancelButtonText:$.i18n.prop('cancel')
                       }).then((result) => {
                         if (result.isConfirmed) {
                           var url = window.location.href
@@ -95,8 +95,8 @@ $('.pushbtn').click(function(){
               $('#pub-loading').hide()
               $('.pushbtn').removeAttr('disabled','disabled')
               Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
               })
             }
@@ -110,7 +110,7 @@ function titleInput(){
   if(reg.test($('#exampleInput').val())){
     Swal.fire({
       text: '标题禁止输入特殊字符',
-      confirmButtonText: i18n.get('confirm'),
+      confirmButtonText: $.i18n.prop('confirm'),
       confirmButtonColor: '#94cb82'
     })
     return false

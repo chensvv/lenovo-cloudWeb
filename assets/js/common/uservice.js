@@ -65,7 +65,7 @@ function submit(){
         var params = {
             t:$.base64.decode(window.localStorage.getItem('token')),
             lid:$.base64.decode(window.localStorage.getItem('acd')),
-            language:getCookie(ehiI18n.Language) == 'zh' || getCookie(ehiI18n.Language) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'null' || '' ? 'chinese': 'english',
             userService:checkArr,
             u:"",
             p:"",
@@ -100,7 +100,7 @@ function submit(){
                     window.localStorage.setItem('us',checkArr)
                     Swal.fire({
                         text:res.error,
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     }).then((result)=>{
                         if(result.isConfirmed){
@@ -110,14 +110,14 @@ function submit(){
                 } else if(res.status == 101){
                     window.localStorage.clear();
                     Swal.fire({
-                        text: i18n.get('logTimeOut'),
+                        text: $.i18n.prop('logTimeOut'),
                         showCancelButton: false,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
                         reverseButtons:true,
                         width:'16em',
                         confirmButtonColor: '#94cb82',
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                     }).then((result) => {
                         if (result.isConfirmed) {
                             var url = window.location.href
@@ -128,21 +128,21 @@ function submit(){
                 }else{
                     Swal.fire({
                         text:res.error,
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }
             }else{
                 window.localStorage.clear();
                 Swal.fire({
-                    text: i18n.get('logTimeOut'),
+                    text: $.i18n.prop('logTimeOut'),
                     showCancelButton: false,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
                     reverseButtons:true,
                     width:'16em',
                     confirmButtonColor: '#94cb82',
-                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var url = window.location.href
@@ -155,8 +155,8 @@ function submit(){
             $('#userver-loading').hide()
             $('.sub-btn').removeAttr('disabled','disabled')
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -208,14 +208,14 @@ function getUserInfo(){
             }else{
                 window.localStorage.clear();
                 Swal.fire({
-                    text: i18n.get('logTimeOut'),
+                    text: $.i18n.prop('logTimeOut'),
                     showCancelButton: false,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
                     reverseButtons:true,
                     width:'16em',
                     confirmButtonColor: '#94cb82',
-                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                 }).then((result) => {
                     if (result.isConfirmed) {
                     var url = window.location.href
@@ -226,14 +226,13 @@ function getUserInfo(){
             }
         },error:function(err){
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
     });
 }
-
 $('#channel').bind("input propertychange", function(){
     $('#body-num').html($('#channel').val().length)
 })
