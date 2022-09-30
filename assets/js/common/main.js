@@ -1,4 +1,4 @@
-// var i18n = new EhiI18n('../lan/', function(){
+// var i18n = new EhiI18n('https://voice.lenovomm.com/voicePlatform/lan/', function(){
   //获取当前语言
   // console.log(`language:${i18n.getLanguage()}`)
   //从语言中获取值,可在Js获取的时候使用
@@ -249,34 +249,34 @@ function logout(){
   window.localStorage.clear();
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = '../login/login.html'
+  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
 }
 
 function gologin(){
   var url = window.location.href
   window.localStorage.setItem('returnurl',url)
-  window.location.href = '../login/login.html'
+  window.location.href = 'https://voice.lenovomm.com/voicePlatform/login/login.html'
 }
 
 // function isLang(){
 //   if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
 //     i18n.setLanguage('us')
-//     $('.trans').attr('src','../assets/img/trans.png')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
 //     // console.log("en===============")
 //   }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
 //     i18n.setLanguage('zh')
-//     $('.trans').attr('src','../assets/img/trans2.png')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
 //     // console.log("中文===============")
 //   }
 // }
 // function isLang(){
 //   if(getCookies(document.cookie) == 'zh' || getCookies(document.cookie) == '' || getCookies(document.cookie) == 'null' || getCookies(document.cookie) == undefined){
 //     i18n.setLanguage('us')
-//     $('.trans').attr('src','../assets/img/en_US.png')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/en_US.png')
 //     // console.log("en===============")
 //   }else if(getCookies(document.cookie) == 'us'){
 //     i18n.setLanguage('zh')
-//     $('.trans').attr('src','../assets/img/zh_CN.png')
+//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/zh_CN.png')
 //     // console.log("中文===============")
 //   }
 // }

@@ -193,7 +193,7 @@ function recOpen(){
             $('.result-box').css('display','block')
             $('.line-box').css("display","inline-block");
             $('.record-btn').addClass('recording')
-            $('.mic-btn').html('停止识别')
+            $('.mic-btn').html($.i18n.prop('stop'))
             timerStart()
         }
     }, function (msg, isUserNotAllow) {
@@ -202,7 +202,7 @@ function recOpen(){
         $('.line-box').css("display","none");
         $('.mic').css('display','inline-block')
         $('.record-btn').removeClass('recording')
-        $('.mic-btn').html('开始识别')
+        $('.mic-btn').html($.i18n.prop('start'))
         timerReset()
         rec.close()
         ws.close()
@@ -223,7 +223,7 @@ function recStop(){
         $('.line-box').css("display","none");
         $('.mic').css('display','inline-block')
         $('.record-btn').removeClass('recording')
-        $('.mic-btn').html('开始识别')
+        $('.mic-btn').html($.i18n.prop('start'))
         timerReset()
         if(statu == 1){
             $('.hint-sp-left').css('display','block')
