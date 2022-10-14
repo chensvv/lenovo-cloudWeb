@@ -1949,7 +1949,8 @@ section {
   line-height: 70px;
 }
 .bgbox-main-tit .selelabel{
-  padding-left: 20px;
+  padding-left: 10px;
+  vertical-align: middle;
 }
 .bgbox-main-tit .bgbox-main-tit-m{
   font-size: 14px;
@@ -1960,8 +1961,16 @@ section {
 .bgbox-main-tit .select-form{
   display: inline-block;
 }
-.select-form .select-box select{
-  width: 90px;
+.select-form .select-box .form-check-inline .form-check-input{
+  width: 16px;
+  height: 16px;
+}
+.select-form .select-box .form-check-label{
+  margin-right: 15px;
+}
+.select-form .select-box .radio-main{
+  vertical-align: middle;
+  margin-right: 0;
 }
 .bgbox-main .record-btn{
   height: 35px;
@@ -1983,7 +1992,7 @@ section {
   color: #00a4ff !important;
   border: 1px solid #00a4ff !important;
 }
-.bgbox-main .record-btn .mic{
+ .record-btn .mic{
   color: #ffffff;
   font-size: 20px;
   line-height: 35px;

@@ -21,8 +21,6 @@ var firstup = true
 var liid = 0
 var statu = 0
 var img_btn = document.getElementById('record')
-var $selectSamp = $("#selectSamp");
-var $selectLang = $("#selectLang");
 
 function toggleRecording(e){
     if (userToken == "" || userToken == null) {
@@ -54,9 +52,9 @@ function toggleRecording(e){
             ws.close()
             pidx = 1
         }else{
-            console.log(2)
             e.classList.add("recordm");
             if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
+                
                 getIxid(e)
             }else{
                 Swal.fire({
@@ -89,8 +87,6 @@ function socket () {
         recOpen()
     }
     ws.onerror = function(error){
-        // console.log(error)
-        // console.log(recOpen())
         timerReset()
         Swal.fire({
             text:$.i18n.prop('server_error'),
@@ -125,6 +121,7 @@ function socket () {
             statu = 0
             rt = res.rawText
             if(firstup){
+                $('#txt-f').html('')
                 $("#txt-f").append("<span class='li_id' id='liid_" + liid + "'>" + rt + "</span>");
                 firstup = false;
             }
@@ -152,7 +149,7 @@ function getIxid(){
         success:function(res){
             var ixids = String(res)
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
-            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/long`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/chinese/pcm_16000_16bit_sample/long`
             socket()
         }
     })
@@ -163,18 +160,14 @@ function recOpen(){
     rec = Recorder({
         type: "wav",
         bitRate: 16,
-        sampleRate: $selectSamp.val(),
+        sampleRate: 16000,
         bufferSize: 4096,
         onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate) {
             chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
             var buf = chunkInfo.data
             if (pidx == 1) {
                 var buf2 = [];
-                if($selectSamp.val() == '8000'){
-                    buf2.unshift(1, 0, 0, 0, ...buf);
-                }else{
                     buf2.unshift(5, 0, 0, 0, ...buf);
-                }
                 var buf4 = new Int16Array(buf2);
                 pidx++
             } else {
@@ -217,6 +210,7 @@ function recOpen(){
 function recStop(){
     rec.stop(function(blob,duration){
         // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
+        ws.close()
         rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
         // rec=null;
         $('#record').removeClass('recordm')
@@ -224,6 +218,12 @@ function recStop(){
         $('.mic').css('display','inline-block')
         $('.record-btn').removeClass('recording')
         $('.mic-btn').html($.i18n.prop('start'))
+        pidx = 1
+        over = 0
+        rt = ''
+        liid = 0
+        firstup = true
+        console.log(firstup)
         timerReset()
         if(statu == 1){
             $('.hint-sp-left').css('display','block')

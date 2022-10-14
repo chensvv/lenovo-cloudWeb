@@ -4,8 +4,8 @@ var username = $.base64.decode(window.localStorage.getItem('token'));
 var userToken = window.localStorage.getItem('token')
 var urlInfo = proURL +'/cloudasr';
 var img_btn = document.getElementById('record')
-var $selectSamp = $("#selectSamp");
-var $selectLang = $("#selectLang");
+var $selectSamp = $("#selectSamp input:radio:checked")
+var $selectLang = $("#selectLang input:radio:checked")
 var path = ''
 // var uri = 'ws://10.110.148.59:8080/lasf/wsasr/'
 // var uri = 'ws://10.110.148.59:8084/lasf/webSocket/'
@@ -16,8 +16,8 @@ var rec
 var chunkInfo
 var pidx = 1
 var statu
+
 function toggleRecording(e){
-    
     if (userToken == "" || userToken == null) {
         // $('.hint-sp-left').css("display","none");
         // $('#statusU').css("display","block");
@@ -109,6 +109,15 @@ function socket (e) {
                 confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
+        }else if(res.status == 'failed'){
+            statu = 1
+            recStop()
+            ws.close()
+            Swal.fire({
+                text:$.i18n.prop('syserr'),
+                confirmButtonText: $.i18n.prop('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
         }else{
             statu = 0
             // rt = res.rawText
@@ -118,6 +127,8 @@ function socket (e) {
             // if (rt.length > 0) {
                 if (res.rawType == 'final') {
                     ws.close()
+                    // recStop()
+                    $('.mic-btn').html($.i18n.prop('start'))
                     $('.hint-sp-left').css('display','none')
                     $('.result-box').css('display','block')
                     $('#allDur').html(res.allDur)
@@ -157,7 +168,7 @@ function getIxid(e){
             //     sample:"1",
             //     audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
             // }
-            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$selectLang.val()}/pcm_${$selectSamp.val()}_16bit_sample/cmd`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$("#selectLang input:radio:checked").val()}/pcm_${$("#selectSamp input:radio:checked").val()}_16bit_sample/cmd`
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             socket(e)
         }
@@ -169,7 +180,7 @@ function recOpen(success){
     rec=Recorder({
         type: "wav",
         bitRate: 16,
-        sampleRate: $selectSamp.val(),
+        sampleRate: $("#selectSamp input:radio:checked").val(),
         bufferSize: 4096,
         onProcess:function(buffers,powerLevel,bufferDuration,bufferSampleRate){
             // wave.input(buffers[buffers.length-1],powerLevel,bufferSampleRate);//输入音频数据，更新显示波形
@@ -177,7 +188,7 @@ function recOpen(success){
             let buf = chunkInfo.data
             if (pidx == 1) {
                 let buf2 = [];
-                if($selectSamp.val() == '8000'){
+                if($("#selectSamp input:radio:checked").val() == '8000'){
                     buf2.unshift(1, 0, 0, 0);
                 }else{
                     buf2.unshift(5, 0, 0, 0);
@@ -253,6 +264,7 @@ function recStop(){
             $('.record-btn').removeClass('recording')
             $('.record-btn').removeClass('recordm')
             $('.hint-sp-left').html($.i18n.prop('Miclick'));
+            $('.mic-btn').html($.i18n.prop('start'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
             // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
