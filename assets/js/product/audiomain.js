@@ -193,6 +193,7 @@ function recOpen(success){
                 }else{
                     buf2.unshift(5, 0, 0, 0);
                 }
+                console.log(buf2)
                 var buf4 = new Int16Array(buf2);
                 pidx++
             } else {
@@ -255,7 +256,7 @@ function recStop(){
         if(statu != 1){
             $('.hint-sp-left').html($.i18n.prop('recogVoice'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-            // ws.close()
+            ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
             rec=null;
         }else{
@@ -266,7 +267,7 @@ function recStop(){
             $('.hint-sp-left').html($.i18n.prop('Miclick'));
             $('.mic-btn').html($.i18n.prop('start'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-            // ws.close()
+            ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
             rec=null;
         }

@@ -28,7 +28,53 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div id="head-page"></div>
+  <header id="header" class="fixed-top">
+    <div class="display-flex">
+      <div class="logo">
+        <a href="../welcome/index.html">
+          <img src="../assets/img/favicon.ico" alt="">
+        <span class="i18n" name="logo">
+          
+        </span></a>
+        
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-item">
+          <li><a href="../welcome/index.html" class="i18n" name="index"></a></li>
+          <li><a href="../product/recognise.html" class="i18n" name="product"></a>
+            <!-- <ul id="drop-ul">
+              <li><a href="../recognise.html" name="audiomain"></a></li>
+              <li><a href="../long_recognise.html" name="audiomain_long"></a></li>
+              <li><a href="../tts.html" name="tts"></a></li>
+              <li><a href="../assess.html" name="assess"></a></li>
+            </ul> -->
+          </li>
+          <li class="ifshow"><a href="../user/control.html" class="i18n" name="control"></a></li>
+          <li class="active"><a href="../document/userDocument.html" class="i18n" name="document"></a></li>
+          <li><a href="../new/newlist.html" class="i18n" name="news"></a></li>
+          <li><a href="../user/uservice.html" class="i18n" name="service"></a></li>
+          <!-- <li><a href="../forum/questionlist.html" class="i18n" name="forum"></a></li> -->
+          <li class="mobile-contact"><a href="javascript:void(0)" class="i18n" name="contact"></a></li>
+          
+        </ul>
+        <li class="login-reg" style="display:none;">
+            <a href="../login/login.html" onclick="gologin()" class="i18n" name="signIn"></a>
+            |
+            <a href="../login/register.html" onclick="gologin()" class="i18n" name="signUp"></a>
+        </li>
+        <li class="drop-down user" style="display:none;"><a href="" class="username"></a>
+          <ul id="drop-ul">
+            <li><a href="../user/userinfo.html" class="i18n" name="userinfo"></a></li>
+            <li><a href="../login/resetpass.html" class="i18n" name="checkpass"></a></li>
+            <li><a id="logout" onclick="logout()" class="i18n" name="logout"></a></li>
+          </ul>
+        </li>
+      </nav><!-- .nav-menu -->
+      <img src="" class="trans" id="checkLang" onclick="trans()">
+    </div>
+    
+  </header>
     <section class="document" id="head">
       <div class="head-bg d-flex justify-content-center align-items-center">
         <h2 i18n="sdk_download">SDK下载</h2>
