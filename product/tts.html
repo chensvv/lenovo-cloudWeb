@@ -108,22 +108,23 @@
               </div> -->
               <div class="textarea-box">
                 <textarea id="textarea" class="form-control textarea i18n-input" onkeyup="setShowLength(this, 100, 'number');" maxlength="100" selectname="ttsText" selectattr="placeholder"></textarea>
-                <div class="tts-btn-box">
-                    <div class="tts-btn">
-                      <div class="spinner-border spinner-border-sm" id="tts-loading" role="status">
-                      </div>
-                      <span class="voice-play i18n" onclick="voicePlay()" name="ttsplay"></span>
-                      <span class="voice-pause i18n" onclick="voicePause()" name="ttspause"></span>
-                      <span class="voice-keep i18n" onclick="voiceKeep()" name="ttsplay"></span>
-                    </div>
-                </div>
                 
-                <span class="tts-hint-right i18n" onclick="random()" name="random"></span>
                 <div class="hint-num">
                   <span class="i18n" name="enterword"></span>
                   <span id="number">100</span>
                   <span class="i18n" name="ttsWords"></span>
                 </div>
+                <span class="tts-hint-right i18n" onclick="random()" name="random"></span>
+                
+                <div class="tts-btn-box">
+                  <div class="tts-btn">
+                    <div class="spinner-border spinner-border-sm" id="tts-loading" role="status">
+                    </div>
+                    <span class="voice-play i18n" onclick="voicePlay()" name="ttsplay"></span>
+                    <span class="voice-pause i18n" onclick="voicePause()" name="ttspause"></span>
+                    <span class="voice-keep i18n" onclick="voiceKeep()" name="ttsplay"></span>
+                  </div>
+              </div>
               </div>
             </div>
             <div class="rangevol">

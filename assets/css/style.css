@@ -1952,6 +1952,9 @@ section {
   padding-left: 10px;
   vertical-align: middle;
 }
+.bgbox-main-tit .selb{
+  display: inline-block;
+}
 .bgbox-main-tit .bgbox-main-tit-m{
   font-size: 14px;
   color: #000;
@@ -1980,12 +1983,13 @@ section {
   font-size: 14px;
   line-height: 35px;
   text-align: center;
-  display: inline-block;
+  display: block;
   cursor: pointer;
   outline: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 .bgbox-main .recording{
   background-color: #fff !important;
@@ -2241,6 +2245,8 @@ section {
 .audiomain-long-section .long-time{
   display: flex;
   align-items: center;
+  width: 215px;
+  margin: 0 auto;
 }
 
 .audiomain-long-section .long-time span{
@@ -2370,12 +2376,12 @@ section {
   float: right;
   border-bottom: 1px solid #779ED8;
   cursor: pointer;
-  margin-top: 17px;
   font-size: 14px;
 }
 .tts-main .tts-btn-box{
-  display: inline-block;
-  margin-top: 10px;
+  display: block;
+  margin: 10px auto 0 auto;
+  width: 145px;
 }
 .tts-main .tts-btn{
   height: 35px;
@@ -2702,12 +2708,12 @@ section {
   width: 50%;
 }
 .assess-main .voice-header{
-  float: right;
-  margin-right: 20px;
   border-bottom: 1px solid #74c7bf;
   color: #74c7bf;
   font-size: 13px;
   cursor: pointer;
+  width: 62px;
+  margin: 0 10px 10px auto;
 }
 .assess-main .clpage{
   font-size: 14px;
@@ -2724,9 +2730,10 @@ section {
   font-size: 14px;
   line-height: 35px;
   text-align: center;
-  display: inline-block;
+  display: block;
   cursor: pointer;
   outline: 0;
+  margin: 0 auto;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -3839,9 +3846,6 @@ body.swal2-toast-shown .swal2-container{
     flex-direction: column-reverse;
     justify-content: space-between;
   }
-  .audiomain-long-section .long-time{
-    margin-right: 0;
-  }
   .audiomain-main-long .bgbox-long-main{
     background: none;
     width: 100%;
@@ -4068,8 +4072,20 @@ body.swal2-toast-shown .swal2-container{
     max-height: 105px;
     font-size: 14px;
   }
-  .tts-main-box .hint-num{
+  .bgbox-main-tit .selb{
     display: block;
+  }
+  .bgbox-main-tit{
+    line-height: 32px;
+  }
+  .bgbox-main-tit .selelabel{
+    padding-left: 0;
+    display: inline-block;
+    width: 52px;
+    text-align: right;
+  }
+  .select-form .select-box .form-check-label{
+    min-width: 50px;
   }
 }
 
