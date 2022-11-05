@@ -47,7 +47,7 @@ function toggleRecording(e){
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
             $('.mic-btn').html($.i18n.prop('start'))
-            recStop()
+            // recStop()
         }else{
             if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
                 e.classList.add("recordm");
@@ -127,7 +127,7 @@ function socket (e) {
             // if (rt.length > 0) {
                 if (res.rawType == 'final') {
                     ws.close()
-                    // recStop()
+                    recStop()
                     $('.mic-btn').html($.i18n.prop('start'))
                     $('.hint-sp-left').css('display','none')
                     $('.result-box').css('display','block')
@@ -193,7 +193,6 @@ function recOpen(success){
                 }else{
                     buf2.unshift(5, 0, 0, 0);
                 }
-                console.log(buf2)
                 var buf4 = new Int16Array(buf2);
                 pidx++
             } else {
