@@ -57,19 +57,21 @@ userInfo()
                 if(data.errorcode ==1024){
                     localStorage.clear()
                     Swal.fire({
-                        text: $.i18n.prop('firstLogin'),
-                        showCancelButton: false,
+                        text: $.i18n.prop('logTimeOut'),
+                        showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
                         reverseButtons:true,
-                        width:'16em', 
+                        width:'16em',
                         confirmButtonColor: '#94cb82',
+                        cancelButtonColor: '#d33',
                         confirmButtonText: $.i18n.prop('confirm'),
+                        cancelButtonText:$.i18n.prop('cancel')
                     }).then((result)=>{
                         if (result.isConfirmed) {
-                        var url = window.location.href
-                        window.localStorage.setItem('returnurl',url)
-                        window.location.href = '../login/login.html'
+                          var url = window.location.href
+                          window.localStorage.setItem('returnurl',url)
+                          window.location.href = '../login/login.html'
                         }
                     })
                 }

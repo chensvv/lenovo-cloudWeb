@@ -3,7 +3,7 @@ var rec;
 var path = ''
 // var uri = 'wss://voice.lenovomm.com/website/wscloudasr/'
 var uri = 'wss://voice.lenovomm.com/website/webSocket/'
-// var uri = 'ws://10.110.148.59:8084/lasf/webSocket/'
+// var uri = 'ws://10.110.148.57:8084/lasf/webSocket/'
 var ws
 var ixid
 var pidx = 1

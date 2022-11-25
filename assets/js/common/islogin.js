@@ -21,20 +21,22 @@ var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replac
 params.sign = md5(stringParams)
 if(window.localStorage.getItem('token') == '' || window.localStorage.getItem('token') == null){
   Swal.fire({
-      text: i18n.get('firstLogin'),
-      showCancelButton: false,
-      allowOutsideClick:false,
-      allowEscapeKey:false,
-      reverseButtons:true,
-      width:'16em',
-      confirmButtonColor: '#94cb82',
-      confirmButtonText: i18n.get('confirm'),
-  }).then((result) => {
-      if (result.isConfirmed) {
-          var url = window.location.href
-          window.localStorage.setItem('returnurl',url)
-          window.location.href = '../login/login.html'
-      }
+    text: $.i18n.prop('logTimeOut'),
+    showCancelButton: true,
+    allowOutsideClick:false,
+    allowEscapeKey:false,
+    reverseButtons:true,
+    width:'16em',
+    confirmButtonColor: '#94cb82',
+    cancelButtonColor: '#d33',
+    confirmButtonText: $.i18n.prop('confirm'),
+    cancelButtonText:$.i18n.prop('cancel')
+  }).then((result)=>{
+    if (result.isConfirmed) {
+      var url = window.location.href
+      window.localStorage.setItem('returnurl',url)
+      window.location.href = '../login/login.html'
+    }
   })
 }else{
   $.ajax({
@@ -49,20 +51,22 @@ if(window.localStorage.getItem('token') == '' || window.localStorage.getItem('to
         $('.my_fav_list_a').css('pointer-events','none')
         window.localStorage.clear()
         Swal.fire({
-            text: i18n.get('firstLogin'),
-            showCancelButton: false,
-            allowOutsideClick:false,
-            allowEscapeKey:false,
-            reverseButtons:true,
-            width:'16em', 
-            confirmButtonColor: '#94cb82',
-            confirmButtonText: i18n.get('confirm'),
+          text: $.i18n.prop('logTimeOut'),
+          showCancelButton: true,
+          allowOutsideClick:false,
+          allowEscapeKey:false,
+          reverseButtons:true,
+          width:'16em',
+          confirmButtonColor: '#94cb82',
+          cancelButtonColor: '#d33',
+          confirmButtonText: $.i18n.prop('confirm'),
+          cancelButtonText:$.i18n.prop('cancel')
         }).then((result)=>{
-            if (result.isConfirmed) {
-              var url = window.location.href
-              window.localStorage.setItem('returnurl',url)
-              window.location.href = '../login/login.html'
-            }
+          if (result.isConfirmed) {
+            var url = window.location.href
+            window.localStorage.setItem('returnurl',url)
+            window.location.href = '../login/login.html'
+          }
         })
       }else{
         $('.my_fav_list_a').css('pointer-events','auto')

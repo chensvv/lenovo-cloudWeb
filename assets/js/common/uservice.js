@@ -111,20 +111,22 @@ function submit(){
                     window.localStorage.clear();
                     Swal.fire({
                         text: $.i18n.prop('logTimeOut'),
-                        showCancelButton: false,
+                        showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
                         reverseButtons:true,
                         width:'16em',
                         confirmButtonColor: '#94cb82',
+                        cancelButtonColor: '#d33',
                         confirmButtonText: $.i18n.prop('confirm'),
-                    }).then((result) => {
+                        cancelButtonText:$.i18n.prop('cancel')
+                      }).then((result)=>{
                         if (result.isConfirmed) {
-                            var url = window.location.href
-                            window.localStorage.setItem('returnurl',url)
-                            window.location.href = '../login/login.html'
+                          var url = window.location.href
+                          window.localStorage.setItem('returnurl',url)
+                          window.location.href = '../login/login.html'
                         }
-                    })
+                      })
                 }else{
                     Swal.fire({
                         text:res.error,
@@ -136,20 +138,22 @@ function submit(){
                 window.localStorage.clear();
                 Swal.fire({
                     text: $.i18n.prop('logTimeOut'),
-                    showCancelButton: false,
+                    showCancelButton: true,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
                     reverseButtons:true,
                     width:'16em',
                     confirmButtonColor: '#94cb82',
+                    cancelButtonColor: '#d33',
                     confirmButtonText: $.i18n.prop('confirm'),
-                }).then((result) => {
+                    cancelButtonText:$.i18n.prop('cancel')
+                  }).then((result)=>{
                     if (result.isConfirmed) {
-                        var url = window.location.href
-                        window.localStorage.setItem('returnurl',url)
-                        window.location.href = '../login/login.html'
+                      var url = window.location.href
+                      window.localStorage.setItem('returnurl',url)
+                      window.location.href = '../login/login.html'
                     }
-                })
+                  })
             }
         },error:function(err){
             $('#userver-loading').hide()
@@ -209,20 +213,22 @@ function getUserInfo(){
                 window.localStorage.clear();
                 Swal.fire({
                     text: $.i18n.prop('logTimeOut'),
-                    showCancelButton: false,
+                    showCancelButton: true,
                     allowOutsideClick:false,
                     allowEscapeKey:false,
                     reverseButtons:true,
                     width:'16em',
                     confirmButtonColor: '#94cb82',
+                    cancelButtonColor: '#d33',
                     confirmButtonText: $.i18n.prop('confirm'),
-                }).then((result) => {
+                    cancelButtonText:$.i18n.prop('cancel')
+                  }).then((result)=>{
                     if (result.isConfirmed) {
-                    var url = window.location.href
-                    window.localStorage.setItem('returnurl',url)
-                    window.location.href = '../login/login.html'
+                      var url = window.location.href
+                      window.localStorage.setItem('returnurl',url)
+                      window.location.href = '../login/login.html'
                     }
-                })
+                  })
             }
         },error:function(err){
             Swal.fire({

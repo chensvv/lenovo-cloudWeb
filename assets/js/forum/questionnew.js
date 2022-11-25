@@ -49,20 +49,23 @@ $('.pushbtn').click(function(){
                       $("#exampleFormControlTextarea").val("");
                       if(res.dataid){
                         Swal.fire({
-                            text: $.i18n.prop('post_success'),
-                            showCancelButton: false,
-                            allowOutsideClick:false,
-                            allowEscapeKey:false,
-                            reverseButtons:true,
-                            icon:'success',
-                            width:'16em',
-                            confirmButtonColor: '#94cb82',
-                            confirmButtonText: $.i18n.prop('confirm'),
-                          }).then((result) => {
-                            if (result.isConfirmed) {
-                              window.location.href = '../forum/questionlist.html'
-                            }
-                          })
+                          text: $.i18n.prop('logTimeOut'),
+                          showCancelButton: true,
+                          allowOutsideClick:false,
+                          allowEscapeKey:false,
+                          reverseButtons:true,
+                          width:'16em',
+                          confirmButtonColor: '#94cb82',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: $.i18n.prop('confirm'),
+                          cancelButtonText:$.i18n.prop('cancel')
+                        }).then((result)=>{
+                          if (result.isConfirmed) {
+                            var url = window.location.href
+                            window.localStorage.setItem('returnurl',url)
+                            window.location.href = '../login/login.html'
+                          }
+                        })
                       }else{
                         Swal.fire({
                             text: $.i18n.prop('post_no'),
