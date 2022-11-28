@@ -4,7 +4,6 @@ function IEVersion() {
     // alert(userAgent)
     var isIE = userAgent.indexOf("trident") > -1 
     var isEdge =  userAgent.indexOf("edge") > -1
-    // var chromeVer = userAgent.substr(userAgent.lastIndexOf("e/")+2).substring(0,2)
     var isQQ = RegExp(/qqbrowser/).exec(userAgent)
     var isSouGou = RegExp(/sogoumobilebrowser/).exec(userAgent)
     if(isMobile()){
