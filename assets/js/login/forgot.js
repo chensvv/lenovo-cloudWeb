@@ -175,7 +175,7 @@ function getCode(){
     $('.code-btn').css('pointer-events','none')
     var emailParams = {
         u:$('#forgot-username').val(),
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
             code:"",
             pwd:"",
             p:"",

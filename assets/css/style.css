@@ -794,7 +794,7 @@ section {
  height:116px;
 }
 .why-us .icon-box.icon-box-zhjy {
-  background: url('../img/sprites2.png') -1190px -0px no-repeat;
+  background: url('../img/sprites2.png') -1670px -0px no-repeat;
   width: 240px;
  height:117px;
 }
@@ -817,6 +817,16 @@ section {
   background: url('../img/sprites2.png') -714px -0px no-repeat;
   width: 238px;
  height:116px;
+}
+.why-us .icon-box.icon-box-zlzp {
+  background: url('../img/sprites2.png') -1190px -0px no-repeat;
+  width: 240px;
+ height:115px;
+}
+.why-us .icon-box.icon-box-zlzzly {
+  background: url('../img/sprites2.png') -1430px -0px no-repeat;
+  width: 240px;
+ height:115px;
 }
 
 /*--------------------------------------------------------------

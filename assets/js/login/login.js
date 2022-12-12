@@ -26,6 +26,7 @@ $('a[data-toggle="tab"]').on('hidden.bs.tab', function (event) {
         $('.reg-code-btn').siblings().css('border-color','')
     }
   })
+  console.log(getCookies(document.cookie))
 $('#loginBtn').click(function(){
     
     var username = $("#login-username").val()
@@ -43,7 +44,7 @@ $('#loginBtn').click(function(){
         var loginParams = {
             u:username,
             p:password,
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
             imgCode:$('#login-img-code').val(),
             ucode:loginuuid,
             username:"",
@@ -135,7 +136,7 @@ $('#regbtn').click(function(){
             userService:"",
             p:$.base64.encode($('#reg-password').val()),
             code:$('#reg-code').val(),
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
             imgCode:$('#reg-img-code').val(),
             ucode:reguuid,
             lid:"",
@@ -313,7 +314,7 @@ function regImgCode(){
         var codeParams = {
             imgCode:$('#reg-img-code').val(),
             ucode:reguuid,
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
             u:"",
             p:"",
             username:"",
@@ -369,7 +370,7 @@ function loginImgCode(){
         var codeParams = {
             imgCode:$('#login-img-code').val(),
             ucode:loginuuid,
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
             u:"",
             p:"",
             username:"",
@@ -540,7 +541,7 @@ function getCode(){
     $('.reg-code-btn').css('pointer-events','none')
     var regCodeParams = {
         u:$('#reg-email').val(),
-        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'undefined' || '' ? 'chinese': 'english',
+        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
         p:"",
         username:"",
         phone:"",

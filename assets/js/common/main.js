@@ -1,10 +1,3 @@
-// var i18n = new EhiI18n('https://voice.lenovomm.com/voicePlatform/lan/', function(){
-  //获取当前语言
-  // console.log(`language:${i18n.getLanguage()}`)
-  //从语言中获取值,可在Js获取的时候使用
-  // console.log(i18n.get('login_username'))
-// });
-// console.log(i18n)
 
 !(function($) {
   "use strict";
@@ -215,8 +208,7 @@
     }
   })
     // }
-  
-  
+  // console.log($('.ident').html(),Date.parse(new Date()) / 1000, localStorage.getItem('acd'))
 
   function hideStar(str){
     if(str.length < 7){
