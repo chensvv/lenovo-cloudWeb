@@ -13,7 +13,7 @@ function visitIdent(){
     data:visitparams,
     // contentType: "application/x-www-form-urlencoded",
     success:function(res){
-      console.log(res)
+      // console.log(res)
     }
   })
 }

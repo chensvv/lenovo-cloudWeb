@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body::-webkit-scrollbar { display: none; }
 html,body {
   font-family: "Open Sans", sans-serif;
