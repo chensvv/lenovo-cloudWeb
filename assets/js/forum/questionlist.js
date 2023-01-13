@@ -30,7 +30,7 @@ function getData(){
             total=res.total;
             if (res.errorcode != 1024) {
                 var vhtml = ''
-                if(mytotal == 0){
+                if(total == 0){
                     vhtml += `<p class="nodata i18n">${$.i18n.prop('nodata')}</p>`
                 }else{
                     $.each(res.datalist, (idx, val) => {
