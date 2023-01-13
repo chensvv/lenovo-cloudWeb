@@ -30,22 +30,27 @@ function getData(){
             total=res.total;
             if (res.errorcode != 1024) {
                 var vhtml = ''
-                $.each(res.datalist, (idx, val) => {
-                    vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
-                                <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
-                                <div class="media-body">
-                                    <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
-                                    <div class="list-detail">
-                                        <div class="detail-content">${unhtml(val.content)}</div>
-                                        <div class="detail-timer">
-                                            <span>${val.accountName}</span> 
-                                            <span class='i18n'>${$.i18n.prop('pubTime')}</span><span>${formatDateTime(val.createTime)}</span>
-                                            <span class='i18n'>${$.i18n.prop('lastreply')}</span><span>${formatDateTime(val.lastUpdateTime)}</span>
+                if(mytotal == 0){
+                    vhtml += `<p class="nodata i18n">${$.i18n.prop('nodata')}</p>`
+                }else{
+                    $.each(res.datalist, (idx, val) => {
+                        vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">
+                                    <img src="../assets/img/head.png" class="align-self-center mr-3 list-img" alt="">
+                                    <div class="media-body">
+                                        <h6 class="mt-0 mb-1">${unhtml(val.title)}</h6>
+                                        <div class="list-detail">
+                                            <div class="detail-content">${unhtml(val.content)}</div>
+                                            <div class="detail-timer">
+                                                <span>${val.accountName}</span> 
+                                                <span class='i18n'>${$.i18n.prop('pubTime')}</span><span>${formatDateTime(val.createTime)}</span>
+                                                <span class='i18n'>${$.i18n.prop('lastreply')}</span><span>${formatDateTime(val.lastUpdateTime)}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>`
-                })
+                                </li>`
+                    })
+                }
+                
                 $('.question-list').html(vhtml)
                 loadPage()
             } else {
@@ -218,7 +223,7 @@ $('#pills-tab a').on('click', function (event) {
                     if (res.errorcode != 1024) {
                         var vhtml = ''
                         if(mytotal == 0){
-                            vhtml += `<p>无数据</p>`
+                            vhtml += `<p class="nodata i18n">${$.i18n.prop('nodata')}</p>`
                         }else{
                             $.each(res.datalist, (idx, val) => {
                                 vhtml += `<li class="media" onclick="questionDetail(${val.articleId})">

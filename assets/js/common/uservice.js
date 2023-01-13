@@ -1,6 +1,7 @@
 
 $('#userver-loading').hide()
-lide()
+let lenovokey
+let secretkey
 function lide(){
     var checkList=[]
     if(window.localStorage.getItem('us') == 1 || window.localStorage.getItem('us') == 2){
@@ -11,6 +12,8 @@ function lide(){
             $('.span1').css('display','block')
             $('.span2').css('display','none')
             $('#channel').attr("readonly","readonly")
+            $('.ttsakimg').css('display','none')
+            $('.ttsskimg').css('display','none')
         }
         if(window.localStorage.getItem('us') == 2){
             $('.ttscheck').attr("checked","checked")
@@ -18,9 +21,12 @@ function lide(){
             $('.span1').css('display','none')
             $('.span2').css('display','block')
             $('#channel').attr("readonly","readonly")
+            $('.asrakimg').css('display','none')
+            $('.asrskimg').css('display','none')
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
+        $('.sub-btn').attr('disabled','true')
         $('.asrcheck').attr("checked","checked")
         $('.ttscheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
@@ -32,19 +38,23 @@ function lide(){
         $('.span1').css('display','none')
         $('.span2').css('display','none')
         $('#channel').removeAttr("readonly")
+        $('.asrakimg').css('display','none')
+        $('.asrskimg').css('display','none')
+        $('.ttsakimg').css('display','none')
+        $('.ttsskimg').css('display','none')
     }
 }
 
-function handleClick(val){
-    $('#exampleModal').modal('show')
-    if(val == 'asr'){
-        $('.ifasr').css('display','block')
-        $('.iftts').css('display','none')
-    }else{
-        $('.ifasr').css('display','none')
-        $('.iftts').css('display','block')
-    }
-}
+// function handleClick(val){
+//     $('#exampleModal').modal('show')
+//     if(val == 'asr'){
+//         $('.ifasr').css('display','block')
+//         $('.iftts').css('display','none')
+//     }else{
+//         $('.ifasr').css('display','none')
+//         $('.iftts').css('display','block')
+//     }
+// }
 
 function submit(){
     $('#userver-loading').show()
@@ -65,7 +75,7 @@ function submit(){
         var params = {
             t:$.base64.decode(window.localStorage.getItem('token')),
             lid:$.base64.decode(window.localStorage.getItem('acd')),
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == 'null' || '' ? 'chinese': 'english',
+            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined || '' ? 'chinese': 'english',
             userService:checkArr,
             u:"",
             p:"",
@@ -105,6 +115,7 @@ function submit(){
                     }).then((result)=>{
                         if(result.isConfirmed){
                             lide()
+                            getUserInfo()
                         }
                     })
                 } else if(res.status == 101){
@@ -201,14 +212,20 @@ function getUserInfo(){
         success:function(res){
             if(res.errorcode != 1024){
                 window.localStorage.setItem('ch',$.base64.encode(res.channel))
-                $('#ak').html(res.lenovokey)
-                $('#sk').html(res.secretkey)
+                window.localStorage.setItem('us',res.userService)
+                lenovokey = res.lenovokey
+                secretkey = res.secretkey
+                $('.asrak').html(res.userService == '3' || res.userService == '1' ? hideStr(lenovokey) : '--')
+                $('.asrsk').html(res.userService == '3' || res.userService == '1' ? hideStr(secretkey) : '--')
+                $('.ttsak').html(res.userService == '3' || res.userService == '2' ? hideStr(lenovokey) : '--')
+                $('.ttssk').html(res.userService == '3' || res.userService == '2' ? hideStr(secretkey) : '--')
                 $('#channel').val(res.channel)
                 $('#body-num').html($('#channel').val().length)
-                $('#totalASRAmount').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
-                $('#totalTTSAmount').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
-                $('#remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
-                $('#remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
+                $('.totalASRAmount').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
+                $('.totalTTSAmount').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
+                $('.remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
+                $('.remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
+                lide()
             }else{
                 window.localStorage.clear();
                 Swal.fire({
@@ -239,6 +256,35 @@ function getUserInfo(){
         }
     });
 }
+
 $('#channel').bind("input propertychange", function(){
     $('#body-num').html($('#channel').val().length)
 })
+function hideStr(str){
+        return str.substring(0,6) + "******"
+}
+let asrak = document.getElementById('asrak')
+let asrsk = document.getElementById('asrsk')
+let ttsak = document.getElementById('ttsak')
+let ttssk = document.getElementById('ttssk')
+let asrakbtn = document.getElementById('asrakshow')
+let asrskbtn = document.getElementById('asrskshow')
+let ttsakbtn = document.getElementById('ttsakshow')
+let ttsskbtn = document.getElementById('ttsskshow')
+
+asrakbtn.onclick = function(){
+    asrak.innerHTML = asrak.innerHTML === hideStr(lenovokey) ? lenovokey : hideStr(lenovokey)
+    asrakbtn.innerHTML = asrak.innerHTML === hideStr(lenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+asrskbtn.onclick = function(){
+    asrsk.innerHTML = asrsk.innerHTML === hideStr(secretkey) ? secretkey : hideStr(secretkey)
+    asrskbtn.innerHTML = asrsk.innerHTML === hideStr(secretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+ttsakbtn.onclick = function(){
+    ttsak.innerHTML = ttsak.innerHTML === hideStr(lenovokey) ? lenovokey : hideStr(lenovokey)
+    ttsakbtn.innerHTML = ttsak.innerHTML === hideStr(lenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+ttsskbtn.onclick = function(){
+    ttssk.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? secretkey : hideStr(secretkey)
+    ttsskbtn.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}

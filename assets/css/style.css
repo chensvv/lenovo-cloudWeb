@@ -1196,6 +1196,7 @@ section {
 }
 .channel-body{
   position: relative;
+  width: 70%;
 }
 .channel-body .bn-length{
   position: absolute;
@@ -1465,6 +1466,11 @@ section {
 .questionlist-main .detail-timer{
   width: 85%;
   text-align: right;
+}
+
+.list-unstyled .nodata{
+  text-align: center;
+  line-height: 100px;
 }
 
 
@@ -3191,21 +3197,18 @@ section {
 
 .service-main{
   padding-bottom: 60px;
-  width: 60%;
   margin: 0 auto;
 }
 .service-main .service-main-section{
   padding: 0;
 }
 .service-main .service-bg{
-  width: 300px;
-  height: 300px;
   padding: 3.25rem 0 0;
   margin: 0 auto;
 }
 .service-main .service-bg .con-title {
   position: relative;
-  width: 350px;
+  width: 100%;
   height: 50px;
   padding: 0 7px;
   font-size: 20px;
@@ -3217,13 +3220,12 @@ section {
   content: " ";
   position: absolute;
   height: 2px;
-  width: 250px;
+  width: 100%;
   background: #00B2D5;
   bottom: -1px;
   left: 0;
 }
 .service-main .service-bg .con-main {
-  display: flex;
   padding-top: 20px;
 }
 .service-main .service-bg .key-box {
@@ -3231,8 +3233,28 @@ section {
   margin-left: 10px;
   position: relative;
 }
+
+.service-main .service-bg .con-main .check-box{
+  display: flex;
+  justify-content: space-around;
+}
+.service-main .service-bg .con-main .check-box .num{
+  padding-left: 20px;
+}
 .service-main .service-bg .con-main .form-group {
   margin-bottom: 15px;
+  padding-left: 0;
+  min-width: 440px;
+  box-shadow: rgb(0 0 0 / 15%) 2.4px 2.4px 3.2px;
+  padding: 10px 0;
+}
+.service-main .service-bg .con-main .check-box .num .tit{
+  display: block;
+}
+.service-main .service-bg .con-main .check-box .num img{
+  width: 25px;
+  vertical-align: text-bottom;
+  cursor: pointer;
 }
 .asrcheck +label, .ttscheck +label {
   vertical-align: text-bottom;
@@ -3302,8 +3324,16 @@ section {
   margin-bottom: 0;
 }
 .service-main .service-bg .channel-title{
-  margin-top: 1rem;
-  width: 82%;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.service-main .service-bg .channel-title label{
+  margin-bottom: 0;
+  margin-right: 10px;
+  width: 130px;
+  text-align: right;
 }
 
 /*--------------------------------------------------------------
@@ -3981,9 +4011,15 @@ body.swal2-toast-shown .swal2-container{
     width: 100%;
   }
   .service-main .service-bg{
-    width: 80%;
     padding: 0;
   }
+  .service-main .service-bg .con-main .form-group{
+    min-width: auto;
+  }
+  .service-main .service-bg .con-main .check-box{
+    flex-direction: column;
+  }
+
   .modal .modal-dialog{
     margin: .5rem;
   }
