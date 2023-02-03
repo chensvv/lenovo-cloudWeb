@@ -39,7 +39,6 @@ function newList(){
                       <p class="card-text"><small class="text-muted">${val.newsDetails}</small></p>
                     </div>
                     </a>
-                    
                   </div>
                 </div>`
           })

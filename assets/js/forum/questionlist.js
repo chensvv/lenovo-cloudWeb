@@ -1,6 +1,9 @@
 
 var total = ""
 var mytotal = ""
+if(localStorage.getItem('un') == null || localStorage.getItem('un') == ''){
+    $('.listmy').css('display','none')
+}
 function getData(){
     var listParams = {
         pagenum: 1,
@@ -270,7 +273,6 @@ $('#pills-tab a').on('click', function (event) {
                 }
             })
         }
-        
     }
 })
 

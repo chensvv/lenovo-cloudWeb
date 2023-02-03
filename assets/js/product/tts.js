@@ -12,7 +12,7 @@ $('#tts-loading').hide()
 function voicePlay(){
     if (userToken == "" || userToken == null) {
         Swal.fire({
-            text: $.i18n.prop('firstLogin'),
+            text: $.i18n.prop('logTimeOut'),
             showCancelButton: true,
             allowOutsideClick:false,
             allowEscapeKey:false,

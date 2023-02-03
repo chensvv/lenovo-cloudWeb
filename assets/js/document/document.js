@@ -24,7 +24,7 @@ menus.forEach(function (value, index) {
     })
 });
 
-userInfo()
+// userInfo()
       function userInfo(){
         var params = {
               username:$.base64.decode(window.localStorage.getItem('un')),
