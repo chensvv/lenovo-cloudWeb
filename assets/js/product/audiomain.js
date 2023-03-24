@@ -7,7 +7,6 @@ var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp input:radio:checked")
 var $selectLang = $("#selectLang input:radio:checked")
 var path = ''
-// var uri = 'ws://10.110.148.57:8080/lasf/wsasr/'
 // var uri = 'ws://10.110.148.57:8084/lasf/webSocket/'
 var uri = 'wss://voice.lenovomm.com/website/webSocket/'
 var rt = ''
