@@ -246,7 +246,7 @@ function regVehi(){
 
     regParams.sign = md5(stringParams)
     $.ajax({
-        url:sdkurl+'/vehicle/user/add',
+        url:sdkurl+'/vehicle/web/register',
         type:'post',
         dataType:'json',
         data:regParams,
