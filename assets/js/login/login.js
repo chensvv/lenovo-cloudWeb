@@ -2,6 +2,7 @@
   var c = 60
   var reguuid
   var loginuuid
+  var checkedId = 1
 !(function($){
     function aos_init() {
         AOS.init({
@@ -26,7 +27,7 @@ $('a[data-toggle="tab"]').on('hidden.bs.tab', function (event) {
         $('.reg-code-btn').siblings().css('border-color','')
     }
   })
-  console.log(getCookies(document.cookie))
+//   console.log(getCookies(document.cookie))
 $('#loginBtn').click(function(){
     
     var username = $("#login-username").val()
@@ -125,103 +126,137 @@ $('#loginBtn').click(function(){
 })
 
 $('#regbtn').click(function(){
-        $('#reg-loading').show()
-        $('#regbtn').attr('disabled','true')
-        var regParams = {
-            u:$('#reg-email').val(),
-            phone:$('#reg-phone').val(),
-            username:$('#reg-name').val(),
-            company:$('#reg-company').val(),
-            dept:$('#reg-dep').val(),
-            userService:"",
-            p:$.base64.encode($('#reg-password').val()),
-            code:$('#reg-code').val(),
-            language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
-            imgCode:$('#reg-img-code').val(),
-            ucode:reguuid,
-            lid:"",
-            t:"",
-            opwd:"",
-            pwd:"",
-            lenovoid:"",
-            channel:""
-        }
-        var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+    $('#reg-loading').show()
+    $('#regbtn').attr('disabled','true')
+    if(checkedId == 1){
+        regVoice()
+    }else{
+        regVoice()
+        regVehi()
+    }
+        
+})
 
-        regParams.sign = md5(stringParams)
-        $.ajax({
-            url:proURL+'/web/register',
-            type:'post',
-            dataType:'json',
-            data:regParams,
-            success:function(res){
-                console.log(res)
-                $('#reg-loading').hide()
-                $('#regbtn').removeAttr('disabled','disabled')
-                if(res.status == 0){
-                    Swal.fire({
-                        toast: true,
-                        icon:'success',
-                        position: 'top-end',
-                        background:'#d4edda',
-                        text: res.message,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    // var param = {
-                    //     'acd':$.base64.encode(res.lenovoId),
-                    //     'lk':$.base64.encode(res.lenovoKey),
-                    //     'sk':$.base64.encode(res.secretKey),
-                    //     'p':$.base64.encode($('#reg-password').val()),
-                    //     'un':res.userName,
-                    //     'token':res.token,
-                    //     'us':res.userService,
-                    //     'ms':res.meetingService
-                    // }
-                    // window.localStorage.setItem('data',JSON.stringify(param))
+function regVoice(){
+    var regParams = {
+        u:$('#reg-email').val(),
+        phone:$('#reg-phone').val(),
+        username:$('#reg-name').val(),
+        company:$('#reg-company').val(),
+        dept:$('#reg-dep').val(),
+        userService:"",
+        p:$.base64.encode($('#reg-password').val()),
+        code:$('#reg-code').val(),
+        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
+        imgCode:$('#reg-img-code').val(),
+        ucode:reguuid,
+        lid:"",
+        t:"",
+        opwd:"",
+        pwd:"",
+        lenovoid:"",
+        channel:""
+    }
+    var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
 
-                    setTimeout(()=>{
-                        window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
-                        window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
-                        window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
-                        window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#reg-password').val())))
-                        window.localStorage.setItem('un',$.base64.encode(res.userName))
-                        window.localStorage.setItem('token',$.base64.encode(res.token))
-                        window.localStorage.setItem('us',res.userService)
-                        window.localStorage.setItem('ms',res.meetingService)
-                        window.localStorage.setItem('ch',$.base64.encode(res.channel))
-                        if(window.localStorage.getItem('returnurl') != null){
-                            window.location.href = window.localStorage.getItem('returnurl')
-                        }else{
-                            window.location.href = '../welcome/index.html'
-                        }
-                        window.localStorage.removeItem('returnurl')
-                    },1000)
-                }else{
-                    getRegImgCode()
-                    Swal.fire({
-                        toast: true,
-                        icon:'warning',
-                        position: 'top-end',
-                        background:'#fff3cd',
-                        text: res.error,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }
-            },
-            error:function(err){
-                getRegImgCode()
-                $('#reg-loading').hide()
-                $('#regbtn').removeAttr('disabled','disabled')
+    regParams.sign = md5(stringParams)
+    $.ajax({
+        url:proURL+'/web/register',
+        type:'post',
+        dataType:'json',
+        data:regParams,
+        success:function(res){
+            $('#reg-loading').hide()
+            $('#regbtn').removeAttr('disabled','disabled')
+            if(res.status == 0){
                 Swal.fire({
-                    text:$.i18n.prop('server_error'),
-                    confirmButtonText: $.i18n.prop('confirm'),
-                    confirmButtonColor: '#94cb82'
+                    toast: true,
+                    icon:'success',
+                    position: 'top-end',
+                    background:'#d4edda',
+                    text: res.message,
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+
+                setTimeout(()=>{
+                    window.localStorage.setItem('acd',$.base64.encode(res.lenovoId))
+                    window.localStorage.setItem('lk',$.base64.encode(res.lenovoKey))
+                    window.localStorage.setItem('sk',$.base64.encode(res.secretKey))
+                    window.localStorage.setItem('p', $.base64.encode($.base64.encode($('#reg-password').val())))
+                    window.localStorage.setItem('un',$.base64.encode(res.userName))
+                    window.localStorage.setItem('token',$.base64.encode(res.token))
+                    window.localStorage.setItem('us',res.userService)
+                    window.localStorage.setItem('ms',res.meetingService)
+                    window.localStorage.setItem('ch',$.base64.encode(res.channel))
+                    if(window.localStorage.getItem('returnurl') != null){
+                        window.location.href = window.localStorage.getItem('returnurl')
+                    }else{
+                        window.location.href = '../welcome/index.html'
+                    }
+                    window.localStorage.removeItem('returnurl')
+                },1000)
+            }else{
+                getRegImgCode()
+                Swal.fire({
+                    toast: true,
+                    icon:'warning',
+                    position: 'top-end',
+                    background:'#fff3cd',
+                    text: res.error,
+                    showConfirmButton: false,
+                    timer: 3000
                 })
             }
-        })
-})
+        },
+        error:function(err){
+            getRegImgCode()
+            $('#reg-loading').hide()
+            $('#regbtn').removeAttr('disabled','disabled')
+            Swal.fire({
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
+                confirmButtonColor: '#94cb82'
+            })
+        }
+    })
+}
+
+function regVehi(){
+    var regParams = {
+        u:$('#reg-email').val(),
+        phone:$('#reg-phone').val(),
+        username:$('#reg-name').val(),
+        company:$('#reg-company').val(),
+        dept:$('#reg-dep').val(),
+        userService:"",
+        p:$.base64.encode($('#reg-password').val()),
+        code:$('#reg-code').val(),
+        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
+        imgCode:$('#reg-img-code').val(),
+        ucode:reguuid,
+        lid:"",
+        t:"",
+        opwd:"",
+        pwd:"",
+        lenovoid:"",
+        channel:""
+    }
+    var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+
+    regParams.sign = md5(stringParams)
+    $.ajax({
+        url:proURL+'/vehicle-mgr/user/add',
+        type:'post',
+        dataType:'json',
+        data:regParams,
+        success:function(res){
+        },
+        error:function(err){
+            
+        }
+    })
+}
 
 $('#login-username').on('input',function(){
     if($("#login-username").val() != ''){
@@ -238,7 +273,7 @@ $('#login-password').on('input',function(){
 
 $('#nextbtn').on('click',function(){
     if(getStyle(document.getElementById('dep'), 'display') == 'none'){
-        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany()){
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && checkedId != ''){
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
             $('.ac').addClass('active')
@@ -248,7 +283,7 @@ $('#nextbtn').on('click',function(){
             return false
         }
     }else{
-        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && regDep()){
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && regDep() && checkedId != ''){
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
             $('#val-email').val($('#reg-email').val())
@@ -274,6 +309,13 @@ $('#nextbtnm').on('click',function(){
     
 })
     
+$('#vehi').change(function(){
+    if($('#vehi').is(':checked')){
+        checkedId = 2
+    }else{
+        checkedId = 1
+    }
+})
     
 function regEmail(){
     var emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
