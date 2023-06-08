@@ -2,6 +2,9 @@
 $('#userver-loading').hide()
 let lenovokey
 let secretkey
+let vehilenovokey
+let vehisecretkey
+
 function lide(){
     var checkList=[]
     if(window.localStorage.getItem('us') == 1 || window.localStorage.getItem('us') == 2){
@@ -9,34 +12,44 @@ function lide(){
         if(window.localStorage.getItem('us') == 1){
             $('.asrcheck').attr("checked","checked")
             $('.asrcheck').attr("disabled","true")
-            $('.span1').css('display','block')
-            $('.span2').css('display','none')
-            $('#channel').attr("readonly","readonly")
+            // $('.span1').css('display','block')
+            // $('.span2').css('display','none')
+            // $('#channel').attr("readonly","readonly")
             $('.ttsakimg').css('display','none')
             $('.ttsskimg').css('display','none')
+            $('.asrakimg').css('display','inline-block')
+            $('.asrskimg').css('display','inline-block')
         }
         if(window.localStorage.getItem('us') == 2){
             $('.ttscheck').attr("checked","checked")
             $('.ttscheck').attr("disabled","true")
-            $('.span1').css('display','none')
-            $('.span2').css('display','block')
-            $('#channel').attr("readonly","readonly")
+            // $('.span1').css('display','none')
+            // $('.span2').css('display','block')
+            // $('#channel').attr("readonly","readonly")
             $('.asrakimg').css('display','none')
             $('.asrskimg').css('display','none')
+            $('.ttsakimg').css('display','inline-block')
+            $('.ttsskimg').css('display','inline-block')
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
         $('.sub-btn').attr('disabled','true')
         $('.asrcheck').attr("checked","checked")
         $('.ttscheck').attr("checked","checked")
+        $('.vehicheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
         $('.ttscheck').attr("disabled","true")
-        $('.span1').css('display','block')
-        $('.span2').css('display','block')
+        $('.vehicheck').attr("disabled","true")
+        // $('.span1').css('display','block')
+        // $('.span2').css('display','block')
         $('#channel').attr("readonly","readonly")
+        $('.asrakimg').css('display','inline-block')
+        $('.asrskimg').css('display','inline-block')
+        $('.ttsakimg').css('display','inline-block')
+        $('.ttsskimg').css('display','inline-block')
     }else{
-        $('.span1').css('display','none')
-        $('.span2').css('display','none')
+        // $('.span1').css('display','none')
+        // $('.span2').css('display','none')
         $('#channel').removeAttr("readonly")
         $('.asrakimg').css('display','none')
         $('.asrskimg').css('display','none')
@@ -255,6 +268,21 @@ function getUserInfo(){
             })
         }
     });
+    $.ajax({
+        type:"POST",
+        url:sdkurl+'/vehicle/userinfo',
+        data:infoParams,
+        dataType:"json",
+        headers: {
+            "channel" : "cloudasr"
+        },
+        success:function(res){
+            vehilenovokey = res.lenovokey
+            vehisecretkey = res.secretkey
+            $('.vehiak').html(res.lenovokey != '' ? hideStr(vehilenovokey) : '--')
+            $('.vehisk').html(res.secretkey != '' ? hideStr(vehisecretkey) : '--')
+        }
+    })
 }
 
 $('#channel').bind("input propertychange", function(){
@@ -267,10 +295,14 @@ let asrak = document.getElementById('asrak')
 let asrsk = document.getElementById('asrsk')
 let ttsak = document.getElementById('ttsak')
 let ttssk = document.getElementById('ttssk')
+let vehiak = document.getElementById('vehiak')
+let vehisk = document.getElementById('vehisk')
 let asrakbtn = document.getElementById('asrakshow')
 let asrskbtn = document.getElementById('asrskshow')
 let ttsakbtn = document.getElementById('ttsakshow')
 let ttsskbtn = document.getElementById('ttsskshow')
+let vehiakbtn = document.getElementById('vehiakshow')
+let vehiskbtn = document.getElementById('vehiskshow')
 
 asrakbtn.onclick = function(){
     asrak.innerHTML = asrak.innerHTML === hideStr(lenovokey) ? lenovokey : hideStr(lenovokey)
@@ -287,4 +319,12 @@ ttsakbtn.onclick = function(){
 ttsskbtn.onclick = function(){
     ttssk.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? secretkey : hideStr(secretkey)
     ttsskbtn.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+vehiakbtn.onclick = function(){
+    vehiak.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? vehilenovokey : hideStr(vehilenovokey)
+    vehiakbtn.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+vehiskbtn.onclick = function(){
+    vehisk.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? vehisecretkey : hideStr(vehisecretkey)
+    vehiskbtn.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
 }

@@ -757,3 +757,8 @@ function timer() {
 function getStyle(obj, attr) {
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
 }
+$("body").keydown(function(event) {
+    if (event.keyCode == "13") {//keyCode=13是回车键；数字不同代表监听的按键不同
+        $('#loginBtn').click()
+    }
+});
