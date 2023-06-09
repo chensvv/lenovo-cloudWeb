@@ -234,10 +234,10 @@ function getUserInfo(){
                 $('.ttssk').html(res.userService == '3' || res.userService == '2' ? hideStr(secretkey) : '--')
                 $('#channel').val(res.channel)
                 $('#body-num').html($('#channel').val().length)
-                $('.totalASRAmount').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
-                $('.totalTTSAmount').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
-                $('.remainASRAmount').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
-                $('.remainTTSAmount').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
+                $('.totalASRAmount').html(res.totalASRAmount <= -99 ? '无限次' : res.totalASRAmount)
+                $('.totalTTSAmount').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
+                $('.remainASRAmount').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
+                $('.remainTTSAmount').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
                 lide()
             }else{
                 window.localStorage.clear();
@@ -281,10 +281,10 @@ function getUserInfo(){
             vehisecretkey = res.secretkey
             $('.vehiak').html(res.lenovokey != '' ? hideStr(vehilenovokey) : '--')
             $('.vehisk').html(res.secretkey != '' ? hideStr(vehisecretkey) : '--')
-            $('.vehiTotalTTS').html(res.totalTTSAmount == '-99' ? '无限次' : res.totalTTSAmount)
-            $('.vehiRemainASR').html(res.remainASRAmount == '-99' ? '无限次' : res.remainASRAmount)
-            $('.vehiTotalASR').html(res.totalASRAmount == '-99' ? '无限次' : res.totalASRAmount)
-            $('.vehiRemainTTS').html(res.remainTTSAmount == '-99' ? '无限次' : res.remainTTSAmount)
+            $('.vehiTotalTTS').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
+            $('.vehiRemainASR').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
+            $('.vehiTotalASR').html(res.totalASRAmount <= -99 ? '无限次' : res.totalASRAmount)
+            $('.vehiRemainTTS').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
         }
     })
 }
