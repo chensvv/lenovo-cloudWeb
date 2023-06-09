@@ -199,12 +199,16 @@ function getData(){
               confirmButtonText: $.i18n.prop('confirm'),
               confirmButtonColor: '#94cb82'
             })
+            $('.voice-play').css('display','block')
+            $('.voice-pause').css('display','none')
           }else if(str.length == 0 || str == ''){
             Swal.fire({
               text:'请稍后重试！',
               confirmButtonText: $.i18n.prop('confirm'),
               confirmButtonColor: '#94cb82'
             })
+            $('.voice-play').css('display','block')
+            $('.voice-pause').css('display','none')
           }else{
             $('.voice-play').css('display','none')
             $('.voice-pause').css('display','block')
