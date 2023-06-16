@@ -53,7 +53,7 @@ function oneSteps(){
             }else{
                 Swal.fire({
                     text:res.error,
-                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -63,8 +63,8 @@ function oneSteps(){
             $('#stepone-loading').hide()
             $('#stepone').removeAttr('disabled','disabled')
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -112,7 +112,7 @@ function twoSteps(){
                 }else{
                     Swal.fire({
                         text:res.error,
-                        confirmButtonText: i18n.get('confirm'),
+                        confirmButtonText: $.i18n.prop('confirm'),
                         confirmButtonColor: '#94cb82'
                     })
                 }
@@ -122,8 +122,8 @@ function twoSteps(){
                 $('#steptwo-loading').hide()
                 $('#steptwo').removeAttr('disabled','disabled')
                 Swal.fire({
-                    text:i18n.get('server_error'),
-                    confirmButtonText: i18n.get('confirm'),
+                    text:$.i18n.prop('server_error'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -142,10 +142,10 @@ function newPass(){
     var passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
     var pwdVal = $('#forgot-password').val()
     if(pwdVal == ''){
-        $('.forgot-password-error').html(i18n.get('password_empty'))
+        $('.forgot-password-error').html($.i18n.prop('password_empty'))
         return false
     }else if(!passwordReg.test(pwdVal)){
-        $('.forgot-password-error').html(i18n.get('password_error'))
+        $('.forgot-password-error').html($.i18n.prop('password_error'))
         return false
     }else{
         $('.forgot-password-error').html('')
@@ -156,7 +156,7 @@ function checkNewpass(){
     if($('#checkpass').val() === $('#forgot-password').val()){
         return true
     }else{
-        $('.forgot-password-check').html(i18n.get('checkpwd_error'))
+        $('.forgot-password-check').html($.i18n.prop('checkpwd_error'))
         return false
     }
 }
@@ -205,14 +205,14 @@ function getCode(){
                 Swal.fire({
                     text:res.message,
                     icon:'success',
-                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }else{
                 $('.code-btn').css('pointer-events','auto')
                 Swal.fire({
                     text:res.error,
-                    confirmButtonText: i18n.get('confirm'),
+                    confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'
                 })
             }
@@ -221,8 +221,8 @@ function getCode(){
         error:function(){
             $('.code-btn').css('pointer-events','auto')
             Swal.fire({
-                text:i18n.get('server_error'),
-                confirmButtonText: i18n.get('confirm'),
+                text:$.i18n.prop('server_error'),
+                confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
         }
@@ -232,7 +232,7 @@ function getCode(){
 function timer() {
     if (c == 0) {    
         $('.code-btn').css('pointer-events','auto')        
-        $('.code-btn').html(i18n.get('pass_get_code'))
+        $('.code-btn').html($.i18n.prop('pass_get_code'))
         c = 60;
     } else {
         $('.code-btn').html(` ${c} s`)

@@ -1,12 +1,18 @@
 var n = 0
-var accountid = $.base64.decode(window.localStorage.getItem('acd'))
+var accountid = window.localStorage.getItem('acd')
 var lenkey = $.base64.decode(window.localStorage.getItem('lk'))
 var secrkey = $.base64.decode(window.localStorage.getItem('sk'))
 var username = $.base64.decode(window.localStorage.getItem('token'))
 var channelval = $.base64.decode(window.localStorage.getItem('ch'))
 var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
+var uri = 'wss://voice.lenovomm.com/website/wscloudtts/'
+// var uri = 'ws://10.110.148.57:8085/lasf/wscloudtts/'
+// var uri = 'ws://10.110.148.57:8085/vehicle/wscloudtts/'
 var rangeval
+var ws
+var aBlob
+var files = []
 $('#tts-loading').hide()
 
 function voicePlay(){
@@ -43,11 +49,20 @@ function voicePlay(){
         })
     }else{
         if(localStorage.getItem('us') == 2 || localStorage.getItem('us') == 3){
-          $('#tts-loading').show()
-          $('.voice-play').css('display','none')
-          $('.voice-pause').css('display','none')
-          $('.voice-keep').css('display','none')
-            getData()
+          
+            // getData()
+            // if(ws.readyState != 1){
+            //   Swal.fire({
+            //     text:$.i18n.prop('server_error'),
+            //     confirmButtonText: $.i18n.prop('confirm'),
+            //     confirmButtonColor: '#94cb82'
+            //   })
+            // }else{
+              files = []
+              socket()
+              
+              
+            // }
         }else{
             Swal.fire({
                 text: $.i18n.prop('service_not_open'),
@@ -105,20 +120,20 @@ function myrange(event){
 
 
 function densityInput (event) {
-  console.log("volume:"+event.target.value);
+  // console.log("volume:"+event.target.value);
   $('#volVal').html(event.target.value)
   // bgm.volume = event.target.value
 }
 
 function mypitch (event) {
-  console.log("volume:"+event.target.value);
+  // console.log("volume:"+event.target.value);
   $('#pitchVal').html(event.target.value)
   // bgm.volume = event.target.value
 }
 
 function OnPropChanged (event) {
   if (event.propertyName.toLowerCase () == "value") {
-      console.log(event.srcElement.value);
+      // console.log(event.srcElement.value);
   }
 }
 
@@ -168,6 +183,55 @@ $("#seletype li").click(function(e) {
 //   var target = event.target || event.srcElement;
 //   event.stopPropagation();
 // })
+// socket()
+// console.log(ws)
+
+function socket (e) {
+  // /wscloudtts/{user}/{speed}/{volume}/{pitch}/{audioType}/{speaker}/{t1}/{token}/{t2}/{channel}/{lenovokey}/{secretkey}
+  var path = `${uri}${accountid}/${document.getElementById('myrange').value}/${document.getElementById('myvol').value}/${document.getElementById('mypitch').value}/xxxx/${$('#seletype .active')[0].id}/${accountid}/token/${new Date().getTime()}/cloudasr/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}`
+  ws = new WebSocket(path)
+  ws.onopen = function(){
+      console.log('ws已连接')
+      $('#tts-loading').show()
+      $('.voice-play').css('display','none')
+      $('.voice-pause').css('display','none')
+      $('.voice-keep').css('display','none')
+      ws.send(BASE64.encode($('#textarea').val()))
+  }
+  ws.onerror = function(error){
+      Swal.fire({
+          text:$.i18n.prop('server_error'),
+          confirmButtonText: $.i18n.prop('confirm'),
+          confirmButtonColor: '#94cb82'
+      })
+  }
+  ws.onmessage = function(res){
+    if(typeof(res.data) == 'object'){
+      if(res.data.size !=0){
+        files.push(res.data)
+      }else{
+        $('#tts-loading').hide()
+        $('.voice-play').css('display','none')
+        $('.voice-pause').css('display','block')
+        aBlob = new Blob(files)
+        bgm.src = URL.createObjectURL(aBlob);
+      }
+    }else{
+      $('#tts-loading').hide()
+      $('.voice-play').css('display','block')
+      $('.voice-pause').css('display','none')
+      Swal.fire({
+        text:$.i18n.prop('server_error'),
+        confirmButtonText: $.i18n.prop('confirm'),
+        confirmButtonColor: '#94cb82'
+      })
+    }
+  },
+  ws.onclose = function(){
+      console.log('closed')
+  }
+}
+
 
 function getData(){
     var req = new XMLHttpRequest();

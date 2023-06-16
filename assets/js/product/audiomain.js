@@ -7,7 +7,8 @@ var img_btn = document.getElementById('record')
 var $selectSamp = $("#selectSamp input:radio:checked")
 var $selectLang = $("#selectLang input:radio:checked")
 var path = ''
-// var uri = 'ws://10.110.148.57:8084/lasf/webSocket/'
+// var uri = 'ws://10.110.148.57:8085/lasf/webSocket/'
+// var uri = 'ws://10.110.148.57:8085/vehicle/webSocket/'
 var uri = 'wss://voice.lenovomm.com/website/webSocket/'
 var rt = ''
 var firstup = true
@@ -15,6 +16,7 @@ var rec
 var chunkInfo
 var pidx = 1
 var statu
+// var ws
 
 function toggleRecording(e){
     if (userToken == "" || userToken == null) {
@@ -41,13 +43,14 @@ function toggleRecording(e){
     }else{
         if (e.classList.contains("recordm")) {
             e.classList.remove("recordm");
-            ws.send(new Blob([ ]))
+            ws.send([])
             $('.line-box').css('display','none')
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
             $('.mic-btn').html($.i18n.prop('start'))
-            // recStop()
+            recStop()
         }else{
+            console.log(1)
             if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
                 e.classList.add("recordm");
                 // $('.result-box').css('display','none')
