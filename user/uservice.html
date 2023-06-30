@@ -101,81 +101,93 @@
                 <div class="check-box">
                     <div class="form-group form-check">
                         <input type="checkbox" class="asrcheck" value="1" name="check" id="check-label-asr"><label for="check-label-asr">ASR (语音识别ASR)</label>
-                        <div class="num">
-                          <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
-                          <span class="asrak" id="asrak"></span>
-                          <span id="asrakshow"><img src="../assets/img/show.png" class="asrakimg"></span>
-                      </div>
-                      <div class="num">
-                          <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
-                          <span class="asrsk" id="asrsk"></span>
-                          <span id="asrskshow"><img src="../assets/img/show.png" class="asrskimg"></span>
-                      </div>
-                      <div class="num">
-                          <span>ASR <span class="i18n" name="totalday"></span>：</span>
-                          <span class="totalASRAmount"></span>
-                      </div>
-                      <div class="num">
-                          <span>ASR <span class="i18n" name="degreeday"></span>：</span>
-                          <span class="remainASRAmount"></span>
-                      </div>
+                        <div style="display: flex;">
+                          <div>
+                            <div class="num">
+                              <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
+                              <span class="asrak" id="asrak"></span>
+                              <span id="asrakshow"><img src="../assets/img/show.png" class="asrakimg"></span>
+                            </div>
+                            <div class="num">
+                                <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
+                                <span class="asrsk" id="asrsk"></span>
+                                <span id="asrskshow"><img src="../assets/img/show.png" class="asrskimg"></span>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="num">
+                                <span>ASR <span class="i18n" name="totalday"></span>：</span>
+                                <span class="totalASRAmount"></span>
+                            </div>
+                            <div class="num">
+                                <span>ASR <span class="i18n" name="degreeday"></span>：</span>
+                                <span class="remainASRAmount"></span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="ttscheck" value="2" name="check" id="check-label-tts"><label class="check-label-tts">TTS (语音合成TTS)</label>
-                        <div class="num">
-                          <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
-                          <span class="ttsak" id="ttsak"></span>
-                          <span id="ttsakshow"><img src="../assets/img/show.png"  class="ttsakimg"></span></span>
-                      </div>
-                      <div class="num">
-                          <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
-                          <span class="ttssk" id="ttssk"></span>
-                          <span id="ttsskshow"><img src="../assets/img/show.png"  class="ttsskimg"></span></span>
-                      </div>
-                      <div class="num">
-                          <span>TTS <span class="i18n" name="totalday"></span>：</span>
-                          <span class="totalTTSAmount"></span>
-                      </div>
-                      <div class="num">
-                          <span>TTS <span class="i18n" name="degreeday"></span>：</span>
-                          <span class="remainTTSAmount"></span>
-                      </div>
+                        <div style="display: flex;">
+                          <div>
+                            <div class="num">
+                              <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
+                              <span class="ttsak" id="ttsak"></span>
+                              <span id="ttsakshow"><img src="../assets/img/show.png"  class="ttsakimg"></span></span>
+                            </div>
+                            <div class="num">
+                              <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
+                              <span class="ttssk" id="ttssk"></span>
+                              <span id="ttsskshow"><img src="../assets/img/show.png"  class="ttsskimg"></span></span>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="num">
+                              <span>TTS <span class="i18n" name="totalday"></span>：</span>
+                              <span class="totalTTSAmount"></span>
+                            </div>
+                            <div class="num">
+                              <span>TTS <span class="i18n" name="degreeday"></span>：</span>
+                              <span class="remainTTSAmount"></span>
+                            </div>
+                          </div>
+                        </div>
                     </div>
-                    
-                </div>
-                <div class="check-box">
-                  <div class="form-group form-check">
+                  <!-- <div class="form-group form-check">
                       <input type="checkbox" class="vehicheck" value="3" name="check" id="check-label-vehi"><label class="check-label-vehi">车载语音</label>
-                      <div class="num">
-                        <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
-                        <span class="vehiak" id="vehiak"></span>
-                        <span id="vehiakshow"><img src="../assets/img/show.png"  class="vehiakimg"></span></span>
-                    </div>
-                    <div class="num">
-                        <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
-                        <span class="vehisk" id="vehisk"></span>
-                        <span id="vehiskshow"><img src="../assets/img/show.png"  class="vehiskimg"></span></span>
-                    </div>
-                    <div class="num">
-                        <span>车载语音ASR <span class="i18n" name="totalday"></span>：</span>
-                        <span class="vehiTotalASR"></span>
-                    </div>
-                    <div class="num">
-                        <span>车载语音ASR <span class="i18n" name="degreeday"></span>：</span>
-                        <span class="vehiRemainASR"></span>
-                    </div>
-                    <div class="num">
-                      <span>车载语音TTS <span class="i18n" name="totalday"></span>：</span>
-                      <span class="vehiTotalTTS"></span>
-                  </div>
-                  <div class="num">
-                      <span>车载语音TTS <span class="i18n" name="degreeday"></span>：</span>
-                      <span class="vehiRemainTTS"></span>
-                  </div>
-                  </div>
-                  <div class="form-group form-check" style="box-shadow: none;">
+                      <div style="display: flex;">
+                        <div>
+                          <div class="num">
+                              <span class="tit"><span class="i18n" name="lenovokey"></span>(ak)：</span>
+                              <span class="vehiak" id="vehiak"></span>
+                              <span id="vehiakshow"><img src="../assets/img/show.png"  class="vehiakimg"></span></span>
+                          </div>
+                          <div class="num">
+                              <span class="tit"><span class="i18n" name="secretkey"></span>(sk)：</span>
+                              <span class="vehisk" id="vehisk"></span>
+                              <span id="vehiskshow"><img src="../assets/img/show.png"  class="vehiskimg"></span></span>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="num">
+                              <span>ASR <span class="i18n" name="totalday"></span>：</span>
+                              <span class="vehiTotalASR"></span>
+                               <span class="i18n" name="degreeday"></span>：
+                              <span class="vehiRemainASR"></span>
+                          </div>
+                          <div class="num">
+                            <span>TTS <span class="i18n" name="totalday"></span>：</span>
+                            <span class="vehiTotalTTS"></span>
+                            <span class="i18n" name="degreeday"></span>：
+                            <span class="vehiRemainTTS"></span>
+                          </div>
+                        </div>
+                      </div>
                       
-                  </div>
+                    
+                  </div> -->
                 </div>
                 
                 <!-- <div class="key-box">

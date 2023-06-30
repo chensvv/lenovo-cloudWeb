@@ -207,6 +207,23 @@
       $('.login-reg').css("display","block")
     }
   })
+//   $.ajax({
+//     type:"POST",
+//     url:sdkurl+'/vehicle/userinfo',
+//     data:params,
+//     dataType:"json",
+//     headers: {
+//         "channel" : "cloudasr"
+//     },
+//     success:function(res){
+//         if($.isEmptyObject(res)){
+//           window.localStorage.setItem('vehi',0)
+//         }else{
+//           window.localStorage.setItem('vehi',1)
+//         }
+        
+//     }
+// })
     // }
   // console.log($('.ident').html(),Date.parse(new Date()) / 1000, localStorage.getItem('acd'))
 
@@ -223,6 +240,11 @@ if(window.localStorage.getItem('ms') == 1){
 }else{
   $('.ifshow').css('display','none')
 }
+// if(window.localStorage.getItem('vehi') == 1){
+//   $('.wsshow').css('display','block')
+// }else{
+//   $('.wsshow').css('display','none')
+// }
   
 // $(".nav-item").find("li").each(function () {
 //   var a = $(this).find("a:first")[0];

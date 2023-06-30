@@ -321,15 +321,15 @@
                 <tbody>
                     <tr>
                         <th scope="col">URL</th>
-                        <td colspan="3">https://voice.lenovomm.com/lasf/cloudtts</td>
+                        <td colspan="3">(https)：https://voice.lenovomm.com/lasf/cloudtts<br>(ws[s])：wss://voice.lenovomm.com/website/wscloudtts/</td>
                     </tr>
                     <tr>
                         <th scope="row" class="i18n" name="method"></th>
-                        <td colspan="3">POST</td>
+                        <td colspan="3">POST (https)</td>
                     </tr>
                     <tr>
                         <th scope="row" class="i18n" name="format"></th>
-                        <td colspan="3">application/x-www-form-urlencoded</td>
+                        <td colspan="3">application/x-www-form-urlencoded (https)</td>
                     </tr>
                     <tr>
                         <th scope="row" class="i18n" name="headers"></th>
@@ -422,6 +422,21 @@
                                         <td>String</td>
                                         <td class="i18n" name="no"></td>
                                         <td><span>speaker：说话人;<br> db4：女声 db2：男生; <br> 默认为：db4</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <span class="i18n" name="paramdesws"></span>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th scope="col" class="i18n" name="name"></th>
+                                    <th scope="col" class="i18n" name="describe"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">/wscloudtts/user/speed/volume/pitch/audioType/speaker/t1/token/t2/channel/lenovokey/secretkey</td>
+                                        <td scope="row">user:lenovoid；speed:语速(0-9)；volume:音量(0-9)；pitch:语调(0-9)；audioType:默认xxxx；speaker:说话人(db4:女声，db2:男声)；t1:lenovoid：token:token；t2:当前时间戳；channel:cloudasr；lenovokey:官网获取的lenovokey；secretkey:官网获取的secretkey；(lenovoid、lenovokey、secretkey以及合成文本须base64加密)</td>
                                     </tr>
                                 </tbody>
                             </table>

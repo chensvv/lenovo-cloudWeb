@@ -3259,8 +3259,7 @@ section {
 }
 
 .service-main .service-bg .con-main .check-box{
-  display: flex;
-  justify-content: space-around;
+  
 }
 .service-main .service-bg .con-main .check-box .num{
   padding-left: 20px;
@@ -3269,18 +3268,19 @@ section {
   margin-bottom: 15px;
   padding-left: 0;
   min-width: 440px;
-  box-shadow: rgb(0 0 0 / 15%) 2.4px 2.4px 3.2px;
-  padding: 10px 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  padding: 10px 0 10px 10px;
+
 }
-.service-main .service-bg .con-main .check-box .num .tit{
+/* .service-main .service-bg .con-main .check-box .num .tit{
   display: block;
-}
+} */
 .service-main .service-bg .con-main .check-box .num img{
   width: 25px;
   vertical-align: text-bottom;
   cursor: pointer;
 }
-.asrcheck +label, .ttscheck +label {
+.asrcheck +label, .ttscheck +label, .vehicheck +label {
   vertical-align: text-bottom;
   padding-left: 5px;
   font-size: 14px;
@@ -3547,7 +3547,7 @@ section {
 /*--------------------------------------------------------------
 # swal
 --------------------------------------------------------------*/
-.ifshow{
+.ifshow, .wsshow{
   display: none;
 }
 .control{

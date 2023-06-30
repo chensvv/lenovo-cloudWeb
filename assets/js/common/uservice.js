@@ -36,10 +36,9 @@ function lide(){
         $('.sub-btn').attr('disabled','true')
         $('.asrcheck').attr("checked","checked")
         $('.ttscheck').attr("checked","checked")
-        $('.vehicheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
         $('.ttscheck').attr("disabled","true")
-        $('.vehicheck').attr("disabled","true")
+        
         // $('.span1').css('display','block')
         // $('.span2').css('display','block')
         $('#channel').attr("readonly","readonly")
@@ -87,7 +86,7 @@ function submit(){
         }
         var params = {
             t:$.base64.decode(window.localStorage.getItem('token')),
-            lid:$.base64.decode(window.localStorage.getItem('acd')),
+            lid:window.localStorage.getItem('acd'),
             language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined || '' ? 'chinese': 'english',
             userService:checkArr,
             u:"",
@@ -268,25 +267,32 @@ function getUserInfo(){
             })
         }
     });
-    $.ajax({
-        type:"POST",
-        url:sdkurl+'/vehicle/userinfo',
-        data:infoParams,
-        dataType:"json",
-        headers: {
-            "channel" : "cloudasr"
-        },
-        success:function(res){
-            vehilenovokey = res.lenovokey
-            vehisecretkey = res.secretkey
-            $('.vehiak').html(res.lenovokey != '' ? hideStr(vehilenovokey) : '--')
-            $('.vehisk').html(res.secretkey != '' ? hideStr(vehisecretkey) : '--')
-            $('.vehiTotalTTS').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
-            $('.vehiRemainASR').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
-            $('.vehiTotalASR').html(res.totalASRAmount <= -99 ? '无限次' : res.totalASRAmount)
-            $('.vehiRemainTTS').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
-        }
-    })
+    // $.ajax({
+    //     type:"POST",
+    //     url:sdkurl+'/vehicle/userinfo',
+    //     data:infoParams,
+    //     dataType:"json",
+    //     headers: {
+    //         "channel" : "cloudasr"
+    //     },
+    //     success:function(res){
+    //         if($.isEmptyObject(res)){
+
+    //         }else{
+    //             $('.vehicheck').attr("checked","checked")
+    //             $('.vehicheck').attr("disabled","true")
+    //             vehilenovokey = res.lenovokey
+    //             vehisecretkey = res.secretkey
+    //             $('.vehiak').html(res.lenovokey != '' ? hideStr(vehilenovokey) : '--')
+    //             $('.vehisk').html(res.secretkey != '' ? hideStr(vehisecretkey) : '--')
+    //             $('.vehiTotalTTS').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
+    //             $('.vehiRemainASR').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
+    //             $('.vehiTotalASR').html(res.totalASRAmount <= -99 ? '无限次' : res.totalASRAmount)
+    //             $('.vehiRemainTTS').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
+    //         }
+            
+    //     }
+    // })
 }
 
 $('#channel').bind("input propertychange", function(){
@@ -299,14 +305,14 @@ let asrak = document.getElementById('asrak')
 let asrsk = document.getElementById('asrsk')
 let ttsak = document.getElementById('ttsak')
 let ttssk = document.getElementById('ttssk')
-let vehiak = document.getElementById('vehiak')
-let vehisk = document.getElementById('vehisk')
+// let vehiak = document.getElementById('vehiak')
+// let vehisk = document.getElementById('vehisk')
 let asrakbtn = document.getElementById('asrakshow')
 let asrskbtn = document.getElementById('asrskshow')
 let ttsakbtn = document.getElementById('ttsakshow')
 let ttsskbtn = document.getElementById('ttsskshow')
-let vehiakbtn = document.getElementById('vehiakshow')
-let vehiskbtn = document.getElementById('vehiskshow')
+// let vehiakbtn = document.getElementById('vehiakshow')
+// let vehiskbtn = document.getElementById('vehiskshow')
 
 asrakbtn.onclick = function(){
     asrak.innerHTML = asrak.innerHTML === hideStr(lenovokey) ? lenovokey : hideStr(lenovokey)
@@ -324,11 +330,11 @@ ttsskbtn.onclick = function(){
     ttssk.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? secretkey : hideStr(secretkey)
     ttsskbtn.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
 }
-vehiakbtn.onclick = function(){
-    vehiak.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? vehilenovokey : hideStr(vehilenovokey)
-    vehiakbtn.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
-}
-vehiskbtn.onclick = function(){
-    vehisk.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? vehisecretkey : hideStr(vehisecretkey)
-    vehiskbtn.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
-}
+// vehiakbtn.onclick = function(){
+//     vehiak.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? vehilenovokey : hideStr(vehilenovokey)
+//     vehiakbtn.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+// }
+// vehiskbtn.onclick = function(){
+//     vehisk.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? vehisecretkey : hideStr(vehisecretkey)
+//     vehiskbtn.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+// }

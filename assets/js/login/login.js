@@ -2,7 +2,7 @@
   var c = 60
   var reguuid
   var loginuuid
-  var checkedId = 1
+//   var checkedId = 1
 !(function($){
     function aos_init() {
         AOS.init({
@@ -81,17 +81,45 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('us',res.userService)
                     window.localStorage.setItem('ms',res.meetingService)
                     window.localStorage.setItem('ch',$.base64.encode(res.channel))
-                    // var param = {
-                    //     'acd':$.base64.encode(res.lenovoId),
-                    //     'lk':$.base64.encode(res.lenovoKey),
-                    //     'sk':$.base64.encode(res.secretKey),
-                    //     'p':$.base64.encode($('#login-password').val()),
-                    //     'un':res.userName,
-                    //     'token':res.token,
-                    //     'us':res.userService,
-                    //     'ms':res.meetingService
-                    // }
-                    // window.localStorage.setItem('data',JSON.stringify(param))
+                    // var infoParams = {
+                    //     username:$.base64.decode(window.localStorage.getItem('un')),
+                    //     lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
+                    //     t:$.base64.decode(window.localStorage.getItem('token')),
+                    //     u:"",
+                    //     p:"",
+                    //     language:"",
+                    //     phone:"",
+                    //     company:"",
+                    //     dept:"",
+                    //     lid:"",
+                    //     opwd:"",
+                    //     pwd:"",
+                    //     userService:"",
+                    //     code:"",
+                    //     imgCode:"",
+                    //     ucode:"",
+                    //     channel:""
+                    //   }
+                    //   var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+                
+                    //   infoParams.sign = md5(stringParams)
+                    // $.ajax({
+                    //     type:"POST",
+                    //     url:sdkurl+'/vehicle/userinfo',
+                    //     data:infoParams,
+                    //     dataType:"json",
+                    //     headers: {
+                    //         "channel" : "cloudasr"
+                    //     },
+                    //     success:function(res){
+                    //         if($.isEmptyObject(res)){
+                    //           window.localStorage.setItem('vehi',0)
+                    //         }else{
+                    //           window.localStorage.setItem('vehi',1)
+                    //         }
+                            
+                    //     }
+                    // })
                     if(window.localStorage.getItem('returnurl') != null){
                         window.location.href = window.localStorage.getItem('returnurl')
                     }else{
@@ -128,12 +156,12 @@ $('#loginBtn').click(function(){
 $('#regbtn').click(function(){
     $('#reg-loading').show()
     $('#regbtn').attr('disabled','true')
-    if(checkedId == 1){
+    // if(checkedId == 1){
         regVoice()
-    }else{
-        regVoice()
-        regVehi()
-    }
+    // }else{
+    //     regVoice()
+        // regVehi()
+    // }
         
 })
 
@@ -273,7 +301,7 @@ $('#login-password').on('input',function(){
 
 $('#nextbtn').on('click',function(){
     if(getStyle(document.getElementById('dep'), 'display') == 'none'){
-        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && checkedId != ''){
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany()){ // 车载判断加在后面 && checkedId != ''
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
             $('.ac').addClass('active')
@@ -283,7 +311,7 @@ $('#nextbtn').on('click',function(){
             return false
         }
     }else{
-        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && regDep() && checkedId != ''){
+        if(regEmail() && regPhone() && regPwd() && regCheckpwd() && regName() && regCompany() && regDep()){ //  && checkedId != ''
             $('#mustInfo').css('display','none')
             $('#basicInfo').css('display','block')
             $('#val-email').val($('#reg-email').val())
@@ -309,13 +337,13 @@ $('#nextbtnm').on('click',function(){
     
 })
     
-$('#vehi').change(function(){
-    if($('#vehi').is(':checked')){
-        checkedId = 2
-    }else{
-        checkedId = 1
-    }
-})
+// $('#vehi').change(function(){
+//     if($('#vehi').is(':checked')){
+//         checkedId = 2
+//     }else{
+//         checkedId = 1
+//     }
+// })
     
 function regEmail(){
     var emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
