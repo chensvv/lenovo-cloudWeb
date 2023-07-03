@@ -86,7 +86,7 @@ function submit(){
         }
         var params = {
             t:$.base64.decode(window.localStorage.getItem('token')),
-            lid:window.localStorage.getItem('acd'),
+            lid:$.base64.decode(localStorage.getItem('acd')),
             language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined || '' ? 'chinese': 'english',
             userService:checkArr,
             u:"",

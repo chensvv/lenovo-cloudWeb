@@ -20,8 +20,8 @@ var statu
 
 function toggleRecording(e){
     if (userToken == "" || userToken == null) {
-        // $('.hint-sp-left').css("display","none");
-        // $('#statusU').css("display","block");
+        $('.hint-sp-left').css("display","none");
+        $('#statusU').css("display","block");
         Swal.fire({
             text: $.i18n.prop('logTimeOut'),
             showCancelButton: true,
@@ -43,18 +43,18 @@ function toggleRecording(e){
     }else{
         if (e.classList.contains("recordm")) {
             e.classList.remove("recordm");
-            ws.send([])
+            // ws.send(new Blob([ ]))
             $('.line-box').css('display','none')
             $('.mic').css('display','inline-block')
             $('.record-btn').removeClass('recording')
             $('.mic-btn').html($.i18n.prop('start'))
             recStop()
         }else{
-            console.log(1)
             if(localStorage.getItem('us') == 1 || localStorage.getItem('us') == 3){
                 e.classList.add("recordm");
-                // $('.result-box').css('display','none')
-                getIxid(e)
+                $('.result-box').css('display','none')
+                // getIxid(e)
+                recOpen()
             }else{
                 Swal.fire({
                     text: $.i18n.prop('service_not_open'),
@@ -170,7 +170,7 @@ function getIxid(e){
             //     sample:"1",
             //     audioFormat:`pcm_${$selectSamp.val()}_16bit_sample`
             // }
-            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$("#selectLang input:radio:checked").val()}/pcm_${$("#selectSamp input:radio:checked").val()}_16bit_sample/cmd`
+            path = `${uri}${localStorage.getItem('un')}/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}/${res}/${$("#selectLang input:radio:checked").val()}/pcm_${$("#selectSamp input:radio:checked").val()}_16bit_sample/long`
             // path = `${uri}${$.base64.encode(JSON.stringify(params))}`
             socket(e)
         }
@@ -186,21 +186,21 @@ function recOpen(success){
         bufferSize: 4096,
         onProcess:function(buffers,powerLevel,bufferDuration,bufferSampleRate){
             // wave.input(buffers[buffers.length-1],powerLevel,bufferSampleRate);//输入音频数据，更新显示波形
-            chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
-            let buf = chunkInfo.data
-            if (pidx == 1) {
-                let buf2 = [];
-                if($("#selectSamp input:radio:checked").val() == '8000'){
-                    buf2.unshift(1, 0, 0, 0);
-                }else{
-                    buf2.unshift(5, 0, 0, 0);
-                }
-                var buf4 = new Int16Array(buf2);
-                pidx++
-            } else {
-                var buf4 = buf;
-            }
-            ws.send(new Blob([buf4]))
+            // chunkInfo = Recorder.SampleData(buffers, bufferSampleRate, rec.set.sampleRate, chunkInfo);
+            // let buf = chunkInfo.data
+            // if (pidx == 1) {
+            //     let buf2 = [];
+            //     if($("#selectSamp input:radio:checked").val() == '8000'){
+            //         buf2.unshift(1, 0, 0, 0);
+            //     }else{
+            //         buf2.unshift(5, 0, 0, 0);
+            //     }
+            //     var buf4 = new Int16Array(buf2);
+            //     pidx++
+            // } else {
+            //     var buf4 = buf;
+            // }
+            // ws.send(new Blob([buf4]))
         }
     });
 
@@ -210,7 +210,10 @@ function recOpen(success){
         chunkInfo = null
         $('.result-box').css('display','none')
         $('.hint-sp-left').css("display","block");
-        
+        $('.record-btn').addClass('recording')
+        $('.hint-sp-left').html($.i18n.prop('speak'))
+        $('.mic').css('display','none')
+        $('.line-box').css("display","inline-block");
         // wave=Recorder.WaveView({
         //     elem:".viz" //自动显示到dom，并以此dom大小为显示大小
         //         //或者配置显示大小，手动把waveviewObj.elem显示到别的地方
@@ -257,7 +260,7 @@ function recStop(){
         if(statu != 1){
             $('.hint-sp-left').html($.i18n.prop('recogVoice'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-            ws.close()
+            // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
             rec=null;
         }else{
@@ -268,76 +271,74 @@ function recStop(){
             $('.hint-sp-left').html($.i18n.prop('Miclick'));
             $('.mic-btn').html($.i18n.prop('start'))
             // console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-            ws.close()
+            // ws.close()
             rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
             rec=null;
         }
         
-        // var reader = new FileReader();
-        // reader.readAsArrayBuffer(blob, 'utf-8');
-        // reader.onload = function (e) {
-        //     var buf = new Uint16Array(reader.result);
-        //     var buf2=[];
-        //     Object.assign(buf2,buf);
-        //     if($selectSamp.val() == '8000'){
-        //         buf2.unshift(1, 0, 0, 0);
-        //     }else{
-        //         buf2.unshift(5, 0, 0, 0);
-        //     }
-        //     // buf2.unshift(5,0,0,0);
-        //     var buf4=new Uint16Array(buf2);
-        //     console.log(buf4)
-        //     ws.send(new Blob([buf4]))
-            // ws.close()
-            // var formData = new FormData();
-            // var ixid  = new Date().getTime();
-            // formData.append("scene", 'short');
-            // formData.append("language", $selectLang.val());
-            // formData.append("sample", '1');
-            // formData.append("audioFormat", 'pcm_'+$selectSamp.val()+'_16bit_sample');
-            // formData.append("sessionid", ixid);
-            // formData.append("packageid", "1");
-            // formData.append("over", "1");
-            // formData.append("voice-data", new Blob([buf4]));
-            // $.ajax({
-            //     url:urlInfo,
-            //     type:'post',
-            //     data:formData,
-            //     headers:{
-            //         'channel':'cloudasr',
-            //         'lenovokey':lenkey,
-            //         'secretkey': secrkey
-            //     },
-            //     processData: false,
-            //     contentType: false,
-            //     success:(res)=>{
-            //         $('#statusD').css('display','none')
-            //         $('.result-box').css('display','block')
-            //         $('#allDur').html(res.allDur)
-            //         $('#asrDur').html(res.asrDur)
-            //         $('#asrVersion').html(res.asrVersion)
-            //         $('#confidence').html(res.confidence)
-            //         $('#desc').html(res.desc)
-            //         $('#nConf').html(res.nConf)
-            //         $('#nText').html(res.nText)
-            //         $('#nlpVersion').html(res.nlpVersion)
-            //         $('#rawText').html(res.rawText)
-            //         $('#result').html(res.result)
-            //         $('#status').html(res.status)
-            //         $('#time').html(res.time)
-            //         $('.result-input').val(res.rawText)
-            //     },
-            //     error:function(){
-            //         Swal.fire({
-            //             text:$.i18n.prop('server_error'),
-            //             confirmButtonText: $.i18n.prop('confirm'),
-            //             confirmButtonColor: '#94cb82'
-            //         })
-            //     }
-            // })
-        // }
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(blob, 'utf-8');
+        reader.onload = function (e) {
+            var buf = new Uint16Array(reader.result);
+            var buf2=[];
+            Object.assign(buf2,buf);
+            if($selectSamp.val() == '8000'){
+                buf2.unshift(1, 0, 0, 0);
+            }else{
+                buf2.unshift(5, 0, 0, 0);
+            }
+            // buf2.unshift(5,0,0,0);
+            var buf4=new Uint16Array(buf2)
+            var formData = new FormData();
+            var ixid  = new Date().getTime();
+            formData.append("scene", 'short');
+            formData.append("language", $selectLang.val());
+            formData.append("sample", '1');
+            formData.append("audioFormat", 'pcm_'+$selectSamp.val()+'_16bit_sample');
+            formData.append("sessionid", ixid);
+            formData.append("packageid", "1");
+            formData.append("over", "1");
+            formData.append("voice-data", new Blob([buf4]));
+            $.ajax({
+                url:urlInfo,
+                type:'post',
+                data:formData,
+                headers:{
+                    'channel':'cloudasr',
+                    'lenovokey':lenkey,
+                    'secretkey': secrkey
+                },
+                processData: false,
+                contentType: false,
+                success:(res)=>{
+                    $('#statusD').css('display','none')
+                    $('.hint-sp-left').css('display','none')
+                    $('.result-box').css('display','block')
+                    $('#allDur').html(res.allDur)
+                    $('#asrDur').html(res.asrDur)
+                    $('#asrVersion').html(res.asrVersion)
+                    $('#confidence').html(res.confidence)
+                    $('#desc').html(res.desc)
+                    $('#nConf').html(res.nConf)
+                    $('#nText').html(res.nText)
+                    $('#nlpVersion').html(res.nlpVersion)
+                    $('#rawText').html(res.rawText)
+                    $('#result').html(res.result)
+                    $('#status').html(res.status)
+                    $('#time').html(res.time)
+                    $('.result-input').val(res.rawText)
+                },
+                error:function(){
+                    Swal.fire({
+                        text:$.i18n.prop('server_error'),
+                        confirmButtonText: $.i18n.prop('confirm'),
+                        confirmButtonColor: '#94cb82'
+                    })
+                }
+            })
+        }
     },function(msg){
-        ws.close()
+        // ws.close()
         rec.close();//可以通过stop方法的第3个参数来自动调用close
         rec=null;
         Swal.fire({

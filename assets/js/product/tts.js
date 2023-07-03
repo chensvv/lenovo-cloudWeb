@@ -12,7 +12,7 @@ var uri = 'wss://voice.lenovomm.com/website/wscloudtts/'
 var rangeval
 var ws
 var aBlob
-var files = []
+// var files = []
 $('#tts-loading').hide()
 
 function voicePlay(){
@@ -50,19 +50,10 @@ function voicePlay(){
     }else{
         if(localStorage.getItem('us') == 2 || localStorage.getItem('us') == 3){
           
-            // getData()
-            // if(ws.readyState != 1){
-            //   Swal.fire({
-            //     text:$.i18n.prop('server_error'),
-            //     confirmButtonText: $.i18n.prop('confirm'),
-            //     confirmButtonColor: '#94cb82'
-            //   })
-            // }else{
-              files = []
-              socket()
+            getData()
+              // files = []
+              // socket()
               
-              
-            // }
         }else{
             Swal.fire({
                 text: $.i18n.prop('service_not_open'),
@@ -186,54 +177,55 @@ $("#seletype li").click(function(e) {
 // socket()
 // console.log(ws)
 
-function socket (e) {
-  // /wscloudtts/{user}/{speed}/{volume}/{pitch}/{audioType}/{speaker}/{t1}/{token}/{t2}/{channel}/{lenovokey}/{secretkey}
-  var path = `${uri}${accountid}/${document.getElementById('myrange').value}/${document.getElementById('myvol').value}/${document.getElementById('mypitch').value}/xxxx/${$('#seletype .active')[0].id}/${accountid}/token/${new Date().getTime()}/cloudasr/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}`
-  ws = new WebSocket(path)
-  ws.onopen = function(){
-      console.log('ws已连接')
-      $('#tts-loading').show()
-      $('.voice-play').css('display','none')
-      $('.voice-pause').css('display','none')
-      $('.voice-keep').css('display','none')
-      ws.send(BASE64.encode($('#textarea').val()))
-  }
-  ws.onerror = function(error){
-      Swal.fire({
-          text:$.i18n.prop('server_error'),
-          confirmButtonText: $.i18n.prop('confirm'),
-          confirmButtonColor: '#94cb82'
-      })
-  }
-  ws.onmessage = function(res){
-    if(typeof(res.data) == 'object'){
-      if(res.data.size !=0){
-        files.push(res.data)
-      }else{
-        $('#tts-loading').hide()
-        $('.voice-play').css('display','none')
-        $('.voice-pause').css('display','block')
-        aBlob = new Blob(files)
-        bgm.src = URL.createObjectURL(aBlob);
-      }
-    }else{
-      $('#tts-loading').hide()
-      $('.voice-play').css('display','block')
-      $('.voice-pause').css('display','none')
-      Swal.fire({
-        text:$.i18n.prop('server_error'),
-        confirmButtonText: $.i18n.prop('confirm'),
-        confirmButtonColor: '#94cb82'
-      })
-    }
-  },
-  ws.onclose = function(){
-      console.log('closed')
-  }
-}
+// function socket (e) {
+//   // /wscloudtts/{user}/{speed}/{volume}/{pitch}/{audioType}/{speaker}/{t1}/{token}/{t2}/{channel}/{lenovokey}/{secretkey}
+//   var path = `${uri}${accountid}/${document.getElementById('myrange').value}/${document.getElementById('myvol').value}/${document.getElementById('mypitch').value}/xxxx/${$('#seletype .active')[0].id}/${accountid}/token/${new Date().getTime()}/cloudasr/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}`
+//   ws = new WebSocket(path)
+//   ws.onopen = function(){
+//       console.log('ws已连接')
+//       $('#tts-loading').show()
+//       $('.voice-play').css('display','none')
+//       $('.voice-pause').css('display','none')
+//       $('.voice-keep').css('display','none')
+//       ws.send(BASE64.encode($('#textarea').val()))
+//   }
+//   ws.onerror = function(error){
+//       Swal.fire({
+//           text:$.i18n.prop('server_error'),
+//           confirmButtonText: $.i18n.prop('confirm'),
+//           confirmButtonColor: '#94cb82'
+//       })
+//   }
+//   ws.onmessage = function(res){
+//     if(typeof(res.data) == 'object'){
+//       if(res.data.size !=0){
+//         files.push(res.data)
+//       }else{
+//         $('#tts-loading').hide()
+//         $('.voice-play').css('display','none')
+//         $('.voice-pause').css('display','block')
+//         aBlob = new Blob(files)
+//         bgm.src = URL.createObjectURL(aBlob);
+//       }
+//     }else{
+//       $('#tts-loading').hide()
+//       $('.voice-play').css('display','block')
+//       $('.voice-pause').css('display','none')
+//       Swal.fire({
+//         text:$.i18n.prop('server_error'),
+//         confirmButtonText: $.i18n.prop('confirm'),
+//         confirmButtonColor: '#94cb82'
+//       })
+//     }
+//   },
+//   ws.onclose = function(){
+//       console.log('closed')
+//   }
+// }
 
 
 function getData(){
+  $('#tts-loading').show()
     var req = new XMLHttpRequest();
     var formData = 'text='+encodeURI($('#textarea').val())+'&user='+accountid+
                   '&speed='+document.getElementById('myrange').value+
