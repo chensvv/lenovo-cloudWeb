@@ -12,24 +12,20 @@ function lide(){
         if(window.localStorage.getItem('us') == 1){
             $('.asrcheck').attr("checked","checked")
             $('.asrcheck').attr("disabled","true")
-            // $('.span1').css('display','block')
-            // $('.span2').css('display','none')
-            // $('#channel').attr("readonly","readonly")
             $('.ttsakimg').css('display','none')
             $('.ttsskimg').css('display','none')
             $('.asrakimg').css('display','inline-block')
             $('.asrskimg').css('display','inline-block')
+            $('.asrpro').css('display','flex')
         }
         if(window.localStorage.getItem('us') == 2){
             $('.ttscheck').attr("checked","checked")
             $('.ttscheck').attr("disabled","true")
-            // $('.span1').css('display','none')
-            // $('.span2').css('display','block')
-            // $('#channel').attr("readonly","readonly")
             $('.asrakimg').css('display','none')
             $('.asrskimg').css('display','none')
             $('.ttsakimg').css('display','inline-block')
             $('.ttsskimg').css('display','inline-block')
+            $('.ttspro').css('display','flex')
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
@@ -38,22 +34,24 @@ function lide(){
         $('.ttscheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
         $('.ttscheck').attr("disabled","true")
-        
-        // $('.span1').css('display','block')
-        // $('.span2').css('display','block')
         $('#channel').attr("readonly","readonly")
         $('.asrakimg').css('display','inline-block')
         $('.asrskimg').css('display','inline-block')
         $('.ttsakimg').css('display','inline-block')
         $('.ttsskimg').css('display','inline-block')
+        $('.asrpro').css('display','flex')
+        $('.ttspro').css('display','flex')
     }else{
-        // $('.span1').css('display','none')
-        // $('.span2').css('display','none')
         $('#channel').removeAttr("readonly")
         $('.asrakimg').css('display','none')
         $('.asrskimg').css('display','none')
         $('.ttsakimg').css('display','none')
         $('.ttsskimg').css('display','none')
+    }
+    if(window.localStorage.getItem('hasVehicle') == 'true'){
+        $('.vehi-box').css('display','block')
+        $('.vehicheck').attr("checked","checked")
+        $('.vehicheck').attr("disabled","true")
     }
 }
 
@@ -67,7 +65,6 @@ function lide(){
 //         $('.iftts').css('display','block')
 //     }
 // }
-
 function submit(){
     $('#userver-loading').show()
     $('.sub-btn').attr('disabled','disabled')
@@ -101,10 +98,10 @@ function submit(){
             code:"",
             imgCode:"",
             ucode:"",
+            vehicle:"",
             channel:$('#channel').val()
         }
         var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
-        console.log(stringParams)
         params.sign = md5(stringParams)
         $.ajax({
           type:"POST",
@@ -208,7 +205,8 @@ function getUserInfo(){
         code:"",
         imgCode:"",
         ucode:"",
-        channel:""
+        channel:"",
+        vehicle:""
       }
       var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
 
@@ -227,6 +225,10 @@ function getUserInfo(){
                 window.localStorage.setItem('us',res.userService)
                 lenovokey = res.lenovokey
                 secretkey = res.secretkey
+                vehilenovokey = res.vehicleLenovokey
+                vehisecretkey = res.vehicleSecretkey
+                $('.vehiak').html(res.vehicleLenovokey != undefined ? hideStr(vehilenovokey) : '--')
+                $('.vehisk').html(res.vehicleSecretkey != undefined ? hideStr(vehisecretkey) : '--')
                 $('.asrak').html(res.userService == '3' || res.userService == '1' ? hideStr(lenovokey) : '--')
                 $('.asrsk').html(res.userService == '3' || res.userService == '1' ? hideStr(secretkey) : '--')
                 $('.ttsak').html(res.userService == '3' || res.userService == '2' ? hideStr(lenovokey) : '--')
@@ -237,6 +239,10 @@ function getUserInfo(){
                 $('.totalTTSAmount').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
                 $('.remainASRAmount').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
                 $('.remainTTSAmount').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
+                $('.vehiTotalTTS').html(res.vehicleTotalTTSAmount <= -99 ? '无限次' : res.vehicleTotalTTSAmount)
+                $('.vehiRemainASR').html(res.vehicleRemainASRAmount <= -99 ? '无限次' : res.vehicleRemainASRAmount)
+                $('.vehiTotalASR').html(res.vehicleTotalASRAmount <= -99 ? '无限次' : res.vehicleTotalASRAmount)
+                $('.vehiRemainTTS').html(res.vehicleRemainTTSAmount <= -99 ? '无限次' : res.vehicleRemainTTSAmount)
                 lide()
             }else{
                 window.localStorage.clear();
@@ -266,53 +272,27 @@ function getUserInfo(){
                 confirmButtonColor: '#94cb82'
             })
         }
-    });
-    // $.ajax({
-    //     type:"POST",
-    //     url:sdkurl+'/vehicle/userinfo',
-    //     data:infoParams,
-    //     dataType:"json",
-    //     headers: {
-    //         "channel" : "cloudasr"
-    //     },
-    //     success:function(res){
-    //         if($.isEmptyObject(res)){
-
-    //         }else{
-    //             $('.vehicheck').attr("checked","checked")
-    //             $('.vehicheck').attr("disabled","true")
-    //             vehilenovokey = res.lenovokey
-    //             vehisecretkey = res.secretkey
-    //             $('.vehiak').html(res.lenovokey != '' ? hideStr(vehilenovokey) : '--')
-    //             $('.vehisk').html(res.secretkey != '' ? hideStr(vehisecretkey) : '--')
-    //             $('.vehiTotalTTS').html(res.totalTTSAmount <= -99 ? '无限次' : res.totalTTSAmount)
-    //             $('.vehiRemainASR').html(res.remainASRAmount <= -99 ? '无限次' : res.remainASRAmount)
-    //             $('.vehiTotalASR').html(res.totalASRAmount <= -99 ? '无限次' : res.totalASRAmount)
-    //             $('.vehiRemainTTS').html(res.remainTTSAmount <= -99 ? '无限次' : res.remainTTSAmount)
-    //         }
-            
-    //     }
-    // })
+    })
 }
 
 $('#channel').bind("input propertychange", function(){
     $('#body-num').html($('#channel').val().length)
 })
 function hideStr(str){
-        return str.substring(0,6) + "******"
+    return str.substring(0,6) + "******"
 }
 let asrak = document.getElementById('asrak')
 let asrsk = document.getElementById('asrsk')
 let ttsak = document.getElementById('ttsak')
 let ttssk = document.getElementById('ttssk')
-// let vehiak = document.getElementById('vehiak')
-// let vehisk = document.getElementById('vehisk')
+let vehiak = document.getElementById('vehiak')
+let vehisk = document.getElementById('vehisk')
 let asrakbtn = document.getElementById('asrakshow')
 let asrskbtn = document.getElementById('asrskshow')
 let ttsakbtn = document.getElementById('ttsakshow')
 let ttsskbtn = document.getElementById('ttsskshow')
-// let vehiakbtn = document.getElementById('vehiakshow')
-// let vehiskbtn = document.getElementById('vehiskshow')
+let vehiakbtn = document.getElementById('vehiakshow')
+let vehiskbtn = document.getElementById('vehiskshow')
 
 asrakbtn.onclick = function(){
     asrak.innerHTML = asrak.innerHTML === hideStr(lenovokey) ? lenovokey : hideStr(lenovokey)
@@ -330,11 +310,11 @@ ttsskbtn.onclick = function(){
     ttssk.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? secretkey : hideStr(secretkey)
     ttsskbtn.innerHTML = ttssk.innerHTML === hideStr(secretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
 }
-// vehiakbtn.onclick = function(){
-//     vehiak.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? vehilenovokey : hideStr(vehilenovokey)
-//     vehiakbtn.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
-// }
-// vehiskbtn.onclick = function(){
-//     vehisk.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? vehisecretkey : hideStr(vehisecretkey)
-//     vehiskbtn.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
-// }
+vehiakbtn.onclick = function(){
+    vehiak.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? vehilenovokey : hideStr(vehilenovokey)
+    vehiakbtn.innerHTML = vehiak.innerHTML === hideStr(vehilenovokey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}
+vehiskbtn.onclick = function(){
+    vehisk.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? vehisecretkey : hideStr(vehisecretkey)
+    vehiskbtn.innerHTML = vehisk.innerHTML === hideStr(vehisecretkey) ? '<img src="../assets/img/show.png">' : '<img src="../assets/img/hide.png">'
+}

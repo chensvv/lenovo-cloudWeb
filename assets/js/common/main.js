@@ -162,6 +162,8 @@
     $('.login-reg').css("display","none")
     $('.username').html(hideStar($.base64.decode(window.localStorage.getItem('un'))))
   }
+  getUserinfo()
+function getUserinfo(){
   var params = {
     username:$.base64.decode(window.localStorage.getItem('un')),
     lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
@@ -179,7 +181,8 @@
     code:"",
     imgCode:"",
     ucode:"",
-    channel:""
+    channel:"",
+    vehicle:""
   }
   var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
   params.sign = md5(stringParams)
@@ -207,24 +210,7 @@
       $('.login-reg').css("display","block")
     }
   })
-//   $.ajax({
-//     type:"POST",
-//     url:sdkurl+'/vehicle/userinfo',
-//     data:params,
-//     dataType:"json",
-//     headers: {
-//         "channel" : "cloudasr"
-//     },
-//     success:function(res){
-//         if($.isEmptyObject(res)){
-//           window.localStorage.setItem('vehi',0)
-//         }else{
-//           window.localStorage.setItem('vehi',1)
-//         }
-        
-//     }
-// })
-    // }
+}
   // console.log($('.ident').html(),Date.parse(new Date()) / 1000, localStorage.getItem('acd'))
 
   function hideStar(str){
@@ -240,21 +226,6 @@ if(window.localStorage.getItem('ms') == 1){
 }else{
   $('.ifshow').css('display','none')
 }
-// if(window.localStorage.getItem('vehi') == 1){
-//   $('.wsshow').css('display','block')
-// }else{
-//   $('.wsshow').css('display','none')
-// }
-  
-// $(".nav-item").find("li").each(function () {
-//   var a = $(this).find("a:first")[0];
-//   if ($(a).attr("href").replace('..','') === location.pathname || $(a).attr("href").replace('..','') === location.pathname.replace('/voicePlatform','')) {
-//       $(this).parents("li").addClass("open");
-//       $(this).addClass("active");
-//   } else {
-//       $(this).removeClass("active");
-//   }
-// });
   
 })(jQuery);
 
@@ -276,44 +247,6 @@ function gologin(){
   window.localStorage.setItem('returnurl',url)
   window.location.href = languri+'login/login.html'
 }
-
-// function isLang(){
-//   if(window.localStorage.getItem('ehiI18n.Language') == 'zh' || window.localStorage.getItem('ehiI18n.Language') == '' || window.localStorage.getItem('ehiI18n.Language') == 'null' || window.localStorage.getItem('ehiI18n.Language') == undefined){
-//     i18n.setLanguage('us')
-//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans.png')
-//     // console.log("en===============")
-//   }else if(window.localStorage.getItem('ehiI18n.Language') == 'us'){
-//     i18n.setLanguage('zh')
-//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/trans2.png')
-//     // console.log("中文===============")
-//   }
-// }
-// function isLang(){
-//   if(getCookies(document.cookie) == 'zh' || getCookies(document.cookie) == '' || getCookies(document.cookie) == 'null' || getCookies(document.cookie) == undefined){
-//     i18n.setLanguage('us')
-//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/en_US.png')
-//     // console.log("en===============")
-//   }else if(getCookies(document.cookie) == 'us'){
-//     i18n.setLanguage('zh')
-//     $('.trans').attr('src','https://voice.lenovomm.com/voicePlatform/assets/img/zh_CN.png')
-//     // console.log("中文===============")
-//   }
-// }
 function goback(){
   window.history.go(-1)
 }
-
-// function getCookies(s){
-//   var str = s;
-//   //将值切割成数组
-//   var arr = str.split(";");
-//   var userid;
-//   //遍历数组
-//   for(var i=0;i<arr.length;i++){
-//       var value = arr[i].split("=");
-//       if(value[0] == 'ehiI18n.Language'){
-//           userid = value[1];
-//       }
-//   }
-//   return userid
-// }

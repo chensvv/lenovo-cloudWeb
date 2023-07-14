@@ -56,7 +56,8 @@ $('.reset-btn').click(function(){
             code:"",
             imgCode:"",
             ucode:"",
-            channel:""
+            channel:"",
+            vehicle:""
         }
         var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         regParams.sign = md5(stringParams)
@@ -71,7 +72,7 @@ $('.reset-btn').click(function(){
                 if(res.status == 0){
                     localStorage.clear();
                     Swal.fire({
-                        text: $.i18n.prop('logTimeOut'),
+                        text: $.i18n.prop('check_success'),
                         showCancelButton: true,
                         allowOutsideClick:false,
                         allowEscapeKey:false,
@@ -86,6 +87,9 @@ $('.reset-btn').click(function(){
                           var url = window.location.href
                           window.localStorage.setItem('returnurl',url)
                           window.location.href = '../login/login.html'
+                        }else{
+                            $('.user').css("display","none")
+                            $('.login-reg').css("display","block")
                         }
                       })
                 }else{
@@ -106,6 +110,8 @@ $('.reset-btn').click(function(){
                           var url = window.location.href
                           window.localStorage.setItem('returnurl',url)
                           window.location.href = '../login/login.html'
+                        }else{
+
                         }
                       })
                 }
@@ -114,6 +120,8 @@ $('.reset-btn').click(function(){
                 $('#reset-loading').hide()
                 $('.reset-btn').removeAttr('disabled','disabled')
                 Swal.fire({
+                    allowOutsideClick:false,
+                    allowEscapeKey:false,
                     text:$.i18n.prop('server_error'),
                     confirmButtonText: $.i18n.prop('confirm'),
                     confirmButtonColor: '#94cb82'

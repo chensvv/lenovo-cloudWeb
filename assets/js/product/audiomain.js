@@ -80,7 +80,7 @@ function toggleRecording(e){
 function socket (e) {
     ws = new WebSocket(path)
     ws.onopen = function(){
-        console.log('ws已连接')
+        // console.log('ws已连接')
         recOpen()
         $('.mic').css('display','none')
         $('.line-box').css("display","inline-block");

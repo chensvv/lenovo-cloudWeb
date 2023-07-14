@@ -15,7 +15,8 @@ var params = {
   code:"",
   imgCode:"",
   ucode:"",
-  channel:""
+  channel:"",
+  vehicle:""
 }
 var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
 params.sign = md5(stringParams)

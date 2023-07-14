@@ -2,7 +2,6 @@
   var c = 60
   var reguuid
   var loginuuid
-//   var checkedId = 1
 !(function($){
     function aos_init() {
         AOS.init({
@@ -59,7 +58,8 @@ $('#loginBtn').click(function(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:""
+            channel:"",
+            vehicle:""
         }
         var stringParams = JSON.stringify(loginParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         loginParams.sign = md5(stringParams)
@@ -81,45 +81,7 @@ $('#loginBtn').click(function(){
                     window.localStorage.setItem('us',res.userService)
                     window.localStorage.setItem('ms',res.meetingService)
                     window.localStorage.setItem('ch',$.base64.encode(res.channel))
-                    // var infoParams = {
-                    //     username:$.base64.decode(window.localStorage.getItem('un')),
-                    //     lenovoid:$.base64.decode(window.localStorage.getItem('acd')),
-                    //     t:$.base64.decode(window.localStorage.getItem('token')),
-                    //     u:"",
-                    //     p:"",
-                    //     language:"",
-                    //     phone:"",
-                    //     company:"",
-                    //     dept:"",
-                    //     lid:"",
-                    //     opwd:"",
-                    //     pwd:"",
-                    //     userService:"",
-                    //     code:"",
-                    //     imgCode:"",
-                    //     ucode:"",
-                    //     channel:""
-                    //   }
-                    //   var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
-                
-                    //   infoParams.sign = md5(stringParams)
-                    // $.ajax({
-                    //     type:"POST",
-                    //     url:sdkurl+'/vehicle/userinfo',
-                    //     data:infoParams,
-                    //     dataType:"json",
-                    //     headers: {
-                    //         "channel" : "cloudasr"
-                    //     },
-                    //     success:function(res){
-                    //         if($.isEmptyObject(res)){
-                    //           window.localStorage.setItem('vehi',0)
-                    //         }else{
-                    //           window.localStorage.setItem('vehi',1)
-                    //         }
-                            
-                    //     }
-                    // })
+                    window.localStorage.setItem('hasVehicle',res.hasVehicle)
                     if(window.localStorage.getItem('returnurl') != null){
                         window.location.href = window.localStorage.getItem('returnurl')
                     }else{
@@ -178,6 +140,7 @@ function regVoice(){
         language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
         imgCode:$('#reg-img-code').val(),
         ucode:reguuid,
+        hasVehicle:$('input[id="vehi"]').prop("checked") == true ? 1 : 0,
         lid:"",
         t:"",
         opwd:"",
@@ -217,6 +180,7 @@ function regVoice(){
                     window.localStorage.setItem('us',res.userService)
                     window.localStorage.setItem('ms',res.meetingService)
                     window.localStorage.setItem('ch',$.base64.encode(res.channel))
+                    window.localStorage.setItem('hasVehicle',res.hasVehicle)
                     if(window.localStorage.getItem('returnurl') != null){
                         window.location.href = window.localStorage.getItem('returnurl')
                     }else{
@@ -246,42 +210,6 @@ function regVoice(){
                 confirmButtonText: $.i18n.prop('confirm'),
                 confirmButtonColor: '#94cb82'
             })
-        }
-    })
-}
-
-function regVehi(){
-    var regParams = {
-        u:$('#reg-email').val(),
-        phone:$('#reg-phone').val(),
-        username:$('#reg-name').val(),
-        company:$('#reg-company').val(),
-        dept:$('#reg-dep').val(),
-        userService:"",
-        p:$.base64.encode($('#reg-password').val()),
-        code:$('#reg-code').val(),
-        language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
-        imgCode:$('#reg-img-code').val(),
-        ucode:reguuid,
-        lid:"",
-        t:"",
-        opwd:"",
-        pwd:"",
-        lenovoid:"",
-        channel:""
-    }
-    var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
-
-    regParams.sign = md5(stringParams)
-    $.ajax({
-        url:sdkurl+'/vehicle/web/register',
-        type:'post',
-        dataType:'json',
-        data:regParams,
-        success:function(res){
-        },
-        error:function(err){
-            
         }
     })
 }
@@ -398,7 +326,8 @@ function regImgCode(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:""
+            channel:"",
+            vehicle:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -454,7 +383,8 @@ function loginImgCode(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:""
+            channel:"",
+            vehicle:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -626,7 +556,8 @@ function getCode(){
         code:"",
         imgCode:"",
         ucode:"",
-        channel:""
+        channel:"",
+        vehicle:""
     }
     var stringParams = JSON.stringify(regCodeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
     regCodeParams.sign = md5(stringParams)
@@ -638,12 +569,6 @@ function getCode(){
         success:function(res){
             if(res.status == 0){
                 timer()
-            // Swal.fire({
-            //     text:$.i18n.prop('code_sent'),
-            //     icon:'success',
-            //     confirmButtonText: $.i18n.prop('confirm'),
-            //     confirmButtonColor: '#94cb82'
-            // })
                 Swal.fire({
                     toast: true,
                     icon:'success',
@@ -655,11 +580,6 @@ function getCode(){
                 })
             }else{
                 $('.reg-code-btn').css('pointer-events','auto')
-                // Swal.fire({
-                //     text:res.error,
-                //     confirmButtonText: $.i18n.prop('confirm'),
-                //     confirmButtonColor: '#94cb82'
-                // })
                 Swal.fire({
                     toast: true,
                     icon:'warning',
@@ -691,18 +611,7 @@ function getRegImgCode(){
             if(res.status == 0){
                 $('#img-code-reg').attr('src','data:image/png;base64,'+res.imgage)
                 reguuid=res.uuid
-            // Swal.fire({
-            //     text:$.i18n.prop('code_sent'),
-            //     icon:'success',
-            //     confirmButtonText: $.i18n.prop('confirm'),
-            //     confirmButtonColor: '#94cb82'
-            // })
             }else{
-                // Swal.fire({
-                //     text:res.error,
-                //     confirmButtonText: $.i18n.prop('confirm'),
-                //     confirmButtonColor: '#94cb82'
-                // })
                 Swal.fire({
                     toast: true,
                     icon:'warning',
@@ -734,18 +643,7 @@ function getLoginImgCode(){
             if(res.status == 0){
                 $('#img-code-login').attr('src','data:image/png;base64,'+res.imgage)
                 loginuuid=res.uuid
-            // Swal.fire({
-            //     text:$.i18n.prop('code_sent'),
-            //     icon:'success',
-            //     confirmButtonText: $.i18n.prop('confirm'),
-            //     confirmButtonColor: '#94cb82'
-            // })
             }else{
-                // Swal.fire({
-                //     text:res.error,
-                //     confirmButtonText: $.i18n.prop('confirm'),
-                //     confirmButtonColor: '#94cb82'
-                // })
                 Swal.fire({
                     toast: true,
                     icon:'warning',
