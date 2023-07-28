@@ -42,6 +42,7 @@ $('.pushbtn').click(function(){
                   "channel" : "cloudasr"
             },
             success:function(res){
+              console.log(res)
               $('#pub-loading').hide()
               $('.pushbtn').removeAttr('disabled','disabled')
                   if(res.errorcode != 1024){
@@ -49,21 +50,20 @@ $('.pushbtn').click(function(){
                       $("#exampleFormControlTextarea").val("");
                       if(res.dataid){
                         Swal.fire({
-                          text: $.i18n.prop('logTimeOut'),
+                          text: $.i18n.prop('post_success'),
                           showCancelButton: true,
                           allowOutsideClick:false,
                           allowEscapeKey:false,
                           reverseButtons:true,
+                          icon:'success',
                           width:'16em',
                           confirmButtonColor: '#94cb82',
                           cancelButtonColor: '#d33',
                           confirmButtonText: $.i18n.prop('confirm'),
                           cancelButtonText:$.i18n.prop('cancel')
-                        }).then((result)=>{
+                        }).then((result) => {
                           if (result.isConfirmed) {
-                            var url = window.location.href
-                            window.localStorage.setItem('returnurl',url)
-                            window.location.href = '../login/login.html'
+                            window.location.href = '../forum/questionlist.html'
                           }
                         })
                       }else{

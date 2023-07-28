@@ -17,6 +17,7 @@ function lide(){
             $('.asrakimg').css('display','inline-block')
             $('.asrskimg').css('display','inline-block')
             $('.asrpro').css('display','flex')
+            $('#channel').attr("readonly","readonly")
         }
         if(window.localStorage.getItem('us') == 2){
             $('.ttscheck').attr("checked","checked")
@@ -26,6 +27,7 @@ function lide(){
             $('.ttsakimg').css('display','inline-block')
             $('.ttsskimg').css('display','inline-block')
             $('.ttspro').css('display','flex')
+            $('#channel').attr("readonly","readonly")
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
@@ -49,9 +51,12 @@ function lide(){
         $('.ttsskimg').css('display','none')
     }
     if(window.localStorage.getItem('hasVehicle') == 'true'){
-        $('.vehi-box').css('display','block')
+        $('#channel').attr("readonly","readonly")
         $('.vehicheck').attr("checked","checked")
         $('.vehicheck').attr("disabled","true")
+        $('.vehipro').css('display','flex')
+    }else{
+        $('.vehipro').css('display','none')
     }
 }
 
@@ -86,6 +91,7 @@ function submit(){
             lid:$.base64.decode(localStorage.getItem('acd')),
             language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined || '' ? 'chinese': 'english',
             userService:checkArr,
+            hasVehicle:$('.vehicheck').is(":checked") == true ? '1' : '0',
             u:"",
             p:"",
             username:"",
@@ -209,7 +215,7 @@ function getUserInfo(){
         vehicle:""
       }
       var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
-
+      
       infoParams.sign = md5(stringParams)
     $.ajax({
         type:"POST",
@@ -223,6 +229,7 @@ function getUserInfo(){
             if(res.errorcode != 1024){
                 window.localStorage.setItem('ch',$.base64.encode(res.channel))
                 window.localStorage.setItem('us',res.userService)
+                window.localStorage.setItem('hasVehicle',res.hasVehicle)
                 lenovokey = res.lenovokey
                 secretkey = res.secretkey
                 vehilenovokey = res.vehicleLenovokey

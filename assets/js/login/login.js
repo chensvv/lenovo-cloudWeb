@@ -18,7 +18,6 @@
 $('a[data-toggle="tab"]').on('hidden.bs.tab', function (event) {
     // event.target // newly activated tab
     // event.relatedTarget // previous active tab
-    console.log(event.target.id)
     if(event.target.id = 'nav-profile-tab'){
         $('#nav-profile input').val('')
         $('.error-tooltip').html('')
@@ -62,6 +61,7 @@ $('#loginBtn').click(function(){
             vehicle:""
         }
         var stringParams = JSON.stringify(loginParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
+        
         loginParams.sign = md5(stringParams)
         $.ajax({
             url:proURL+'/web/login',
@@ -146,7 +146,8 @@ function regVoice(){
         opwd:"",
         pwd:"",
         lenovoid:"",
-        channel:""
+        channel:"",
+        vehicle:""
     }
     var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
 

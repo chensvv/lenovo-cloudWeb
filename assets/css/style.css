@@ -2,7 +2,7 @@
 # General
 --------------------------------------------------------------*/
 
-body::-webkit-scrollbar { display: none; }
+/* body::-webkit-scrollbar { display: none; } */
 html,body {
   font-family: "Open Sans", sans-serif;
   color: #444;
@@ -1458,7 +1458,7 @@ section {
   font-size: 18px;
 }
 .questionlist-main .detail-content{
-  width: 20%;
+  width: 15%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3361,12 +3361,6 @@ section {
 .prohide{
   display: none;
 }
-.vehi-box{
-  display: none;
-}
-.vehi-box .vehipro{
-  display: flex;
-}
 
 /*--------------------------------------------------------------
 # contact
@@ -4115,10 +4109,6 @@ body.swal2-toast-shown .swal2-container{
     width: 100%;
     text-align: left;
   }
-  .questionlist-main .list-detail span{
-    display: block;
-  }
-  
   .assess-main .assess-main-box{
     flex-direction: column;
   }
@@ -4183,6 +4173,9 @@ body.swal2-toast-shown .swal2-container{
   }
   .assess-main .nav-main{
     margin-left: 0;
+  }
+  .questionlist-main .list-detail span{
+    display: block;
   }
   
 }
