@@ -31,7 +31,7 @@ function lide(){
         }
     }else if(window.localStorage.getItem('us') == 3){
         checkList.push('1','2')
-        $('.sub-btn').attr('disabled','true')
+        
         $('.asrcheck').attr("checked","checked")
         $('.ttscheck').attr("checked","checked")
         $('.asrcheck').attr("disabled","true")
@@ -57,6 +57,11 @@ function lide(){
         $('.vehipro').css('display','flex')
     }else{
         $('.vehipro').css('display','none')
+    }
+    if(window.localStorage.getItem('hasVehicle') == 'true' && window.localStorage.getItem('us') == 3){
+        $('.sub-btn').attr('disabled','disabled')
+    }else{
+        $('.sub-btn').removeAttr('disabled','disabled')
     }
 }
 
