@@ -96,7 +96,6 @@ function submit(){
             lid:$.base64.decode(localStorage.getItem('acd')),
             language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined || '' ? 'chinese': 'english',
             userService:checkArr,
-            hasVehicle:$('.vehicheck').is(":checked") == true ? '1' : '0',
             u:"",
             p:"",
             username:"",
@@ -109,7 +108,6 @@ function submit(){
             code:"",
             imgCode:"",
             ucode:"",
-            vehicle:"",
             channel:$('#channel').val()
         }
         var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
@@ -216,8 +214,7 @@ function getUserInfo(){
         code:"",
         imgCode:"",
         ucode:"",
-        channel:"",
-        vehicle:""
+        channel:""
       }
       var stringParams = JSON.stringify(infoParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
       

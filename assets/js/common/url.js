@@ -2,8 +2,8 @@
 // var sdkurl = 'http://10.110.148.57:8084'
 // var proURL = `${sdkurl}/lasf`
 // var proURL = `${sdkurl}/vehicle`
-var sdkurl = 'https://voice.lenovomm.com'
-var proURL = `${sdkurl}/website`
+// var sdkurl = 'https://voice.lenovo.com'
+// var proURL = `${sdkurl}/vehicle`
 
 
 // 按照首字母顺序排序

@@ -126,56 +126,32 @@
             </div>
           </div>
           <div class="asrapi-box">
-            <a href="../assets/sdk/语音识别ASR.docx" class="api_down">word版API下载</a>
+            <a href="../assets/sdk/语音识别ASR.docx" class="api_down i18n" name="wordapi"></a>
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th scope="col">URL</th>
-                        <td colspan="3">https://voice.lenovomm.com/lasf/cloudasr</td>
+                        <th scope="col" class="i18n" name="reqpro"></th>
+                        <td colspan="3">[wss] <span style="color: #f93939;" class="i18n" name="modenull"></span></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="method"></th>
-                        <td colspan="3">POST</td>
+                        <th scope="row" class="i18n" name="requrl"></th>
+                        <td colspan="3">wss://voice.lenovo.com/vehicle/webSocket</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="format"></th>
-                        <td colspan="3">multipart/form-data</td>
+                        <th scope="row" class="i18n" name="repformat"></th>
+                        <td colspan="3" class="i18n" name="repf"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="headers"></th>
-                        <td colspan="3">
-                            <span class="i18n" name="paramdes"></span>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                    <th scope="col" class="i18n" name="name"></th>
-                                    <th scope="col" class="i18n" name="format"></th>
-                                    <th scope="col" class="i18n" name="conval"></th>
-                                    <th scope="col" class="i18n" name="describe"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">lenovoKey</th>
-                                    <td>String</td>
-                                    <td>LENOVO-VOICE-aaabbbccc</td>
-                                    <td class="i18n" name="desc4"></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">secretKey</th>
-                                    <td>String</td>
-                                    <td>kasdjkfsldjsldfjkdkkkde</td>
-                                    <td class="i18n" name="desc5"></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">channel</th>
-                                    <td>String</td>
-                                    <td>cloudasr</td>
-                                    <td class="i18n" name="desc6"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
+                        <th scope="row" class="i18n" name="audioattr"></th>
+                        <td colspan="3" class="i18n" name="audioa"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="i18n" name="audioformat"></th>
+                        <td colspan="3">pcm</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="i18n" name="sampleurl"></th>
+                        <td colspan="3">url/username/lenovoKey/secretKey/sessionid/language/audioFormat/scene <br><span style="color: #f93939;" class="i18n" name="orderparam"></span></td>
                     </tr>
                     <tr>
                         <th scope="row" class="i18n" name="content"></th>
@@ -192,34 +168,28 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">scene</th>
+                                        <th scope="row">url</th>
                                         <td>String</td>
-                                        <td>short</td>
-                                        <td class="i18n" name="scene"></td>
+                                        <td>wss://voice.lenovo.com/vehicle/webSocket</td>
+                                        <td class="i18n" name="requrl"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">language</th>
+                                        <th scope="row">username</th>
                                         <td>String</td>
-                                        <td>chinese</td>
-                                        <td class="i18n" name="language"></td>
+                                        <td>1234567890</td>
+                                        <td class="i18n" name="Currentusername"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">sample</th>
-                                        <td>Number</td>
-                                        <td>1</td>
-                                        <td class="i18n" name="sample"></td>
+                                        <th scope="row">lenovoKey</th>
+                                        <td>String</td>
+                                        <td>LENOVO-VOICE-aaabbbccc</td>
+                                        <td class="i18n" name="desc4"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">audioFormat</th>
+                                        <th scope="row">secretKey</th>
                                         <td>String</td>
-                                        <td>pcm_16000_16bit_sample</td>
-                                        <td><span class="i18n" name="audioFormat"></span>:<br>
-                                                pcm_16000_16bit_sample: <span>pcm格式  16000采样率 16比特率的语音</span><br>
-                                                pcm_8000_16bit_sample: <span> pcm格式  8000采样率 16比特率的语音</span><br>
-                                                speex_16000_16bit_sample: <span>speex格式 16000采样率 16比特率的语音</span><br>
-                                                speex_8000_16bit_sample: <span>speex格式 8000采样率 16比特率的语音</span><br>
-                                                alaw_8000_16bit_sample: <span>alaw 格式 8000采样率 16比特率的语音</span><br>
-                                                ulaw_8000_16bit_sample: <span>ulaw 格式 8000采样率 16比特率的语音</span>        
+                                        <td>kasdjkfsldjsldfjkdkkkde</td>
+                                        <td class="i18n" name="desc5"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">sessionid</th>
@@ -228,22 +198,36 @@
                                         <td class="i18n" name="sts"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">packageid</th>
-                                        <td>Number</td>
-                                        <td>1</td>
-                                        <td class="i18n" name="paid"></td>
+                                        <th scope="row">language</th>
+                                        <td>String</td>
+                                        <td>chinese</td>
+                                        <td class="i18n" name="language"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th scope="row">audioFormat</th>
+                                        <td>String</td>
+                                        <td>pcm_16000_16bit_sample</td>
+                                        <td><span class="i18n" name="audioFormat"></span>:<br>
+                                                pcm_16000_16bit_sample: <span>pcm格式  16000采样率 16比特率的语音</span><br>
+                                                pcm_8000_16bit_sample: <span> pcm格式  8000采样率 16比特率的语音</span><br>
+                                                <span style="color: #f93939;" class="i18n" name="real16k"></span>
+                                                <!-- speex_16000_16bit_sample: <span>speex格式 16000采样率 16比特率的语音</span><br>
+                                                speex_8000_16bit_sample: <span>speex格式 8000采样率 16比特率的语音</span><br>
+                                                alaw_8000_16bit_sample: <span>alaw 格式 8000采样率 16比特率的语音</span><br>
+                                                ulaw_8000_16bit_sample: <span>ulaw 格式 8000采样率 16比特率的语音</span>         -->
                                     </tr>
                                     <tr>
-                                        <th scope="row">over</th>
-                                        <td>Number</td>
-                                        <td>1</td>
-                                        <td class="i18n" name="over"></td>
+                                        <th scope="row">scene</th>
+                                        <td>String</td>
+                                        <td>cmd/long</td>
+                                        <td class="i18n" name="scene"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">voice-data</th>
                                         <td>ByteArray</td>
                                         <td>application/i7-voice</td>
-                                        <td class="i18n" name="desc8"></td>
+                                        <td class="i18n" name="senddata"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -316,23 +300,30 @@
             </table>
           </div>
           <div class="ttsapi-box">
-            <a href="../assets/sdk/语音合成TTS.docx" class="api_down">word版API下载</a>
+            <a href="../assets/sdk/语音合成TTS.docx" class="api_down i18n" name="wordapi"></a>
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th scope="col">URL</th>
-                        <td colspan="3">(https)：https://voice.lenovomm.com/lasf/cloudtts<br>(ws[s])：wss://voice.lenovomm.com/website/wscloudtts/</td>
+                        <th scope="col" class="i18n" name="reqpro"></th>
+                        <td colspan="3">[wss]</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="method"></th>
-                        <td colspan="3">POST (https)</td>
+                        <th scope="row" class="i18n" name="requrl"></th>
+                        <td colspan="3">wss://voice.lenovo.com/vehicle/wscloudtts</td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="format"></th>
-                        <td colspan="3">application/x-www-form-urlencoded (https)</td>
+                        <th scope="row" class="i18n" name="repformat"></th></th>
+                        <td colspan="3" class="i18n" name="audiostream"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="i18n" name="headers"></th>
+                        <th scope="row" class="i18n" name="audioformat"></th>
+                        <td colspan="3">pcm、mp3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="i18n" name="sampleurl"></th>
+                        <td colspan="3">url/user/speed/volume/pitch/audioType/speaker/t1/token/t2/channel/lenovoKey/secretKey<br/><span style="color: #f93939;" class="i18n" name="orderparam"></span></td>
+                    </tr>
+                        <th scope="row" class="i18n" name="content"></th>
                         <td colspan="3">
                             <span class="i18n" name="paramdes"></span>
                             <table class="table table-bordered">
@@ -346,98 +337,84 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <th scope="row">lenovoKey</th>
-                                    <td>String</td>
-                                    <td>LENOVO-VOICE-aaabbbccc</td>
-                                    <td class="i18n" name="desc4"></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">secretKey</th>
-                                    <td>String</td>
-                                    <td>kasdjkfsldjsldfjkdkkkde</td>
-                                    <td class="i18n" name="desc5"></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">channel</th>
-                                    <td>String</td>
-                                    <td>cloudasr</td>
-                                    <td class="i18n" name="desc6"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="i18n" name="content"></th>
-                        <td colspan="3">
-                            <span class="i18n" name="paramdes"></span>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                    <th scope="col" class="i18n" name="name"></th>
-                                    <th scope="col" class="i18n" name="format"></th>
-                                    <th scope="col" class="i18n" name="ismust"></th>
-                                    <th scope="col" class="i18n" name="describe"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">text</th>
+                                        <th scope="row">url</th>
                                         <td>String</td>
-                                        <td class="i18n" name="yes"></td>
-                                        <td class="i18n" name="tce"></td>
+                                        <td>wss://voice.lenovo.com/vehicle/wscloudtts</td>
+                                        <td class="i18n" name="requrl"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">user</th>
                                         <td>String</td>
-                                        <td class="i18n" name="yes"></td>
+                                        <td>123456789</td>
                                         <td class="i18n" name="accid"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">speed</th>
                                         <td>Number</td>
-                                        <td class="i18n" name="no"></td>
+                                        <td>5</td>
                                         <td class="i18n" name="speed"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">volume</th>
                                         <td>int</td>
-                                        <td class="i18n" name="no"></td>
+                                        <td>5</td>
                                         <td class="i18n" name="spq"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">pitch</th>
                                         <td>Number</td>
-                                        <td class="i18n" name="no"></td>
+                                        <td>5</td>
                                         <td class="i18n" name="itt"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">audioType</th>
                                         <td>String</td>
-                                        <td class="i18n" name="no"></td>
+                                        <td>mp3</td>
                                         <td><span class="i18n" name="audiotype"></span></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">speaker</th>
                                         <td>String</td>
-                                        <td class="i18n" name="no"></td>
-                                        <td><span>speaker：说话人;<br> db4：女声 db2：男生; <br> 默认为：db4</span></td>
+                                        <td>db4</td>
+                                        <td class="i18n" name="speaker"></td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <span class="i18n" name="paramdesws"></span>
-                            <table class="table table-bordered">
-                                <thead>
                                     <tr>
-                                    <th scope="col" class="i18n" name="name"></th>
-                                    <th scope="col" class="i18n" name="describe"></th>
+                                        <th scope="row">t1</th>
+                                        <td>String</td>
+                                        <td>1234567890</td>
+                                        <td  class="i18n" name="accid"></td>
                                     </tr>
-                                </thead>
-                                <tbody>
                                     <tr>
-                                        <td scope="row">/wscloudtts/user/speed/volume/pitch/audioType/speaker/t1/token/t2/channel/lenovokey/secretkey</td>
-                                        <td scope="row">user:lenovoid；speed:语速(0-9)；volume:音量(0-9)；pitch:语调(0-9)；audioType:音频格式mp3、pcm；speaker:说话人(db4:女声，db2:男声)；t1:lenovoid：token:token；t2:当前时间戳；channel:cloudasr；lenovokey:官网获取的lenovokey；secretkey:官网获取的secretkey；(lenovoid、lenovokey、secretkey以及合成文本须base64加密)</td>
+                                        <th scope="row">token</th>
+                                        <td>String</td>
+                                        <td>token</td>
+                                        <td class="i18n" name="defstrtoken"></td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">t2</th>
+                                        <td>String</td>
+                                        <td>1686732891032</td>
+                                        <td class="i18n" name="timesmalp"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">channel</th>
+                                        <td>String</td>
+                                        <td>cloudasr</td>
+                                        <td class="i18n" name="desc6"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">lenovoKey</th>
+                                        <td>String</td>
+                                        <td>LENOVO-VOICE-aaabbbccc</td>
+                                        <td class="i18n" name="desc4"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">secretKey</th>
+                                        <td>String</td>
+                                        <td>kasdjkfsldjsldfjkdkkkde</td>
+                                        <td class="i18n" name="desc5"></td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </td>

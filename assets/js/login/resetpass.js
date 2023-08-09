@@ -56,8 +56,7 @@ $('.reset-btn').click(function(){
             code:"",
             imgCode:"",
             ucode:"",
-            channel:"",
-            vehicle:""
+            channel:""
         }
         var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         regParams.sign = md5(stringParams)

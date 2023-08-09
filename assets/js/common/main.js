@@ -181,8 +181,7 @@ function getUserinfo(){
     code:"",
     imgCode:"",
     ucode:"",
-    channel:"",
-    vehicle:""
+    channel:""
   }
   var stringParams = JSON.stringify(params,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
   params.sign = md5(stringParams)

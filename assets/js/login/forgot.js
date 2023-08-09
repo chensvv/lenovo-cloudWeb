@@ -33,8 +33,7 @@ function oneSteps(){
         userService:"",
         imgCode:"",
         ucode:"",
-        channel:"",
-        vehicle:""
+        channel:""
     }
     var stringParams = JSON.stringify(checkParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
     checkParams.sign = md5(stringParams)
@@ -94,8 +93,7 @@ function twoSteps(){
             userService:"",
             imgCode:"",
             ucode:"",
-            channel:"",
-            vehicle:""
+            channel:""
         }
         var stringParams = JSON.stringify(pwdParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         pwdParams.sign = md5(stringParams)
@@ -192,8 +190,7 @@ function getCode(){
             userService:"",
             imgCode:"",
             ucode:"",
-            channel:"",
-            vehicle:""
+            channel:""
     }
     var stringParams = JSON.stringify(emailParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         emailParams.sign = md5(stringParams)

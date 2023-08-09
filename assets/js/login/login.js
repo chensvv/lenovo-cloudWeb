@@ -57,8 +57,7 @@ $('#loginBtn').click(function(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:"",
-            vehicle:""
+            channel:""
         }
         var stringParams = JSON.stringify(loginParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         
@@ -140,14 +139,12 @@ function regVoice(){
         language:getCookies(document.cookie) == 'zh_CN' || getCookies(document.cookie) == undefined ? 'chinese': 'english',
         imgCode:$('#reg-img-code').val(),
         ucode:reguuid,
-        hasVehicle:$('input[id="vehi"]').prop("checked") == true ? 1 : 0,
         lid:"",
         t:"",
         opwd:"",
         pwd:"",
         lenovoid:"",
-        channel:"",
-        vehicle:""
+        channel:""
     }
     var stringParams = JSON.stringify(regParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
 
@@ -327,8 +324,7 @@ function regImgCode(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:"",
-            vehicle:""
+            channel:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -384,8 +380,7 @@ function loginImgCode(){
             lenovoid:"",
             userService:"",
             code:"",
-            channel:"",
-            vehicle:""
+            channel:""
         }
         var stringParams = JSON.stringify(codeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
         codeParams.sign = md5(stringParams)
@@ -557,8 +552,7 @@ function getCode(){
         code:"",
         imgCode:"",
         ucode:"",
-        channel:"",
-        vehicle:""
+        channel:""
     }
     var stringParams = JSON.stringify(regCodeParams,userReplacer).replace(/\"/g, "").replace(/\:/g, '=').replace(/\,/g, '&').replace(/\{/g, '').replace(/\}/g, '')
     regCodeParams.sign = md5(stringParams)

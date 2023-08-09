@@ -6,7 +6,7 @@ var username = $.base64.decode(window.localStorage.getItem('token'))
 var channelval = $.base64.decode(window.localStorage.getItem('ch'))
 var userToken = window.localStorage.getItem('token')
 var bgm = document.getElementById('bgMusic')
-var uri = 'wss://voice.lenovomm.com/website/wscloudtts/'
+var uri = 'wss://voice.lenovo.com/website/wscloudtts/'
 // var uri = 'ws://10.110.148.57:8085/lasf/wscloudtts/'
 // var uri = 'ws://10.110.148.57:8085/vehicle/wscloudtts/'
 var rangeval

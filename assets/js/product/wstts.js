@@ -2,7 +2,7 @@
 var testAllPcm,testSampleRate,testInfo;
 var testType,testDecode,testTransform;
 var ws;
-var uri = 'wss://voice.lenovomm.com/website/wscloudtts/';
+var uri = 'wss://voice.lenovomm.com/vehicle/wscloudtts/';
 // var uri = 'ws://10.110.148.57:8085/lasf/wscloudtts/'
 // var uri = 'ws://10.110.148.57:8085/vehicle/wscloudtts/'
 var n = 0;
@@ -146,7 +146,7 @@ var receiveResume=function(){
 };
 
 function socket(){
-	var wsServer = `${uri}${accountid}/${document.getElementById('myrange').value}/${document.getElementById('myvol').value}/${document.getElementById('mypitch').value}/xxxx/${$('#seletype .active')[0].id}/${accountid}/token/${new Date().getTime()}/cloudasr/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}`
+	var wsServer = `${uri}${accountid}/${document.getElementById('myrange').value}/${document.getElementById('myvol').value}/${document.getElementById('mypitch').value}/mp3/${$('#seletype .active')[0].id}/${accountid}/token/${new Date().getTime()}/cloudasr/${localStorage.getItem('lk')}/${localStorage.getItem('sk')}`
 	ws = new WebSocket(wsServer);
 	ws.binaryType = 'arraybuffer'; //arraybuffer
 	ws.onopen = function (evt) {
@@ -181,6 +181,7 @@ var WS_OnMessage=function(e){
 var WS_Open=function(){
 	console.log("Connected to WebSocket server.");
 		var mess = document.getElementById("textarea").value;
+		console.log(mess)
 		// for(var i = 0; i<mess.length;i++){
 		// 	console.log(mess[i])
 			ws.send(BASE64.encode(mess));

@@ -9,7 +9,7 @@ var $selectLang = $("#selectLang input:radio:checked")
 var path = ''
 // var uri = 'ws://10.110.148.57:8085/lasf/webSocket/'
 // var uri = 'ws://10.110.148.57:8085/vehicle/webSocket/'
-var uri = 'wss://voice.lenovomm.com/website/webSocket/'
+var uri = 'wss://voice.lenovo.com/vehicle/webSocket/'
 var rt = ''
 var firstup = true
 var rec

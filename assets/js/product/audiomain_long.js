@@ -1,7 +1,7 @@
 var chunkInfo;
 var rec;
 var path = ''
-var uri = 'wss://voice.lenovomm.com/website/webSocket/'
+var uri = 'wss://voice.lenovo.com/vehicle/webSocket/'
 // var uri = 'ws://10.110.148.57:8085/lasf/webSocket/'
 // var uri = 'ws://10.110.148.57:8084/vehicle/webSocket/'
 var ws
